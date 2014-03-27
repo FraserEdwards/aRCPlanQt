@@ -22,13 +22,14 @@ int GUI::run(int argc, char *argv[]){
     QApplication a(argc, argv);
 
     guiinput b;
+    guioutput c;
     b.setnames(parameters);
     b.show();
 
-//    Simulation simulation;
-//    simulation.run(parameters);
+    Simulation simulation;
+    simulation.run(parameters,);
 
-    guioutput c;
+
     c.show();
 
 

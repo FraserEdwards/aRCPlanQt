@@ -9,6 +9,8 @@
 #include "Results.h"
 #include "Plot.h"
 
+#include "guioutput.h"
+
 
 #ifndef _SIMULATION_H
 #define _SIMULATION_H
@@ -37,7 +39,7 @@ public:
 	
 	ConfigFile config;
 	Simulation();
-    void run(Parameters parameters);
+    void run(Parameters parameters, guioutput c);
 
 };
 

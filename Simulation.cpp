@@ -10,7 +10,7 @@ Simulation::Simulation()
 
 }
 
-void Simulation::run(Parameters parameters)
+void Simulation::run(Parameters parameters, guioutput c)
 {
 
     Results results;
