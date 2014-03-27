@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
     guiinput b;
     b.show();
 
-//    guioutput c;
-//    c.show();
+    guioutput c;
+    c.show();
 
 //    Simulation simulation;
 //    simulation.run();

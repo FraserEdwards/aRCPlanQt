@@ -15,6 +15,22 @@ public:
     explicit guioutput(QWidget *parent = 0);
     ~guioutput();
 
+private slots:
+
+    void on_Resultscombo_currentTextChanged(const QString &arg1);
+
+    void on_Crackspeedcombo_currentTextChanged(const QString &arg1);
+
+    void on_outflowresult_textChanged(const QString &arg1);
+
+    void on_cortendriving_textChanged(const QString &arg1);
+
+    void on_normalisedforce_textChanged(const QString &arg1);
+
+    void on_newcase_clicked();
+
+    void on_quit_clicked();
+
 private:
     Ui::guioutput *ui;
 };
