@@ -2,7 +2,6 @@
 #define GUIOUTPUT_H
 
 #include <QWidget>
-#include "Solution.h"
 
 namespace Ui {
 class guioutput;
@@ -15,7 +14,6 @@ class guioutput : public QWidget
 public:
     explicit guioutput(QWidget *parent = 0);
     ~guioutput();
-    void setresults(Solution solution);
 
 private slots:
 

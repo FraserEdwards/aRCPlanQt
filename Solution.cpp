@@ -11,7 +11,7 @@ Solution::Solution(){
 	m.push_back(0.0);
 	outflowLength.push_back(0.0);
 	deltaDStar.push_back(0.0);
-    gS1.push_back(0.0);
+	gS1.push_back(0.0);
 	gUE.push_back(0.0);
 	gSb.push_back(0.0);
 	gKb.push_back(0.0);
