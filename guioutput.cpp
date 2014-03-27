@@ -13,7 +13,6 @@ guioutput::~guioutput()
     delete ui;
 }
 
-
 void guioutput::on_Resultscombo_currentTextChanged(const QString &arg1)
 {
 

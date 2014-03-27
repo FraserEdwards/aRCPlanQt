@@ -10,10 +10,8 @@ Simulation::Simulation()
 
 }
 
-void Simulation::run()
+void Simulation::run(Parameters parameters)
 {
-
-	ConfigFile config("caseInputData.txt");
 
 	do
 	{	
@@ -22,19 +20,18 @@ void Simulation::run()
 		Plot plot;
 		Solution solution;
 		
-		parameters.collect(config);
-		Interface interface(7, config);
+        Interface interface(7, config);
 
 		//  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
 		FracMech fracmech(parameters);
-		interface.line("Irwin-Corten crack driving force = ", fracmech.g0, " kJ/m^2");
+//		interface.line("Irwin-Corten crack driving force = ", fracmech.g0, " kJ/m^2");
 		
 		//	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
 		Creep creep(parameters);
 	
 		//  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
 		Backfill backfill(parameters);
-		interface.line("Effective ratio of backfilled to free pipe density = ", backfill.densityratio);
+//		interface.line("Effective ratio of backfilled to free pipe density = ", backfill.densityratio);
 
 		//	Preliminary calculations
 		BeamModel beamModel(parameters, backfill, creep); 
@@ -63,17 +60,17 @@ void Simulation::run()
 			{
 				beamModel.opening(parameters, interface, solution, creep, plot, results);
 				fracmech.extensionForce(beamModel, parameters, creep);
-				interface.line("Solution profile: ");
-				interface.line("with v0 = ", beamModel.v0);	
+//				interface.line("Solution profile: ");
+//				interface.line("with v0 = ", beamModel.v0);
 
 				solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
 				solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
 				fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
 
-				plot.profile(beamModel.zeta, beamModel.crackdisplacement, "aDotc0 = ", "/Profile/", parameters.aDotc0, "Distance behind crack tip, z (mm)", "Crack Opening Displacement (mm)");
+//				plot.profile(beamModel.zeta, beamModel.crackdisplacement, "aDotc0 = ", "/Profile/", parameters.aDotc0, "Distance behind crack tip, z (mm)", "Crack Opening Displacement (mm)");
 				
-				interface.iprofile(solution.zeta, solution.vptra, solution.l);
-				interface.returnsol(solution);
+//				interface.iprofile(solution.zeta, solution.vptra, solution.l);
+//				interface.returnsol(solution);
 				results.line(solution);
 
 			}
@@ -84,14 +81,14 @@ void Simulation::run()
 				fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
 
 				// solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
-				interface.returnnsol(solution);
+//				interface.returnnsol(solution);
 				results.line(solution);
 				
 			}
 					
 		}	
 
-		plot.handler(solution);
+//		plot.handler(solution);
 
 		// Check for user input
 		controlCode=interface.input("FINISHED.  Enter 0 to end, any other integer to run another case: ");

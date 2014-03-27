@@ -6,23 +6,21 @@ using namespace std;
 
 void Parameters::collect(ConfigFile config)
 {
-	
-	
     Material material(4,config);
-	material.outputData();
-	material.inputData();
+//	material.outputData();
+//	material.inputData();
 	
     Geometry geometry(4, config);
-	geometry.outputData();
-	geometry.inputData();	
+//	geometry.outputData();
+//	geometry.inputData();
 
     TestSetup testSetup(4, config);
-	testSetup.outputData();
-	testSetup.inputData();
+//	testSetup.outputData();
+//	testSetup.inputData();
 	
     Control control(4,config);
-	control.outputData();
-	control.inputData();
+//	control.outputData();
+//	control.inputData();
 
 	copy(material, geometry, testSetup, control);
 	conditionToTemperature();
@@ -53,7 +51,7 @@ void Parameters::copy(Material material, Geometry geometry, TestSetup testSetup,
 	sdr = geometry.sdr;
 	notchDepth = geometry.notchDepth;
 	diameterCreepRatio = geometry.diameterCreepRatio;
-	h =  geometry.h;
+    h =  geometry.h;
 	crackWidth = geometry.crackWidth;
 	hOverR = geometry.hOverR;
 	radius = geometry.radius;

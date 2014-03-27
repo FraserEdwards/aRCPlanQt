@@ -2,6 +2,8 @@
 #define GUIINPUT_H
 
 #include <QWidget>
+#include <QLineEdit>
+#include "Parameters.h"
 
 namespace Ui {
 class guiinput;
@@ -13,7 +15,9 @@ class guiinput : public QWidget
 
 public:
     explicit guiinput(QWidget *parent = 0);
+    void setnames(Parameters parameters);
     ~guiinput();
+
 
 private slots:
 
@@ -84,7 +88,8 @@ private slots:
     void on_plotcrack_stateChanged(int arg1);
 
 private:
-    Ui::guiinput *ui;
+
+    Ui::guiinput *ui;    
 };
 
 #endif // GUIINPUT_H

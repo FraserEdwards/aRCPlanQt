@@ -44,8 +44,8 @@ Interface::Interface(const short recordNumber, ConfigFile config)
 		config.readInto(printOpeningProfile, "printOpeningProfile");
 	}
 
-	outputData();
-	inputData();
+//	outputData();
+//	inputData();
 }
 
 void Interface::inputData()
