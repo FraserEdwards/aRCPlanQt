@@ -8,19 +8,19 @@ void Parameters::collect(ConfigFile config)
 {
 	
 	
-	Material material(7,config);
+    Material material(4,config);
 	material.outputData();
 	material.inputData();
 	
-	Geometry geometry(7, config);
+    Geometry geometry(4, config);
 	geometry.outputData();
 	geometry.inputData();	
 
-	TestSetup testSetup(7, config);	
+    TestSetup testSetup(4, config);
 	testSetup.outputData();
 	testSetup.inputData();
 	
-	Control control(7,config);
+    Control control(4,config);
 	control.outputData();
 	control.inputData();
 

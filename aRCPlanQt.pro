@@ -37,6 +37,7 @@ SOURCES += main.cpp\
     Solution.cpp \
     SymDoubleMatrix.cpp \
     TestSetup.cpp \
+    gui.cpp
 
 HEADERS  += guiinput.h \
     guioutput.h \
@@ -61,13 +62,16 @@ HEADERS  += guiinput.h \
     Simulation.h \
     Solution.h \
     SymDoubleMatrix.h \
-    TestSetup.h
+    TestSetup.h \
+    gui.h
 
 FORMS    += guiinput.ui \
     guioutput.ui
 
 OTHER_FILES += \
-    caseInputData.txt \
     README.md \
     Results.csv \
     aRCPlan.dSYM
+
+RESOURCES += \
+    resource.qrc
