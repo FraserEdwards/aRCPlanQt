@@ -19,7 +19,7 @@ using namespace std;
 		short Control::analyticalSolutionMode_lib[5] = {0, 1, 0, 0, 0};
 		short Control::numberOfSpeedValues_lib[5] = {20, 20, 20, 20, 20};
 		short Control::elementsInL_lib[5] = {20, 20, 20, 20, 20};
-//        double Control::aDotc0_lib[5] = {0, 0.2, 0.4, 0.6, 0.8};
+        double Control::aDotc0_lib[5] = {0, 0.2, 0.4, 0.6, 0.8};
 
 // Null constructor
 Control::Control()
@@ -29,7 +29,7 @@ Control::Control()
 		analyticalSolutionMode = 0;
 		numberOfSpeedValues = 0;
 		elementsInL = 0;
-//        aDotc0 = 0;
+        aDotc0 = 0;
 }	
 
 // Constructor for control parameter set
@@ -44,7 +44,7 @@ Control::Control(const short recordNumber, ConfigFile config)
 		analyticalSolutionMode = analyticalSolutionMode_lib[index];
 		numberOfSpeedValues = numberOfSpeedValues_lib[index];
 		elementsInL = elementsInL_lib[index];
-//        aDotc0 = aDotc0_lib[index];
+        aDotc0 = aDotc0_lib[index];
 	}
 	else
 	{
@@ -54,7 +54,7 @@ Control::Control(const short recordNumber, ConfigFile config)
 		config.readInto(analyticalSolutionMode, "analyticalSolutionMode");
 		config.readInto(numberOfSpeedValues, "numberOfSpeedValues");
 		config.readInto(elementsInL, "elementsInL");
-//        config.readInto(aDotc0, "aDotc0");
+        config.readInto(aDotc0, "aDotc0");
 
 	}
 }	

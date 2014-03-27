@@ -20,7 +20,7 @@ class Control
 		static short analyticalSolutionMode_lib[5];
 		static short numberOfSpeedValues_lib[5];
 		static short elementsInL_lib[5];
-//        static double speedcrack_lib[5];
+        static double aDotc0_lib[5];
 		ConfigFile config;
 		
 	public:
@@ -33,7 +33,7 @@ class Control
 		short analyticalSolutionMode;
 		short numberOfSpeedValues;
 		short elementsInL;
-        double crackspeed;
+        double aDotc0;
 		
 };
 

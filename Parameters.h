@@ -18,11 +18,12 @@ private:
 	Control control;	
 	
 public:
-    double aDotc0;
+
     Parameters() : Control(), TestSetup(), Material(), Geometry() {}
 	void collect(ConfigFile config);
 	void copy(Material material, Geometry geometry, TestSetup testSetup, Control control);
 	void conditionToTemperature();	
+
 } ;
 
 #endif

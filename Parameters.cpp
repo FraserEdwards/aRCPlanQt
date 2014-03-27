@@ -26,7 +26,7 @@ void Parameters::copy(Material material, Geometry geometry, TestSetup testSetup,
 	lambda = control.lambda;
 	analyticalSolutionMode = control.analyticalSolutionMode;
 	numberOfSpeedValues = control.numberOfSpeedValues;
-//    aDotc0 = control.aDotc0;
+    aDotc0 = control.aDotc0;
 	elementsInL = control.elementsInL;
 
 	methodID = testSetup.methodID;
