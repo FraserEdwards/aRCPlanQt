@@ -30,8 +30,6 @@ class TestSetup
 	    TestSetup();												// null constructor
 	    TestSetup(const short matLibNumber, ConfigFile config); 	// construct a TestSetup definition from the library or a file
 		TestSetup& operator=(const TestSetup& rhs);
-	    void inputData();
-	    void outputData();
 		string methodID;
 		short fullScale;
 		double tempDegC;

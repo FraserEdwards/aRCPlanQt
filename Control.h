@@ -20,20 +20,20 @@ class Control
 		static short analyticalSolutionMode_lib[5];
 		static short numberOfSpeedValues_lib[5];
 		static short elementsInL_lib[5];
+//        static double speedcrack_lib[5];
 		ConfigFile config;
 		
 	public:
 		// Prototypes
 	    Control();													// null constructor
 	    Control(const short recordNumber, ConfigFile config); 	// construct a Control definition from the library or a file
-		Control& operator=(const Control& rhs);
-		void inputData();
-	    void outputData();
+        Control& operator=(const Control& rhs);
 		short outflowModelOn;
 		double lambda;
 		short analyticalSolutionMode;
 		short numberOfSpeedValues;
 		short elementsInL;
+        double crackspeed;
 		
 };
 

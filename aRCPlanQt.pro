@@ -17,7 +17,6 @@ SOURCES += main.cpp\
     guioutput.cpp \
     Backfill.cpp \
     BeamModel.cpp \
-    computeG.cpp \
     ConfigFile.cpp \
     Constants.cpp \
     Control.cpp \

@@ -63,55 +63,6 @@ Geometry::Geometry(const short recordNumber, ConfigFile config)
 
 }	
 
-// Allows user to modify pipe parameters
-void Geometry::inputData()
-{
-	short itemNumber;
-	cout << "** To edit any PIPE parameter, enter its code;  if not, enter 0: ";
-	cin >> itemNumber;
-	while (itemNumber != 0)
-	{
-		switch (itemNumber)
-		{
-			case 1:
-			{
-				cout << "                                        Name/identifier: ";
-				cin >> pipeID;
-			}
-			break;
-			case 2:
-			{
-				cout << "                             Outside pipe diameter (mm): ";
-				cin >> diameter;
-			}
-			break;
-			case 3:
-			{
-				cout << "                   SDR (Pipe diameter / Wall thickness): ";
-				cin >> sdr;
-			}
-			break;
-			case 4:
-			{
-				cout << "          Depth of internal or external sidegroove (mm): ";
-				cin >> notchDepth;
-			}
-			break;
-			case 5:
-			{
-				cout << "          Relative diameter after residual strain creep: ";
-				cin >> diameterCreepRatio;
-			}
-			break;
-			default:
-				cout << "Unrecognised code.  Try again:\n";
-			break;
-		}
-		cout << "\nEdit another parameter?  If so, enter reference number;  if not, enter 0: ";
-		cin >> itemNumber;
-	}
-} 
-
 // Make this Pipe identical to RHS one by operator '='
 // Creates the "=" operator for this class
 Geometry& Geometry::operator=(const Geometry& rhs)
@@ -122,17 +73,4 @@ Geometry& Geometry::operator=(const Geometry& rhs)
 	notchDepth = rhs.notchDepth;
 	diameterCreepRatio = rhs.diameterCreepRatio;
     return *this;
-} 
-
-//Displays all pipe parameters to the user with corresponding reference number
-void Geometry::outputData()
-{
-	cout
-		<< endl
-		<< "PIPE geometry parameters: \n"
-		<< "1.                          Pipe name/identifier = " << pipeID << endl
-		<< "2.                         Outside pipe diameter = " << diameter << " mm \n"
-		<< "3.          SDR (Pipe diameter / Wall thickness) = " << sdr << endl
-		<< "4.         Internal or external sidegroove depth = " << notchDepth << " mm \n"
-		<< "5. Relative diameter after residual strain creep = " << diameterCreepRatio << endl;
 } 

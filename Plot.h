@@ -15,7 +15,6 @@ private:
 	vector<double> y;
 	string title;
 	string folder;
-	int l;
 
 public:
 

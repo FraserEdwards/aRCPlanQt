@@ -12,8 +12,7 @@ class BeamModel
 {// 
 	private:
 			
-		double g0;			
-		double aDotc0;				
+		double g0;						
 		double dStarMinus1;
 		double dStarMinus2;		
 		double baffleLeakageArea;

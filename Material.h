@@ -26,8 +26,6 @@ class Material
 		// Prototypes
 	    Material();													// null constructor
 	    Material(const short recordNumber, ConfigFile config); 	// construct a material definition from the library or a file
-	    void inputData();
-	    void outputData();
 		string matID;
 		double density;
 		double eDyn0degC;

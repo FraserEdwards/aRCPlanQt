@@ -142,10 +142,10 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			double wStarMax = 0.0;
 			FDprofile fdSolution(alpha, m, zetaBackfilled, vStarRes, parameters.elementsInL, nodeAtClosure);
 			
-			interface.line("first guess profile: ");
+//			interface.line("first guess profile: ");
 	
 			fdSolution.fprofile();
-			interface.iprofile(fdSolution.zeta, fdSolution.vptra, fdSolution.l);
+//			interface.iprofile(fdSolution.zeta, fdSolution.vptra, fdSolution.l);
 
 			short nodeAtClosure_previous = nodeAtClosure;				// Store position of last node in this FD array
 			double errorLast = fdSolution.closureMoment();				// ...and resulting d2v/dz2 at closure point, divided by that at crack tip

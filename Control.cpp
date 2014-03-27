@@ -19,6 +19,7 @@ using namespace std;
 		short Control::analyticalSolutionMode_lib[5] = {0, 1, 0, 0, 0};
 		short Control::numberOfSpeedValues_lib[5] = {20, 20, 20, 20, 20};
 		short Control::elementsInL_lib[5] = {20, 20, 20, 20, 20};
+//        double Control::aDotc0_lib[5] = {0, 0.2, 0.4, 0.6, 0.8};
 
 // Null constructor
 Control::Control()
@@ -28,6 +29,7 @@ Control::Control()
 		analyticalSolutionMode = 0;
 		numberOfSpeedValues = 0;
 		elementsInL = 0;
+//        aDotc0 = 0;
 }	
 
 // Constructor for control parameter set
@@ -42,6 +44,7 @@ Control::Control(const short recordNumber, ConfigFile config)
 		analyticalSolutionMode = analyticalSolutionMode_lib[index];
 		numberOfSpeedValues = numberOfSpeedValues_lib[index];
 		elementsInL = elementsInL_lib[index];
+//        aDotc0 = aDotc0_lib[index];
 	}
 	else
 	{
@@ -51,62 +54,10 @@ Control::Control(const short recordNumber, ConfigFile config)
 		config.readInto(analyticalSolutionMode, "analyticalSolutionMode");
 		config.readInto(numberOfSpeedValues, "numberOfSpeedValues");
 		config.readInto(elementsInL, "elementsInL");
+//        config.readInto(aDotc0, "aDotc0");
 
 	}
 }	
-
-//Allows user to modify control parameters
-void Control::inputData()
-{
-	short itemNumber;
-	cout << "** To edit any Control parameter enter its code;  if not, enter 0: ";
-	cin >> itemNumber;
-	while (itemNumber != 0)
-	{
-		switch (itemNumber)
-		{
-			case 1:
-			{
-				cout << "              Outflow length fixed (0) or automatic (1): ";
-				cin >> outflowModelOn;
-			}
-			break;
-			case 2:
-			{
-				cout << "                Outflow length (mean diameters, e.g. 3): ";
-				cin >> lambda;
-			}
-			break;
-			case 3:
-			{
-				cout << "Solution method  (0: FD;  1: analytical): ";
-				cin >> analyticalSolutionMode;
-			}
-			break;
-			case 4:
-			{
-				cout << "                  Number of crack speed values required: ";
-				cin >> numberOfSpeedValues;
-				if (numberOfSpeedValues < 1)
-					numberOfSpeedValues = 1;
-			}
-			break;
-			case 5:
-			{
-				cout << "         Number of elements per outflow length (min. 6): ";
-				cin >> elementsInL;
-				if (elementsInL < 6)
-					elementsInL = 6;
-			}
-			break;
-			default:
-				cout << "Unrecognised code.  Try again:\n";
-			break;
-		}
-		cout << "\nEdit another parameter?  If so, enter reference number;  if not, enter 0: ";
-		cin >> itemNumber;	
-	}
-} 
 
 // Make this Control identical to RHS one by operator '='
 // Creates the "=" operator for this class
@@ -118,18 +69,4 @@ Control& Control::operator=(const Control& rhs)
 	// numberOfSpeedValues = numberOfSpeedValues;
 	// elementsInL = elementsInL;
     return *this;
-} 
-
-// Displays all control parameters to the user with corresponding reference number
-void Control::outputData()
-{
-
-	cout
-		<< endl
-		<< "Control parameters: \n"
-		<< "1.     Outflow length fixed (0) or automatic (1) = " << outflowModelOn << endl
-		<< "2. Fixed/initial outflow length (mean diameters) = " << lambda << endl
-		<< "3.                               Solution method = " << analyticalSolutionMode << " (0: finite difference;  1: analytical)" << endl
-		<< "4.                  Number of crack speed values = " << numberOfSpeedValues << " (e.g. 10, 20;  1 or fewer gives 'single shot' mode" << endl
-		<< "5.       Number of FD elements in outflow length = " << elementsInL << endl;
 } 

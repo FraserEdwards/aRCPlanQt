@@ -35,7 +35,8 @@ Program Control Data
 outflowModelOn=1;             #1,0,0,0,0
 lambda=3.0;                   #3.0
 analyticalSolutionMode=0;     #0,1
-numberOfSpeedValues=50;        #(e.g. 10, 20; 1 or fewer gives 'single shot' mode)
+numberOfSpeedValues=50;       #(e.g. 10, 20; 1 or fewer gives 'single shot' mode)
+aDotc0 = 0.5;                 #(Between 0 and 1)
 elementsInL=10;               #(Typical approx. 20)
 
 Interface Control Data

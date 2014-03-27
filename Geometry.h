@@ -26,8 +26,6 @@ class Geometry
 		//prototypes
 	    Geometry();								// null constructor
 	    Geometry(const short recordNumber, ConfigFile config); 	// construct a Pipe definition from the library or a file
-	    void inputData();
-	    void outputData();
 		Geometry& operator=(const Geometry& rhs);
 		string pipeID;
 		double diameter;

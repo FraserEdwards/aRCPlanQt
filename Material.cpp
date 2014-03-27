@@ -57,62 +57,6 @@ Material::Material(const short recordNumber, ConfigFile config)
 	}
 }	
 
-// Allows user to modif test parameters
-void Material::inputData()
-{
-	short itemNumber;
-	cout << "** To edit any MATERIAL parameter, enter its code;  if not, enter 0: ";
-	cin >> itemNumber;
-	while (itemNumber != 0)
-	{
-		switch (itemNumber)
-		{
-			case 1:
-			{
-				cout << "                                       Material name/ID: ";
-				cin >> matID;
-			}
-			break;
-			case 2:
-			{
-				cout << "                                        Density (kg/m3): ";
-				cin >> density;
-			}
-			break;
-			case 3:
-			{
-				cout << "                       Dynamic modulus at 0 deg C (GPa): ";
-				cin >> eDyn0degC;
-			}
-			break;
-			case 4:
-			{
-				cout << " Increase in dynamic modulus per deg C (GPa, -ve value): ";
-				cin >> dEdyndT;
-			}
-			break;
-			case 5:
-			{
-				cout << "                Creep modulus at room temperature (GPa): ";
-				cin >> creepModulus;
-			}
-			break;
-			case 6:
-			{
-				cout << "                                  Dynamic poisson ratio: ";
-				cin >> poisson;
-			}
-			break;
-			default:
-				cout << "Unrecognised code.  Try again:\n";
-			break;
-		}
-		cout << "\nEdit another parameter?  If so, enter reference number;  if not, enter 0: ";
-		cin >> itemNumber;	
-	}
-} 
-
-
 // Make this material identical to RHS one by operator '='
 // Creates the "=" operator for this class
 Material& Material::operator=(const Material& rhs)
@@ -126,15 +70,3 @@ Material& Material::operator=(const Material& rhs)
     return *this;
 } 
 
-// Displays all materail parameters to the user with corresponding reference number
-void Material::outputData()
-{
-		cout << endl
-		<< "MATERIAL parameters: \n"
-		<< "1.                                       Name/ID = " << matID << "\n"
-		<< "2.                                       Density = " << density << " kg/m^3 \n"
-		<< "3.                    Dynamic modulus at 0 deg C = " << eDyn0degC << " GPa \n"
-		<< "4.         Increase in dynamic modulus per deg C = " << dEdyndT << " GPa/K \n"
-		<< "5.             Creep modulus at room temperature = " << creepModulus << " GPa \n"
-		<< "6.                         Dynamic Poisson ratio = " << poisson << endl;
-} 

@@ -25,7 +25,7 @@ class Results
 		void line(Solution solution);
 		void copy(const Results& original);
 		void resetSize(short newSize);
-		Results& operator=(const Results& rhs);
+        Results& operator=(const Results& rhs);
 		~Results();		// Destructor
 };
 
