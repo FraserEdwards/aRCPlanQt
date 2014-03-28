@@ -1,5 +1,6 @@
 #include "Simulation.h"
 #include <iostream>
+using namespace std;
 
 Simulation::Simulation()
 {
@@ -10,10 +11,11 @@ Simulation::Simulation()
 
 }
 
-Results Simulation::run(Parameters parameters, Solution solution)
+Solution Simulation::run(Parameters parameters)
 {
     Results results;
     Plot plot;
+    Solution solution;
 
     Interface interface(1, config);
 
@@ -82,8 +84,7 @@ Results Simulation::run(Parameters parameters, Solution solution)
         }
 					
     }
-
-    return results;
+    return solution;
 
 //        plot.handler(solution);
 

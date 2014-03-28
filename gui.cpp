@@ -29,12 +29,12 @@ int GUI::run(int argc, char *argv[]){
 
     Simulation simulation;
     Solution solution;
-    simulation.run(parameters, solution);
+
+    solution = simulation.run(parameters);
+
     guioutput c;
     c.setresults(solution);
     c.show();
-
-
 
     return a.exec();
 

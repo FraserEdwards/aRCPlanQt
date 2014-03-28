@@ -18,6 +18,9 @@ guiinput::~guiinput()
 void guiinput::setnames(Parameters parameters)
 {
 
+ui -> singlemode -> setCheckState(Qt::Checked);
+
+
 ui -> materialname -> setAlignment(Qt::AlignRight);
 ui ->materialname->setText(QString::fromStdString(parameters.matID));
 
@@ -86,6 +89,13 @@ ui -> crackspeed -> setText(QString::number(parameters.aDotc0));
 
 ui -> fdnumber -> setAlignment(Qt::AlignRight);
 ui -> fdnumber -> setText(QString::number(parameters.elementsInL));
+
+ui -> parameter -> setEditable(true);
+ui -> parameter -> lineEdit() -> setReadOnly(true);
+ui -> parameter -> lineEdit() -> setAlignment(Qt::AlignRight);
+ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "Initial Pressure" << "Test Temperaure");
+
+
 }
 
 

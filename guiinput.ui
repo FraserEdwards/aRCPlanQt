@@ -75,7 +75,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="parameter"/>
+       <widget class="QComboBox" name="parameter">
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -187,7 +191,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -789,14 +793,6 @@
     </widget>
    </widget>
   </widget>
-  <zorder>Runbutton</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>layoutWidget_2</zorder>
-  <zorder></zorder>
-  <zorder>layoutWidget_3</zorder>
-  <zorder>line</zorder>
-  <zorder>label_2</zorder>
-  <zorder>tabs</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

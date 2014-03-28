@@ -24,7 +24,7 @@ void guioutput::setresults(Solution solution)
     ui -> cortendriving ->setText(QString::number(solution.g0[2]));
 
     ui -> normalisedforce -> setAlignment(Qt::AlignRight);
-    ui -> normalisedforce ->setText(QString::number(solution.gTotal[2]));
+    ui -> normalisedforce ->setText(QString::number(solution.gG0[2]));
 
 }
 
