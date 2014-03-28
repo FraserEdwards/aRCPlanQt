@@ -1,23 +1,24 @@
-#ifndef GUIINPUT_H
-#define GUIINPUT_H
+#ifndef GUIMAIN_H
+#define GUIMAIN_H
 
-#include <QWidget>
+#include <QMainWindow>
 #include <QLineEdit>
 #include "Parameters.h"
 
+
 namespace Ui {
-class guiinput;
+class guimain;
 }
 
-class guiinput : public QWidget
+class guimain : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit guiinput(QWidget *parent = 0);
-    void setnames(Parameters parameters);
-    ~guiinput();
+    explicit guimain(QWidget *parent = 0);
+    ~guimain();
 
+    void setnames(Parameters parameters);
 
 private slots:
 
@@ -88,8 +89,7 @@ private slots:
     void on_plotcrack_stateChanged(int arg1);
 
 private:
-
-    Ui::guiinput *ui;    
+    Ui::guimain *ui;
 };
 
-#endif // GUIINPUT_H
+#endif // GUIMAIN_H

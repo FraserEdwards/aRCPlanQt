@@ -1,21 +1,21 @@
 #include <QString>
 
-#include "guiinput.h"
-#include "ui_guiinput.h"
+#include "guimain.h"
+#include "ui_guimain.h"
 
-guiinput::guiinput(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::guiinput)
+guimain::guimain(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::guimain)
 {
     ui->setupUi(this);
 }
 
-guiinput::~guiinput()
+guimain::~guimain()
 {
     delete ui;
 }
 
-void guiinput::setnames(Parameters parameters)
+void guimain::setnames(Parameters parameters)
 {
 
 ui -> singlemode -> setCheckState(Qt::Checked);
@@ -120,167 +120,167 @@ ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "I
 }
 
 
-void guiinput::on_Runbutton_clicked()
+void guimain::on_Runbutton_clicked()
 {
 
 }
 
-void guiinput::on_rangemode_stateChanged(int arg1)
+void guimain::on_rangemode_stateChanged(int arg1)
 {
 
 }
 
-void guiinput::on_singlemode_stateChanged(int arg1)
+void guimain::on_singlemode_stateChanged(int arg1)
 {
 
 }
 
-void guiinput::on_parameter_currentTextChanged(const QString &arg1)
+void guimain::on_parameter_currentTextChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_from_textChanged(const QString &arg1)
+void guimain::on_from_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_to_textChanged(const QString &arg1)
+void guimain::on_to_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_noofpoints_textChanged(const QString &arg1)
+void guimain::on_noofpoints_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_materialname_textChanged(const QString &arg1)
+void guimain::on_materialname_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_outsidediameter_textChanged(const QString &arg1)
+void guimain::on_outsidediameter_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_density_textChanged(const QString &arg1)
+void guimain::on_density_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_dynamicmodulus_textChanged(const QString &arg1)
+void guimain::on_dynamicmodulus_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_Tabs_tabBarClicked(int index)
+void guimain::on_Tabs_tabBarClicked(int index)
 {
 
 }
 
-void guiinput::on_deltadynamicmodulus_textChanged(const QString &arg1)
+void guimain::on_deltadynamicmodulus_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_creepmodulus_textChanged(const QString &arg1)
+void guimain::on_creepmodulus_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_dynpoissonratio_textChanged(const QString &arg1)
+void guimain::on_dynpoissonratio_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_pipename_textChanged(const QString &arg1)
+void guimain::on_pipename_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_sdr_textChanged(const QString &arg1)
+void guimain::on_sdr_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_groovedepth_textChanged(const QString &arg1)
+void guimain::on_groovedepth_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_relativediameter_textChanged(const QString &arg1)
+void guimain::on_relativediameter_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_fs_stateChanged(int arg1)
+void guimain::on_fs_stateChanged(int arg1)
 {
 
 }
 
-void guiinput::on_s4_stateChanged(int arg1)
+void guimain::on_s4_stateChanged(int arg1)
 {
 
 }
 
-void guiinput::on_backfill_stateChanged(int arg1)
+void guimain::on_backfill_stateChanged(int arg1)
 {
 
 }
 
-void guiinput::on_testtemperature_textChanged(const QString &arg1)
+void guimain::on_testtemperature_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_initialpressure_textChanged(const QString &arg1)
+void guimain::on_initialpressure_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_backfilldepth_textChanged(const QString &arg1)
+void guimain::on_backfilldepth_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_backfilldensity_textChanged(const QString &arg1)
+void guimain::on_backfilldensity_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_solidfraction_textChanged(const QString &arg1)
+void guimain::on_solidfraction_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_waterfraction_textChanged(const QString &arg1)
+void guimain::on_waterfraction_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_fixedlength_stateChanged(int arg1)
+void guimain::on_fixedlength_stateChanged(int arg1)
 {
 
 }
 
-void guiinput::on_initiallength_textChanged(const QString &arg1)
+void guimain::on_initiallength_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_crackspeed_textChanged(const QString &arg1)
+void guimain::on_crackspeed_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_fdnumber_textChanged(const QString &arg1)
+void guimain::on_fdnumber_textChanged(const QString &arg1)
 {
 
 }
 
-void guiinput::on_plotcrack_stateChanged(int arg1)
+void guimain::on_plotcrack_stateChanged(int arg1)
 {
 
 }

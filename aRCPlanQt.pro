@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        guiinput.cpp \
     guioutput.cpp \
     Backfill.cpp \
     BeamModel.cpp \
@@ -36,9 +35,10 @@ SOURCES += main.cpp\
     Solution.cpp \
     SymDoubleMatrix.cpp \
     TestSetup.cpp \
-    gui.cpp
+    gui.cpp \
+    guimain.cpp
 
-HEADERS  += guiinput.h \
+HEADERS  += \
     guioutput.h \
     backFill.h \
     BeamModel.h \
@@ -62,10 +62,12 @@ HEADERS  += guiinput.h \
     Solution.h \
     SymDoubleMatrix.h \
     TestSetup.h \
-    gui.h
+    gui.h \
+    guimain.h
 
-FORMS    += guiinput.ui \
-    guioutput.ui
+FORMS    += \
+    guioutput.ui \
+    guimain.ui
 
 OTHER_FILES += \
     README.md \

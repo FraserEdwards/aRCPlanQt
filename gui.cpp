@@ -1,8 +1,9 @@
 #include <QApplication>
+#include <QDesktopWidget>
 
 #include "gui.h"
-#include "guiinput.h"
-#include "ui_guiinput.h"
+#include "guimain.h"
+#include "ui_guimain.h"
 
 #include "guioutput.h"
 #include "ui_guioutput.h"
@@ -23,9 +24,9 @@ int GUI::run(int argc, char *argv[]){
     parameters.collect(config);
     QApplication a(argc, argv);
 
-    guiinput b;
+    guimain b;
     b.setnames(parameters);
-    b.show();
+    b.showMaximized();
 
     Simulation simulation;
     Solution solution;
