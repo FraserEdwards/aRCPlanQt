@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QLineEdit>
 #include "Parameters.h"
+#include "Solution.h"
 
 
 namespace Ui {
@@ -19,6 +20,7 @@ public:
     ~guimain();
 
     void setnames(Parameters parameters);
+    void setresults(Solution solution);
 
 private slots:
 
@@ -87,6 +89,16 @@ private slots:
     void on_fdnumber_textChanged(const QString &arg1);
 
     void on_plotcrack_stateChanged(int arg1);
+
+    void on_Resultscombo_currentTextChanged(const QString &arg1);
+
+    void on_Crackspeedcombo_currentTextChanged(const QString &arg1);
+
+    void on_outflowresult_textChanged(const QString &arg1);
+
+    void on_cortendriving_textChanged(const QString &arg1);
+
+    void on_normalisedforce_textChanged(const QString &arg1);
 
 private:
     Ui::guimain *ui;

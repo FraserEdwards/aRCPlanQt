@@ -116,6 +116,19 @@ ui -> parameter -> lineEdit() -> setReadOnly(true);
 ui -> parameter -> lineEdit() -> setAlignment(Qt::AlignRight);
 ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "Initial Pressure" << "Test Temperaure");
 
+}
+
+void guimain::setresults(Solution solution)
+{
+
+    ui -> outflowresult -> setAlignment(Qt::AlignRight);
+    ui -> outflowresult ->setText(QString::number(solution.outflowLength[2]));
+
+    ui -> cortendriving -> setAlignment(Qt::AlignRight);
+    ui -> cortendriving ->setText(QString::number(solution.g0[2]));
+
+    ui -> normalisedforce -> setAlignment(Qt::AlignRight);
+    ui -> normalisedforce ->setText(QString::number(solution.gG0[2]));
 
 }
 
@@ -284,3 +297,29 @@ void guimain::on_plotcrack_stateChanged(int arg1)
 {
 
 }
+
+void guimain::on_Resultscombo_currentTextChanged(const QString &arg1)
+{
+
+}
+
+void guimain::on_Crackspeedcombo_currentTextChanged(const QString &arg1)
+{
+
+}
+
+void guimain::on_outflowresult_textChanged(const QString &arg1)
+{
+
+}
+
+void guimain::on_cortendriving_textChanged(const QString &arg1)
+{
+
+}
+
+void guimain::on_normalisedforce_textChanged(const QString &arg1)
+{
+
+}
+

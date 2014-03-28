@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    guioutput.cpp \
     Backfill.cpp \
     BeamModel.cpp \
     ConfigFile.cpp \
@@ -39,7 +38,6 @@ SOURCES += main.cpp\
     guimain.cpp
 
 HEADERS  += \
-    guioutput.h \
     backFill.h \
     BeamModel.h \
     ConfigFile.h \
@@ -66,7 +64,6 @@ HEADERS  += \
     guimain.h
 
 FORMS    += \
-    guioutput.ui \
     guimain.ui
 
 OTHER_FILES += \
