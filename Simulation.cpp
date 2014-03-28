@@ -10,14 +10,12 @@ Simulation::Simulation()
 
 }
 
-void Simulation::run(Parameters parameters)
+Results Simulation::run(Parameters parameters, Solution solution)
 {
-
     Results results;
     Plot plot;
-    Solution solution;
 
-    Interface interface(7, config);
+    Interface interface(1, config);
 
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
@@ -64,7 +62,7 @@ void Simulation::run(Parameters parameters)
             solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
 
-//			plot.profile(beamModel.zeta, beamModel.crackdisplacement, "aDotc0 = ", "/Profile/", parameters.aDotc0, "Distance behind crack tip, z (mm)", "Crack Opening Displacement (mm)");
+//          plot.profile(beamModel.zeta, beamModel.crackdisplacement, "aDotc0 = ", "/Profile/", parameters.aDotc0, "Distance behind crack tip, z (mm)", "Crack Opening Displacement (mm)");
 				
 //			interface.iprofile(solution.zeta, solution.vptra, solution.l);
 //			interface.returnsol(solution);
@@ -85,6 +83,8 @@ void Simulation::run(Parameters parameters)
 					
     }
 
-//		plot.handler(solution);
+    return results;
+
+//        plot.handler(solution);
 
 }

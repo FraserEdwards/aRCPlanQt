@@ -7,6 +7,8 @@
 #include "guioutput.h"
 #include "ui_guioutput.h"
 #include "Simulation.h"
+#include <iostream>
+using namespace std;
 
 GUI::GUI()
 {
@@ -25,10 +27,11 @@ int GUI::run(int argc, char *argv[]){
     b.setnames(parameters);
     b.show();
 
-//    Simulation simulation;
-//    simulation.run(parameters);
-
+    Simulation simulation;
+    Solution solution;
+    simulation.run(parameters, solution);
     guioutput c;
+    c.setresults(solution);
     c.show();
 
 

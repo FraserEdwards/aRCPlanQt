@@ -37,7 +37,7 @@ public:
 	
 	ConfigFile config;
 	Simulation();
-    void run(Parameters parameters);
+    Results run(Parameters parameters, Solution solution);
 
 };
 

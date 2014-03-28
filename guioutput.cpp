@@ -1,5 +1,6 @@
 #include "guioutput.h"
 #include "ui_guioutput.h"
+#include <iostream>
 
 guioutput::guioutput(QWidget *parent) :
     QWidget(parent),
@@ -11,6 +12,20 @@ guioutput::guioutput(QWidget *parent) :
 guioutput::~guioutput()
 {
     delete ui;
+}
+
+void guioutput::setresults(Solution solution)
+{
+
+    ui -> outflowresult -> setAlignment(Qt::AlignRight);
+    ui -> outflowresult ->setText(QString::number(solution.outflowLength[2]));
+
+    ui -> cortendriving -> setAlignment(Qt::AlignRight);
+    ui -> cortendriving ->setText(QString::number(solution.g0[2]));
+
+    ui -> normalisedforce -> setAlignment(Qt::AlignRight);
+    ui -> normalisedforce ->setText(QString::number(solution.gTotal[2]));
+
 }
 
 void guioutput::on_Resultscombo_currentTextChanged(const QString &arg1)
