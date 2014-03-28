@@ -20,6 +20,27 @@ void guiinput::setnames(Parameters parameters)
 
 ui -> singlemode -> setCheckState(Qt::Checked);
 
+if(parameters.fullScale)
+{
+    ui->fs->setCheckState(Qt::Checked);
+    ui->s4->setCheckState(Qt::Unchecked);
+}
+else
+{
+    ui->fs->setCheckState(Qt::Unchecked);
+    ui->s4->setCheckState(Qt::Checked);
+}
+
+if(parameters.isBackfilled)
+   {ui->backfill->setCheckState(Qt::Checked);}
+else
+   {ui->backfill->setCheckState(Qt::Unchecked);}
+
+if(parameters.outflowModelOn)
+   {ui->fixedlength->setCheckState(Qt::Checked);}
+else
+   {ui->fixedlength->setCheckState(Qt::Unchecked);}
+
 
 ui -> materialname -> setAlignment(Qt::AlignRight);
 ui ->materialname->setText(QString::fromStdString(parameters.matID));

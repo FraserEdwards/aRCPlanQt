@@ -61,4 +61,6 @@ void guioutput::on_newcase_clicked()
 void guioutput::on_quit_clicked()
 {
 
+    QApplication::quit();
+
 }
