@@ -2,6 +2,7 @@
 #include "Control.h"
 #include "Material.h"
 #include "Geometry.h"
+#include "guimain.h"
 
 #ifndef _PARAMETERS_H
 #define _PARAMETERS_H
@@ -16,13 +17,15 @@ private:
 	Material material;
 	TestSetup testSetup;
 	Control control;	
-	
+
 public:
 
     Parameters() : Control(), TestSetup(), Material(), Geometry() {}
 	void collect(ConfigFile config);
 	void copy(Material material, Geometry geometry, TestSetup testSetup, Control control);
-	void conditionToTemperature();	
+    void conditionToTemperature();
+    void update(guimain b);
+    friend class guimain;
 
 } ;
 

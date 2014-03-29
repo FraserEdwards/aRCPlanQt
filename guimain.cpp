@@ -136,6 +136,8 @@ void guimain::setresults(Solution solution)
 void guimain::on_Runbutton_clicked()
 {
 
+    Parameters::update(guimain b);
+
 }
 
 void guimain::on_rangemode_stateChanged(int arg1)
@@ -323,3 +325,8 @@ void guimain::on_normalisedforce_textChanged(const QString &arg1)
 
 }
 
+
+void guimain::on_Runbutton_clicked(bool checked)
+{
+
+}

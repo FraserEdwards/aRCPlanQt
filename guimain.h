@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include "Parameters.h"
 #include "Solution.h"
+#include "Parameters.h"
 
 
 namespace Ui {
@@ -21,6 +22,8 @@ public:
 
     void setnames(Parameters parameters);
     void setresults(Solution solution);
+    friend class Parameters;
+
 
 private slots:
 
@@ -99,6 +102,8 @@ private slots:
     void on_cortendriving_textChanged(const QString &arg1);
 
     void on_normalisedforce_textChanged(const QString &arg1);
+
+    void on_Runbutton_clicked(bool checked);
 
 private:
     Ui::guimain *ui;
