@@ -63,11 +63,3 @@ void Parameters::conditionToTemperature()
 {
 	dynamicModulus = eDyn0degC + tempDegC * dEdyndT;
 } 
-
-void Parameters::update(Ui::guimain *ui)
-{
-
-    aDotc0 = ui->crackspeed;
-
-
-}
