@@ -1,4 +1,5 @@
 #include <QString>
+#include <iostream>
 
 #include "guimain.h"
 #include "ui_guimain.h"
@@ -136,190 +137,54 @@ void guimain::setresults(Solution solution)
 void guimain::on_Runbutton_clicked()
 {
 
+    Parameters edited;
+    edited = update();
+    cout << endl << "Backfilled: " << edited.isBackfilled << endl;
+
+    Simulation simulation;
+    Solution solution;
+
+    solution = simulation.run(edited);
+
+    setresults(solution);
+
 }
 
-void guimain::on_rangemode_stateChanged(int arg1)
+Parameters guimain::update()
 {
 
+    Parameters temp;
+
+    temp.fullScale = ui -> fs -> checkState();
+    temp.isBackfilled = ui -> backfill -> checkState();
+    temp.outflowModelOn = ui -> fixedlength -> checkState();
+
+    temp.density = ui -> density -> text().toDouble();
+    temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();
+    temp.dEdyndT = ui -> deltadynamicmodulus -> text().toDouble();
+    temp.creepModulus = ui -> creepmodulus -> text().toDouble();
+    temp.poisson = ui -> dynpoissonratio -> text().toDouble();
+    temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();
+
+    temp.diameter = ui -> outsidediameter -> text().toDouble();
+    temp.sdr = ui -> sdr -> text().toDouble();
+    temp.notchDepth = ui -> groovedepth -> text().toDouble();
+    temp.diameterCreepRatio = ui -> relativediameter -> text().toDouble();
+    temp.tempDegC = ui -> testtemperature -> text().toDouble();
+    temp.backfillDepth = ui -> backfilldepth -> text().toDouble();
+    temp.backfillDensity = ui -> backfilldensity -> text().toDouble();
+    temp.solidInsidePipe = ui -> solidfraction -> text().toDouble();
+    temp.waterInsidePipe = ui -> waterfraction -> text().toDouble();
+
+    temp.lambda = ui -> initiallength -> text().toDouble();
+    temp.aDotc0 = ui -> crackspeed -> text().toDouble();
+    temp.elementsInL = ui -> fdnumber -> text().toDouble();
+
+    return temp;
 }
 
-void guimain::on_singlemode_stateChanged(int arg1)
-{
 
-}
 
-void guimain::on_parameter_currentTextChanged(const QString &arg1)
-{
 
-}
 
-void guimain::on_from_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_to_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_noofpoints_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_materialname_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_outsidediameter_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_density_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_dynamicmodulus_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_Tabs_tabBarClicked(int index)
-{
-
-}
-
-void guimain::on_deltadynamicmodulus_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_creepmodulus_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_dynpoissonratio_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_pipename_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_sdr_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_groovedepth_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_relativediameter_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_fs_stateChanged(int arg1)
-{
-
-}
-
-void guimain::on_s4_stateChanged(int arg1)
-{
-
-}
-
-void guimain::on_backfill_stateChanged(int arg1)
-{
-
-}
-
-void guimain::on_testtemperature_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_initialpressure_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_backfilldepth_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_backfilldensity_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_solidfraction_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_waterfraction_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_fixedlength_stateChanged(int arg1)
-{
-
-}
-
-void guimain::on_initiallength_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_crackspeed_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_fdnumber_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_plotcrack_stateChanged(int arg1)
-{
-
-}
-
-void guimain::on_Resultscombo_currentTextChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_Crackspeedcombo_currentTextChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_outflowresult_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_cortendriving_textChanged(const QString &arg1)
-{
-
-}
-
-void guimain::on_normalisedforce_textChanged(const QString &arg1)
-{
-
-}
 

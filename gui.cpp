@@ -18,20 +18,13 @@ GUI::GUI()
 int GUI::run(int argc, char *argv[]){
 
     ConfigFile config("caseInputData.txt");
-    Parameters parameters;
-    parameters.collect(config);
+    Parameters initial;
+    initial.collect(config);
     QApplication a(argc, argv);
 
     guimain b;
-    b.setnames(parameters);
+    b.setnames(initial);
     b.showMaximized();
-
-    Simulation simulation;
-    Solution solution;
-
-    solution = simulation.run(parameters);
-
-    b.setresults(solution);
 
     return a.exec();
 
