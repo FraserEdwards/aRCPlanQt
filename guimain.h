@@ -21,6 +21,7 @@ public:
 
     void setnames(Parameters parameters);
     void setresults(Solution solution);
+    friend class Parameters;
 
 private slots:
 

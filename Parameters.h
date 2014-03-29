@@ -2,6 +2,7 @@
 #include "Control.h"
 #include "Material.h"
 #include "Geometry.h"
+#include "guimain.h"
 
 #ifndef _PARAMETERS_H
 #define _PARAMETERS_H
@@ -15,7 +16,8 @@ private:
 	Geometry geometry;
 	Material material;
 	TestSetup testSetup;
-	Control control;	
+    Control control;
+
 	
 public:
 
