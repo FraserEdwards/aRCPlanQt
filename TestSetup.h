@@ -18,7 +18,7 @@ class TestSetup
 		static short fullScale_lib[5];
 		static double tempDegC_lib[5];
 		static double p0bar_lib[5];
-		static short isBackfilled_lib[5];
+        static int isBackfilled_lib[5];
 		static double backfillDepth_lib[5];
 		static double backfillDensity_lib[5];
 		static double solidInsidePipe_lib[5];
@@ -34,7 +34,7 @@ class TestSetup
 		short fullScale;
 		double tempDegC;
 		double p0bar;
-		short isBackfilled;
+        int isBackfilled;
 		double backfillDepth;
 		double backfillDensity;
 		double solidInsidePipe;

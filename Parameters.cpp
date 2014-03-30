@@ -16,6 +16,7 @@ void Parameters::collect(ConfigFile config)
 
 	copy(material, geometry, testSetup, control);
 	conditionToTemperature();
+
 		
 }
 
@@ -25,9 +26,10 @@ void Parameters::copy(Material material, Geometry geometry, TestSetup testSetup,
 	outflowModelOn = control.outflowModelOn;
 	lambda = control.lambda;
 	analyticalSolutionMode = control.analyticalSolutionMode;
-	numberOfSpeedValues = control.numberOfSpeedValues;
+    mode = control.mode;
+    rangenumber = control.rangenumber;
     aDotc0 = control.aDotc0;
-	elementsInL = control.elementsInL;
+    elementsinl = control.elementsinl;
 
 	methodID = testSetup.methodID;
 	fullScale = testSetup.fullScale;
@@ -49,7 +51,6 @@ void Parameters::copy(Material material, Geometry geometry, TestSetup testSetup,
 	hOverR = geometry.hOverR;
 	radius = geometry.radius;
 
-
 	matID = material.matID;
 	density = material.density;
 	eDyn0degC = material.eDyn0degC;
@@ -63,3 +64,4 @@ void Parameters::conditionToTemperature()
 {
 	dynamicModulus = eDyn0degC + tempDegC * dEdyndT;
 } 
+

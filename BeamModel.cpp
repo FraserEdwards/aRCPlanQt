@@ -31,8 +31,8 @@ BeamModel::BeamModel(const Parameters parameters, Backfill backfill, Creep creep
 	sdrMinus2 = sdrMinus1 - 1.0;
 
 	zetaClosure = 2.0;				//	Point (in outflow lengths) at which crack re-closes, with first guess.
-	nodeResolution = 0.5 / parameters.elementsInL;	// used as a reference tolerance
-	nodeAtClosure = short(zetaClosure * parameters.elementsInL);
+    nodeResolution = 0.5 / parameters.elementsinl;	// used as a reference tolerance
+    nodeAtClosure = short(zetaClosure * parameters.elementsinl);
 	zetaBackfilled = 0.2;		// first guess
 
 }
@@ -50,7 +50,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 	// Proportion of initial pressure which remains at crack tip	
 	decomp.p1p0r=1.0;		
 
-	if(parameters.fullScale)
+    if(parameters.fullScale==2)
 						{
 
 						availableInternalVolume=1.0;
@@ -140,7 +140,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			// Make first guess for closure length -- two nodes less than input value -- and construct FD solution:
 			nodeAtClosure -= 2;
 			double wStarMax = 0.0;
-			FDprofile fdSolution(alpha, m, zetaBackfilled, vStarRes, parameters.elementsInL, nodeAtClosure);
+            FDprofile fdSolution(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
 			
 //			interface.line("first guess profile: ");
 	
@@ -173,7 +173,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 		{	// ...until bending moment at closure point is negligible compared to that at crack tip:
 	
 
-			fdSolution = FDprofile(alpha, m, zetaBackfilled, vStarRes, parameters.elementsInL, nodeAtClosure);	
+            fdSolution = FDprofile(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
 			error = fdSolution.closureMoment();
 			short noSurfaceContact = 1;								// FIXME:  necessary?
 			short minPoint = fdSolution.nodeAtMinimum();			// this is set to -1 if NO minimum is found within domain
@@ -195,12 +195,12 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 				// So back up to find maximum closure length with NO overlap:
 				double tempError;
 				nodeAtClosure = minPoint - 2;
-				if (nodeAtClosure < (parameters.elementsInL + 1))
-					nodeAtClosure = parameters.elementsInL + 1;	// Is this really necessary?  Closure might really occur inside decompression length!
+                if (nodeAtClosure < (parameters.elementsinl + 1))
+                    nodeAtClosure = parameters.elementsinl + 1;	// Is this really necessary?  Closure might really occur inside decompression length!
 				short newMin;
 				do
 				{
-					fdSolution = FDprofile(alpha, m, zetaBackfilled, vStarRes, parameters.elementsInL, nodeAtClosure);
+                    fdSolution = FDprofile(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
 					tempError = fdSolution.closureMoment();
 					newMin = fdSolution.nodeAtMinimum();
 					if (interface.infoLevel > 1)
@@ -220,7 +220,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 					interface.line("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
 					
 				maximumNonContact = true;
-				fdSolution = FDprofile(alpha, m, -1.0, vStarRes, parameters.elementsInL, nodeAtClosure);
+                fdSolution = FDprofile(alpha, m, -1.0, vStarRes, parameters.elementsinl, nodeAtClosure);
 		
 				fdSolution.fprofile();
 				// interface.iprofile(fdSolution.zeta, fdSolution.vptra, fdSolution.l);
@@ -290,7 +290,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 
 		if (integral_wStar2 > 0.0)
 		{
-			if (parameters.outflowModelOn)
+            if (parameters.outflowModelOn==2)
 			{	
 				double throatArea = integral_wStar2;
 				OutflowProcess outflow(p1bar);
@@ -341,13 +341,13 @@ void BeamModel::opening(Parameters parameters, Interface interface, Solution sol
 			interface.oneline(" iterations for outflowLength = ", outflowLength);
 		
 		}
-		if (interface.printOpeningProfile)
+        if (interface.printOpeningProfile==2)
 		{
 
-			if (not parameters.analyticalSolutionMode)
+            if (!parameters.analyticalSolutionMode)
 			{	// then recalculate and print the numerical solution
 				
-				FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsInL, nodeAtClosure);
+                FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
 				FDprofile* ptr=&final;
 				final.fprofile();				
 				

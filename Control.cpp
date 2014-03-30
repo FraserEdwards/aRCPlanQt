@@ -13,13 +13,14 @@ using namespace std;
 #include "Control.h"
 
 		// Initialise array values
-		static const short records = 5;
-		short Control::outflowModelOn_lib[5] = {1, 0, 0, 0, 0};
+        static const int records = 5;
+        int Control::outflowModelOn_lib[5] = {1, 0, 0, 0, 0};
 		double Control::lambda_lib[5] = {3.0, 3.0, 3.0, 3.0, 3.0};
-		short Control::analyticalSolutionMode_lib[5] = {0, 1, 0, 0, 0};
-		short Control::numberOfSpeedValues_lib[5] = {20, 20, 20, 20, 20};
-		short Control::elementsInL_lib[5] = {20, 20, 20, 20, 20};
+        int Control::analyticalSolutionMode_lib[5] = {0, 1, 0, 0, 0};
+        int Control::rangenumber_lib[5] = {10,20,30,40,50};
+        int Control::elementsinl_lib[5] = {5, 10, 15, 20, 25};
         double Control::aDotc0_lib[5] = {0, 0.2, 0.4, 0.6, 0.8};
+        int Control::mode_lib[5]={0,2,0,2,0};
 
 // Null constructor
 Control::Control()
@@ -27,8 +28,9 @@ Control::Control()
 		outflowModelOn = 0;
 		lambda = 0.0;
 		analyticalSolutionMode = 0;
-		numberOfSpeedValues = 0;
-		elementsInL = 0;
+        mode = 2;
+        rangenumber = 0;
+        elementsinl = 0;
         aDotc0 = 0;
 }	
 
@@ -42,8 +44,9 @@ Control::Control(const short recordNumber, ConfigFile config)
 		outflowModelOn = outflowModelOn_lib[index];
 		lambda = lambda_lib[index];
 		analyticalSolutionMode = analyticalSolutionMode_lib[index];
-		numberOfSpeedValues = numberOfSpeedValues_lib[index];
-		elementsInL = elementsInL_lib[index];
+        mode = mode_lib[index];
+        rangenumber = rangenumber_lib[index];
+        elementsinl = elementsinl_lib[index];
         aDotc0 = aDotc0_lib[index];
 	}
 	else
@@ -52,8 +55,9 @@ Control::Control(const short recordNumber, ConfigFile config)
 		config.readInto(outflowModelOn, "outflowModelOn");
 		config.readInto(lambda, "lambda");
 		config.readInto(analyticalSolutionMode, "analyticalSolutionMode");
-		config.readInto(numberOfSpeedValues, "numberOfSpeedValues");
-		config.readInto(elementsInL, "elementsInL");
+        config.readInto(mode, "Mode");
+        config.readInto(rangenumber, "numberOfSpeedValues");
+        config.readInto(elementsinl, "elementsInL");
         config.readInto(aDotc0, "aDotc0");
 
 	}
@@ -66,7 +70,9 @@ Control& Control::operator=(const Control& rhs)
 	outflowModelOn = rhs.outflowModelOn;
 	lambda = rhs.lambda;
 	analyticalSolutionMode = rhs.analyticalSolutionMode;
-	// numberOfSpeedValues = numberOfSpeedValues;
-	// elementsInL = elementsInL;
+    mode = rhs.mode;
+    rangenumber = rhs.rangenumber;
+    elementsinl = rhs.elementsinl;
+    aDotc0 =  rhs.aDotc0;
     return *this;
 } 

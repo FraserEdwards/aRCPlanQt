@@ -54,14 +54,9 @@ Geometry::Geometry(const short recordNumber, ConfigFile config)
 		config.readInto(notchDepth, "notchDepth");
 		config.readInto(diameterCreepRatio, "diameterCreepRatio");
 	}
-	
-	h = diameter/sdr/Constants::kilo; // (m)
-	hOverR = 2.0/ (sdr-1);
-	radius = h / hOverR;
-
-	crackWidth = diameter / sdr - notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
 
 }	
+
 
 // Make this Pipe identical to RHS one by operator '='
 // Creates the "=" operator for this class
@@ -72,5 +67,10 @@ Geometry& Geometry::operator=(const Geometry& rhs)
 	sdr = rhs.sdr;
 	notchDepth = rhs.notchDepth;
 	diameterCreepRatio = rhs.diameterCreepRatio;
+    radius = rhs.radius;
+    h = rhs.h;
+    hOverR = rhs.hOverR;
+    crackWidth = rhs.crackWidth;
+
     return *this;
 } 

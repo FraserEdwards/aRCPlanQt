@@ -18,7 +18,7 @@ using namespace std;
 		short TestSetup::fullScale_lib[5] = {0, 1, 0, 1, 0};
 		double TestSetup::tempDegC_lib[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
 		double TestSetup::p0bar_lib[5] = {1.5, 5.0, 5.0, 5.0, 5.0};
-		short TestSetup::isBackfilled_lib[5] = {0, 0, 0, 1, 0};
+        int TestSetup::isBackfilled_lib[5] = {0, 0, 0, 1, 0};
 		double TestSetup::backfillDepth_lib[5] = {0.0, 0.0, 0.0, 100.0, 0.0};
 		double TestSetup::backfillDensity_lib[5] = {0.0, 0.0, 0.0, 2200.0, 0.0};
 		double TestSetup::solidInsidePipe_lib[5] = {0.25, 0.0, 0.25, 0.0, 0.25};
@@ -84,6 +84,7 @@ TestSetup& TestSetup::operator=(const TestSetup& rhs)
 	fullScale = rhs.fullScale;
 	tempDegC = rhs.tempDegC;
 	p0bar = rhs.p0bar;
+    isBackfilled = rhs.isBackfilled;
 	backfillDepth = rhs.backfillDepth;
 	backfillDensity = rhs.backfillDensity;
 	return *this;

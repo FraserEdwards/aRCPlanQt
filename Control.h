@@ -15,11 +15,13 @@ class Control
 	private:
 		// Variables
 		static const short libRecords = 5;
-		static short outflowModelOn_lib[5];
+        static int outflowModelOn_lib[5];
 		static double lambda_lib[5];
-		static short analyticalSolutionMode_lib[5];
-		static short numberOfSpeedValues_lib[5];
-		static short elementsInL_lib[5];
+        static int analyticalSolutionMode_lib[5];
+        static int mode_lib[5];
+        static int rangenumber_lib[5];
+        static int speednumber_lib[5];;
+        static int elementsinl_lib[5];
         static double aDotc0_lib[5];
 		ConfigFile config;
 		
@@ -28,11 +30,12 @@ class Control
 	    Control();													// null constructor
 	    Control(const short recordNumber, ConfigFile config); 	// construct a Control definition from the library or a file
         Control& operator=(const Control& rhs);
-		short outflowModelOn;
+        int outflowModelOn;
 		double lambda;
-		short analyticalSolutionMode;
-		short numberOfSpeedValues;
-		short elementsInL;
+        int analyticalSolutionMode;
+        int mode;
+        int rangenumber;
+        int elementsinl;
         double aDotc0;
 		
 };

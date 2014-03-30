@@ -33,9 +33,9 @@ else
 }
 
 if(parameters.isBackfilled)
-   {ui->backfill->setCheckState(Qt::Checked);}
-else
    {ui->backfill->setCheckState(Qt::Unchecked);}
+else
+   {ui->backfill->setCheckState(Qt::Checked);}
 
 if(parameters.outflowModelOn)
    {ui->fixedlength->setCheckState(Qt::Checked);}
@@ -110,7 +110,7 @@ ui -> crackspeed -> setAlignment(Qt::AlignRight);
 ui -> crackspeed -> setText(QString::number(parameters.aDotc0));
 
 ui -> fdnumber -> setAlignment(Qt::AlignRight);
-ui -> fdnumber -> setText(QString::number(parameters.elementsInL));
+ui -> fdnumber -> setText(QString::number(parameters.elementsinl));
 
 ui -> parameter -> setEditable(true);
 ui -> parameter -> lineEdit() -> setReadOnly(true);
@@ -138,11 +138,30 @@ void guimain::on_Runbutton_clicked()
 {
 
     Parameters edited;
-    edited = update();
-    cout << endl << "Backfilled: " << edited.isBackfilled << endl;
-
     Simulation simulation;
     Solution solution;
+
+    edited = update();
+    cout << endl << "OutflowModelOn: " << edited.outflowModelOn << endl;
+    cout << endl << "Lambda: " << edited.lambda << endl;
+    cout << endl << "AnalyticalSolutionMode: " << edited.analyticalSolutionMode << endl;
+    cout << endl << "Mode: " << edited.mode << endl;
+    cout << endl << "Range number: " << edited.rangenumber << endl;
+    cout << endl << "aDotc0: " << edited.aDotc0 << endl;
+    cout << endl << "elementsinl: " << edited.elementsinl << endl;
+    cout << endl << "fullScale: " << edited.fullScale << endl;
+    cout << endl << "tempDegC: " << edited.tempDegC << endl;
+    cout << endl << "p0bar: " << edited.p0bar << endl;
+    cout << endl << "isBackfilled: " << edited.isBackfilled << endl;
+    cout << endl << "backfillDepth: " << edited.backfillDepth << endl;
+    cout << endl << "backfillDensity: " << edited.backfillDensity << endl;
+    cout << endl << "solidInsidePipe: " << edited.solidInsidePipe << endl;
+    cout << endl << "waterInsidePipe: " << edited.waterInsidePipe << endl;
+    cout << endl << "Diameter: " << edited.diameter << endl;
+    cout << endl << "sdr: " << edited.sdr << endl;
+    cout << endl << "notchDepth: " << edited.notchDepth << endl;
+    cout << endl << "diameterCreepRatio: " << edited.diameterCreepRatio << endl;
+    cout << endl << "h: " << edited.h << endl;
 
     solution = simulation.run(edited);
 
@@ -159,32 +178,90 @@ Parameters guimain::update()
     temp.isBackfilled = ui -> backfill -> checkState();
     temp.outflowModelOn = ui -> fixedlength -> checkState();
 
-    temp.density = ui -> density -> text().toDouble();
-    temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();
-    temp.dEdyndT = ui -> deltadynamicmodulus -> text().toDouble();
-    temp.creepModulus = ui -> creepmodulus -> text().toDouble();
+    temp.rangenumber = ui -> noofpoints -> text().toDouble();
+    temp.density = ui -> density -> text().toDouble();    
+    temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();    
+    temp.dEdyndT = ui -> deltadynamicmodulus -> text().toDouble();    
+    temp.creepModulus = ui -> creepmodulus -> text().toDouble();    
     temp.poisson = ui -> dynpoissonratio -> text().toDouble();
     temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();
+    temp.p0bar = ui ->initialpressure -> text().toDouble();
 
     temp.diameter = ui -> outsidediameter -> text().toDouble();
-    temp.sdr = ui -> sdr -> text().toDouble();
-    temp.notchDepth = ui -> groovedepth -> text().toDouble();
-    temp.diameterCreepRatio = ui -> relativediameter -> text().toDouble();
-    temp.tempDegC = ui -> testtemperature -> text().toDouble();
-    temp.backfillDepth = ui -> backfilldepth -> text().toDouble();
-    temp.backfillDensity = ui -> backfilldensity -> text().toDouble();
-    temp.solidInsidePipe = ui -> solidfraction -> text().toDouble();
+    temp.sdr = ui -> sdr -> text().toDouble();    
+    temp.notchDepth = ui -> groovedepth -> text().toDouble();    
+    temp.diameterCreepRatio = ui -> relativediameter -> text().toDouble();    
+    temp.tempDegC = ui -> testtemperature -> text().toDouble();    
+    temp.backfillDepth = ui -> backfilldepth -> text().toDouble();    
+    temp.backfillDensity = ui -> backfilldensity -> text().toDouble();   
+    temp.solidInsidePipe = ui -> solidfraction -> text().toDouble();   
     temp.waterInsidePipe = ui -> waterfraction -> text().toDouble();
 
-    temp.lambda = ui -> initiallength -> text().toDouble();
-    temp.aDotc0 = ui -> crackspeed -> text().toDouble();
-    temp.elementsInL = ui -> fdnumber -> text().toDouble();
+    temp.lambda = ui -> initiallength -> text().toDouble();    
+    temp.aDotc0 = ui -> crackspeed -> text().toDouble();   
+    temp.elementsinl = ui -> fdnumber -> text().toDouble();
+
+    temp.h = temp.diameter/temp.sdr/Constants::kilo; // (m)
+    cout << temp.h;
+    temp.hOverR = 2.0/ (temp.sdr-1);
+    temp.radius = temp.h / temp.hOverR;
+
+    temp.crackWidth = temp.diameter / temp.sdr - temp.notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
+
 
     return temp;
 }
 
 
 
+void guimain::on_fs_clicked()
+{
+    if(ui -> fs -> checkState())
+    {
+    ui -> s4 -> setCheckState(Qt::Unchecked);
+
+    }
+    else
+    {
+    ui -> s4 -> setCheckState(Qt::Checked);
+    }
+}
 
 
+void guimain::on_s4_clicked()
+{
+    if(ui-> s4 -> checkState())
+    {
+    ui -> fs -> setCheckState(Qt::Unchecked);
 
+    }
+    else
+    {
+    ui -> fs -> setCheckState(Qt::Checked);
+    }
+}
+
+void guimain::on_singlemode_clicked()
+{
+    if(ui->singlemode -> checkState())
+    {
+    ui -> rangemode -> setCheckState(Qt::Unchecked);
+
+    }
+    else
+    {
+    ui -> rangemode -> setCheckState(Qt::Checked);
+    }
+}
+
+void guimain::on_rangemode_clicked()
+{
+    if(ui->rangemode -> checkState())
+    {
+    ui -> singlemode -> setCheckState(Qt::Unchecked);
+    }
+    else
+    {
+    ui -> singlemode -> setCheckState(Qt::Checked);
+    }
+}

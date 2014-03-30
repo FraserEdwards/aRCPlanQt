@@ -34,22 +34,24 @@ Solution Simulation::run(Parameters parameters)
     BeamModel beamModel(parameters, backfill, creep);
 
     //  Proceed to vary crack speed
-    for (i = 0; i < parameters.numberOfSpeedValues; i++)
+    for (i = 0; i < parameters.rangenumber; i++)
     {
 
-        parameters.aDotc0 = (i + 1) / double(parameters.numberOfSpeedValues);
-			
+        parameters.aDotc0 = (i + 1) / double(parameters.rangenumber);
+
         // Single shot mode
-        if (parameters.numberOfSpeedValues == 1)
-			{		
+        if (parameters.rangenumber == 1)
+            {
+
 				// Enter speed of interest
 				parameters.aDotc0=interface.input("Enter the single crack-speed/sonic-velocity ratio of interest: ");		
 				
 			}  
 
+
+
         // Speed dependent properties
         beamModel.speedandreset(parameters, backfill, creep);
-
         // Iteration function
         beamModel.iteration(parameters, interface, backfill, creep);
 
