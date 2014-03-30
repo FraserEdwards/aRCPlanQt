@@ -39,7 +39,7 @@ BeamModel::BeamModel(const Parameters parameters, Backfill backfill, Creep creep
 
 void BeamModel::speedandreset(const Parameters parameters, const Backfill backfill, Creep creep)
 {
-		
+
 	//  Set initial outflow length
 	outflowLength = parameters.lambda;
 	lambdaPow4 =  pow(outflowLength, 4);
@@ -115,7 +115,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 	iterations = 0;
 	noCrackOpening = 0;
 
-	if (parameters.outflowModelOn and interface.infoLevel > 1)
+    if ((parameters.outflowModelOn==2) & (interface.infoLevel > 1))
 
 		interface.line("Starting outflowLength refinement with outflow length = ", outflowLength);
 		

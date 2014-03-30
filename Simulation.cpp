@@ -22,7 +22,7 @@ Solution Simulation::run(Parameters parameters)
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
 //		interface.line("Irwin-Corten crack driving force = ", fracmech.g0, " kJ/m^2");
-		
+
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);
 	

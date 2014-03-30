@@ -162,6 +162,14 @@ void guimain::on_Runbutton_clicked()
     cout << endl << "notchDepth: " << edited.notchDepth << endl;
     cout << endl << "diameterCreepRatio: " << edited.diameterCreepRatio << endl;
     cout << endl << "h: " << edited.h << endl;
+    cout << endl << "crackWidth: " << edited.crackWidth << endl;
+    cout << endl << "hOverR: " << edited.hOverR << endl;
+    cout << endl << "radius: " << edited.radius << endl;
+    cout << endl << "density: " << edited.density << endl;
+    cout << endl << "eDyn0degC: " << edited.eDyn0degC << endl;
+    cout << endl << "dEdyndT: " << edited.dEdyndT << endl;
+    cout << endl << "creepModulus: " << edited.creepModulus << endl;
+    cout << endl << "poisson: " << edited.poisson << endl;
 
     solution = simulation.run(edited);
 
@@ -202,12 +210,12 @@ Parameters guimain::update()
     temp.elementsinl = ui -> fdnumber -> text().toDouble();
 
     temp.h = temp.diameter/temp.sdr/Constants::kilo; // (m)
-    cout << temp.h;
     temp.hOverR = 2.0/ (temp.sdr-1);
     temp.radius = temp.h / temp.hOverR;
 
     temp.crackWidth = temp.diameter / temp.sdr - temp.notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
 
+    temp.dynamicModulus = temp.eDyn0degC + temp.tempDegC * temp.dEdyndT;
 
     return temp;
 }

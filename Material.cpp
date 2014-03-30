@@ -65,6 +65,7 @@ Material& Material::operator=(const Material& rhs)
 	density = rhs.density;
 	eDyn0degC = rhs.eDyn0degC;
 	dEdyndT = rhs.dEdyndT;
+    dynamicModulus = rhs.dynamicModulus;
 	creepModulus = rhs.creepModulus;
 	poisson = rhs.poisson;
     return *this;
