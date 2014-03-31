@@ -121,7 +121,7 @@ ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "I
 
 void guimain::setresults(Solution solution)
 {
-
+    ui -> Resultstable ->clear();
     ui -> Resultstable ->setColumnCount(9);
     ui ->Resultstable ->setRowCount(solution.soln);
     ui -> Resultstable ->show();
