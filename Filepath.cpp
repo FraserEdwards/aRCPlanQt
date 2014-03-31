@@ -1,4 +1,5 @@
 #include "Filepath.h"
+#include <iostream>
 
 Filepath::Filepath()
 {
@@ -6,5 +7,6 @@ Filepath::Filepath()
 	extern string location;
 	GetCurrentDir(Path, sizeof(Path));
 	location=string(Path);
+    cout << endl << location << endl;
 }
 

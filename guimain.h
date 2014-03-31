@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QLineEdit>
+#include <fstream>
 #include "Parameters.h"
 #include "Solution.h"
 #include "Simulation.h"
@@ -37,9 +38,16 @@ private slots:
     void on_rangemode_clicked();
 
 
+    void on_Save_clicked();
+
 private:
+
     int i;
+    int j;
+    int k;
+
     Ui::guimain *ui;
+    ofstream results;
     void filltable(Solution solution);
 };
 

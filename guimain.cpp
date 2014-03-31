@@ -1,7 +1,12 @@
 #include <QString>
+#include <QFile>
+#include <QTextStream>
 #include <iostream>
+#include <fstream>
+#include <ios>
 
 #include "guimain.h"
+#include "Results.h"
 #include "ui_guimain.h"
 
 guimain::guimain(QWidget *parent) :
@@ -18,6 +23,10 @@ guimain::~guimain()
 
 void guimain::setnames(Parameters parameters)
 {
+
+extern string location;
+
+ui -> filepath -> setText(QString::fromStdString(location));
 
 ui -> singlemode -> setCheckState(Qt::Checked);
 
@@ -44,7 +53,7 @@ else
 
 
 ui -> materialname -> setAlignment(Qt::AlignRight);
-ui ->materialname->setText(QString::fromStdString(parameters.matID));
+ui -> materialname->setText(QString::fromStdString(parameters.matID));
 
 ui -> density -> setAlignment(Qt::AlignRight);
 ui -> density->setText(QString::number(parameters.density));
@@ -123,7 +132,7 @@ void guimain::setresults(Solution solution)
 {
     ui -> Resultstable ->clear();
     ui -> Resultstable ->setColumnCount(9);
-    ui ->Resultstable ->setRowCount(solution.soln);
+    ui -> Resultstable ->setRowCount(solution.soln);
     ui -> Resultstable ->show();
     ui -> Resultstable->setHorizontalHeaderLabels(QStringList() << "Variable" << "Decomp. Factor" << "Speed Factor"
                                                   << "Support Factor" << "Outflow Length" << "Flaring" << "Irwin Corten Crack Driving Force"
@@ -142,6 +151,8 @@ void guimain::setresults(Solution solution)
     }
 
 }
+
+
 
 
 void guimain::on_Runbutton_clicked()
@@ -284,8 +295,44 @@ void guimain::on_rangemode_clicked()
     }
 }
 
-void guimain::filltable(Solution solution)
+void guimain::on_Save_clicked()
 {
 
+    string filename = "Results.csv";
+    string filepath = (ui -> filepath -> text().toStdString()) + filename;
+
+
+    results.open(filepath.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+
+    cout << ui -> Resultstable -> rowCount();
+    cout << ui -> Resultstable -> columnCount();
+
+    for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
+    {
+        if(k == 0)
+        {
+            results << "Crack speed,Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
+        }
+
+        for (j = 0; j < ui -> Resultstable -> columnCount(); j++)
+        {
+
+            QString temp = ui ->Resultstable->item(k,j) -> text();
+            if (j == (ui -> Resultstable -> columnCount())-1)
+            {
+                results << temp.toStdString() << "\n";
+            }
+            else
+            {
+                results << temp.toStdString() << ",";
+            }
+
+        }
+
+    }
+
+    results.close();
 
 }
+
+

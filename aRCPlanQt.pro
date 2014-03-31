@@ -68,7 +68,6 @@ FORMS    += \
 
 OTHER_FILES += \
     README.md \
-    Results.csv \
     aRCPlan.dSYM
 
 RESOURCES += \
