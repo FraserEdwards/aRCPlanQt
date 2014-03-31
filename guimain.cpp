@@ -301,11 +301,7 @@ void guimain::on_Save_clicked()
     string filename = "Results.csv";
     string filepath = (ui -> filepath -> text().toStdString()) + filename;
 
-
     results.open(filepath.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
-
-    cout << ui -> Resultstable -> rowCount();
-    cout << ui -> Resultstable -> columnCount();
 
     for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
     {
