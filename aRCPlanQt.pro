@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = aRCPlanQt
 TEMPLATE = app
-
+CONFIG-=app_bundle
 
 SOURCES += main.cpp\
     Backfill.cpp \
