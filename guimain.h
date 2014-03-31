@@ -28,7 +28,6 @@ private slots:
 
     void on_Runbutton_clicked();
 
-
     void on_fs_clicked();
 
     void on_s4_clicked();
@@ -37,8 +36,10 @@ private slots:
 
     void on_rangemode_clicked();
 
+
 private:
     Ui::guimain *ui;
+    void filltable(Solution solution);
 };
 
 #endif // GUIMAIN_H

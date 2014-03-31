@@ -122,14 +122,21 @@ ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "I
 void guimain::setresults(Solution solution)
 {
 
-    ui -> outflowresult -> setAlignment(Qt::AlignRight);
-    ui -> outflowresult ->setText(QString::number(solution.outflowLength[2]));
+    ui -> Resultstable ->setColumnCount(10);
+    ui ->Resultstable ->setRowCount(10);
+    QString name = "Fraser";
+    QString address = "Edwards";
+    ui -> Resultstable ->show();
+    ui -> Resultstable->setHorizontalHeaderLabels(QStringList() << "Variable" << "Parameter");
 
-    ui -> cortendriving -> setAlignment(Qt::AlignRight);
-    ui -> cortendriving ->setText(QString::number(solution.g0[2]));
+//    ui -> outflowresult -> setAlignment(Qt::AlignRight);
+//    ui -> outflowresult ->setText(QString::number(solution.outflowLength[2]));
 
-    ui -> normalisedforce -> setAlignment(Qt::AlignRight);
-    ui -> normalisedforce ->setText(QString::number(solution.gG0[2]));
+//    ui -> cortendriving -> setAlignment(Qt::AlignRight);
+//    ui -> cortendriving ->setText(QString::number(solution.g0[2]));
+
+//    ui -> normalisedforce -> setAlignment(Qt::AlignRight);
+//    ui -> normalisedforce ->setText(QString::number(solution.gG0[2]));
 
 }
 
@@ -272,4 +279,10 @@ void guimain::on_rangemode_clicked()
     {
     ui -> singlemode -> setCheckState(Qt::Checked);
     }
+}
+
+void guimain::filltable(Solution solution)
+{
+
+
 }
