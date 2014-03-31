@@ -38,6 +38,7 @@ private slots:
 
 
 private:
+    int i;
     Ui::guimain *ui;
     void filltable(Solution solution);
 };

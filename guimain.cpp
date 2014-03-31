@@ -122,21 +122,24 @@ ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "I
 void guimain::setresults(Solution solution)
 {
 
-    ui -> Resultstable ->setColumnCount(10);
-    ui ->Resultstable ->setRowCount(10);
-    QString name = "Fraser";
-    QString address = "Edwards";
+    ui -> Resultstable ->setColumnCount(9);
+    ui ->Resultstable ->setRowCount(solution.soln);
     ui -> Resultstable ->show();
-    ui -> Resultstable->setHorizontalHeaderLabels(QStringList() << "Variable" << "Parameter");
+    ui -> Resultstable->setHorizontalHeaderLabels(QStringList() << "Variable" << "Decomp. Factor" << "Speed Factor"
+                                                  << "Support Factor" << "Outflow Length" << "Flaring" << "Irwin Corten Crack Driving Force"
+                                                  << "Crack driving force components" << "Normalised Total");
 
-//    ui -> outflowresult -> setAlignment(Qt::AlignRight);
-//    ui -> outflowresult ->setText(QString::number(solution.outflowLength[2]));
-
-//    ui -> cortendriving -> setAlignment(Qt::AlignRight);
-//    ui -> cortendriving ->setText(QString::number(solution.g0[2]));
-
-//    ui -> normalisedforce -> setAlignment(Qt::AlignRight);
-//    ui -> normalisedforce ->setText(QString::number(solution.gG0[2]));
+    for (i = 0; i < solution.soln; i++){
+    ui ->Resultstable ->setItem(i,0,new QTableWidgetItem(QString::number(solution.aDotc0[i+1])));
+    ui ->Resultstable ->setItem(i,1,new QTableWidgetItem(QString::number(solution.decompression[i+1])));
+    ui ->Resultstable ->setItem(i,2,new QTableWidgetItem(QString::number(solution.alpha[i+1])));
+    ui ->Resultstable ->setItem(i,3,new QTableWidgetItem(QString::number(solution.m[i+1])));
+    ui ->Resultstable ->setItem(i,4,new QTableWidgetItem(QString::number(solution.outflowLength[i+1])));
+    ui ->Resultstable ->setItem(i,5,new QTableWidgetItem(QString::fromStdString("   ")));
+    ui ->Resultstable ->setItem(i,6,new QTableWidgetItem(QString::number(solution.g0[i+1])));
+    ui ->Resultstable ->setItem(i,7,new QTableWidgetItem(QString::number(solution.gG0[i+1])));
+    ui ->Resultstable ->setItem(i,8,new QTableWidgetItem(QString::number(solution.gTotal[i+1])));
+    }
 
 }
 
@@ -149,34 +152,34 @@ void guimain::on_Runbutton_clicked()
     Solution solution;
 
     edited = update();
-    cout << endl << "OutflowModelOn: " << edited.outflowModelOn << endl;
-    cout << endl << "Lambda: " << edited.lambda << endl;
-    cout << endl << "AnalyticalSolutionMode: " << edited.analyticalSolutionMode << endl;
-    cout << endl << "Mode: " << edited.mode << endl;
-    cout << endl << "Range number: " << edited.rangenumber << endl;
-    cout << endl << "aDotc0: " << edited.aDotc0 << endl;
-    cout << endl << "elementsinl: " << edited.elementsinl << endl;
-    cout << endl << "fullScale: " << edited.fullScale << endl;
-    cout << endl << "tempDegC: " << edited.tempDegC << endl;
-    cout << endl << "p0bar: " << edited.p0bar << endl;
-    cout << endl << "isBackfilled: " << edited.isBackfilled << endl;
-    cout << endl << "backfillDepth: " << edited.backfillDepth << endl;
-    cout << endl << "backfillDensity: " << edited.backfillDensity << endl;
-    cout << endl << "solidInsidePipe: " << edited.solidInsidePipe << endl;
-    cout << endl << "waterInsidePipe: " << edited.waterInsidePipe << endl;
-    cout << endl << "Diameter: " << edited.diameter << endl;
-    cout << endl << "sdr: " << edited.sdr << endl;
-    cout << endl << "notchDepth: " << edited.notchDepth << endl;
-    cout << endl << "diameterCreepRatio: " << edited.diameterCreepRatio << endl;
-    cout << endl << "h: " << edited.h << endl;
-    cout << endl << "crackWidth: " << edited.crackWidth << endl;
-    cout << endl << "hOverR: " << edited.hOverR << endl;
-    cout << endl << "radius: " << edited.radius << endl;
-    cout << endl << "density: " << edited.density << endl;
-    cout << endl << "eDyn0degC: " << edited.eDyn0degC << endl;
-    cout << endl << "dEdyndT: " << edited.dEdyndT << endl;
-    cout << endl << "creepModulus: " << edited.creepModulus << endl;
-    cout << endl << "poisson: " << edited.poisson << endl;
+//    cout << endl << "OutflowModelOn: " << edited.outflowModelOn << endl;
+//    cout << endl << "Lambda: " << edited.lambda << endl;
+//    cout << endl << "AnalyticalSolutionMode: " << edited.analyticalSolutionMode << endl;
+//    cout << endl << "Mode: " << edited.mode << endl;
+//    cout << endl << "Range number: " << edited.rangenumber << endl;
+//    cout << endl << "aDotc0: " << edited.aDotc0 << endl;
+//    cout << endl << "elementsinl: " << edited.elementsinl << endl;
+//    cout << endl << "fullScale: " << edited.fullScale << endl;
+//    cout << endl << "tempDegC: " << edited.tempDegC << endl;
+//    cout << endl << "p0bar: " << edited.p0bar << endl;
+//    cout << endl << "isBackfilled: " << edited.isBackfilled << endl;
+//    cout << endl << "backfillDepth: " << edited.backfillDepth << endl;
+//    cout << endl << "backfillDensity: " << edited.backfillDensity << endl;
+//    cout << endl << "solidInsidePipe: " << edited.solidInsidePipe << endl;
+//    cout << endl << "waterInsidePipe: " << edited.waterInsidePipe << endl;
+//    cout << endl << "Diameter: " << edited.diameter << endl;
+//    cout << endl << "sdr: " << edited.sdr << endl;
+//    cout << endl << "notchDepth: " << edited.notchDepth << endl;
+//    cout << endl << "diameterCreepRatio: " << edited.diameterCreepRatio << endl;
+//    cout << endl << "h: " << edited.h << endl;
+//    cout << endl << "crackWidth: " << edited.crackWidth << endl;
+//    cout << endl << "hOverR: " << edited.hOverR << endl;
+//    cout << endl << "radius: " << edited.radius << endl;
+//    cout << endl << "density: " << edited.density << endl;
+//    cout << endl << "eDyn0degC: " << edited.eDyn0degC << endl;
+//    cout << endl << "dEdyndT: " << edited.dEdyndT << endl;
+//    cout << endl << "creepModulus: " << edited.creepModulus << endl;
+//    cout << endl << "poisson: " << edited.poisson << endl;
 
     solution = simulation.run(edited);
 
