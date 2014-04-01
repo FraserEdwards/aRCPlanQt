@@ -28,7 +28,6 @@ SOURCES += main.cpp\
     Material.cpp \
     OutflowProcess.cpp \
     Parameters.cpp \
-    Results.cpp \
     Simulation.cpp \
     Solution.cpp \
     SymDoubleMatrix.cpp \
@@ -51,7 +50,6 @@ HEADERS  += \
     Material.h \
     OutflowProcess.h \
     Parameters.h \
-    Results.h \
     Simulation.h \
     Solution.h \
     SymDoubleMatrix.h \
