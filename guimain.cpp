@@ -219,8 +219,14 @@ void guimain::plotresults( vector<double> x, vector<double> y, int z, string tit
     ui -> Resultsplot -> xAxis->setLabel(QString::fromStdString(xtitle));
     ui -> Resultsplot -> yAxis->setLabel(QString::fromStdString(ytitle));
 
-    ui -> Resultsplot -> xAxis->setRange(0, x[z]+0.1);
-    ui -> Resultsplot -> yAxis->setRange(0, y[z]+0.7);
+    double z1 = *max_element(x.begin(), x.end());
+    double z2 = *max_element(y.begin(), y.end());
+
+    cout << z1;
+    cout << z2;
+
+    ui -> Resultsplot -> xAxis->setRange(0, z1+0.2);
+    ui -> Resultsplot -> yAxis->setRange(0, z2+0.2);
 
     ui -> Resultsplot -> replot();
     ui -> Resultsplot ->savePdf(QString::fromStdString(title)+".pdf",false,1000,1000,"Test","Test");
