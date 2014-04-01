@@ -28,7 +28,6 @@ SOURCES += main.cpp\
     Material.cpp \
     OutflowProcess.cpp \
     Parameters.cpp \
-    Plot.cpp \
     Results.cpp \
     Simulation.cpp \
     Solution.cpp \
@@ -38,7 +37,6 @@ SOURCES += main.cpp\
     qcustomplot.cpp
 
 HEADERS  += \
-    backFill.h \
     BeamModel.h \
     ConfigFile.h \
     Constants.h \
@@ -49,19 +47,18 @@ HEADERS  += \
     Filepath.h \
     FracMech.h \
     Geometry.h \
-    gnuplotHandle.hpp \
     Interface.h \
     Material.h \
     OutflowProcess.h \
     Parameters.h \
-    Plot.h \
     Results.h \
     Simulation.h \
     Solution.h \
     SymDoubleMatrix.h \
     TestSetup.h \
     guimain.h \
-    qcustomplot.h
+    qcustomplot.h \
+    Backfill.h
 
 FORMS    += \
     guimain.ui
@@ -70,5 +67,4 @@ OTHER_FILES += \
     README.md \
     aRCPlan.dSYM
 
-RESOURCES += \
-    resource.qrc
+RESOURCES +=
