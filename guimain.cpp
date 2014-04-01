@@ -202,11 +202,17 @@ void guimain::on_Runbutton_clicked()
 
 void guimain::plothandler(Solution solution)
 {
-    plotresults(solution.aDotc0, solution.decompression, solution.soln, "Decompression factor vs non-dimensionalised speed", "Non-dimensionalised speed", "Decompression factor");
-    plotresults(solution.aDotc0, solution.outflowLength, solution.soln, "Outflow length vs non-dimensionalised speed", "Non-dimensionalised speed", "Outflow length");
+
+    plotresults(solution.aDotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor");
+    plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length");
+    plotresults(solution.aDotc0, solution.gTotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force");
+    plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor");
+    plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor");
+    plotresults(solution.aDotc0, solution.gG0, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force");
+
 }
 
-void guimain::plotresults( vector<double> x, vector<double> y, int z, string title, string xtitle, string ytitle)
+void guimain::plotresults( vector<double> x, vector<double> y, string title, string xtitle, string ytitle)
 {
 
     ui -> Resultsplot -> addGraph();
