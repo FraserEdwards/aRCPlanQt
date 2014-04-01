@@ -36,8 +36,7 @@ public:
 	
 	ConfigFile config;
 	Simulation();
-    Solution run(Parameters parameters, FracMech fracmech, Creep creep, Backfill backfill);
-    Solution precalc(Parameters parameters);
+    Solution run(Parameters parameters);
 
 };
 

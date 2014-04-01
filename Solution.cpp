@@ -79,15 +79,3 @@ void Solution::Tvalues(const double aDotc0s, const double decompressions, const 
 	
 }
 
-Solution& Solution::operator=(const Solution& rhs)
-{
-    matID = rhs.matID;
-    density = rhs.density;
-    eDyn0degC = rhs.eDyn0degC;
-    dEdyndT = rhs.dEdyndT;
-    dynamicModulus = rhs.dynamicModulus;
-    creepModulus = rhs.creepModulus;
-    poisson = rhs.poisson;
-    return *this;
-}
-

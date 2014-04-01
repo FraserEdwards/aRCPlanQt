@@ -192,7 +192,7 @@ void guimain::on_Runbutton_clicked()
 //    cout << endl << "creepModulus: " << edited.creepModulus << endl;
 //    cout << endl << "poisson: " << edited.poisson << endl;
 
-    solution = simulation.precalc(edited);
+    solution = simulation.run(edited);
 
     setresults(solution);
     plothandler(solution);
@@ -239,7 +239,6 @@ Parameters guimain::update()
 
     Parameters temp;
 
-    temp.mode = ui -> rangemode -> checkState();
     temp.fullScale = ui -> fs -> checkState();
     temp.isBackfilled = ui -> backfill -> checkState();
     temp.outflowModelOn = ui -> fixedlength -> checkState();

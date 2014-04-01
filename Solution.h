@@ -18,8 +18,8 @@ public:
 	
 	vector<double> zeta;
 	vector<double> vptra;	
-//    vector <vector <double> > zetam;
-//    vector <vector <double > > vptram;
+    vector <vector <double> > zetam;
+    vector <vector <double > > vptram;
 
 	vector <double> aDotc0;	
 	vector <double> decompression;
