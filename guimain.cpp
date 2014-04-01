@@ -6,7 +6,6 @@
 #include <ios>
 
 #include "guimain.h"
-#include "Results.h"
 #include "ui_guimain.h"
 #include "qcustomplot.h"
 
