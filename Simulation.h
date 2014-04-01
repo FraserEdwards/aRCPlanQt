@@ -8,6 +8,9 @@
 #include "FracMech.h"
 #include "Results.h"
 #include "Plot.h"
+#include "qcustomplot.h"
+#include "guimain.h"
+#include "ui_guimain.h"
 
 
 #ifndef _SIMULATION_H

@@ -49,6 +49,8 @@ private:
     Ui::guimain *ui;
     ofstream results;
     void filltable(Solution solution);
+    void plothandler(Solution solution);
+    void plotresults(vector<double> x, vector<double> y, int z, string title, string xtitle, string ytitle);
 };
 
 #endif // GUIMAIN_H

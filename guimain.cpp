@@ -8,6 +8,7 @@
 #include "guimain.h"
 #include "Results.h"
 #include "ui_guimain.h"
+#include "qcustomplot.h"
 
 guimain::guimain(QWidget *parent) :
     QMainWindow(parent),
@@ -195,7 +196,34 @@ void guimain::on_Runbutton_clicked()
     solution = simulation.run(edited);
 
     setresults(solution);
+    plothandler(solution);
 
+}
+
+void guimain::plothandler(Solution solution)
+{
+    plotresults(solution.aDotc0, solution.decompression, solution.soln, "Decompression factor vs non-dimensionalised speed", "Non-dimensionalised speed", "Decompression factor");
+    plotresults(solution.aDotc0, solution.outflowLength, solution.soln, "Outflow length vs non-dimensionalised speed", "Non-dimensionalised speed", "Outflow length");
+}
+
+void guimain::plotresults( vector<double> x, vector<double> y, int z, string title, string xtitle, string ytitle)
+{
+
+    ui -> Resultsplot -> addGraph();
+
+    QVector<double> Qx = QVector<double>::fromStdVector(x);
+    QVector<double> Qy = QVector<double>::fromStdVector(y);
+
+    ui -> Resultsplot -> graph(0) -> setData(Qx,Qy);
+
+    ui -> Resultsplot -> xAxis->setLabel(QString::fromStdString(xtitle));
+    ui -> Resultsplot -> yAxis->setLabel(QString::fromStdString(ytitle));
+
+    ui -> Resultsplot -> xAxis->setRange(0, x[z]+0.1);
+    ui -> Resultsplot -> yAxis->setRange(0, y[z]+0.7);
+
+    ui -> Resultsplot -> replot();
+    ui -> Resultsplot ->savePdf(QString::fromStdString(title)+".pdf",false,1000,1000,"Test","Test");
 }
 
 Parameters guimain::update()
