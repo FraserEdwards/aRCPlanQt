@@ -6,6 +6,8 @@
 #include "Backfill.h"
 #include "BeamModel.h"
 #include "FracMech.h"
+#include "Results.h"
+#include "Plot.h"
 #include "qcustomplot.h"
 #include "guimain.h"
 #include "ui_guimain.h"
@@ -28,6 +30,8 @@ private:
 	Creep creep;
 	Backfill backfill;
 	BeamModel beamModel;
+	Results results;
+	Plot plot;
 	Interface interface;
 	Solution solution;
 

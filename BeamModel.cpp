@@ -329,7 +329,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 
 }
 
-void BeamModel::opening(Parameters parameters, Interface interface, Solution solution, Creep creep)
+void BeamModel::opening(Parameters parameters, Interface interface, Solution solution, Creep creep, Plot plot, Results results)
 {
 
 	//	So we now have the correct numerical or analytical crack opening profile vStar(zeta), and can output it if needed
