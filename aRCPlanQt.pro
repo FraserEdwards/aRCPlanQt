@@ -28,10 +28,13 @@ SOURCES += main.cpp\
     Material.cpp \
     OutflowProcess.cpp \
     Parameters.cpp \
+    Plot.cpp \
+    Results.cpp \
     Simulation.cpp \
     Solution.cpp \
     SymDoubleMatrix.cpp \
     TestSetup.cpp \
+    gui.cpp \
     guimain.cpp \
     qcustomplot.cpp
 
@@ -47,14 +50,18 @@ HEADERS  += \
     Filepath.h \
     FracMech.h \
     Geometry.h \
+    gnuplotHandle.hpp \
     Interface.h \
     Material.h \
     OutflowProcess.h \
     Parameters.h \
+    Plot.h \
+    Results.h \
     Simulation.h \
     Solution.h \
     SymDoubleMatrix.h \
     TestSetup.h \
+    gui.h \
     guimain.h \
     qcustomplot.h
 

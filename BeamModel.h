@@ -1,6 +1,9 @@
 #include "Creep.h"
 #include "Decompression.h"
 #include "Backfill.h"
+#include "Plot.h"
+#include "Results.h"
+
 
 #ifndef BeamModelH
 #define BeamModelH
@@ -79,7 +82,7 @@ public:
 
 		void iteration(Parameters parameters, Interface interface, Backfill backfill, Creep creep);
 
-        void opening(Parameters parameters, Interface interface, Solution solution, Creep creep);
+		void opening(Parameters parameters, Interface interface, Solution solution, Creep creep, Plot plot, Results results);
 
 
 };
