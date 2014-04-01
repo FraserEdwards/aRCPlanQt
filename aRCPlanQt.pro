@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     SymDoubleMatrix.cpp \
     TestSetup.cpp \
     gui.cpp \
-    guimain.cpp
+    guimain.cpp \
+    qcustomplot.cpp
 
 HEADERS  += \
     backFill.h \
@@ -61,7 +62,8 @@ HEADERS  += \
     SymDoubleMatrix.h \
     TestSetup.h \
     gui.h \
-    guimain.h
+    guimain.h \
+    qcustomplot.h
 
 FORMS    += \
     guimain.ui
