@@ -34,7 +34,6 @@ SOURCES += main.cpp\
     Solution.cpp \
     SymDoubleMatrix.cpp \
     TestSetup.cpp \
-    gui.cpp \
     guimain.cpp \
     qcustomplot.cpp
 
@@ -61,7 +60,6 @@ HEADERS  += \
     Solution.h \
     SymDoubleMatrix.h \
     TestSetup.h \
-    gui.h \
     guimain.h \
     qcustomplot.h
 
