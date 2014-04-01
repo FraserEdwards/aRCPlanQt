@@ -15,8 +15,6 @@ Simulation::Simulation()
 
 Solution Simulation::run(Parameters parameters)
 {
-    Results results;
-    Plot plot;
     Solution solution;
 
     Interface interface(1, config);
@@ -46,7 +44,7 @@ Solution Simulation::run(Parameters parameters)
             {
 
 				// Enter speed of interest
-				parameters.aDotc0=interface.input("Enter the single crack-speed/sonic-velocity ratio of interest: ");		
+//				parameters.aDotc0=interface.input("Enter the single crack-speed/sonic-velocity ratio of interest: ");
 				
 			}  
 
@@ -59,7 +57,7 @@ Solution Simulation::run(Parameters parameters)
 
         if(!beamModel.noCrackOpening)
         {
-            beamModel.opening(parameters, interface, solution, creep, plot, results);
+            beamModel.opening(parameters, interface, solution, creep);
             fracmech.extensionForce(beamModel, parameters, creep);
 //			interface.line("Solution profile: ");
 //			interface.line("with v0 = ", beamModel.v0);
@@ -70,10 +68,6 @@ Solution Simulation::run(Parameters parameters)
 
 //          plot.profile(beamModel.zeta, beamModel.crackdisplacement, "aDotc0 = ", "/Profile/", parameters.aDotc0, "Distance behind crack tip, z (mm)", "Crack Opening Displacement (mm)");
 
-//			interface.iprofile(solution.zeta, solution.vptra, solution.l);
-//			interface.returnsol(solution);
-            results.line(solution);
-
         }
         else
         {
@@ -82,8 +76,6 @@ Solution Simulation::run(Parameters parameters)
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
 
             // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
-//			interface.returnnsol(solution);
-            results.line(solution);
 				
         }
 					

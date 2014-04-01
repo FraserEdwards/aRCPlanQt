@@ -24,44 +24,9 @@ Results::Results()
 	results.close();
 } // end
 
-void Results::placeholder(string title)
-{
 
-	results << title << ",";
 
-}
 
-void Results::cell(double value)
-{
-
-	results << value << ",";
-
-}
-
-void Results::newline()
-{
-
-	results << "\n";
-
-}
-
-void Results::line(Solution solution)
-{
-	
-		results.open("results.csv",std::fstream::in | std::fstream::out | std::fstream::app);
-	    
-	    cell(solution.aDotc0[solution.soln]);
-	    cell(solution.decompression[solution.soln]);
-	    cell(solution.alpha[solution.soln]);
-	    cell(solution.m[solution.soln]);
-	    cell(solution.outflowLength[solution.soln]);
-	    placeholder("   ");
-	    cell(solution.gG0[solution.soln]);
-	    cell(solution.gTotal[solution.soln]);
-	    newline();
-
-		results.close();
-}
 
 
 Results::Results(const Results& original)

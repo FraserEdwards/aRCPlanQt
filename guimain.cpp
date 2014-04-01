@@ -43,9 +43,9 @@ else
 }
 
 if(parameters.isBackfilled)
-   {ui->backfill->setCheckState(Qt::Checked);}
-else
    {ui->backfill->setCheckState(Qt::Unchecked);}
+else
+   {ui->backfill->setCheckState(Qt::Checked);}
 
 if(parameters.outflowModelOn)
    {ui->fixedlength->setCheckState(Qt::Checked);}
