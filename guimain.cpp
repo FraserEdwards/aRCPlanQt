@@ -43,9 +43,9 @@ else
 }
 
 if(parameters.isBackfilled)
-   {ui->backfill->setCheckState(Qt::Unchecked);}
-else
    {ui->backfill->setCheckState(Qt::Checked);}
+else
+   {ui->backfill->setCheckState(Qt::Unchecked);}
 
 if(parameters.outflowModelOn)
    {ui->fixedlength->setCheckState(Qt::Checked);}
@@ -227,9 +227,6 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
 
     double z1 = *max_element(x.begin(), x.end());
     double z2 = *max_element(y.begin(), y.end());
-
-    cout << z1;
-    cout << z2;
 
     ui -> Resultsplot -> xAxis->setRange(0, z1+0.2);
     ui -> Resultsplot -> yAxis->setRange(0, z2+0.2);

@@ -6,9 +6,9 @@ using namespace std;
 
 void Parameters::collect(ConfigFile config)
 {
-    Material material(4,config);
+    Material material(1,config);
 	
-    Geometry geometry(4, config);
+    Geometry geometry(1, config);
 
     TestSetup testSetup(4, config);
 	

@@ -17,8 +17,8 @@ using namespace std;
         int Control::outflowModelOn_lib[5] = {1, 0, 0, 0, 0};
 		double Control::lambda_lib[5] = {3.0, 3.0, 3.0, 3.0, 3.0};
         int Control::analyticalSolutionMode_lib[5] = {0, 1, 0, 0, 0};
-        int Control::rangenumber_lib[5] = {10,20,30,40,50};
-        int Control::elementsinl_lib[5] = {5, 10, 15, 20, 25};
+        int Control::rangenumber_lib[5] = {10,40,30,50,50};
+        int Control::elementsinl_lib[5] = {5, 20, 15, 10, 25};
         double Control::aDotc0_lib[5] = {0, 0.2, 0.4, 0.6, 0.8};
         int Control::mode_lib[5]={0,2,0,2,0};
 

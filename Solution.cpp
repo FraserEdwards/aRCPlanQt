@@ -23,10 +23,20 @@ Solution::Solution(){
 
 void Solution::sprofile(const vector<double> zetas, const vector<double> vptras, const int ls)
 {
-
+    k++;
 	zeta=zetas;
 	vptra=vptras;
-	l=ls;
+    l=ls;
+    for(int i=0;i<l;i++)
+    {
+
+      zetam[i][k]=zeta[i];
+      vptram[i][k]=vptra[i];
+      cout << zetam[i][k];
+      cout << "Test";
+
+    }
+
 
 }
 

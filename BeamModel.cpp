@@ -354,9 +354,10 @@ void BeamModel::opening(Parameters parameters, Interface interface, Solution sol
 				final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
 				final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);
 
-				zeta=final.zeta;
+                zeta=final.zeta;
 				crackdisplacement=final.vptra;
 				l=final.l;	
+                cout << l;
 			}
 			else
 			{	
