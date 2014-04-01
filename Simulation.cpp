@@ -13,7 +13,7 @@ Simulation::Simulation()
 
 }
 
-Solution Simulation::run(Parameters parameters)
+Solution Simulation::precalc(Parameters parameters)
 {
 
     Solution solution;
@@ -26,7 +26,7 @@ Solution Simulation::run(Parameters parameters)
 
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);
-	
+
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
 //		interface.line("Effective ratio of backfilled to free pipe density = ", backfill.densityratio);
@@ -34,22 +34,33 @@ Solution Simulation::run(Parameters parameters)
     //	Preliminary calculations
     BeamModel beamModel(parameters, backfill, creep);
 
-    //  Proceed to vary crack speed
-    for (i = 0; i < parameters.rangenumber; i++)
+    if (parameters.mode == 0)
     {
 
-        parameters.aDotc0 = (i + 1) / double(parameters.rangenumber);
+     // Enter speed of interest
+//      parameters.aDotc0=interface.input("Enter the single crack-speed/sonic-velocity ratio of interest: ");
+        run(parameters, fracmech, creep, backfill);
 
-        // Single shot mode
-        if (parameters.rangenumber == 1)
-            {
+    }
+    else
+    {
 
-				// Enter speed of interest
-				parameters.aDotc0=interface.input("Enter the single crack-speed/sonic-velocity ratio of interest: ");		
-				
-			}  
+        //  Proceed to vary crack speed
+        for (i = 0; i < parameters.rangenumber; i++)
+        {
+            parameters.aDotc0 = (i + 1) / double(parameters.rangenumber);
+            run(parameters, fracmech, creep, backfill);
+        }
 
+    }
 
+    return solution;
+
+}
+
+Solution Simulation::run(Parameters parameters, FracMech fracmech, Creep creep, Backfill backfill)
+{
+        Solution temp;
 
         // Speed dependent properties
         beamModel.speedandreset(parameters, backfill, creep);
@@ -59,35 +70,22 @@ Solution Simulation::run(Parameters parameters)
         if(!beamModel.noCrackOpening)
         {
             beamModel.opening(parameters, interface, solution, creep);
+
             fracmech.extensionForce(beamModel, parameters, creep);
-//			interface.line("Solution profile: ");
-//			interface.line("with v0 = ", beamModel.v0);
-            cout << beamModel.l;
-            solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
-            solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+
+            temp.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
+            temp.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
-
-//          plot.profile(beamModel.zeta, beamModel.crackdisplacement, "aDotc0 = ", "/Profile/", parameters.aDotc0, "Distance behind crack tip, z (mm)", "Crack Opening Displacement (mm)");
-
-//			interface.iprofile(solution.zeta, solution.vptra, solution.l);
-//			interface.returnsol(solution);
-
 
         }
         else
         {
 
-            solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+            temp.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
-
-            // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
-//			interface.returnnsol(solution);
 				
         }
 					
-    }
-    return solution;
-
-//        plot.handler(solution);
+    return temp;
 
 }
