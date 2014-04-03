@@ -213,7 +213,7 @@ void guimain::plothandler(Solution solution)
 
 void guimain::plotresults( vector<double> x, vector<double> y, string title, string xtitle, string ytitle)
 {
-
+    string filepath = (ui -> filepath -> text().toStdString()) + title;
     ui -> Resultsplot -> addGraph();
 
     QVector<double> Qx = QVector<double>::fromStdVector(x);
@@ -231,7 +231,7 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
     ui -> Resultsplot -> yAxis->setRange(0, z2+0.2);
 
     ui -> Resultsplot -> replot();
-    ui -> Resultsplot ->savePdf(QString::fromStdString(title)+".pdf",false,1000,1000,"Test","Test");
+    ui -> Resultsplot ->savePdf(QString::fromStdString(filepath)+".pdf",false,1000,1000,"Test","Test");
 }
 
 Parameters guimain::update()
