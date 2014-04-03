@@ -117,7 +117,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 
     if ((parameters.outflowModelOn==2) & (interface.infoLevel > 1))
 
-		interface.line("Starting outflowLength refinement with outflow length = ", outflowLength);
+//		interface.line("Starting outflowLength refinement with outflow length = ", outflowLength);
 		
 	do
 	{	// Refine given outflow length using the discharge analysis:
@@ -152,8 +152,8 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 		if (interface.infoLevel > 1)
 		{
 
-			interface.oneline("Starting closure length refinement with closure node = ",nodeAtClosure_previous);
-			interface.oneline(" closure moment = ", errorLast);
+//			interface.oneline("Starting closure length refinement with closure node = ",nodeAtClosure_previous);
+//			interface.oneline(" closure moment = ", errorLast);
 
 		}
 
@@ -161,7 +161,10 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 		nodeAtClosure += 4;
 
 		if (interface.infoLevel > 1)
-			interface.line("Second-guess closure node = ", nodeAtClosure);
+        {
+//            interface.line("Second-guess closure node = ", nodeAtClosure);
+        }
+
 		
 		// Prepare to refine closure length by iteration
 		double dontNeedThis;
@@ -180,17 +183,20 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			if (interface.infoLevel > 1)
 			{
 
-				interface.oneline("At closure length iteration ",iterations);
-				interface.oneline(" with nodeAtClosure = ",nodeAtClosure);
-				interface.oneline(" closure moment = ", error);
-				interface.oneline(" min at point ",minPoint);
+//				interface.oneline("At closure length iteration ",iterations);
+//				interface.oneline(" with nodeAtClosure = ",nodeAtClosure);
+//				interface.oneline(" closure moment = ", error);
+//				interface.oneline(" min at point ",minPoint);
 
 			}	
 			if (minPoint > 0)
 			{
 				if (interface.infoLevel > 1)
+                {
+//                    interface.line("BUT there's a minimum (crack surface overlap) to left of closure point ", minPoint);
+                }
 
-					interface.line("BUT there's a minimum (crack surface overlap) to left of closure point ", minPoint);
+
 			
 				// So back up to find maximum closure length with NO overlap:
 				double tempError;
@@ -206,9 +212,9 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 					if (interface.infoLevel > 1)
 					{
 
-						interface.oneline("nodeAtClosure = ",nodeAtClosure);
-						interface.oneline(" error = ", tempError);
-						interface.oneline(" min point = ", newMin);
+//						interface.oneline("nodeAtClosure = ",nodeAtClosure);
+//						interface.oneline(" error = ", tempError);
+//						interface.oneline(" min point = ", newMin);
 
 					}	
 					nodeAtClosure++;
@@ -216,8 +222,11 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 				while (newMin < 0);
 				nodeAtClosure = nodeAtClosure - 1;
 				if (interface.infoLevel > 1)
+                {
+//                    interface.line("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
+                }
 
-					interface.line("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
+
 					
 				maximumNonContact = true;
                 fdSolution = FDprofile(alpha, m, -1.0, vStarRes, parameters.elementsinl, nodeAtClosure);
@@ -234,8 +243,9 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			{
 				nodeAtClosure++;
 				if (interface.infoLevel > 1)
-
-					interface.line("node interpolated = ", nodeAtClosure);
+                {
+//                    interface.line("node interpolated = ", nodeAtClosure);
+                }
 		
 			}
 
@@ -251,8 +261,11 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 				else
 				{
 					if (interface.infoLevel > 1)
+                    {
+//                        interface.line("Next try for iteration will be nodeAtClosure = ", nodeAtClosure);
+                    }
 
-						interface.line("Next try for iteration will be nodeAtClosure = ", nodeAtClosure);
+
 						
 					errorLast = error;
 					iterations++;
@@ -264,9 +277,9 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			if (interface.infoLevel > 1)
 			{
 
-				interface.oneline("At nodeAtClosure = ", nodeAtClosure);
-				interface.oneline(" converged in ", iterations);
-				interface.oneline(" iterations with error = ", error);
+//				interface.oneline("At nodeAtClosure = ", nodeAtClosure);
+//				interface.oneline(" converged in ", iterations);
+//				interface.oneline(" iterations with error = ", error);
 				
 			}
 
@@ -279,13 +292,12 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 	
 		if (interface.infoLevel > 1)
 		{
-		interface.line("Computed profile properties");
-		interface.line("Ejection point = ", zetaBackfillEject);
-		interface.line("Opening at outflow point = ", wStarMax);
-		interface.line("1st-deriv at outflow = ", wStar2dash);
-		interface.line("2nd-deriv at outflow = ", wStar2dash2);
-		interface.line("Integral to outflow = ", integral_wStar2);
-			
+//		interface.line("Computed profile properties");
+//		interface.line("Ejection point = ", zetaBackfillEject);
+//		interface.line("Opening at outflow point = ", wStarMax);
+//		interface.line("1st-deriv at outflow = ", wStar2dash);
+//		interface.line("2nd-deriv at outflow = ", wStar2dash2);
+//		interface.line("Integral to outflow = ", integral_wStar2);
 		}
 
 		if (integral_wStar2 > 0.0)
@@ -300,10 +312,10 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 		//	tStarOutflow being the number of characteristic times for discharge
 			if (interface.infoLevel > 1)
 			{	
-				interface.line("alpha = ", alpha[1]);
-				interface.line("m = ", m[1]);
-				interface.line("integral_wStar2 = ", integral_wStar2);
-				interface.line("New outflowLength = ", outflowLength);
+//				interface.line("alpha = ", alpha[1]);
+//				interface.line("m = ", m[1]);
+//				interface.line("integral_wStar2 = ", integral_wStar2);
+//				interface.line("New outflowLength = ", outflowLength);
 				
 			}
 			lambdaPow4 =  pow(outflowLength, 4);
@@ -316,7 +328,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			short waitForMe;
 			if (interface.infoLevel > 2)
 			{	
-				waitForMe=interface.input("enter digit: ");	
+//				waitForMe=interface.input("enter digit: ");
 			}
 		}
 		else
@@ -337,8 +349,8 @@ void BeamModel::opening(Parameters parameters, Interface interface, Solution sol
 		if (interface.infoLevel > 1)
 		{
 
-			interface.oneline("Final outflowLength convergence in ", iterations);
-			interface.oneline(" iterations for outflowLength = ", outflowLength);
+//			interface.oneline("Final outflowLength convergence in ", iterations);
+//			interface.oneline(" iterations for outflowLength = ", outflowLength);
 		
 		}
         if (interface.printOpeningProfile==2)
@@ -375,6 +387,6 @@ void BeamModel::opening(Parameters parameters, Interface interface, Solution sol
 		//	Flaring of pipe wall at decompression point:
 		deltaDStar = wStar2 / Constants::pi / parameters.diameter * Constants::kilo + creep.diameterRes0 / parameters.diameter - 1.0;		
 			
-		if (iterations == maxIterations) interface.line("UNCONVERGED"); cout << endl;		
+        if (iterations == maxIterations) cout << "UNCONVERGED"; cout << endl;
 			
 }

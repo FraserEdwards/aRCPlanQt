@@ -34,6 +34,8 @@ Solution Simulation::run(Parameters parameters)
     //	Preliminary calculations
     BeamModel beamModel(parameters, backfill, creep);
 
+
+
     //  Proceed to vary crack speed
     for (i = 0; i < parameters.rangenumber; i++)
     {
@@ -45,7 +47,7 @@ Solution Simulation::run(Parameters parameters)
             {
 
 				// Enter speed of interest
-				parameters.aDotc0=interface.input("Enter the single crack-speed/sonic-velocity ratio of interest: ");		
+//				parameters.aDotc0=interface.input("Enter the single crack-speed/sonic-velocity ratio of interest: ");
 				
 			}  
 
