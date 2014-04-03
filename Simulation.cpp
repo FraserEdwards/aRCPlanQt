@@ -45,7 +45,6 @@ Solution Simulation::run(Parameters parameters)
             {
 
 				// Enter speed of interest
-				parameters.aDotc0=interface.input("Enter the single crack-speed/sonic-velocity ratio of interest: ");		
 				
             }
 
