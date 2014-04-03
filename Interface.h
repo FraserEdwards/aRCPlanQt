@@ -32,13 +32,6 @@ public:
 	short printOpeningProfile;
 	Interface();
 	Interface(const short recordNumber, ConfigFile config);
-	void inputData();
-	void outputData();
-
-    double input(const string title);
-    int inputi(const string title);
-    void output(const string title, const double value, const string units);
-
 
 };
 
