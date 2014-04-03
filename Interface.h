@@ -35,16 +35,10 @@ public:
 	void inputData();
 	void outputData();
 
-	void line(const string title);
-	void line(const string title, const double value);
-	void line(const string title, const double value, const string units);
-	void oneline(const string title, const double value);
-	double input(const string title);
-	int inputi(const string title);
-	void output(const string title, const double value, const string units);
-	void returnsol(Solution solution);
-	void returnnsol(Solution solution);
-	void iprofile(vector<double> zeta, vector<double> vptra, const int l);
+    double input(const string title);
+    int inputi(const string title);
+    void output(const string title, const double value, const string units);
+
 
 };
 
