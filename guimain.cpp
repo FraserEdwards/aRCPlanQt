@@ -197,6 +197,10 @@ void guimain::on_Runbutton_clicked()
     setresults(solution);
     plothandler(solution);
 
+    Simulation* temp = new Simulation;
+    connect(temp, SIGNAL(tests(const QString)), this, SLOT(testg(const QString)));
+
+
 }
 
 void guimain::plothandler(Solution solution)
@@ -229,7 +233,6 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
 
     ui -> Resultsplot -> xAxis->setRange(0, z1+0.2);
     ui -> Resultsplot -> yAxis->setRange(0, z2+0.2);
-
     ui -> Resultsplot -> replot();
     ui -> Resultsplot ->savePdf(QString::fromStdString(filepath)+".pdf",false,1000,1000,"Test","Test");
 }
@@ -367,4 +370,9 @@ void guimain::on_Save_clicked()
 
 }
 
+void testg(const QString text)
+{
 
+    cout << text.toStdString();
+
+}

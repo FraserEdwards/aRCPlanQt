@@ -9,13 +9,19 @@
 #include "qcustomplot.h"
 #include "guimain.h"
 #include "ui_guimain.h"
+#include <QObject>
 
 
 #ifndef _SIMULATION_H
 #define _SIMULATION_H
 
-class Simulation
+class Simulation : public QObject
 {
+
+QObject temp;
+
+signals:
+        void tests(const QString text);
 
 private:
 	

@@ -24,6 +24,7 @@ public:
     void setnames(Parameters parameters);
     void setresults(Solution solution);
     Parameters update();
+    Ui::guimain *ui;
 
 private slots:
 
@@ -37,8 +38,9 @@ private slots:
 
     void on_rangemode_clicked();
 
-
     void on_Save_clicked();
+
+    void testg(const QString text);
 
 private:
 
@@ -46,7 +48,7 @@ private:
     int j;
     int k;
 
-    Ui::guimain *ui;
+
     ofstream results;
     void filltable(Solution solution);
     void plothandler(Solution solution);
