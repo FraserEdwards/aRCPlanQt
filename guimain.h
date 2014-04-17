@@ -26,6 +26,7 @@ public:
     Parameters update();
     Ui::guimain *ui;
 
+
 private slots:
 
     void on_Runbutton_clicked();
@@ -39,8 +40,6 @@ private slots:
     void on_rangemode_clicked();
 
     void on_Save_clicked();
-
-    void testg(const QString text);
 
 private:
 

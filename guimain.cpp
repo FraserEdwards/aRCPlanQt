@@ -8,6 +8,7 @@
 #include "guimain.h"
 #include "ui_guimain.h"
 #include "qcustomplot.h"
+#include "Filepath.h"
 
 guimain::guimain(QWidget *parent) :
     QMainWindow(parent),
@@ -24,9 +25,9 @@ guimain::~guimain()
 void guimain::setnames(Parameters parameters)
 {
 
-extern string location;
+extern Filepath filepath;
 
-ui -> filepath -> setText(QString::fromStdString(location));
+ui -> path -> setText(QString::fromStdString(filepath.directory + "/"));
 
 ui -> singlemode -> setCheckState(Qt::Checked);
 
@@ -197,10 +198,6 @@ void guimain::on_Runbutton_clicked()
     setresults(solution);
     plothandler(solution);
 
-    Simulation* temp = new Simulation;
-    connect(temp, SIGNAL(tests(const QString)), this, SLOT(testg(const QString)));
-
-
 }
 
 void guimain::plothandler(Solution solution)
@@ -217,7 +214,7 @@ void guimain::plothandler(Solution solution)
 
 void guimain::plotresults( vector<double> x, vector<double> y, string title, string xtitle, string ytitle)
 {
-    string filepath = (ui -> filepath -> text().toStdString()) + title;
+    string filepath = (ui -> path -> text().toStdString()) + title;
     ui -> Resultsplot -> addGraph();
 
     QVector<double> Qx = QVector<double>::fromStdVector(x);
@@ -338,7 +335,7 @@ void guimain::on_Save_clicked()
 {
 
     string filename = "Results.csv";
-    string filepath = (ui -> filepath -> text().toStdString()) + filename;
+    string filepath = (ui -> path -> text().toStdString()) + filename;
 
     results.open(filepath.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
@@ -367,12 +364,5 @@ void guimain::on_Save_clicked()
     }
 
     results.close();
-
-}
-
-void testg(const QString text)
-{
-
-    cout << text.toStdString();
 
 }

@@ -8,13 +8,13 @@ using namespace std;
 #include "Simulation.h"
 #include "Filepath.h"
 
-double gG0;
 string location;
+Filepath filepath;
 
 int main(int argc, char *argv[])
 {
     // Read the problem configuration file to provide parameter values where library data does not exist
-    Filepath filePath;
+//    Filepath filePath;
 
     ConfigFile config("caseInputData.txt");
     Parameters initial;

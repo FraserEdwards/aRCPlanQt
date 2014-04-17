@@ -20,6 +20,7 @@ private:
 	
 public:
 	Filepath(); 	//Null constructor
+    string directory;
 };
 
 #endif

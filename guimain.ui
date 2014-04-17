@@ -444,7 +444,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="filepath"/>
+        <widget class="QLineEdit" name="path"/>
        </item>
       </layout>
      </item>
