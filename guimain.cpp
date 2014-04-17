@@ -214,7 +214,9 @@ void guimain::plothandler(Solution solution)
 
 void guimain::plotresults( vector<double> x, vector<double> y, string title, string xtitle, string ytitle)
 {
-    string filepath = (ui -> path -> text().toStdString()) + title;
+    extern Filepath filepath;
+
+    filepath.directory = (ui -> path -> text().toStdString()) + title;
     ui -> Resultsplot -> addGraph();
 
     QVector<double> Qx = QVector<double>::fromStdVector(x);
@@ -231,7 +233,7 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
     ui -> Resultsplot -> xAxis->setRange(0, z1+0.2);
     ui -> Resultsplot -> yAxis->setRange(0, z2+0.2);
     ui -> Resultsplot -> replot();
-    ui -> Resultsplot ->savePdf(QString::fromStdString(filepath)+".pdf",false,1000,1000,"Test","Test");
+    ui -> Resultsplot ->savePdf(QString::fromStdString(filepath.directory)+".pdf",false,1000,1000,"Test","Test");
 }
 
 Parameters guimain::update()
@@ -334,10 +336,12 @@ void guimain::on_rangemode_clicked()
 void guimain::on_Save_clicked()
 {
 
-    string filename = "Results.csv";
-    string filepath = (ui -> path -> text().toStdString()) + filename;
+    extern Filepath filepath;
 
-    results.open(filepath.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+    string filename = "Results.csv";
+    filepath.directory = (ui -> path -> text().toStdString()) + filename;
+
+    results.open(filepath.directory.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
     for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
     {
