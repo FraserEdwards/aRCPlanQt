@@ -159,44 +159,28 @@ void guimain::setresults(Solution solution)
 void guimain::on_Runbutton_clicked()
 {
 
+    extern Filepath filepath;
     Parameters edited;
-    Simulation simulation;
-    Solution solution;
-
     edited = update();
-//    cout << endl << "OutflowModelOn: " << edited.outflowModelOn << endl;
-//    cout << endl << "Lambda: " << edited.lambda << endl;
-//    cout << endl << "AnalyticalSolutionMode: " << edited.analyticalSolutionMode << endl;
-//    cout << endl << "Mode: " << edited.mode << endl;
-//    cout << endl << "Range number: " << edited.rangenumber << endl;
-//    cout << endl << "aDotc0: " << edited.aDotc0 << endl;
-//    cout << endl << "elementsinl: " << edited.elementsinl << endl;
-//    cout << endl << "fullScale: " << edited.fullScale << endl;
-//    cout << endl << "tempDegC: " << edited.tempDegC << endl;
-//    cout << endl << "p0bar: " << edited.p0bar << endl;
-//    cout << endl << "isBackfilled: " << edited.isBackfilled << endl;
-//    cout << endl << "backfillDepth: " << edited.backfillDepth << endl;
-//    cout << endl << "backfillDensity: " << edited.backfillDensity << endl;
-//    cout << endl << "solidInsidePipe: " << edited.solidInsidePipe << endl;
-//    cout << endl << "waterInsidePipe: " << edited.waterInsidePipe << endl;
-//    cout << endl << "Diameter: " << edited.diameter << endl;
-//    cout << endl << "sdr: " << edited.sdr << endl;
-//    cout << endl << "notchDepth: " << edited.notchDepth << endl;
-//    cout << endl << "diameterCreepRatio: " << edited.diameterCreepRatio << endl;
-//    cout << endl << "h: " << edited.h << endl;
-//    cout << endl << "crackWidth: " << edited.crackWidth << endl;
-//    cout << endl << "hOverR: " << edited.hOverR << endl;
-//    cout << endl << "radius: " << edited.radius << endl;
-//    cout << endl << "density: " << edited.density << endl;
-//    cout << endl << "eDyn0degC: " << edited.eDyn0degC << endl;
-//    cout << endl << "dEdyndT: " << edited.dEdyndT << endl;
-//    cout << endl << "creepModulus: " << edited.creepModulus << endl;
-//    cout << endl << "poisson: " << edited.poisson << endl;
 
-    solution = simulation.run(edited);
+    if(!filepath.check())
+    {
 
-    setresults(solution);
-    plothandler(solution);
+        Simulation simulation;
+        Solution solution;
+
+        solution = simulation.run(edited);
+
+        setresults(solution);
+        plothandler(solution);
+
+    }
+    else
+    {
+
+
+
+    }
 
 }
 
@@ -216,7 +200,7 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
 {
     extern Filepath filepath;
 
-    filepath.directory = (ui -> path -> text().toStdString()) + title;
+    path = (ui -> path -> text().toStdString()) + title;
     ui -> Resultsplot -> addGraph();
 
     QVector<double> Qx = QVector<double>::fromStdVector(x);
@@ -233,13 +217,16 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
     ui -> Resultsplot -> xAxis->setRange(0, z1+0.2);
     ui -> Resultsplot -> yAxis->setRange(0, z2+0.2);
     ui -> Resultsplot -> replot();
-    ui -> Resultsplot ->savePdf(QString::fromStdString(filepath.directory)+".pdf",false,1000,1000,"Test","Test");
+    ui -> Resultsplot ->savePdf(QString::fromStdString(path)+".pdf",false,1000,1000,"Test","Test");
 }
 
 Parameters guimain::update()
 {
 
     Parameters temp;
+
+    extern Filepath filepath;
+    filepath.directory = ui -> path -> text().toStdString();
 
     temp.fullScale = ui -> fs -> checkState();
     temp.isBackfilled = ui -> backfill -> checkState();
@@ -338,7 +325,7 @@ void guimain::on_Save_clicked()
 
     extern Filepath filepath;
 
-    string filename = "Results.csv";
+    filename = "Results.csv";
     filepath.directory = (ui -> path -> text().toStdString()) + filename;
 
     results.open(filepath.directory.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);

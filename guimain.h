@@ -46,7 +46,8 @@ private:
     int i;
     int j;
     int k;
-
+    string filename;
+    string path;
 
     ofstream results;
     void filltable(Solution solution);

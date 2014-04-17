@@ -17,9 +17,12 @@ class Filepath
 {
 private:
 	char Path[256];	
+    int checkstate;
+    string tempdir;
 	
 public:
 	Filepath(); 	//Null constructor
+    int check();
     string directory;
 };
 
