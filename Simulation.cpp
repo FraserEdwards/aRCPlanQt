@@ -54,8 +54,6 @@ Solution Simulation::run(Parameters parameters)
         // Iteration function
         beamModel.iteration(parameters, interface, backfill, creep);
 
-        emit tests("Test!");
-
         if(!beamModel.noCrackOpening)
         {
             beamModel.opening(parameters, interface, solution, creep);
@@ -81,8 +79,3 @@ Solution Simulation::run(Parameters parameters)
 
 }
 
-void tests(const QString text)
-{
-
-
-}

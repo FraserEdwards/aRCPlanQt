@@ -15,13 +15,9 @@
 #ifndef _SIMULATION_H
 #define _SIMULATION_H
 
-class Simulation : public QObject
-{
-
-QObject temp;
+class Simulation {
 
 signals:
-        void tests(const QString text);
 
 private:
 	

@@ -16,7 +16,6 @@ void Parameters::collect(ConfigFile config)
 
 	copy(material, geometry, testSetup, control);
 	conditionToTemperature();
-
 		
 }
 
