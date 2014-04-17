@@ -7,7 +7,7 @@
 #include "Parameters.h"
 #include "Solution.h"
 #include "Simulation.h"
-#include "Filepath.h"
+
 
 namespace Ui {
 class guimain;
@@ -21,9 +21,9 @@ public:
     explicit guimain(QWidget *parent = 0);
     ~guimain();
 
-    void setnames(Parameters parameters, Filepath filepath);
+    void setnames(Parameters parameters);
     void setresults(Solution solution);
-    Parameters update(Filepath filepath);
+    Parameters update();
     Ui::guimain *ui;
 
 private slots:
@@ -40,6 +40,8 @@ private slots:
 
     void on_Save_clicked();
 
+    void testg(const QString text);
+
 private:
 
     int i;
@@ -49,9 +51,8 @@ private:
 
     ofstream results;
     void filltable(Solution solution);
-    void plothandler(Solution solution, Filepath filepath);
-    void plotresults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, string locaton);
-
+    void plothandler(Solution solution);
+    void plotresults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle);
 };
 
 #endif // GUIMAIN_H

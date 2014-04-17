@@ -21,10 +21,12 @@ guimain::~guimain()
     delete ui;
 }
 
-void guimain::setnames(Parameters parameters, Filepath filepath)
+void guimain::setnames(Parameters parameters)
 {
 
-ui -> filepath -> setText(QString::fromStdString(filepath.location));
+extern string location;
+
+ui -> filepath -> setText(QString::fromStdString(location));
 
 ui -> singlemode -> setCheckState(Qt::Checked);
 
@@ -159,10 +161,8 @@ void guimain::on_Runbutton_clicked()
     Parameters edited;
     Simulation simulation;
     Solution solution;
-    Filepath filepath;
 
-    edited = update(filepath);
-
+    edited = update();
 //    cout << endl << "OutflowModelOn: " << edited.outflowModelOn << endl;
 //    cout << endl << "Lambda: " << edited.lambda << endl;
 //    cout << endl << "AnalyticalSolutionMode: " << edited.analyticalSolutionMode << endl;
@@ -195,23 +195,27 @@ void guimain::on_Runbutton_clicked()
     solution = simulation.run(edited);
 
     setresults(solution);
-    plothandler(solution, filepath);
+    plothandler(solution);
+
+    Simulation* temp = new Simulation;
+    connect(temp, SIGNAL(tests(const QString)), this, SLOT(testg(const QString)));
+
 
 }
 
-void guimain::plothandler(Solution solution, Filepath filepath)
+void guimain::plothandler(Solution solution)
 {
 
-    plotresults(solution.aDotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor", filepath.location);
-    plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length", filepath.location);
-    plotresults(solution.aDotc0, solution.gTotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force", filepath.location);
-    plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor", filepath.location);
-    plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor", filepath.location);
-    plotresults(solution.aDotc0, solution.gG0, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",filepath.location);
+    plotresults(solution.aDotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor");
+    plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length");
+    plotresults(solution.aDotc0, solution.gTotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force");
+    plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor");
+    plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor");
+    plotresults(solution.aDotc0, solution.gG0, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force");
 
 }
 
-void guimain::plotresults( vector<double> x, vector<double> y, string title, string xtitle, string ytitle, string location)
+void guimain::plotresults( vector<double> x, vector<double> y, string title, string xtitle, string ytitle)
 {
     string filepath = (ui -> filepath -> text().toStdString()) + title;
     ui -> Resultsplot -> addGraph();
@@ -233,12 +237,10 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
     ui -> Resultsplot ->savePdf(QString::fromStdString(filepath)+".pdf",false,1000,1000,"Test","Test");
 }
 
-Parameters guimain::update(Filepath filepath)
+Parameters guimain::update()
 {
 
     Parameters temp;
-
-    filepath.location = ui -> filepath -> text().toStdString();
 
     temp.fullScale = ui -> fs -> checkState();
     temp.isBackfilled = ui -> backfill -> checkState();
@@ -365,5 +367,12 @@ void guimain::on_Save_clicked()
     }
 
     results.close();
+
+}
+
+void testg(const QString text)
+{
+
+    cout << text.toStdString();
 
 }

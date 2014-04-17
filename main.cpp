@@ -6,23 +6,23 @@ using namespace std;
 #include "guimain.h"
 #include "ui_guimain.h"
 #include "Simulation.h"
+#include "Filepath.h"
 
 double gG0;
-
+string location;
 
 int main(int argc, char *argv[])
 {
-
-    Filepath filepath;
+    // Read the problem configuration file to provide parameter values where library data does not exist
+    Filepath filePath;
 
     ConfigFile config("caseInputData.txt");
     Parameters initial;
-
     initial.collect(config);
     QApplication a(argc, argv);
 
     guimain b;
-    b.setnames(initial, filepath);
+    b.setnames(initial);
     b.showMaximized();
 
     return a.exec();
