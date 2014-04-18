@@ -48,6 +48,7 @@ private:
     int k;
     string filename;
     string path;
+    int exists;
 
     ofstream results;
     void filltable(Solution solution);

@@ -19,7 +19,8 @@ private:
 	char Path[256];	
     int checkstate;
     string tempdir;
-	
+    string subfolder;
+
 public:
 	Filepath(); 	//Null constructor
     int check();

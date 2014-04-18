@@ -163,7 +163,9 @@ void guimain::on_Runbutton_clicked()
     Parameters edited;
     edited = update();
 
-    if(!filepath.check())
+    exists = filepath.check();
+
+    if(!exists)
     {
 
         Simulation simulation;
@@ -177,7 +179,18 @@ void guimain::on_Runbutton_clicked()
     }
     else
     {
-
+        cout << exists;
+        switch(exists)
+        {
+            case 1:
+                ui -> Information ->setText("Results folder couldn't be found, new folder created");
+                break;
+            case 2:
+                ui -> Information -> setText("Profile folder couldn't be found, new folder created");
+                break;
+            case 3:
+                ui -> Information -> setText("Please enter a valid directory");
+        }
 
 
     }
@@ -200,7 +213,7 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
 {
     extern Filepath filepath;
 
-    path = (ui -> path -> text().toStdString()) + title;
+    path = (ui -> path -> text().toStdString()) + "Results/" + title;
     ui -> Resultsplot -> addGraph();
 
     QVector<double> Qx = QVector<double>::fromStdVector(x);

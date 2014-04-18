@@ -15,35 +15,47 @@ int Filepath::check()
 {
     struct stat st;
 
-    cout << directory;
-
     if(stat(directory.c_str(), &st) == 0)
     {
 
-        cout << "Test!";
-
         if (st.st_mode & S_IFDIR != 0)
         {
+            subfolder = directory + "Results/";
 
-            checkstate = 0;
-            cout << "Found!";
+            if(stat(subfolder.c_str(), &st) == 0)
+            {
+                if (st.st_mode &S_IFDIR != 0)
+                {
+                    checkstate = 0;
+                }
+            }
+            else
+            {
+                mkdir(subfolder.c_str(), 0777);
+                cout << subfolder;
+                return checkstate = 1;
+            }
 
+            subfolder = directory + "Profiles/";
+
+            if(stat(subfolder.c_str(), &st) == 0)
+            {
+                if (st.st_mode &S_IFDIR != 0)
+                {
+                    checkstate = 0;
+                }
+            }
+            else
+            {
+                mkdir(subfolder.c_str(), 0777);
+                cout << subfolder;
+                return checkstate = 2;
+            }
         }
-        else
-        {
-
-            checkstate = 1;
-            cout << "Not a Directory!";
-
-        }
-
     }
     else
     {
-
-        checkstate = 2;
-        cout << "Not Found!";
-
+        return checkstate = 3;
     }
 
     return checkstate;

@@ -562,6 +562,9 @@
        </property>
       </widget>
      </item>
+     <item row="6" column="0">
+      <widget class="QTextEdit" name="Information"/>
+     </item>
     </layout>
    </widget>
   </widget>
