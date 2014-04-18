@@ -79,3 +79,10 @@ void Solution::Tvalues(const double aDotc0s, const double decompressions, const 
 	
 }
 
+Solution* Solution::retrieve()
+{
+
+    return this;
+
+}
+
