@@ -41,6 +41,8 @@ private slots:
 
     void on_Save_clicked();
 
+    void on_Resultstable_cellClicked(int row, int column);
+
 private:
 
     int i;
@@ -57,3 +59,4 @@ private:
 };
 
 #endif // GUIMAIN_H
+

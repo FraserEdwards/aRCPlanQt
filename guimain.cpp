@@ -370,3 +370,15 @@ void guimain::on_Save_clicked()
     results.close();
 
 }
+
+
+void guimain::on_Resultstable_cellClicked(int row, int column)
+{
+    switch(column)
+    {
+
+
+
+    }
+
+}
