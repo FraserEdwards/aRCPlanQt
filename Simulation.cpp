@@ -35,46 +35,58 @@ Solution Simulation::run(Parameters parameters)
     //	Preliminary calculations
     BeamModel beamModel(parameters, backfill, creep);
 
-    //  Proceed to vary crack speed
-    for (i = 0; i < parameters.rangenumber; i++)
+    if(parameters.singlemode)
     {
 
-        parameters.aDotc0 = (i + 1) / double(parameters.rangenumber);
 
-        // Single shot mode
-        if (parameters.rangenumber == 1)
+    }
+    else
+    {
+
+        //  Proceed to vary crack speed
+        for (i =0; i < parameters.rangenumber; i++)
+        {
+
+            parameters.aDotc0 = ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+
+
+            // Single shot mode
+            if (parameters.rangenumber == 1)
             {
 
 				// Enter speed of interest
 				
             }
 
-        // Speed dependent properties
-        beamModel.speedandreset(parameters, backfill, creep);
-        // Iteration function
-        beamModel.iteration(parameters, interface, backfill, creep);
+            // Speed dependent properties
+            beamModel.speedandreset(parameters, backfill, creep);
+            // Iteration function
+            beamModel.iteration(parameters, interface, backfill, creep);
 
-        if(!beamModel.noCrackOpening)
-        {
-            beamModel.opening(parameters, interface, solution, creep);
-            fracmech.extensionForce(beamModel, parameters, creep);
+            if(!beamModel.noCrackOpening)
+            {
+                beamModel.opening(parameters, interface, solution, creep);
+                fracmech.extensionForce(beamModel, parameters, creep);
 
-            solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
-            solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-            fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
+                solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
+                solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+                fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
 
-        }
-        else
-        {
+            }
+            else
+            {
 
-            solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-            fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
+                solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+                fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
 
-            // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
+                // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
 				
-        }
+            }
 					
+        }
+
     }
+
     return solution;
 
 }

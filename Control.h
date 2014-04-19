@@ -18,7 +18,7 @@ class Control
         static int outflowModelOn_lib[5];
 		static double lambda_lib[5];
         static int analyticalSolutionMode_lib[5];
-        static int mode_lib[5];
+        static int singlemode_lib[5];
         static int rangenumber_lib[5];
         static int speednumber_lib[5];;
         static int elementsinl_lib[5];
@@ -33,10 +33,13 @@ class Control
         int outflowModelOn;
 		double lambda;
         int analyticalSolutionMode;
-        int mode;
+        int singlemode;
         int rangenumber;
         int elementsinl;
         double aDotc0;
+        double from;
+        double to;
+        double indvar;
 		
 };
 

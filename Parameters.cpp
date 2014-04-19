@@ -26,10 +26,14 @@ void Parameters::copy(Material material, Geometry geometry, TestSetup testSetup,
 	outflowModelOn = control.outflowModelOn;
 	lambda = control.lambda;
 	analyticalSolutionMode = control.analyticalSolutionMode;
-    mode = control.mode;
+    singlemode = control.singlemode;
     rangenumber = control.rangenumber;
     aDotc0 = control.aDotc0;
     elementsinl = control.elementsinl;
+    indvar =  control.indvar;
+    from = control.from;
+    to = control.to;
+
 
 	methodID = testSetup.methodID;
 	fullScale = testSetup.fullScale;

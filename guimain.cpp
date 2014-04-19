@@ -240,11 +240,20 @@ Parameters guimain::update()
     extern Filepath filepath;
     filepath.directory = ui -> path -> text().toStdString();
 
+    temp.singlemode = ui -> singlemode -> checkState();
+    temp.from = ui -> from -> text().toDouble();
+    temp.to = ui -> to -> text().toDouble();
+    temp.rangenumber = ui -> noofpoints -> text().toDouble();
+
+
+    cout << temp.to;
+    cout << temp.from;
+    cout << temp.rangenumber;
+
     temp.fullScale = ui -> fs -> checkState();
     temp.isBackfilled = ui -> backfill -> checkState();
     temp.outflowModelOn = ui -> fixedlength -> checkState();
 
-    temp.rangenumber = ui -> noofpoints -> text().toDouble();
     temp.density = ui -> density -> text().toDouble();    
     temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();    
     temp.dEdyndT = ui -> deltadynamicmodulus -> text().toDouble();    

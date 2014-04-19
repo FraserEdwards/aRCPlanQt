@@ -20,7 +20,7 @@ using namespace std;
         int Control::rangenumber_lib[5] = {10,40,30,50,50};
         int Control::elementsinl_lib[5] = {5, 20, 15, 10, 25};
         double Control::aDotc0_lib[5] = {0, 0.2, 0.4, 0.6, 0.8};
-        int Control::mode_lib[5]={0,2,0,2,0};
+        int Control::singlemode_lib[5]={0,2,0,2,0};
 
 // Null constructor
 Control::Control()
@@ -28,7 +28,7 @@ Control::Control()
 		outflowModelOn = 0;
 		lambda = 0.0;
 		analyticalSolutionMode = 0;
-        mode = 2;
+        singlemode = 2;
         rangenumber = 0;
         elementsinl = 0;
         aDotc0 = 0;
@@ -44,7 +44,7 @@ Control::Control(const short recordNumber, ConfigFile config)
 		outflowModelOn = outflowModelOn_lib[index];
 		lambda = lambda_lib[index];
 		analyticalSolutionMode = analyticalSolutionMode_lib[index];
-        mode = mode_lib[index];
+        singlemode = singlemode_lib[index];
         rangenumber = rangenumber_lib[index];
         elementsinl = elementsinl_lib[index];
         aDotc0 = aDotc0_lib[index];
@@ -55,7 +55,7 @@ Control::Control(const short recordNumber, ConfigFile config)
 		config.readInto(outflowModelOn, "outflowModelOn");
 		config.readInto(lambda, "lambda");
 		config.readInto(analyticalSolutionMode, "analyticalSolutionMode");
-        config.readInto(mode, "Mode");
+        config.readInto(singlemode, "Mode");
         config.readInto(rangenumber, "numberOfSpeedValues");
         config.readInto(elementsinl, "elementsInL");
         config.readInto(aDotc0, "aDotc0");
@@ -70,9 +70,12 @@ Control& Control::operator=(const Control& rhs)
 	outflowModelOn = rhs.outflowModelOn;
 	lambda = rhs.lambda;
 	analyticalSolutionMode = rhs.analyticalSolutionMode;
-    mode = rhs.mode;
+    singlemode = rhs.singlemode;
     rangenumber = rhs.rangenumber;
     elementsinl = rhs.elementsinl;
     aDotc0 =  rhs.aDotc0;
+    from = rhs.from;
+    to = rhs.to;
+
     return *this;
 } 

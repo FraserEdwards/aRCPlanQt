@@ -35,7 +35,7 @@ TestSetup::TestSetup()
 		backfillDepth = 0.0;
 		backfillDensity = 0.0;
 		solidInsidePipe = 0.0;
-		waterInsidePipe = 0.0;
+        waterInsidePipe = 0.0;
 }
 
 // Constructor for a TestSetup at specified test temperature, using library data
