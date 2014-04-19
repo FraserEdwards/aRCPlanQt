@@ -338,7 +338,7 @@ void guimain::on_Save_clicked()
     extern Filepath filepath;
 
     filename = "Results.csv";
-    filepath.directory = (ui -> path -> text().toStdString()) + filename;
+    filepath.directory = (ui -> path -> text().toStdString()) + "Results/" + filename;
 
     results.open(filepath.directory.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
