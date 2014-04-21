@@ -135,12 +135,24 @@ void guimain::setresults(Solution solution)
     ui -> Resultstable ->setColumnCount(9);
     ui -> Resultstable ->setRowCount(solution.soln);
     ui -> Resultstable ->show();
-    ui -> Resultstable->setHorizontalHeaderLabels(QStringList() << "Variable" << "Decomp. Factor" << "Speed Factor"
+    ui -> Resultstable->setHorizontalHeaderLabels(QStringList() << ui -> parameter -> currentText()  << "Decomp. Factor" << "Speed Factor"
                                                   << "Support Factor" << "Outflow Length" << "Flaring" << "Irwin Corten Crack Driving Force"
                                                   << "Crack driving force components" << "Normalised Total");
 
     for (i = 0; i < solution.soln; i++){
-    ui ->Resultstable ->setItem(i,0,new QTableWidgetItem(QString::number(solution.aDotc0[i+1])));
+        switch(ui -> parameter -> currentIndex())
+        {
+            case 0:
+                ui ->Resultstable ->setItem(i,0,new QTableWidgetItem(QString::number(solution.aDotc0[i+1])));
+                break;
+            case 1:
+                ui ->Resultstable ->setItem(i,0,new QTableWidgetItem(QString::number(solution.p0bar[i+1])));
+                break;
+            case 2:
+                ui ->Resultstable ->setItem(i,0,new QTableWidgetItem(QString::number(solution.tempDegC[i+1])));
+                break;
+        }
+
     ui ->Resultstable ->setItem(i,1,new QTableWidgetItem(QString::number(solution.decompression[i+1])));
     ui ->Resultstable ->setItem(i,2,new QTableWidgetItem(QString::number(solution.alpha[i+1])));
     ui ->Resultstable ->setItem(i,3,new QTableWidgetItem(QString::number(solution.m[i+1])));
@@ -239,6 +251,8 @@ Parameters guimain::update()
 
     extern Filepath filepath;
     filepath.directory = ui -> path -> text().toStdString();
+
+    temp.varname = ui ->parameter ->currentIndex();
 
     temp.singlemode = ui -> singlemode -> checkState();
     temp.from = ui -> from -> text().toDouble();
@@ -351,11 +365,12 @@ void guimain::on_Save_clicked()
 
     results.open(filepath.directory.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
+
     for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
     {
         if(k == 0)
         {
-            results << "Crack speed,Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
+            results << ui -> parameter -> currentText().toStdString() << ",Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
         }
 
         for (j = 0; j < ui -> Resultstable -> columnCount(); j++)

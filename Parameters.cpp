@@ -33,7 +33,7 @@ void Parameters::copy(Material material, Geometry geometry, TestSetup testSetup,
     indvar =  control.indvar;
     from = control.from;
     to = control.to;
-
+    varname =  control.varname;
 
 	methodID = testSetup.methodID;
 	fullScale = testSetup.fullScale;

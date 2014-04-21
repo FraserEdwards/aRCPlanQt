@@ -40,7 +40,7 @@ class Control
         double from;
         double to;
         double indvar;
-		
+        int varname;
 };
 
 #endif

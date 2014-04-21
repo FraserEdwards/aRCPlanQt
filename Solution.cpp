@@ -6,6 +6,7 @@ Solution::Solution(){
 
 	soln=0;
 	aDotc0.push_back(0.0);
+
 	decompression.push_back(0.0);
 	alpha.push_back(0.0);
 	m.push_back(0.0);
@@ -28,24 +29,16 @@ void Solution::sprofile(const vector<double> zetas, const vector<double> vptras,
 	vptra=vptras;
     l=ls;
 
-//    for(int i=0;i<l;i++)
-//    {
-
-//      zetam[i][k]=zeta[i];
-//      vptram[i][k]=vptra[i];
-//      cout << zetam[i][k];
-//      cout << "Test";
-
-//    }
-
-
 }
 
-void Solution::Tvalues(const double aDotc0s, const double decompressions, const double alphas, const double ms, const double outflowLengths, const double deltaDStars,
+void Solution::Tvalues(const double aDotc0s, const double p0bars, const double tempDegCs, const double decompressions, const double alphas, const double ms, const double outflowLengths, const double deltaDStars,
 							const double gS1s, const double gUEs, const double gSbs, const double gKbs, const double g0s, const double gG0s, const double gTotals)
 {
 	soln++;
 	aDotc0.push_back(aDotc0s);
+    p0bar.push_back(p0bars);
+    tempDegC.push_back(tempDegCs);
+
 	decompression.push_back(decompressions);
 	alpha.push_back(alphas);
 	m.push_back(ms);

@@ -27,7 +27,7 @@ Solution Simulation::run(Parameters parameters)
 
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);
-	
+
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
 //		interface.line("Effective ratio of backfilled to free pipe density = ", backfill.densityratio);
@@ -38,6 +38,30 @@ Solution Simulation::run(Parameters parameters)
     if(parameters.singlemode)
     {
 
+        // Speed dependent properties
+        beamModel.speedandreset(parameters, backfill, creep);
+        // Iteration function
+        beamModel.iteration(parameters, interface, backfill, creep);
+
+        if(!beamModel.noCrackOpening)
+        {
+            beamModel.opening(parameters, interface, solution, creep);
+            fracmech.extensionForce(beamModel, parameters, creep);
+
+            solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
+            solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+            fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
+
+        }
+        else
+        {
+
+            solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+            fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
+
+            // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
+
+        }
 
     }
     else
@@ -46,16 +70,17 @@ Solution Simulation::run(Parameters parameters)
         //  Proceed to vary crack speed
         for (i =0; i < parameters.rangenumber; i++)
         {
-
-            parameters.aDotc0 = ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
-
-
-            // Single shot mode
-            if (parameters.rangenumber == 1)
+            switch(parameters.varname)
             {
+                case 0:
+                    parameters.aDotc0 = ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    break;
+                case 1:
+                    parameters.p0bar = ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    break;
+                case 2:
+                    parameters.tempDegC = ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
 
-				// Enter speed of interest
-				
             }
 
             // Speed dependent properties
@@ -69,14 +94,14 @@ Solution Simulation::run(Parameters parameters)
                 fracmech.extensionForce(beamModel, parameters, creep);
 
                 solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
-                solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+                solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
                 fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
 
             }
             else
             {
 
-                solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+                solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
                 fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
 
                 // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);

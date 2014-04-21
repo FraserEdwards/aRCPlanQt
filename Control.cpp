@@ -32,6 +32,7 @@ Control::Control()
         rangenumber = 0;
         elementsinl = 0;
         aDotc0 = 0;
+        varname = 0;
 }	
 
 // Constructor for control parameter set
@@ -76,6 +77,7 @@ Control& Control::operator=(const Control& rhs)
     aDotc0 =  rhs.aDotc0;
     from = rhs.from;
     to = rhs.to;
+    varname = rhs.varname;
 
     return *this;
 } 
