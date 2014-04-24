@@ -199,7 +199,11 @@ void guimain::on_Runbutton_clicked()
                 ui -> Information -> setText("Profile folder couldn't be found, new folder created");
                 break;
             case 3:
+                ui -> Information -> setText("History folder couldn't be found, new folder created");
+                break;
+            case 4:
                 ui -> Information -> setText("Please enter a valid directory");
+                break;
         }
     }
 }
