@@ -1,5 +1,6 @@
 #include "Simulation.h"
 #include "guimain.h"
+#include "History.h"
 #include "ui_guimain.h"
 #include <iostream>
 #include <QObject>
@@ -18,6 +19,7 @@ Solution Simulation::run(Parameters parameters)
 {
 
     Solution solution;
+    History history(parameters.varname);
 
     Interface interface(1, config);
 
