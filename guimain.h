@@ -53,6 +53,7 @@ private:
     int exists;
 
     ofstream results;
+
     void filltable(Solution solution);
     void plothandler(Solution solution);
     void plotresults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate);

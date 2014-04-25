@@ -32,7 +32,6 @@ int Filepath::check()
             else
             {
                 mkdir(subfolder.c_str(), 0777);
-                cout << subfolder;
                 return checkstate = 1;
             }
 
@@ -48,11 +47,10 @@ int Filepath::check()
             else
             {
                 mkdir(subfolder.c_str(), 0777);
-                cout << subfolder;
                 return checkstate = 2;
             }
 
-            subfolder = directory + "History/";
+            subfolder = directory + "Log/";
 
             if(stat(subfolder.c_str(), &st) == 0)
             {
@@ -64,7 +62,6 @@ int Filepath::check()
             else
             {
                 mkdir(subfolder.c_str(), 0777);
-                cout << subfolder;
                 return checkstate = 3;
             }
         }

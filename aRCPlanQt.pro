@@ -25,6 +25,7 @@ SOURCES += main.cpp\
     FracMech.cpp \
     Geometry.cpp \
     Interface.cpp \
+    Log.cpp \
     Material.cpp \
     OutflowProcess.cpp \
     Parameters.cpp \
@@ -33,8 +34,8 @@ SOURCES += main.cpp\
     SymDoubleMatrix.cpp \
     TestSetup.cpp \
     guimain.cpp \
-    qcustomplot.cpp \
-    History.cpp
+    qcustomplot.cpp
+
 
 HEADERS  += \
     BeamModel.h \
@@ -48,6 +49,7 @@ HEADERS  += \
     FracMech.h \
     Geometry.h \
     Interface.h \
+    Log.h \
     Material.h \
     OutflowProcess.h \
     Parameters.h \
@@ -57,8 +59,8 @@ HEADERS  += \
     TestSetup.h \
     guimain.h \
     qcustomplot.h \
-    Backfill.h \
-    History.h
+    Backfill.h
+
 
 FORMS    += \
     guimain.ui

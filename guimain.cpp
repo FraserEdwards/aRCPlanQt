@@ -199,7 +199,7 @@ void guimain::on_Runbutton_clicked()
                 ui -> Information -> setText("Profile folder couldn't be found, new folder created");
                 break;
             case 3:
-                ui -> Information -> setText("History folder couldn't be found, new folder created");
+                ui -> Information -> setText("Log folder couldn't be found, new folder created");
                 break;
             case 4:
                 ui -> Information -> setText("Please enter a valid directory");
@@ -263,15 +263,11 @@ Parameters guimain::update()
     temp.to = ui -> to -> text().toDouble();
     temp.rangenumber = ui -> noofpoints -> text().toDouble();
 
-
-    cout << temp.to;
-    cout << temp.from;
-    cout << temp.rangenumber;
-
     temp.fullScale = ui -> fs -> checkState();
     temp.isBackfilled = ui -> backfill -> checkState();
     temp.outflowModelOn = ui -> fixedlength -> checkState();
 
+    temp.matID = ui -> materialname ->text().toStdString();
     temp.density = ui -> density -> text().toDouble();    
     temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();    
     temp.dEdyndT = ui -> deltadynamicmodulus -> text().toDouble();    
