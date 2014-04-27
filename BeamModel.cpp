@@ -131,8 +131,6 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 		//	Dimensionless crack speed 
 		cspeed(parameters, backfill);
 
-		//	Compute the v*(zeta) profile (either numerically or analytically) from alpha, m, and vStarRes and zetaBackfilled:
-
 		//	Determine (either by analytical or FD method) the opening profile v*(zeta) for a given outflow length control.lambda and the properties of it which are needed for analysis.
 		if (not parameters.analyticalSolutionMode)
 		{	// ...then use FINITE DIFFERENCE solution method:
@@ -220,8 +218,6 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
                 {
 //                    interface.line("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
                 }
-
-
 					
 				maximumNonContact = true;
                 fdSolution = FDprofile(alpha, m, -1.0, vStarRes, parameters.elementsinl, nodeAtClosure);
@@ -275,8 +271,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 				
 			}
 
-		} // done FD solution	
-	
+        } // done FD solution
 		else
 		{ //Formally location of analytical solution
 	
