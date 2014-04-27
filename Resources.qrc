@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Input">
+        <file>caseInputData.txt</file>
+    </qresource>
+</RCC>
