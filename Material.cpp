@@ -13,13 +13,13 @@ using namespace std;
 
 #include "Material.h"
 
-		//Initialise array values
+        //Initialise array values
         string Material::matID_lib[5] = {"Soft PE80", "Generic PE100", "Soft PE100", "Generic PE", "Generic PE"};
-		double Material::density_lib[5] = {938.0, 960.0, 938.0, 960.0, 950.0};
-		double Material::eDyn0degC_lib[5] = {2.62, 3.17, 1.31, 1.585, 1.5};
-		double Material::dEdyndT_lib[5] = {-0.037, -0.0427, -0.0185, -0.02135, -0.02};
-		double Material::creepModulus_lib[5] = {0.3, 0.3, 0.3, 0.3, 0.3};
-		double Material::poisson_lib[5] = {0.38, 0.38, 0.38, 0.38, 0.38};
+        double Material::density_lib[5] = {938.0, 960.0, 938.0, 960.0, 950.0};
+        double Material::eDyn0degC_lib[5] = {2.62, 3.17, 1.31, 1.585, 1.5};
+        double Material::dEdyndT_lib[5] = {-0.037, -0.0427, -0.0185, -0.02135, -0.02};
+        double Material::creepModulus_lib[5] = {0.3, 0.3, 0.3, 0.3, 0.3};
+        double Material::poisson_lib[5] = {0.38, 0.38, 0.38, 0.38, 0.38};
 
 // Null constructor		
 Material::Material()

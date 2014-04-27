@@ -67,6 +67,7 @@ FORMS    += \
 
 OTHER_FILES += \
     README.md \
-    aRCPlan.dSYM
+    aRCPlan.dSYM \
+    caseInputData.txt
 
 RESOURCES +=

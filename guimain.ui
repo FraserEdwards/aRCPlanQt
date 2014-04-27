@@ -54,24 +54,14 @@
       <widget class="QTableWidget" name="Resultstable"/>
      </item>
      <item row="0" column="0" colspan="3">
-      <layout class="QGridLayout" name="gridLayout" rowstretch="0,0">
+      <layout class="QGridLayout" name="gridLayout" rowstretch="0">
        <property name="bottomMargin">
         <number>0</number>
        </property>
        <property name="verticalSpacing">
         <number>0</number>
        </property>
-       <item row="0" column="3">
-        <widget class="QLabel" name="label_22">
-         <property name="text">
-          <string>Crack Profiles</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
+       <item row="0" column="1">
         <widget class="QLabel" name="label_23">
          <property name="text">
           <string>Results</string>
@@ -81,10 +71,13 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1" rowspan="2">
-        <widget class="Line" name="line_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_22">
+         <property name="text">
+          <string>Crack Profiles</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -106,7 +99,7 @@
      <item row="1" column="0">
       <widget class="QTabWidget" name="tabs">
        <property name="currentIndex">
-        <number>3</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -128,9 +121,6 @@
              <string>Name/ID:</string>
             </property>
            </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="materialname"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="Density">
@@ -182,6 +172,9 @@
           <item row="5" column="1">
            <widget class="QLineEdit" name="dynpoissonratio"/>
           </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="materialname"/>
+          </item>
          </layout>
         </widget>
        </widget>
@@ -205,9 +198,6 @@
              <string>Pipe name/ID:</string>
             </property>
            </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="pipename"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="PipeID_5">
@@ -248,6 +238,9 @@
           </item>
           <item row="4" column="1">
            <widget class="QLineEdit" name="relativediameter"/>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="pipename"/>
           </item>
          </layout>
         </widget>

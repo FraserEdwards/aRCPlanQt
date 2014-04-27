@@ -43,6 +43,10 @@ private slots:
 
     void on_Resultstable_cellClicked(int row, int column);
 
+    void on_materialname_currentIndexChanged(int index);
+
+    void on_pipename_currentIndexChanged(int index);
+
 private:
 
     int i;

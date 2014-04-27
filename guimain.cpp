@@ -52,9 +52,10 @@ if(parameters.outflowModelOn)
 else
    {ui->fixedlength->setCheckState(Qt::Unchecked);}
 
-
-ui -> materialname -> setAlignment(Qt::AlignRight);
-ui -> materialname->setText(QString::fromStdString(parameters.matID));
+ui -> materialname -> setEditable(true);
+ui -> materialname -> lineEdit() -> setReadOnly(false);
+ui -> materialname -> lineEdit() -> setAlignment(Qt::AlignRight);
+ui -> materialname ->insertItems(0, QStringList() << "Soft PE80" << "Generic PE100" << "Soft PE100" << "Generic PE1" << "Generic PE2");
 
 ui -> density -> setAlignment(Qt::AlignRight);
 ui -> density->setText(QString::number(parameters.density));
@@ -80,8 +81,11 @@ ui -> to -> setText(QString::number(1));
 ui -> noofpoints -> setAlignment(Qt::AlignRight);
 ui -> noofpoints -> setText(QString::number(50));
 
-ui -> pipename -> setAlignment(Qt::AlignRight);
-ui -> pipename->setText(QString::fromStdString(parameters.pipeID));
+ui -> pipename -> setEditable(true);
+ui -> pipename -> lineEdit() -> setReadOnly(false);
+ui -> pipename -> lineEdit() -> setAlignment(Qt::AlignRight);
+ui -> pipename ->insertItems(0, QStringList() << "250mm_SDR11" << "250mm_SDR17" << "110mm_SDR11" << "110mm_SDR17" << "63mm_SDR11");
+
 
 ui -> outsidediameter -> setAlignment(Qt::AlignRight);
 ui -> outsidediameter -> setText(QString::number(parameters.diameter));
@@ -267,7 +271,7 @@ Parameters guimain::update()
     temp.isBackfilled = ui -> backfill -> checkState();
     temp.outflowModelOn = ui -> fixedlength -> checkState();
 
-    temp.matID = ui -> materialname ->text().toStdString();
+    temp.matID = ui -> materialname ->currentText().toStdString();
     temp.density = ui -> density -> text().toDouble();    
     temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();    
     temp.dEdyndT = ui -> deltadynamicmodulus -> text().toDouble();    
@@ -276,6 +280,7 @@ Parameters guimain::update()
     temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();
     temp.p0bar = ui ->initialpressure -> text().toDouble();
 
+    temp.pipeID = ui -> pipename -> currentText().toStdString();
     temp.diameter = ui -> outsidediameter -> text().toDouble();
     temp.sdr = ui -> sdr -> text().toDouble();    
     temp.notchDepth = ui -> groovedepth -> text().toDouble();    
@@ -430,5 +435,37 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
             plotresults(temp.aDotc0, temp.forplot, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",1);
             break;
      }
+
+}
+
+void guimain::on_materialname_currentIndexChanged(int index)
+{
+    double density_lib[5] = {938.0, 960.0, 938.0, 960.0, 950.0};
+    double eDyn0degC_lib[5] = {2.62, 3.17, 1.31, 1.585, 1.5};
+    double dEdyndT_lib[5] = {-0.037, -0.0427, -0.0185, -0.02135, -0.02};
+    double creepModulus_lib[5] = {0.3, 0.3, 0.3, 0.3, 0.3};
+    double poisson_lib[5] = {0.38, 0.38, 0.38, 0.38, 0.38};
+
+    ui -> density -> setText(QString::number(density_lib[index]));
+    ui -> dynamicmodulus -> setText(QString::number(eDyn0degC_lib[index]));
+    ui -> deltadynamicmodulus -> setText(QString::number(dEdyndT_lib[index]));
+    ui -> creepmodulus -> setText(QString::number(creepModulus_lib[index]));
+    ui -> dynpoissonratio -> setText(QString::number(poisson_lib[index]));
+
+}
+
+void guimain::on_pipename_currentIndexChanged(int index)
+{
+
+    double diameter_lib[5] = {250.0, 250.0, 110.0, 110.0, 63.0};
+    double sdr_lib[5] = {11.0, 17.6, 11.0, 17.6, 11.0};
+    double notchDepth_lib[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
+    double diameterCreepRatio_lib[5] = {1.0, 1.0, 1.0, 1.0, 1.0};
+
+    ui -> outsidediameter -> setText(QString::number(diameter_lib[index]));
+    ui -> sdr -> setText(QString::number(sdr_lib[index]));
+    ui -> groovedepth -> setText(QString::number(notchDepth_lib[index]));
+    ui -> relativediameter -> setText(QString::number(diameterCreepRatio_lib[index]));
+
 
 }
