@@ -27,7 +27,7 @@ void guimain::setnames(Parameters parameters)
 
 extern Filepath filepath;
 
-ui -> path -> setText(QString::fromStdString(filepath.directory + "/"));
+ui -> path -> setText(QString::fromStdString(filepath.directory));
 
 ui -> singlemode -> setCheckState(Qt::Checked);
 

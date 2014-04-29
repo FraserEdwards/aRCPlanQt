@@ -4,11 +4,21 @@
 
 Filepath::Filepath()
 {
-//	Null constructor
-	extern string location;
-	GetCurrentDir(Path, sizeof(Path));
-    location = string(Path);
-    directory = location;
+
+
+
+}
+
+void Filepath::correct()
+{
+
+    found = directory.find("aRCPlanQt.app");
+
+    if (found != string::npos)
+    {
+         directory.resize(found);
+    }
+
 }
 
 int Filepath::check()

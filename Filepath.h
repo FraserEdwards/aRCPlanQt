@@ -1,4 +1,5 @@
 #include <string>
+#include <QApplication>
 using namespace std;
 
 #ifdef _WIN32
@@ -20,9 +21,10 @@ private:
     int checkstate;
     string tempdir;
     string subfolder;
-
+    int found;
 public:
-	Filepath(); 	//Null constructor
+    Filepath();
+    void correct(); 	//Null constructor
     int check();
     string directory;
 };
