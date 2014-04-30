@@ -15,13 +15,13 @@ int main(int argc, char *argv[])
     // Read the problem configuration file to provide parameter values where library data does not exist
 //    Filepath filePath;
 
-    ConfigFile config("caseInputData.txt");
-    Parameters initial;
-    initial.collect(config);
-
     QApplication a(argc, argv);
     filepath.directory = a.applicationDirPath().toStdString();
     filepath.correct();
+
+    ConfigFile config("caseInputData.txt");
+    Parameters initial;
+    initial.collect(config);    
 
     guimain b;
     b.setnames(initial);

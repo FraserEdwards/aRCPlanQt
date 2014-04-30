@@ -74,13 +74,13 @@ Solution Simulation::run(Parameters parameters)
             switch(parameters.varname)
             {
                 case 0:
-                    parameters.aDotc0 = ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    parameters.aDotc0 = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
                     break;
                 case 1:
-                    parameters.p0bar = ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    parameters.p0bar = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
                     break;
                 case 2:
-                    parameters.tempDegC = ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    parameters.tempDegC = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
 
             }
 
