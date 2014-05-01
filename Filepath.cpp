@@ -85,3 +85,16 @@ int Filepath::check()
 
 }
 
+int Filepath::loadcheck(string name)
+{
+
+    struct stat st;
+
+    if(stat((directory + name).c_str(), &st) == 0)
+    {
+        return 0;
+    }
+
+    return 1;
+}
+

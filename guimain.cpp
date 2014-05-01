@@ -22,7 +22,7 @@ guimain::~guimain()
     delete ui;
 }
 
-void guimain::setnames(Parameters parameters)
+void guimain::setnames(Parameters parameters, char dropdown)
 {
 
 extern Filepath filepath;
@@ -30,6 +30,7 @@ extern Filepath filepath;
 ui -> path -> setText(QString::fromStdString(filepath.directory));
 
 ui -> singlemode -> setCheckState(Qt::Checked);
+ui -> rangemode -> setCheckState(Qt::Unchecked);
 
 if(parameters.fullScale)
 {
@@ -55,7 +56,27 @@ else
 ui -> materialname -> setEditable(true);
 ui -> materialname -> lineEdit() -> setReadOnly(false);
 ui -> materialname -> lineEdit() -> setAlignment(Qt::AlignRight);
-ui -> materialname ->insertItems(0, QStringList() << "Soft PE80" << "Generic PE100" << "Soft PE100" << "Generic PE1" << "Generic PE2");
+
+ui -> pipename -> setEditable(true);
+ui -> pipename -> lineEdit() -> setReadOnly(false);
+ui -> pipename -> lineEdit() -> setAlignment(Qt::AlignRight);
+
+ui -> parameter -> setEditable(true);
+ui -> parameter -> lineEdit() -> setReadOnly(true);
+ui -> parameter -> lineEdit() -> setAlignment(Qt::AlignRight);
+
+if(dropdown==0)
+{
+    ui -> materialname ->insertItems(0, QStringList() << "Soft PE80" << "Generic PE100" << "Soft PE100" << "Generic PE1" << "Generic PE2");
+    ui -> pipename ->insertItems(0, QStringList() << "250mm_SDR11" << "250mm_SDR17" << "110mm_SDR11" << "110mm_SDR17" << "63mm_SDR11");
+    ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "Initial Pressure" << "Test Temperaure");
+}
+else
+{
+    ui -> materialname ->lineEdit()->setText(QString::fromStdString(parameters.matID));
+    ui -> pipename ->lineEdit()->setText(QString::fromStdString(parameters.pipeID));
+}
+
 
 ui -> density -> setAlignment(Qt::AlignRight);
 ui -> density->setText(QString::number(parameters.density));
@@ -80,12 +101,6 @@ ui -> to -> setText(QString::number(1));
 
 ui -> noofpoints -> setAlignment(Qt::AlignRight);
 ui -> noofpoints -> setText(QString::number(50));
-
-ui -> pipename -> setEditable(true);
-ui -> pipename -> lineEdit() -> setReadOnly(false);
-ui -> pipename -> lineEdit() -> setAlignment(Qt::AlignRight);
-ui -> pipename ->insertItems(0, QStringList() << "250mm_SDR11" << "250mm_SDR17" << "110mm_SDR11" << "110mm_SDR17" << "63mm_SDR11");
-
 
 ui -> outsidediameter -> setAlignment(Qt::AlignRight);
 ui -> outsidediameter -> setText(QString::number(parameters.diameter));
@@ -125,11 +140,6 @@ ui -> crackspeed -> setText(QString::number(parameters.aDotc0));
 
 ui -> fdnumber -> setAlignment(Qt::AlignRight);
 ui -> fdnumber -> setText(QString::number(parameters.elementsinl));
-
-ui -> parameter -> setEditable(true);
-ui -> parameter -> lineEdit() -> setReadOnly(true);
-ui -> parameter -> lineEdit() -> setAlignment(Qt::AlignRight);
-ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "Initial Pressure" << "Test Temperaure");
 
 }
 
@@ -467,5 +477,30 @@ void guimain::on_pipename_currentIndexChanged(int index)
     ui -> groovedepth -> setText(QString::number(notchDepth_lib[index]));
     ui -> relativediameter -> setText(QString::number(diameterCreepRatio_lib[index]));
 
+
+}
+
+void guimain::on_Load_clicked()
+{
+    extern Filepath filepath;
+
+    switch(filepath.loadcheck("caseInputData.txt"))
+    {
+        case 0:
+        {
+            ui -> Information -> setText("caseInputData.txt was loaded successfully");
+            ConfigFile config(filepath.directory + "caseInputData.txt");
+            Parameters temp;
+            temp.collect(config);
+            setnames(temp,1);
+            break;
+        }
+        case 1:
+        {
+            ui -> Information -> setText("caseInputData.txt could not be found in" + QString::fromStdString(filepath.directory));
+            break;
+        }
+
+    }
 
 }

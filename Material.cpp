@@ -55,6 +55,7 @@ Material::Material(const short recordNumber, ConfigFile config)
 		config.readInto(creepModulus, "creepModulus" );
 		config.readInto(poisson, "poisson" );
 	}
+
 }	
 
 // Make this material identical to RHS one by operator '='

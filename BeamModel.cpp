@@ -358,7 +358,6 @@ void BeamModel::opening(Parameters parameters, Interface interface, Solution sol
                 zeta=final.zeta;
 				crackdisplacement=final.vptra;
 				l=final.l;	
-                cout << l;
 			}
 			else
 			{	
@@ -376,6 +375,6 @@ void BeamModel::opening(Parameters parameters, Interface interface, Solution sol
 		//	Flaring of pipe wall at decompression point:
 		deltaDStar = wStar2 / Constants::pi / parameters.diameter * Constants::kilo + creep.diameterRes0 / parameters.diameter - 1.0;		
 
-        if (iterations == maxIterations)  cout << "UNCONVERGED"; cout << endl;
+        if (iterations == maxIterations)  cout << "UNCONVERGED";
 			
 }

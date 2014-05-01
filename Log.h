@@ -1,4 +1,4 @@
-#include "Parameters.h";
+#include "Parameters.h"
 using namespace std;
 
 #ifndef LOG_H

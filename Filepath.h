@@ -26,6 +26,7 @@ public:
     Filepath();
     void correct(); 	//Null constructor
     int check();
+    int loadcheck(string name);
     string directory;
 };
 

@@ -19,12 +19,12 @@ int main(int argc, char *argv[])
     filepath.directory = a.applicationDirPath().toStdString();
     filepath.correct();
 
-    ConfigFile config("caseInputData.txt");
+    ConfigFile config(filepath.directory + "caseInputData.txt");
     Parameters initial;
     initial.collect(config);    
 
     guimain b;
-    b.setnames(initial);
+    b.setnames(initial,0);
     b.showMaximized();
 
     return a.exec();

@@ -17,9 +17,8 @@ Log::Log(Parameters parameters)
     extern Filepath filepath;
 
     filename = "Log.csv";
-    filepath.directory = filepath.directory + "Log/" + filename;
 
-    log.open(filepath.directory.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+    log.open((filepath.directory + "Log/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
     log << "Input Parameters\n" << " \n";
 

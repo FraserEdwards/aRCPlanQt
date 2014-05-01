@@ -21,7 +21,7 @@ public:
     explicit guimain(QWidget *parent = 0);
     ~guimain();
 
-    void setnames(Parameters parameters);
+    void setnames(Parameters parameters, char dropdown);
     void setresults(Solution solution);
     Parameters update();
     Ui::guimain *ui;
@@ -46,6 +46,8 @@ private slots:
     void on_materialname_currentIndexChanged(int index);
 
     void on_pipename_currentIndexChanged(int index);
+
+    void on_Load_clicked();
 
 private:
 
