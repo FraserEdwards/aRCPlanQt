@@ -30,8 +30,9 @@ void FracMech::extensionForce(BeamModel beamModel, const Parameters parameters, 
 
 	//  GSb due to strain energy at decompression point behind crack: (Pipe Model Manual. pg36)
 	gSb = 0.5 * parameters.dynamicModulus * Constants::giga *  (pow(parameters.hOverR, 3) / 24.0 / Constants::pi * beamModel.wStar2 * beamModel.wStar2 + Constants::c1 * pow(parameters.radius, 3) * parameters.h * beamModel.wStar2dash2 * beamModel.wStar2dash2);
-	gSb = (gSb + Constants::pi / 48.0 * beamModel.dynamicShearModulus * Constants::giga * parameters.radius * parameters.h * pow(parameters.hOverR * beamModel.wStar2dash, 2)) / parameters.crackWidth;
-	
+	gSb = (gSb + Constants::pi / 48.0 * beamModel.dynamicShearModulus * Constants::giga * parameters.radius * parameters.h * pow(parameters.hOverR * beamModel.wStar2dash, 2)) / parameters.crackWidth; 
+
+
 	//  GKb due to kinetic energy at decompression point behind crack: (Pipe Model Manual. pg36)
 	gKb = 0.5 * parameters.dynamicModulus * Constants::giga * parameters.radius * parameters.h * beamModel.aDotOverCL * beamModel.aDotOverCL * 
 	(Constants::c2 * beamModel.wStar2dash * beamModel.wStar2dash + Constants::c1 * pow(beamModel.wStar2dash2 * parameters.radius, 2)) / parameters.crackWidth;

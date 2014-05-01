@@ -29,8 +29,8 @@ extern Filepath filepath;
 
 ui -> path -> setText(QString::fromStdString(filepath.directory));
 
-ui -> singlemode -> setCheckState(Qt::Checked);
-ui -> rangemode -> setCheckState(Qt::Unchecked);
+ui -> singlemode -> setCheckState(Qt::Unchecked);
+ui -> rangemode -> setCheckState(Qt::Checked);
 
 if(parameters.fullScale)
 {
@@ -376,9 +376,8 @@ void guimain::on_Save_clicked()
     extern Filepath filepath;
 
     filename = "Results.csv";
-    filepath.directory = (ui -> path -> text().toStdString()) + "Results/" + filename;
 
-    results.open(filepath.directory.c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+    results.open((filepath.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
 
     for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
@@ -414,13 +413,14 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
 {
 
     Solution temp;
-    for(k = 0; k < ui -> Resultstable -> rowCount(); k++){
+    for(k = 0; k < ui -> Resultstable -> rowCount(); k++)
+    {
 
-    double indvar = ui -> Resultstable -> item(k,0) ->text().toDouble();
-    double depvar = ui -> Resultstable -> item(k,column) -> text().toDouble();
+        double indvar = ui -> Resultstable -> item(k,0) ->text().toDouble();
+        double depvar = ui -> Resultstable -> item(k,column) -> text().toDouble();
 
-    temp.aDotc0.push_back(indvar);
-    temp.forplot.push_back(depvar);
+        temp.aDotc0.push_back(indvar);
+        temp.forplot.push_back(depvar);
 
     }
 

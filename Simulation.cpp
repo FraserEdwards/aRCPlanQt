@@ -49,8 +49,6 @@ Solution Simulation::run(Parameters parameters)
             beamModel.opening(parameters, interface, solution, creep);
             fracmech.extensionForce(beamModel, parameters, creep);
 
-            cout << fracmech.gTotal;
-
             solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
             solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
