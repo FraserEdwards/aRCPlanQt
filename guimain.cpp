@@ -480,8 +480,10 @@ void guimain::on_pipename_currentIndexChanged(int index)
 
 }
 
-void guimain::on_Load_clicked()
+
+void guimain::on_LoadParameters_triggered()
 {
+
     extern File file;
 
     switch(file.loadcheck("caseInputData.txt"))
@@ -505,7 +507,8 @@ void guimain::on_Load_clicked()
 
 }
 
-void guimain::on_SaveCase_clicked()
+
+void guimain::on_SaveParameters_triggered()
 {
 
     extern File file;
