@@ -554,6 +554,9 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="action_aRCPLan_Help"/>
+    <addaction name="separator"/>
+    <addaction name="action_Acknowledgements"/>
    </widget>
    <addaction name="menuARCPlan"/>
    <addaction name="menu_Parameters"/>
@@ -573,6 +576,16 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="action_Acknowledgements">
+   <property name="text">
+    <string>&amp;Acknowledgements</string>
+   </property>
+  </action>
+  <action name="action_aRCPLan_Help">
+   <property name="text">
+    <string>aRCPLan Help</string>
    </property>
   </action>
  </widget>

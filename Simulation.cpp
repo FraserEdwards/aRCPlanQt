@@ -19,7 +19,7 @@ Simulation::Simulation()
 Solution Simulation::run(Parameters parameters)
 {
 
-    Solution solution;
+    Solution solution(parameters);
 
     Log log(parameters);
 

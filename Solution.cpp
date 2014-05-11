@@ -1,10 +1,42 @@
-#include "Solution.h"
 #include <iostream>
 #include <iomanip>
 
-Solution::Solution(){
+#include "Solution.h"
+
+Solution::Solution()
+{
+
+    soln=0;
+    k=0;
+    aDotc0.push_back(0.0);
+
+    decompression.push_back(0.0);
+    alpha.push_back(0.0);
+    m.push_back(0.0);
+    outflowLength.push_back(0.0);
+    deltaDStar.push_back(0.0);
+    gS1.push_back(0.0);
+    gUE.push_back(0.0);
+    gSb.push_back(0.0);
+    gKb.push_back(0.0);
+    gG0.push_back(0.0);
+    gTotal.push_back(0.0);
+    g0.push_back(0.0);
+
+}
+
+Solution::Solution(Parameters parameters){
+
+    for( int i=0; i <(parameters.elementsinl * (parameters.lambda + 1)); i++)
+    {
+
+        z[i] = 0 + i * (parameters.elementsinl);
+        cout << z[i];
+
+    }
 
 	soln=0;
+    k=0;
 	aDotc0.push_back(0.0);
 
 	decompression.push_back(0.0);
@@ -28,7 +60,6 @@ void Solution::sprofile(const vector<double> zetas, const vector<double> vptras,
 	zeta=zetas;
 	vptra=vptras;
     l=ls;
-
 }
 
 void Solution::Tvalues(const double aDotc0s, const double p0bars, const double tempDegCs, const double decompressions, const double alphas, const double ms, const double outflowLengths, const double deltaDStars,
