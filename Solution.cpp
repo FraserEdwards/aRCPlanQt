@@ -22,6 +22,27 @@ Solution::Solution(){
 
 }
 
+Solution::Solution(Parameters parameters){
+
+    soln=0;
+    aDotc0.push_back(0.0);
+
+    decompression.push_back(0.0);
+    alpha.push_back(0.0);
+    m.push_back(0.0);
+    outflowLength.push_back(0.0);
+    deltaDStar.push_back(0.0);
+    gS1.push_back(0.0);
+    gUE.push_back(0.0);
+    gSb.push_back(0.0);
+    gKb.push_back(0.0);
+    gG0.push_back(0.0);
+    gTotal.push_back(0.0);
+    g0.push_back(0.0);
+
+}
+
+
 void Solution::sprofile(const vector<double> zetas, const vector<double> vptras, const int ls)
 {
     k++;
