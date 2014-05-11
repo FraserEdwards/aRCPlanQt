@@ -11,6 +11,7 @@
 
 #include <string>
 #include <QApplication>
+#include <fstream>
 using namespace std;
 
 #include "Parameters.h"
@@ -31,7 +32,9 @@ public:
     int loadcheck(string name);
     string directory;
     void write(Parameters temp);
-    void writeline(string title, double value);
+    void writeline(string title, double value, ofstream &out, int format);
+    void writeline(string title, string value, ofstream &out, int format);
+    void writeline(string title, ofstream &out, int format);
 };
 
 #endif

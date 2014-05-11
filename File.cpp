@@ -100,14 +100,86 @@ int File::loadcheck(string name)
 
 void File::write(Parameters temp)
 {
+    filename = "caseInputData.txt";
 
+    ofstream out;
 
+    out.open((directory + filename).c_str());
+
+    writeline("Input Data", out,1);
+
+    writeline("Material Data", out, 1);
+
+    writeline("MatID = ", temp.matID, out, 0);
+    writeline("density = ", temp.density, out, 0);
+    writeline("eDyn0degC = ", temp.eDyn0degC, out, 0);
+    writeline("dEdyndT = ", temp.dEdyndT, out, 0);
+    writeline("creepModulus = ", temp.creepModulus, out, 0);
+    writeline("poisson = ", temp.poisson, out, 1);
+
+    writeline("Pipe Data", out,1);
+
+    writeline("pipeID = ", temp.pipeID, out, 0);
+    writeline("diameter = ", temp.diameter, out, 0);
+    writeline("sdr = ", temp.sdr, out, 0);
+    writeline("notchDepth = ", temp.notchDepth, out, 0);
+    writeline("diameterCreepRatio = ", temp.diameterCreepRatio, out, 1);
+
+    writeline("Test Setup Data", out, 1);
+
+    writeline("methodID = ", temp.methodID, out, 0);
+    writeline("fullScale = ", temp.fullScale, out, 0);
+    writeline("tempDegC = ", temp.tempDegC, out, 0);
+    writeline("p0bar = ", temp.p0bar, out, 0);
+    writeline("isBackfilled = ", temp.isBackfilled, out, 0);
+    writeline("backfillDepth = ", temp.backfillDepth, out, 0);
+    writeline("backfillDensity = ", temp.backfillDensity, out, 0);
+    writeline("solidInsidePipe = ", temp.solidInsidePipe, out, 0);
+    writeline("waterInsidePipe = ", temp.waterInsidePipe, out, 1);
+
+    writeline("Program Control Data", out, 1);
+
+    writeline("outflowModelOn = ", temp.outflowModelOn, out, 0);
+    writeline("lambda = ", temp.lambda, out, 0);
+    writeline("analyticalSolutionMode = ", temp.analyticalSolutionMode, out, 0);
+    writeline("numberOfSpeedValues = ", temp.rangenumber, out, 0);
+    writeline("elementsInL = ", temp.elementsinl, out, 0);
+
+    out.close();
 
 }
 
-void File::writeline(string title, double value)
+void File::writeline(string title, double value, ofstream &out, int format)
 {
 
+    out << "\t" << title << value << endl;
+    if(format == 1)
+    {
+        out << endl;
+    }
+}
+
+void File::writeline(string title, string value, ofstream &out, int format)
+{
+
+    out << "\t" << title << value << endl;
+    if(format == 1)
+    {
+        out << endl;
+    }
+
 
 }
+
+void File::writeline(string title, ofstream &out, int format)
+{
+
+    out << title << endl;
+    if(format == 1)
+    {
+        out << endl;
+    }
+
+}
+
 
