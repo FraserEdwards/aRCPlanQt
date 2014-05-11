@@ -98,3 +98,16 @@ int File::loadcheck(string name)
     return 1;
 }
 
+void File::write(Parameters temp)
+{
+
+
+
+}
+
+void File::writeline(string title, double value)
+{
+
+
+}
+

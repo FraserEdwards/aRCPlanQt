@@ -1,6 +1,5 @@
-#include <string>
-#include <QApplication>
-using namespace std;
+#ifndef _FILE_H
+#define _FILE_H
 
 #ifdef _WIN32
 	#include <direct.h>
@@ -10,9 +9,11 @@ using namespace std;
 	#define GetCurrentDir getcwd
 #endif
 
+#include <string>
+#include <QApplication>
+using namespace std;
 
-#ifndef _FILE_H
-#define _FILE_H
+#include "Parameters.h"
 
 class File
 {
@@ -21,6 +22,7 @@ private:
     int checkstate;
     string tempdir;
     string subfolder;
+    string filename;
     int found;
 public:
     File();
@@ -28,6 +30,8 @@ public:
     int check();
     int loadcheck(string name);
     string directory;
+    void write(Parameters temp);
+    void writeline(string title, double value);
 };
 
 #endif

@@ -508,10 +508,12 @@ void guimain::on_Load_clicked()
 void guimain::on_SaveCase_clicked()
 {
 
+    extern File file;
+
     Parameters temp;
     temp = update();
 
-
+    file.write(temp);
 
 
 }
