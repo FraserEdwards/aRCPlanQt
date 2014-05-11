@@ -51,6 +51,12 @@ private slots:
 
     void on_SaveCase_clicked();
 
+    void on_action_Load_triggered();
+
+    void on_action_Save_triggered();
+
+    void on_actionAbout_triggered();
+
 private:
 
     int i;
