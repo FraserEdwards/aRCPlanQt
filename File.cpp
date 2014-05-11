@@ -98,3 +98,22 @@ int File::loadcheck(string name)
     return 1;
 }
 
+void File::write(Parameters temp)
+{
+
+    filename = "caseInputData.txt";
+
+    out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+
+    out.close();
+
+
+}
+
+void File::line(string title, double value)
+{
+
+
+
+}
+
