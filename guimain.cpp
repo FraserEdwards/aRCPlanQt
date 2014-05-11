@@ -480,43 +480,6 @@ void guimain::on_pipename_currentIndexChanged(int index)
 
 }
 
-void guimain::on_Load_clicked()
-{
-    extern File file;
-
-    switch(file.loadcheck("caseInputData.txt"))
-    {
-        case 0:
-        {
-            ui -> Information -> setText("caseInputData.txt was loaded successfully");
-            ConfigFile config(file.directory + "caseInputData.txt");
-            Parameters temp;
-            temp.collect(config);
-            setnames(temp,1);
-            break;
-        }
-        case 1:
-        {
-            ui -> Information -> setText("caseInputData.txt could not be found in" + QString::fromStdString(file.directory));
-            break;
-        }
-
-    }
-
-}
-
-void guimain::on_SaveCase_clicked()
-{
-
-    extern File file;
-
-    Parameters temp;
-    temp = update();
-
-    file.write(temp);
-
-}
-
 void guimain::on_action_Load_triggered()
 {
 

@@ -47,10 +47,6 @@ private slots:
 
     void on_pipename_currentIndexChanged(int index);
 
-    void on_Load_clicked();
-
-    void on_SaveCase_clicked();
-
     void on_action_Load_triggered();
 
     void on_action_Save_triggered();
