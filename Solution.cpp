@@ -4,28 +4,9 @@
 
 Solution::Solution(){
 
-	soln=0;
-	aDotc0.push_back(0.0);
-
-	decompression.push_back(0.0);
-	alpha.push_back(0.0);
-	m.push_back(0.0);
-	outflowLength.push_back(0.0);
-	deltaDStar.push_back(0.0);
-	gS1.push_back(0.0);
-	gUE.push_back(0.0);
-	gSb.push_back(0.0);
-	gKb.push_back(0.0);
-	gG0.push_back(0.0);
-	gTotal.push_back(0.0);
-	g0.push_back(0.0);
-
-}
-
-Solution::Solution(Parameters parameters){
-
     soln=0;
     aDotc0.push_back(0.0);
+    z.push_back(0.0);
 
     decompression.push_back(0.0);
     alpha.push_back(0.0);
@@ -40,17 +21,49 @@ Solution::Solution(Parameters parameters){
     gTotal.push_back(0.0);
     g0.push_back(0.0);
 
-    z.push_back(0.0);
 
-    cout << "Elements: " << parameters.elementsinl << endl;
-    cout << "Lambda : " << parameters.lambda << endl;
+}
 
+void Solution::clear()
+{
+    soln=0;
+    aDotc0.clear();
+    aDotc0.resize(1);
+    z.clear();
+    z.resize(1);
+
+    decompression.clear();
+    decompression.resize(1);
+    alpha.clear();
+    alpha.resize(1);
+    m.clear();
+    m.resize(1);
+    outflowLength.clear();
+    outflowLength.resize(1);
+    deltaDStar.clear();
+    deltaDStar.resize(1);
+    gS1.clear();
+    gS1.resize(1);
+    gUE.clear();
+    gUE.resize(1);
+    gSb.clear();
+    gSb.resize(1);
+    gKb.clear();
+    gKb.resize(1);
+    gG0.clear();
+    gG0.resize(1);
+    gTotal.clear();
+    gTotal.resize(1);
+    g0.clear();
+    g0.resize(1);
+}
+
+void Solution::displacement(Parameters &parameters)
+{
     for(int i=0; i < (parameters.elementsinl * (parameters.lambda+1)) + 1;i++)
     {
-        cout << "Test: " << (i/parameters.elementsinl) << endl;
-        z.push_back(i*(1/parameters.elementsinl));
-        cout << "Calculation: " << (double(i)/double(parameters.elementsinl)) << endl;
-        cout << "Array: " << z[i] << endl;
+
+        z.push_back(double(i)/double(parameters.elementsinl));
 
     }
 }

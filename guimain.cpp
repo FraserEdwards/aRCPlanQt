@@ -179,9 +179,6 @@ void guimain::setresults(Solution solution)
 
 }
 
-
-
-
 void guimain::on_Runbutton_clicked()
 {
 
@@ -199,11 +196,17 @@ void guimain::on_Runbutton_clicked()
         solution = simulation.run(edited);
 
         setresults(solution);
-        plothandler(solution);
+        if(edited.singlemode==2)
+        {
+            plothandler(solution);
+        }
+        else
+        {
+            plothandler(solution);
+        }
     }
     else
     {
-        cout << exists;
         switch(exists)
         {
             case 1:
@@ -242,6 +245,7 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
     ui -> Resultsplot -> addGraph();
 
     QVector<double> Qx = QVector<double>::fromStdVector(x);
+
     QVector<double> Qy = QVector<double>::fromStdVector(y);
 
     ui -> Resultsplot -> graph(0) -> setData(Qx,Qy);
@@ -259,7 +263,6 @@ void guimain::plotresults( vector<double> x, vector<double> y, string title, str
     {
         ui -> Resultsplot ->savePdf(QString::fromStdString(path)+".pdf",false,1000,1000,"Test","Test");
     }
-
 }
 
 Parameters guimain::update()
@@ -412,37 +415,41 @@ void guimain::on_Save_clicked()
 void guimain::on_Resultstable_cellClicked(int row, int column)
 {
 
-    Solution temp;
+    extern Solution solution;
+
     for(k = 0; k < ui -> Resultstable -> rowCount(); k++)
     {
 
         double indvar = ui -> Resultstable -> item(k,0) ->text().toDouble();
         double depvar = ui -> Resultstable -> item(k,column) -> text().toDouble();
 
-        temp.aDotc0.push_back(indvar);
-        temp.forplot.push_back(depvar);
+//        temp.aDotc0.push_back(indvar);
+//        temp.forplot.push_back(depvar);
 
     }
 
     switch(column)
     {
         case 1:
-            plotresults(temp.aDotc0, temp.forplot, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",1);
+            plotresults(solution.aDotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",1);
             break;
         case 2:
-            plotresults(temp.aDotc0, temp.forplot, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",1);
+            plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",1);
             break;
         case 3:
-            plotresults(temp.aDotc0, temp.forplot, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",1);
+            plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",1);
             break;
         case 4:
-            plotresults(temp.aDotc0, temp.forplot, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",1);
+            plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",1);
+            break;
+        case 6:
+            plotresults(solution.aDotc0, solution.g0, "Irwin Corten Crack Force vs non-dimensional speed", "Non-dimensional speed", "Irwin Corten Crack Driving Force",1);
             break;
         case 7:
-            plotresults(temp.aDotc0, temp.forplot, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",1);
+            plotresults(solution.aDotc0, solution.gTotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",1);
             break;
         case 8:
-            plotresults(temp.aDotc0, temp.forplot, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",1);
+            plotresults(solution.aDotc0, solution.gG0, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",1);
             break;
      }
 

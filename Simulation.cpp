@@ -19,7 +19,8 @@ Simulation::Simulation()
 Solution Simulation::run(Parameters parameters)
 {
 
-    Solution solution;
+    extern Solution solution;
+    solution.displacement(parameters);
 
     Log log(parameters);
 
@@ -39,6 +40,8 @@ Solution Simulation::run(Parameters parameters)
 
     if(parameters.singlemode)
     {
+        solution.clear();
+
         // Speed dependent properties
         beamModel.speedandreset(parameters, backfill, creep);
         // Iteration function
@@ -67,6 +70,7 @@ Solution Simulation::run(Parameters parameters)
     }
     else
     {
+        solution.clear();
 
         //  Proceed to vary crack speed
         for (i =0; i < parameters.rangenumber; i++)
