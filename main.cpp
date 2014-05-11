@@ -7,6 +7,7 @@ using namespace std;
 #include "ui_guimain.h"
 #include "Simulation.h"
 #include "File.h"
+#include "Solution.h"
 
 File file;
 

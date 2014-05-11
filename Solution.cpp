@@ -40,6 +40,19 @@ Solution::Solution(Parameters parameters){
     gTotal.push_back(0.0);
     g0.push_back(0.0);
 
+    z.push_back(0.0);
+
+    cout << "Elements: " << parameters.elementsinl << endl;
+    cout << "Lambda : " << parameters.lambda << endl;
+
+    for(int i=0; i < (parameters.elementsinl * (parameters.lambda+1)) + 1;i++)
+    {
+        cout << "Test: " << (i/parameters.elementsinl) << endl;
+        z.push_back(i*(1/parameters.elementsinl));
+        cout << "Calculation: " << (double(i)/double(parameters.elementsinl)) << endl;
+        cout << "Array: " << z[i] << endl;
+
+    }
 }
 
 

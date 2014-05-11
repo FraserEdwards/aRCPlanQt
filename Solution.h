@@ -19,7 +19,7 @@ public:
 	
 	vector<double> zeta;
 	vector<double> vptra;	
-    vector <vector <double> > zetam;
+    vector<double> z;
     vector <vector <double > > vptram;
 
     vector <double> aDotc0;
