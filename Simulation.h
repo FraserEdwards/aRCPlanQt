@@ -1,6 +1,6 @@
 #include "ConfigFile.h"
 #include "Parameters.h"
-#include "Filepath.h"
+#include "File.h"
 #include "Interface.h"
 #include "Creep.h"
 #include "Backfill.h"
@@ -28,7 +28,7 @@ private:
 	double aDotc0;
 	
 	Parameters parameters;	
-	Filepath filePath;
+    File file;
 	Creep creep;
 	Backfill backfill;
 	BeamModel beamModel;

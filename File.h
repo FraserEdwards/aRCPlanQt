@@ -11,10 +11,10 @@ using namespace std;
 #endif
 
 
-#ifndef _FILEPATH_H
-#define _FILEPATH_H
+#ifndef _FILE_H
+#define _FILE_H
 
-class Filepath
+class File
 {
 private:
 	char Path[256];	
@@ -23,7 +23,7 @@ private:
     string subfolder;
     int found;
 public:
-    Filepath();
+    File();
     void correct(); 	//Null constructor
     int check();
     int loadcheck(string name);

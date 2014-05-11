@@ -6,9 +6,9 @@ using namespace std;
 #include "guimain.h"
 #include "ui_guimain.h"
 #include "Simulation.h"
-#include "Filepath.h"
+#include "File.h"
 
-Filepath filepath;
+File file;
 
 int main(int argc, char *argv[])
 {
@@ -16,10 +16,10 @@ int main(int argc, char *argv[])
 //    Filepath filePath;
 
     QApplication a(argc, argv);
-    filepath.directory = a.applicationDirPath().toStdString();
-    filepath.correct();
+    file.directory = a.applicationDirPath().toStdString();
+    file.correct();
 
-    ConfigFile config(filepath.directory + "caseInputData.txt");
+    ConfigFile config(file.directory + "caseInputData.txt");
     Parameters initial;
     initial.collect(config);    
 

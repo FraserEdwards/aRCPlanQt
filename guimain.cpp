@@ -8,7 +8,7 @@
 #include "guimain.h"
 #include "ui_guimain.h"
 #include "qcustomplot.h"
-#include "Filepath.h"
+#include "File.h"
 
 guimain::guimain(QWidget *parent) :
     QMainWindow(parent),
@@ -25,9 +25,9 @@ guimain::~guimain()
 void guimain::setnames(Parameters parameters, char dropdown)
 {
 
-extern Filepath filepath;
+extern File file;
 
-ui -> path -> setText(QString::fromStdString(filepath.directory));
+ui -> path -> setText(QString::fromStdString(file.directory));
 
 ui -> singlemode -> setCheckState(Qt::Unchecked);
 ui -> rangemode -> setCheckState(Qt::Checked);
@@ -185,11 +185,11 @@ void guimain::setresults(Solution solution)
 void guimain::on_Runbutton_clicked()
 {
 
-    extern Filepath filepath;
+    extern File file;
     Parameters edited;
     edited = update();
 
-    exists = filepath.check();
+    exists = file.check();
 
     if(!exists)
     {
@@ -236,7 +236,7 @@ void guimain::plothandler(Solution solution)
 
 void guimain::plotresults( vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate)
 {
-    extern Filepath filepath;
+    extern File file;
 
     path = (ui -> path -> text().toStdString()) + "Results/" + title;
     ui -> Resultsplot -> addGraph();
@@ -267,8 +267,8 @@ Parameters guimain::update()
 
     Parameters temp;
 
-    extern Filepath filepath;
-    filepath.directory = ui -> path -> text().toStdString();
+    extern File file;
+    file.directory = ui -> path -> text().toStdString();
 
     temp.varname = ui ->parameter ->currentIndex();
 
@@ -373,11 +373,11 @@ void guimain::on_rangemode_clicked()
 void guimain::on_Save_clicked()
 {
 
-    extern Filepath filepath;
+    extern File file;
 
     filename = "Results.csv";
 
-    results.open((filepath.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+    results.open((file.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
 
     for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
@@ -482,14 +482,14 @@ void guimain::on_pipename_currentIndexChanged(int index)
 
 void guimain::on_Load_clicked()
 {
-    extern Filepath filepath;
+    extern File file;
 
-    switch(filepath.loadcheck("caseInputData.txt"))
+    switch(file.loadcheck("caseInputData.txt"))
     {
         case 0:
         {
             ui -> Information -> setText("caseInputData.txt was loaded successfully");
-            ConfigFile config(filepath.directory + "caseInputData.txt");
+            ConfigFile config(file.directory + "caseInputData.txt");
             Parameters temp;
             temp.collect(config);
             setnames(temp,1);
@@ -497,10 +497,21 @@ void guimain::on_Load_clicked()
         }
         case 1:
         {
-            ui -> Information -> setText("caseInputData.txt could not be found in" + QString::fromStdString(filepath.directory));
+            ui -> Information -> setText("caseInputData.txt could not be found in" + QString::fromStdString(file.directory));
             break;
         }
 
     }
+
+}
+
+void guimain::on_SaveCase_clicked()
+{
+
+    Parameters temp;
+    temp = update();
+
+
+
 
 }

@@ -49,6 +49,8 @@ private slots:
 
     void on_Load_clicked();
 
+    void on_SaveCase_clicked();
+
 private:
 
     int i;

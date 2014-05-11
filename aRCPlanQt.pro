@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     Creep.cpp \
     Decompression.cpp \
     FDprofile.cpp \
-    Filepath.cpp \
     FracMech.cpp \
     Geometry.cpp \
     Interface.cpp \
@@ -34,7 +33,8 @@ SOURCES += main.cpp\
     SymDoubleMatrix.cpp \
     TestSetup.cpp \
     guimain.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    File.cpp
 
 
 HEADERS  += \
@@ -45,7 +45,6 @@ HEADERS  += \
     Creep.h \
     Decompression.h \
     FDprofile.h \
-    Filepath.h \
     FracMech.h \
     Geometry.h \
     Interface.h \
@@ -59,7 +58,8 @@ HEADERS  += \
     TestSetup.h \
     guimain.h \
     qcustomplot.h \
-    Backfill.h
+    Backfill.h \
+    File.h
 
 
 FORMS    += \

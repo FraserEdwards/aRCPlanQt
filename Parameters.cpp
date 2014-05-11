@@ -3,6 +3,7 @@ using namespace std;
 
 #include "Parameters.h"
 #include "ConfigFile.h"
+#include "File.h"
 
 void Parameters::collect(ConfigFile config)
 {
@@ -68,4 +69,15 @@ void Parameters::conditionToTemperature()
 {
 	dynamicModulus = eDyn0degC + tempDegC * dEdyndT;
 } 
+
+void Parameters::write()
+{
+    extern File file;
+    ofstream write;
+
+    filename = "caseInputData.txt";
+
+    write.open((file.directory + filename).c_str());
+
+}
 

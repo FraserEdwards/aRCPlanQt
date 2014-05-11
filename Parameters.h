@@ -3,6 +3,11 @@
 #include "Material.h"
 #include "Geometry.h"
 
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
 #ifndef _PARAMETERS_H
 #define _PARAMETERS_H
 
@@ -15,7 +20,9 @@ private:
 	Geometry geometry;
 	Material material;
 	TestSetup testSetup;
-	Control control;	
+    Control control;
+    string filename;
+
 	
 public:
 
@@ -23,6 +30,7 @@ public:
 	void collect(ConfigFile config);
 	void copy(Material material, Geometry geometry, TestSetup testSetup, Control control);
 	void conditionToTemperature();	
+    void write();
 
 } ;
 

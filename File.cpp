@@ -1,15 +1,15 @@
-#include "Filepath.h"
+#include "File.h"
 #include <iostream>
 #include <sys/stat.h>
 
-Filepath::Filepath()
+File::File()
 {
 
 
 
 }
 
-void Filepath::correct()
+void File::correct()
 {
 
     found = directory.find("aRCPlanQt.app");
@@ -21,7 +21,7 @@ void Filepath::correct()
 
 }
 
-int Filepath::check()
+int File::check()
 {
     struct stat st;
 
@@ -85,7 +85,7 @@ int Filepath::check()
 
 }
 
-int Filepath::loadcheck(string name)
+int File::loadcheck(string name)
 {
 
     struct stat st;

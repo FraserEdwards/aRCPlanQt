@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "Log.h"
-#include "Filepath.h"
+#include "File.h"
 #include "Parameters.h"
 
 Log::Log()
@@ -14,11 +14,11 @@ Log::Log()
 Log::Log(Parameters parameters)
 {
 
-    extern Filepath filepath;
+    extern File file;
 
     filename = "Log.csv";
 
-    log.open((filepath.directory + "Log/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+    log.open((file.directory + "Log/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
     log << "Input Parameters\n" << " \n";
 
