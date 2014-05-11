@@ -77,9 +77,9 @@ public:
 
 		void converteffopen(const Parameters parameters);
 
-        void iteration(Parameters &parameters, Interface interface, Backfill backfill, Creep creep);
+		void iteration(Parameters parameters, Interface interface, Backfill backfill, Creep creep);
 
-        void opening(Parameters &parameters, Interface interface, Solution solution, Creep creep);
+        void opening(Parameters parameters, Interface interface, Solution solution, Creep creep);
 
 
 };

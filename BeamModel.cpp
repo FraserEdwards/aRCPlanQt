@@ -108,7 +108,7 @@ void BeamModel::converteffopen(const Parameters parameters)
 
 }
 
-void BeamModel::iteration(Parameters &parameters, Interface interface, Backfill backfill, Creep creep)
+void BeamModel::iteration(const Parameters parameters, Interface interface, Backfill backfill, Creep creep)
 {
 	maxIterations=100;
 	notConverged = 1;
@@ -330,10 +330,11 @@ void BeamModel::iteration(Parameters &parameters, Interface interface, Backfill 
 
 }
 
-void BeamModel::opening(Parameters &parameters, Interface interface, Solution solution, Creep creep)
+void BeamModel::opening(Parameters parameters, Interface interface, Solution solution, Creep creep)
 {
 
 	//	So we now have the correct numerical or analytical crack opening profile vStar(zeta), and can output it if needed
+
 		if (interface.infoLevel > 1)
 		{
 
@@ -341,28 +342,31 @@ void BeamModel::opening(Parameters &parameters, Interface interface, Solution so
 //			interface.oneline(" iterations for outflowLength = ", outflowLength);
 		
 		}
+        if (interface.printOpeningProfile==2)
+		{
 
-        if (!parameters.analyticalSolutionMode)
-        {	// then recalculate and print the numerical solution
+            if (!parameters.analyticalSolutionMode)
+			{	// then recalculate and print the numerical solution
 				
-            FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
-            FDprofile* ptr=&final;
-            final.fprofile();
+                FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
+				FDprofile* ptr=&final;
+				final.fprofile();				
 				
-            final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
-            final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);
+				final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
+				final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);
 
-            zeta=final.zeta;
-            crackdisplacement=final.vptra;
-            l=final.l;
-        }
-        else
-        {
+                zeta=final.zeta;
+				crackdisplacement=final.vptra;
+				l=final.l;	
+			}
+			else
+			{	
 
 			//Originally Analytical Method
 
-        }
-
+			}
+		}
+		
 		wStar2 *= v0;
 	
 		// Convert derivatives from vStar(zeta) to v(z)

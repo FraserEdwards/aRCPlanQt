@@ -10,7 +10,6 @@ using namespace std;
 #include "Solution.h"
 
 File file;
-Solution solution;
 
 int main(int argc, char *argv[])
 {

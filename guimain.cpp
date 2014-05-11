@@ -194,7 +194,7 @@ void guimain::on_Runbutton_clicked()
     if(!exists)
     {
         Simulation simulation;
-        extern Solution solution;
+        Solution solution;
 
         solution = simulation.run(edited);
 
