@@ -47,9 +47,9 @@ private slots:
 
     void on_pipename_currentIndexChanged(int index);
 
-    void on_LoadParameters_triggered();
+    void on_Load_clicked();
 
-    void on_SaveParameters_triggered();
+    void on_SaveCase_clicked();
 
 private:
 

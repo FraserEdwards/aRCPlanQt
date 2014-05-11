@@ -23,7 +23,7 @@
       <height>652</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_8" rowstretch="0,0,0,0,0,0,0">
+    <layout class="QGridLayout" name="gridLayout_8" rowstretch="0,0,0,0,0,0,0,0">
      <property name="sizeConstraint">
       <enum>QLayout::SetNoConstraint</enum>
      </property>
@@ -33,7 +33,17 @@
      <property name="verticalSpacing">
       <number>10</number>
      </property>
-     <item row="2" column="1">
+     <item row="3" column="2">
+      <widget class="QCustomPlot" name="Resultsplot" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>465</width>
+         <height>300</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
       <widget class="QCustomPlot" name="Resultsplot_2" native="true">
        <property name="minimumSize">
         <size>
@@ -43,13 +53,10 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
-      <widget class="QCustomPlot" name="Resultsplot" native="true">
-       <property name="minimumSize">
-        <size>
-         <width>465</width>
-         <height>300</height>
-        </size>
+     <item row="4" column="2">
+      <widget class="QPushButton" name="Save">
+       <property name="text">
+        <string>Save Results</string>
        </property>
       </widget>
      </item>
@@ -63,98 +70,7 @@
        </property>
       </layout>
      </item>
-     <item row="4" column="0">
-      <layout class="QGridLayout" name="gridLayout_6" rowstretch="0,0,0,0,0,0,0,0">
-       <property name="leftMargin">
-        <number>100</number>
-       </property>
-       <property name="rightMargin">
-        <number>100</number>
-       </property>
-       <property name="horizontalSpacing">
-        <number>0</number>
-       </property>
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Single Shot:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Range:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>From:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="3">
-        <widget class="QLineEdit" name="from"/>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>To:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="3">
-        <widget class="QLineEdit" name="to"/>
-       </item>
-       <item row="7" column="0" colspan="3">
-        <widget class="QLabel" name="label_10">
-         <property name="text">
-          <string>No. of Points:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="3">
-        <widget class="QLineEdit" name="noofpoints"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Parameter:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QComboBox" name="parameter">
-         <property name="frame">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QCheckBox" name="singlemode">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QCheckBox" name="rangemode">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QTabWidget" name="tabs">
        <property name="currentIndex">
         <number>1</number>
@@ -485,33 +401,7 @@
        </widget>
       </widget>
      </item>
-     <item row="4" column="1" colspan="2">
-      <widget class="QTableWidget" name="Resultstable"/>
-     </item>
-     <item row="6" column="0">
-      <widget class="QTextEdit" name="Information"/>
-     </item>
-     <item row="6" column="1" colspan="2">
-      <widget class="QPushButton" name="Runbutton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Run</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="2">
-      <widget class="QPushButton" name="Save">
-       <property name="text">
-        <string>Save Results</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
+     <item row="4" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QLabel" name="label_3">
@@ -525,8 +415,134 @@
        </item>
       </layout>
      </item>
+     <item row="5" column="0">
+      <layout class="QGridLayout" name="gridLayout_6" rowstretch="0,0,0,0,0,0,0,0">
+       <property name="leftMargin">
+        <number>100</number>
+       </property>
+       <property name="rightMargin">
+        <number>100</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Single Shot:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Range:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>From:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLineEdit" name="from"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>To:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QLineEdit" name="to"/>
+       </item>
+       <item row="7" column="0" colspan="3">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>No. of Points:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QLineEdit" name="noofpoints"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Parameter:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QComboBox" name="parameter">
+         <property name="frame">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QCheckBox" name="singlemode">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="rangemode">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="7" column="1" colspan="2">
+      <widget class="QPushButton" name="Runbutton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Run</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QTextEdit" name="Information"/>
+     </item>
+     <item row="5" column="1" colspan="2">
+      <widget class="QTableWidget" name="Resultstable"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="Load">
+       <property name="text">
+        <string>Load Case</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="SaveCase">
+       <property name="text">
+        <string>Save Case</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>Load</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -537,32 +553,14 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuaRCPlan">
+   <widget class="QMenu" name="menuARCPlan">
     <property name="title">
      <string>aRCPlan</string>
     </property>
-    <addaction name="LoadParameters"/>
-    <addaction name="SaveParameters"/>
    </widget>
-   <addaction name="menuaRCPlan"/>
+   <addaction name="menuARCPlan"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="LoadParameters">
-   <property name="text">
-    <string>&amp;Load Parameters</string>
-   </property>
-   <property name="toolTip">
-    <string>Load Parameters</string>
-   </property>
-  </action>
-  <action name="SaveParameters">
-   <property name="text">
-    <string>&amp;Save Parameters</string>
-   </property>
-   <property name="toolTip">
-    <string>Save Parameters</string>
-   </property>
-  </action>
  </widget>
  <customwidgets>
   <customwidget>
