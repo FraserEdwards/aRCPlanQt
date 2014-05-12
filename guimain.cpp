@@ -9,6 +9,7 @@
 #include "ui_guimain.h"
 #include "qcustomplot.h"
 #include "File.h"
+#include "Constants.h"
 
 guimain::guimain(QWidget *parent) :
     QMainWindow(parent),

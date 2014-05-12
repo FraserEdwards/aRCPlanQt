@@ -1,36 +1,87 @@
-#include "TestSetup.h"
-#include "Control.h"
-#include "Material.h"
-#include "Geometry.h"
+#ifndef _PARAMETERS_H
+#define _PARAMETERS_H
 
 #include <iostream>
 #include <fstream>
 using namespace std;
 
+#include "ConfigFile.h"
 
-#ifndef _PARAMETERS_H
-#define _PARAMETERS_H
-
-class Parameters : public Control, public TestSetup, public Material, public Geometry
+class Parameters
 {
 
 private:
 
-	ConfigFile config;
-	Geometry geometry;
-	Material material;
-	TestSetup testSetup;
-    Control control;
     string filename;
 
+    static string matID_lib[5];
+    static double density_lib[5];
+    static double eDyn0degC_lib[5];
+    static double dEdyndT_lib[5];
+    static double creepModulus_lib[5];
+    static double poisson_lib[5];
+
+    static string pipeID_lib[5];
+    static double diameter_lib[5];
+    static double sdr_lib[5];
+    static double notchDepth_lib[5];
+    static double diameterCreepRatio_lib[5];
+
+    ConfigFile config;
 	
 public:
 
-    Parameters() : Control(), TestSetup(), Material(), Geometry() {}
+
+    string methodID;
+    short fullScale;
+    double tempDegC;
+    double p0bar;
+    int isBackfilled;
+    double backfillDepth;
+    double backfillDensity;
+    double solidInsidePipe;
+    double waterInsidePipe;
+
+    string matID;
+    double density;
+    double eDyn0degC;
+    double dEdyndT;
+    double dynamicModulus;
+    double creepModulus;
+    double poisson;
+    double creepModulusRatio;
+
+    string pipeID;
+    double diameter;
+    double sdr;
+    double notchDepth;
+    double diameterCreepRatio;
+    double h;
+    double crackWidth;
+    double hOverR;
+    double radius;
+
+    int outflowModelOn;
+    double lambda;
+    int analyticalSolutionMode;
+    int singlemode;
+    int rangenumber;
+    int elementsinl;
+    double aDotc0;
+    double from;
+    double to;
+    double indvar;
+    int varname;
+
+    Parameters();
+    Parameters(ConfigFile config);
+    Parameters& operator=(const Parameters& rhs);
+    void geometryupdate(int n);
+    void materialupdate(int n);
+    void controlupdate(int n);
+    void testupdate(int n);
 	void collect(ConfigFile config);
-	void copy(Material material, Geometry geometry, TestSetup testSetup, Control control);
-	void conditionToTemperature();	
-    void write();
+    void conditionToTemperature();
 
 } ;
 

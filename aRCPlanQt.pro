@@ -17,21 +17,17 @@ SOURCES += main.cpp\
     BeamModel.cpp \
     ConfigFile.cpp \
     Constants.cpp \
-    Control.cpp \
     Creep.cpp \
     Decompression.cpp \
     FDprofile.cpp \
     FracMech.cpp \
-    Geometry.cpp \
     Interface.cpp \
     Log.cpp \
-    Material.cpp \
     OutflowProcess.cpp \
     Parameters.cpp \
     Simulation.cpp \
     Solution.cpp \
     SymDoubleMatrix.cpp \
-    TestSetup.cpp \
     guimain.cpp \
     qcustomplot.cpp \
     File.cpp
@@ -41,21 +37,17 @@ HEADERS  += \
     BeamModel.h \
     ConfigFile.h \
     Constants.h \
-    Control.h \
     Creep.h \
     Decompression.h \
     FDprofile.h \
     FracMech.h \
-    Geometry.h \
     Interface.h \
     Log.h \
-    Material.h \
     OutflowProcess.h \
     Parameters.h \
     Simulation.h \
     Solution.h \
     SymDoubleMatrix.h \
-    TestSetup.h \
     guimain.h \
     qcustomplot.h \
     Backfill.h \

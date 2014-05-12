@@ -1,6 +1,4 @@
 #include "Interface.h"
-#include "TestSetup.h"
-#include "Material.h"
 #include "BeamModel.h"
 #include "Parameters.h"
 

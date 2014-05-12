@@ -97,6 +97,7 @@ Solution Simulation::run(Parameters parameters)
 
             if(!beamModel.noCrackOpening)
             {
+
                 beamModel.opening(parameters, interface, solution, creep);
                 fracmech.extensionForce(beamModel, parameters, creep);
 

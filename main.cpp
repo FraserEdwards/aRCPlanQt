@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
 
     ConfigFile config(file.directory + "caseInputData.txt");
     Parameters initial;
-    initial.collect(config);    
 
     guimain b;
     b.setnames(initial,0);
