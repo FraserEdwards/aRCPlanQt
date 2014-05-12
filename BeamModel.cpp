@@ -108,14 +108,15 @@ void BeamModel::converteffopen(const Parameters parameters)
 
 }
 
-void BeamModel::iteration(const Parameters parameters, Interface interface, Backfill backfill, Creep creep)
+void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep creep)
 {
 	maxIterations=100;
 	notConverged = 1;
 	iterations = 0;
 	noCrackOpening = 0;
+    int infoLevel =0;
 
-    if ((parameters.outflowModelOn==2) & (interface.infoLevel > 1))
+    if ((parameters.outflowModelOn==2) & (infoLevel > 1))
     {
 //        interface.line("Starting outflowLength refinement with outflow length = ", outflowLength);
     }
@@ -145,7 +146,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 
 			short nodeAtClosure_previous = nodeAtClosure;				// Store position of last node in this FD array
 			double errorLast = fdSolution.closureMoment();				// ...and resulting d2v/dz2 at closure point, divided by that at crack tip
-		if (interface.infoLevel > 1)
+        if (infoLevel > 1)
 		{
 
 //			interface.oneline("Starting closure length refinement with closure node = ",nodeAtClosure_previous);
@@ -156,7 +157,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 	// Make second guess for closure length (two nodes MORE than input value):
 		nodeAtClosure += 4;
 
-		if (interface.infoLevel > 1)
+        if (infoLevel > 1)
         {
 //			interface.line("Second-guess closure node = ", nodeAtClosure);
         }
@@ -175,7 +176,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			error = fdSolution.closureMoment();
 			short noSurfaceContact = 1;								// FIXME:  necessary?
 			short minPoint = fdSolution.nodeAtMinimum();			// this is set to -1 if NO minimum is found within domain
-			if (interface.infoLevel > 1)
+            if (infoLevel > 1)
 			{
 
 //				interface.oneline("At closure length iteration ",iterations);
@@ -186,7 +187,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			}	
 			if (minPoint > 0)
 			{
-				if (interface.infoLevel > 1)
+                if (infoLevel > 1)
                 {
 //                    interface.line("BUT there's a minimum (crack surface overlap) to left of closure point ", minPoint);
                 }
@@ -202,7 +203,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
                     fdSolution = FDprofile(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
 					tempError = fdSolution.closureMoment();
 					newMin = fdSolution.nodeAtMinimum();
-					if (interface.infoLevel > 1)
+                    if (infoLevel > 1)
 					{
 
 //						interface.oneline("nodeAtClosure = ",nodeAtClosure);
@@ -214,7 +215,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 				}
 				while (newMin < 0);
 				nodeAtClosure = nodeAtClosure - 1;
-				if (interface.infoLevel > 1)
+                if (infoLevel > 1)
                 {
 //                    interface.line("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
                 }
@@ -232,7 +233,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			else
 			{
 				nodeAtClosure++;
-                if (interface.infoLevel > 1)
+                if (infoLevel > 1)
                 {
 //                    interface.line("node interpolated = ", nodeAtClosure);
                 }
@@ -250,7 +251,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 				}
 				else
 				{
-					if (interface.infoLevel > 1)
+                    if (infoLevel > 1)
                     {
 //                        interface.line("Next try for iteration will be nodeAtClosure = ", nodeAtClosure);
                     }
@@ -262,7 +263,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			} // done that refinement iteration
 			while (notConverged & (iterations < maxIterations));
 
-			if (interface.infoLevel > 1)
+            if (infoLevel > 1)
 			{
 
 //				interface.oneline("At nodeAtClosure = ", nodeAtClosure);
@@ -277,7 +278,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 	
 		} 
 	
-		if (interface.infoLevel > 1)
+        if (infoLevel > 1)
 		{
 
 //		interface.line("Computed profile properties");
@@ -299,7 +300,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 			
 			}
 		//	tStarOutflow being the number of characteristic times for discharge
-			if (interface.infoLevel > 1)
+            if (infoLevel > 1)
 			{	
 //				interface.line("alpha = ", alpha[1]);
 //				interface.line("m = ", m[1]);
@@ -315,7 +316,7 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 				notConverged = false;
 			iterations++;
 			short waitForMe;
-			if (interface.infoLevel > 2)
+            if (infoLevel > 2)
 			{	
 //				waitForMe=interface.input("enter digit: ");
 			}
@@ -330,42 +331,40 @@ void BeamModel::iteration(const Parameters parameters, Interface interface, Back
 
 }
 
-void BeamModel::opening(Parameters parameters, Interface interface, Solution solution, Creep creep)
+void BeamModel::opening(Parameters parameters, Solution solution, Creep creep)
 {
-
+    int infoLevel=0;
 	//	So we now have the correct numerical or analytical crack opening profile vStar(zeta), and can output it if needed
 
-		if (interface.infoLevel > 1)
+        if (infoLevel > 1)
 		{
 
 //			interface.oneline("Final outflowLength convergence in ", iterations);
 //			interface.oneline(" iterations for outflowLength = ", outflowLength);
 		
 		}
-        if (interface.printOpeningProfile==2)
-		{
 
-            if (!parameters.analyticalSolutionMode)
-			{	// then recalculate and print the numerical solution
-				
-                FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
-				FDprofile* ptr=&final;
-				final.fprofile();				
-				
-				final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
-				final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);
 
-                zeta=final.zeta;
-				crackdisplacement=final.vptra;
-				l=final.l;	
-			}
-			else
-			{	
+        if (!parameters.analyticalSolutionMode)
+        {	// then recalculate and print the numerical solution
+				
+            FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
+            FDprofile* ptr=&final;
+            final.fprofile();
+				
+            final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
+            final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);
+
+            zeta=final.zeta;
+            crackdisplacement=final.vptra;
+            l=final.l;
+        }
+        else
+        {
 
 			//Originally Analytical Method
 
-			}
-		}
+        }
 		
 		wStar2 *= v0;
 	

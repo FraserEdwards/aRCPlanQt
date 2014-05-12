@@ -1,9 +1,10 @@
+#ifndef BeamModelH
+#define BeamModelH
+
 #include "Creep.h"
 #include "Decompression.h"
 #include "Backfill.h"
-
-#ifndef BeamModelH
-#define BeamModelH
+#include "Solution.h"
 
 class BeamModel 
 {// 
@@ -77,9 +78,9 @@ public:
 
 		void converteffopen(const Parameters parameters);
 
-		void iteration(Parameters parameters, Interface interface, Backfill backfill, Creep creep);
+        void iteration(Parameters parameters, Backfill backfill, Creep creep);
 
-        void opening(Parameters parameters, Interface interface, Solution solution, Creep creep);
+        void opening(Parameters parameters, Solution solution, Creep creep);
 
 
 };

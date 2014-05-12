@@ -28,7 +28,7 @@ Parameters::Parameters()
     singlemode = 2;
     rangenumber = 0;
     elementsinl = 10;
-    aDotc0 = 0.0;
+    aDotc0 = 0.5;
     varname = 0;
 
     fullScale = 2;
@@ -40,6 +40,11 @@ Parameters::Parameters()
     solidInsidePipe = 0.25;
     waterInsidePipe = 0.25;
 
+    h=0.0;
+    hOverR=0.0;
+    radius=0.0;
+    crackWidth=0.0;
+
     geometryupdate(0);
     materialupdate(0);
 
@@ -50,16 +55,10 @@ Parameters::Parameters()
 void Parameters::geometryupdate(int n)
 {
     pipeID = Parameters::pipeID_lib[n];
-    cout << pipeID << endl;
     diameter = diameter_lib[n];
     sdr = sdr_lib[n];
-    cout << sdr << endl;
     notchDepth = notchDepth_lib[n];
     diameterCreepRatio = diameterCreepRatio_lib[n];
-    h=0.0;
-    hOverR=0.0;
-    radius=0.0;
-    crackWidth=0.0;
 
 }
 
@@ -106,14 +105,6 @@ Parameters::Parameters(ConfigFile config)
     config.readInto(backfillDensity, "backfillDensity");
     config.readInto(solidInsidePipe, "solidInsidePipe");
     config.readInto(waterInsidePipe, "waterInsidePipe");
-}
-
-void Parameters::collect(ConfigFile config)
-{
-
-//	copy(material, geometry, testSetup, control);
-	conditionToTemperature();
-
 }
 
 //Creates the "=" operator for this class

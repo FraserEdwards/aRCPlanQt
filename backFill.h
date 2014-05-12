@@ -1,4 +1,3 @@
-#include "Interface.h"
 #include "Parameters.h"
 #include "ConfigFile.h"
 #include "File.h"

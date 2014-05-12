@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     Decompression.cpp \
     FDprofile.cpp \
     FracMech.cpp \
-    Interface.cpp \
     Log.cpp \
     OutflowProcess.cpp \
     Parameters.cpp \
@@ -41,7 +40,6 @@ HEADERS  += \
     Decompression.h \
     FDprofile.h \
     FracMech.h \
-    Interface.h \
     Log.h \
     OutflowProcess.h \
     Parameters.h \

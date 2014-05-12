@@ -1,7 +1,6 @@
 #include "ConfigFile.h"
 #include "Parameters.h"
 #include "File.h"
-#include "Interface.h"
 #include "Creep.h"
 #include "Backfill.h"
 #include "BeamModel.h"
@@ -32,7 +31,6 @@ private:
 	Creep creep;
 	Backfill backfill;
 	BeamModel beamModel;
-	Interface interface;
 	Solution solution;
 
 

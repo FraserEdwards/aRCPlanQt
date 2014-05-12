@@ -24,8 +24,6 @@ Solution Simulation::run(Parameters parameters)
 
     Log log(parameters);
 
-    Interface interface(1, config);
-
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
 
@@ -45,12 +43,12 @@ Solution Simulation::run(Parameters parameters)
         // Speed dependent properties
         beamModel.speedandreset(parameters, backfill, creep);
         // Iteration function
-        beamModel.iteration(parameters, interface, backfill, creep);
+        beamModel.iteration(parameters, backfill, creep);
 
         if(!beamModel.noCrackOpening)
         {
 
-            beamModel.opening(parameters, interface, solution, creep);
+            beamModel.opening(parameters, solution, creep);
             fracmech.extensionForce(beamModel, parameters, creep);
 
             solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
@@ -93,12 +91,12 @@ Solution Simulation::run(Parameters parameters)
             // Speed dependent properties
             beamModel.speedandreset(parameters, backfill, creep);
             // Iteration function
-            beamModel.iteration(parameters, interface, backfill, creep);
+            beamModel.iteration(parameters, backfill, creep);
 
             if(!beamModel.noCrackOpening)
             {
 
-                beamModel.opening(parameters, interface, solution, creep);
+                beamModel.opening(parameters, solution, creep);
                 fracmech.extensionForce(beamModel, parameters, creep);
 
                 solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);

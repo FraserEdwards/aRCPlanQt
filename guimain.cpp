@@ -499,8 +499,8 @@ void guimain::on_action_Load_triggered()
         {
             ui -> Information -> setText("caseInputData.txt was loaded successfully");
             ConfigFile config(file.directory + "caseInputData.txt");
-            Parameters temp;
-            temp.collect(config);
+            Parameters temp(config);
+
             setnames(temp,1);
             break;
         }

@@ -1,9 +1,8 @@
-#include "Interface.h"
-#include "BeamModel.h"
-#include "Parameters.h"
-
 #ifndef _FRACHMECH_H
 #define _FRACHMECH_H
+
+#include "BeamModel.h"
+#include "Parameters.h"
 
 class FracMech
 {
