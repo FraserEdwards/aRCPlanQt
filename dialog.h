@@ -2,6 +2,7 @@
 #define DIALOG_H
 
 #include <QDialog>
+using namespace std;
 
 namespace Ui {
 class dialog;
@@ -14,6 +15,7 @@ class dialog : public QDialog
 public:
     explicit dialog(QWidget *parent = 0);
     ~dialog();
+    void Warning(string title);
 
 private:
     Ui::dialog *ui;

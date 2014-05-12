@@ -1,3 +1,5 @@
+#include <QString>
+
 #include "dialog.h"
 #include "ui_dialog.h"
 
@@ -11,4 +13,11 @@ dialog::dialog(QWidget *parent) :
 dialog::~dialog()
 {
     delete ui;
+}
+
+void dialog::Warning(string title)
+{
+
+    ui->warning ->setText(QString::fromStdString(title));
+
 }

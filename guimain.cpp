@@ -501,11 +501,11 @@ void guimain::on_action_Load_triggered()
     {
         case 0:
         {
-//            ui -> Information -> setText("caseInputData.txt was loaded successfully");
             ConfigFile config(file.directory + "caseInputData.txt");
             Parameters temp(config);
 
             dialog *e = new dialog;
+            e->Warning("caseInputData.txt was loaded successfully");
             e->show();
 
             setnames(temp,1);
@@ -514,8 +514,8 @@ void guimain::on_action_Load_triggered()
         case 1:
         {
             dialog *e = new dialog;
+            e->Warning("caseInputData.txt could not be found in: \n \n" + file.directory);
             e->show();
-//            ui -> Information -> setText("caseInputData.txt could not be found in" + QString::fromStdString(file.directory));
             break;
         }
 
