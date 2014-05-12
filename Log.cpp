@@ -61,7 +61,7 @@ Log::Log(Parameters parameters)
             writeparstring("Independent variable", "Pressure");
             break;
         case 2:
-             writeparstring("Independent variable", "Temperature");
+            writeparstring("Independent variable", "Temperature");
             break;
     }
 
