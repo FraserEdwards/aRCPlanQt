@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     SymDoubleMatrix.cpp \
     guimain.cpp \
     qcustomplot.cpp \
-    File.cpp
+    File.cpp \
+    about.cpp
 
 
 HEADERS  += \
@@ -49,11 +50,13 @@ HEADERS  += \
     guimain.h \
     qcustomplot.h \
     Backfill.h \
-    File.h
+    File.h \
+    about.h
 
 
 FORMS    += \
-    guimain.ui
+    guimain.ui \
+    about.ui
 
 OTHER_FILES += \
     README.md \

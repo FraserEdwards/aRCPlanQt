@@ -110,7 +110,7 @@ void File::write(Parameters temp)
 
     writeline("Material Data", out, 1);
 
-    writeline("MatID = ", temp.matID, out, 0);
+    writeline("matID = ", temp.matID, out, 0);
     writeline("density = ", temp.density, out, 0);
     writeline("eDyn0degC = ", temp.eDyn0degC, out, 0);
     writeline("dEdyndT = ", temp.dEdyndT, out, 0);
@@ -127,7 +127,6 @@ void File::write(Parameters temp)
 
     writeline("Test Setup Data", out, 1);
 
-    writeline("methodID = ", temp.methodID, out, 0);
     writeline("fullScale = ", temp.fullScale, out, 0);
     writeline("tempDegC = ", temp.tempDegC, out, 0);
     writeline("p0bar = ", temp.p0bar, out, 0);

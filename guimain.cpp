@@ -1,12 +1,15 @@
 #include <QString>
 #include <QFile>
 #include <QTextStream>
+#include <QMessageBox>
 #include <iostream>
 #include <fstream>
 #include <ios>
 
+
 #include "guimain.h"
 #include "ui_guimain.h"
+#include "about.h"
 #include "qcustomplot.h"
 #include "File.h"
 #include "Constants.h"
@@ -526,6 +529,7 @@ void guimain::on_action_Save_triggered()
 
 void guimain::on_actionAbout_triggered()
 {
-
-
+    about *d = new about;
+    d->show();
+    d->setWindowTitle("About");
 }

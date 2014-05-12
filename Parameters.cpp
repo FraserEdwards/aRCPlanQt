@@ -96,7 +96,6 @@ Parameters::Parameters(ConfigFile config)
     config.readInto(creepModulus, "creepModulus" );
     config.readInto(poisson, "poisson" );
 
-    config.readInto(methodID, "methodID");
     config.readInto(fullScale, "fullScale");
     config.readInto(tempDegC, "tempDegC");
     config.readInto(p0bar, "p0bar");
