@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 //    Filepath filePath;
 
     QApplication a(argc, argv);
+
     file.directory = a.applicationDirPath().toStdString();
     file.correct();
 

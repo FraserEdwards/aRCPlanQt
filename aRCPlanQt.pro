@@ -12,6 +12,8 @@ TARGET = aRCPlanQt
 TEMPLATE = app
 CONFIG-= app_lib
 
+ICON = Test.icns
+
 SOURCES += main.cpp\
     Backfill.cpp \
     BeamModel.cpp \
