@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     guimain.cpp \
     qcustomplot.cpp \
     File.cpp \
-    about.cpp
+    about.cpp \
+    dialog.cpp
 
 
 HEADERS  += \
@@ -51,12 +52,14 @@ HEADERS  += \
     qcustomplot.h \
     Backfill.h \
     File.h \
-    about.h
+    about.h \
+    dialog.h
 
 
 FORMS    += \
     guimain.ui \
-    about.ui
+    about.ui \
+    dialog.ui
 
 OTHER_FILES += \
     README.md \

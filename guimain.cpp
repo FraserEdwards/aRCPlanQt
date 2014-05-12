@@ -10,6 +10,7 @@
 #include "guimain.h"
 #include "ui_guimain.h"
 #include "about.h"
+#include "dialog.h"
 #include "qcustomplot.h"
 #include "File.h"
 #include "Constants.h"
@@ -214,16 +215,16 @@ void guimain::on_Runbutton_clicked()
         switch(exists)
         {
             case 1:
-                ui -> Information ->setText("Results folder couldn't be found, new folder created");
+//                ui -> Information ->setText("Results folder couldn't be found, new folder created");
                 break;
             case 2:
-                ui -> Information -> setText("Profile folder couldn't be found, new folder created");
+//                ui -> Information -> setText("Profile folder couldn't be found, new folder created");
                 break;
             case 3:
-                ui -> Information -> setText("Log folder couldn't be found, new folder created");
+//                ui -> Information -> setText("Log folder couldn't be found, new folder created");
                 break;
             case 4:
-                ui -> Information -> setText("Please enter a valid directory");
+//                ui -> Information -> setText("Please enter a valid directory");
                 break;
         }
     }
@@ -500,16 +501,21 @@ void guimain::on_action_Load_triggered()
     {
         case 0:
         {
-            ui -> Information -> setText("caseInputData.txt was loaded successfully");
+//            ui -> Information -> setText("caseInputData.txt was loaded successfully");
             ConfigFile config(file.directory + "caseInputData.txt");
             Parameters temp(config);
+
+            dialog *e = new dialog;
+            e->show();
 
             setnames(temp,1);
             break;
         }
         case 1:
         {
-            ui -> Information -> setText("caseInputData.txt could not be found in" + QString::fromStdString(file.directory));
+            dialog *e = new dialog;
+            e->show();
+//            ui -> Information -> setText("caseInputData.txt could not be found in" + QString::fromStdString(file.directory));
             break;
         }
 

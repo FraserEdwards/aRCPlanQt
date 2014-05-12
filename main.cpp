@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     guimain b;
     b.setnames(initial,0);
     b.setWindowTitle("");
-    b.showMaximized();
+    b.show();
 
     return a.exec();
 
