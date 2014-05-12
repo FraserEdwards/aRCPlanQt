@@ -212,21 +212,23 @@ void guimain::on_Runbutton_clicked()
     }
     else
     {
+        dialog *e = new dialog;
         switch(exists)
         {
             case 1:
-//                ui -> Information ->setText("Results folder couldn't be found, new folder created");
+                e->Warning("Results folder couldn't be found, new folder created");
                 break;
             case 2:
-//                ui -> Information -> setText("Profile folder couldn't be found, new folder created");
+                e->Warning("Profile folder couldn't be found, new folder created");
                 break;
             case 3:
-//                ui -> Information -> setText("Log folder couldn't be found, new folder created");
+                e->Warning("Log folder couldn't be found, new folder created");
                 break;
             case 4:
-//                ui -> Information -> setText("Please enter a valid directory");
+                e->Warning("Please enter a valid directory");
                 break;
         }
+        e->show();
     }
 }
 
@@ -427,9 +429,6 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
 
         double indvar = ui -> Resultstable -> item(k,0) ->text().toDouble();
         double depvar = ui -> Resultstable -> item(k,column) -> text().toDouble();
-
-//        temp.aDotc0.push_back(indvar);
-//        temp.forplot.push_back(depvar);
 
     }
 
