@@ -428,37 +428,40 @@ void guimain::on_Save_clicked()
 {
 
     extern File file;
+    file.writeresults();
 
-    filename = "Results.csv";
+//    extern File file;
 
-    results.open((file.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+//    filename = "Results.csv";
+
+//    results.open((file.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
 
-    for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
-    {
-        if(k == 0)
-        {
-            results << ui -> parameter -> currentText().toStdString() << ",Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
-        }
+//    for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
+//    {
+//        if(k == 0)
+//        {
+//            results << ui -> parameter -> currentText().toStdString() << ",Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
+//        }
 
-        for (j = 0; j < ui -> Resultstable -> columnCount(); j++)
-        {
+//        for (j = 0; j < ui -> Resultstable -> columnCount(); j++)
+//        {
 
-            QString temp = ui ->Resultstable->item(k,j) -> text();
-            if (j == (ui -> Resultstable -> columnCount())-1)
-            {
-                results << temp.toStdString() << "\n";
-            }
-            else
-            {
-                results << temp.toStdString() << ",";
-            }
+//            QString temp = ui ->Resultstable->item(k,j) -> text();
+//            if (j == (ui -> Resultstable -> columnCount())-1)
+//            {
+//                results << temp.toStdString() << "\n";
+//            }
+//            else
+//            {
+//                results << temp.toStdString() << ",";
+//            }
 
-        }
+//        }
 
-    }
+//    }
 
-    results.close();
+//    results.close();
 
 }
 
@@ -567,7 +570,7 @@ void guimain::on_action_Save_triggered()
     Parameters temp;
     temp = update();
 
-    file.write(temp);
+    file.writecase(temp);
 }
 
 void guimain::on_actionAbout_triggered()

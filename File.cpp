@@ -98,7 +98,7 @@ int File::loadcheck(string name)
     return 1;
 }
 
-void File::write(Parameters temp)
+void File::writecase(Parameters temp)
 {
     filename = "caseInputData.txt";
 
@@ -143,6 +143,29 @@ void File::write(Parameters temp)
     writeline("solutionmethod = ", temp.solutionmethod, out, 0);
     writeline("numberOfSpeedValues = ", temp.rangenumber, out, 0);
     writeline("elementsInL = ", temp.elementsinl, out, 0);
+
+    out.close();
+
+}
+
+void File::writeresults()
+{
+    ofstream out;
+    extern File file;
+    extern Solution solution;
+
+    filename = "Results.csv";
+
+    out.open((file.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+
+    out << "Normalised Crack Speed,Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
+
+//    for(i=0; i<solution.soln;i++)
+//    {
+
+//        results <<
+
+//    }
 
     out.close();
 

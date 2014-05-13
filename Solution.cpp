@@ -87,18 +87,12 @@ void Solution::displacement(Parameters &parameters)
 
     }
 
-    cout << "Row size: " << row.size() << endl;
-    cout << "w size: " << w.size() << endl;
-    cout << "z size: " << z.size() << endl;
-
 }
 
 
 void Solution::sprofile(const vector<double> zetas, const vector<double> vptras, const int ls)
 {
     k++;
-	vptra=vptras;
-
     for(i = 0; i <= ls; i++)
     {
         w[k][i]=vptras[i];

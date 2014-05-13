@@ -15,10 +15,12 @@
 using namespace std;
 
 #include "Parameters.h"
+#include "Solution.h"
 
 class File
 {
 private:
+    int i;
 	char Path[256];	
     int checkstate;
     string tempdir;
@@ -31,7 +33,8 @@ public:
     int check();
     int loadcheck(string name);
     string directory;
-    void write(Parameters temp);
+    void writecase(Parameters temp);
+    void writeresults();
     void writeline(string title, double value, ofstream &out, int format);
     void writeline(string title, string value, ofstream &out, int format);
     void writeline(string title, ofstream &out, int format);

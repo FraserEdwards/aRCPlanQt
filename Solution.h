@@ -17,13 +17,10 @@ private:
 
 public:
 	int soln;
-	int l;
     int k;
     int i;
     int n;
 	
-	vector<double> zeta;
-	vector<double> vptra;	
     vector<double> z;
     vector <vector <double > > w;
 
