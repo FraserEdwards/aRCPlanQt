@@ -242,9 +242,53 @@ void guimain::plothandler(Solution solution)
     plotresults(solution.aDotc0, solution.gG0, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",0);
     plotresults(solution.aDotc0, solution.gTotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",0);
 
+
+    if(solution.k==0)
+    {
+
+    }
+    else
+    {
+
+        plotresults(solution.z, solution.w[10], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0);
+
+    }
 }
 
-void guimain::plotresults( vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate)
+void guimain::plotprofiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate)
+{
+
+    extern File file;
+
+    path = (ui -> path -> text().toStdString()) + "Profiles/" + title;
+    ui -> Crackplot -> addGraph();
+
+    QVector<double> Qx = QVector<double>::fromStdVector(x);
+
+    QVector<double> Qy = QVector<double>::fromStdVector(y);
+
+    ui -> Crackplot -> graph(0) -> setData(Qx,Qy);
+
+    ui -> Crackplot -> xAxis->setLabel(QString::fromStdString(xtitle));
+    ui -> Crackplot -> yAxis->setLabel(QString::fromStdString(ytitle));
+
+    double z1 = *max_element(x.begin(), x.end());
+    double z2 = *max_element(y.begin(), y.end());
+
+    ui -> Crackplot -> xAxis->setRange(0, z1+0.2);
+    ui -> Crackplot -> yAxis->setRange(0, z2+0.2);
+    ui -> Crackplot -> replot();
+
+    if(!savestate)
+    {
+        ui -> Crackplot ->savePdf(QString::fromStdString(path)+".pdf",false,1000,1000,"Test","Test");
+    }
+
+
+
+}
+
+void guimain::plotresults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate)
 {
     extern File file;
 

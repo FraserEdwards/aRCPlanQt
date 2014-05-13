@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QCustomPlot" name="Resultsplot_2" native="true">
+   <widget class="QCustomPlot" name="Crackplot" native="true">
     <property name="geometry">
      <rect>
       <x>430</x>
@@ -794,7 +794,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>22</x>
@@ -919,7 +919,7 @@
    <zorder>layoutWidget</zorder>
    <zorder>tabs</zorder>
    <zorder>Resultstable</zorder>
-   <zorder>Resultsplot_2</zorder>
+   <zorder>Crackplot</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>Resultsplot</zorder>
   </widget>

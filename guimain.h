@@ -67,6 +67,7 @@ private:
     void filltable(Solution solution);
     void plothandler(Solution solution);
     void plotresults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate);
+    void plotprofiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate);
 };
 
 #endif // GUIMAIN_H

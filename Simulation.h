@@ -1,3 +1,8 @@
+#ifndef _SIMULATION_H
+#define _SIMULATION_H
+
+#include <QObject>
+
 #include "ConfigFile.h"
 #include "Parameters.h"
 #include "File.h"
@@ -8,11 +13,6 @@
 #include "qcustomplot.h"
 #include "guimain.h"
 #include "ui_guimain.h"
-#include <QObject>
-
-
-#ifndef _SIMULATION_H
-#define _SIMULATION_H
 
 class Simulation
 {

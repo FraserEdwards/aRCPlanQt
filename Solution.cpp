@@ -1,6 +1,9 @@
-#include "Solution.h"
 #include <iostream>
 #include <iomanip>
+
+#include "Solution.h"
+
+
 
 Solution::Solution(){
 
@@ -33,6 +36,8 @@ void Solution::clear()
     aDotc0.resize(1);
     z.clear();
     z.resize(1);
+    w.clear();
+    w.resize(1);
 
     decompression.clear();
     decompression.resize(1);
@@ -63,16 +68,28 @@ void Solution::clear()
 
 void Solution::displacement(Parameters &parameters)
 {
-
-
     n = (parameters.elementsinl * (parameters.lambda+2))+1;
+    vector<double> row;
 
-    for(int i = 0; i < n-1; i++)
+    for(i = 0; i < n; i++ )
+    {
+        row.push_back(0.0);
+    }
+    for(i = 0; i < parameters.rangenumber; i++)
+    {
+        w.push_back(row);
+    }
+
+    for(i = 1; i < n; i++)
     {
 
         z.push_back(double(i)/double(parameters.elementsinl));
 
     }
+
+    cout << "Row size: " << row.size() << endl;
+    cout << "w size: " << w.size() << endl;
+    cout << "z size: " << z.size() << endl;
 
 }
 
@@ -82,15 +99,10 @@ void Solution::sprofile(const vector<double> zetas, const vector<double> vptras,
     k++;
 	vptra=vptras;
 
-    if(l<n)
+    for(i = 0; i <= ls; i++)
     {
-        for(i=0; i < (n-l)+1; i++)
-        {
-            vptra.push_back(0.0);
-        }
+        w[k][i]=vptras[i];
     }
-
-    w.push_back(vptra);
 
 }
 
