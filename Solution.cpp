@@ -90,7 +90,7 @@ void Solution::sprofile(const vector<double> zetas, const vector<double> vptras,
         }
     }
 
-        w.push_back(vptra);
+    w.push_back(vptra);
 
 }
 
