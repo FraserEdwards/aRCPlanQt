@@ -250,7 +250,7 @@ void guimain::plothandler(Solution solution)
     else
     {
 
-        plotresults(solution.z, solution.w[10], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0);
+        plotprofiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0);
 
     }
 }
@@ -275,8 +275,8 @@ void guimain::plotprofiles(vector<double> x, vector<double> y, string title, str
     double z1 = *max_element(x.begin(), x.end());
     double z2 = *max_element(y.begin(), y.end());
 
-    ui -> Crackplot -> xAxis->setRange(0, z1+0.2);
-    ui -> Crackplot -> yAxis->setRange(0, z2+0.2);
+    ui -> Crackplot -> xAxis->setRange(0, z1+0.002);
+    ui -> Crackplot -> yAxis->setRange(0, z2+0.002);
     ui -> Crackplot -> replot();
 
     if(!savestate)
@@ -468,13 +468,7 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
 
     extern Solution solution;
 
-    for(k = 0; k < ui -> Resultstable -> rowCount(); k++)
-    {
-
-        double indvar = ui -> Resultstable -> item(k,0) ->text().toDouble();
-        double depvar = ui -> Resultstable -> item(k,column) -> text().toDouble();
-
-    }
+    plotprofiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0);
 
     switch(column)
     {
