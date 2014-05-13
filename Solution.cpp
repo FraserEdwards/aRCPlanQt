@@ -7,6 +7,7 @@ Solution::Solution(){
     soln=0;
     aDotc0.push_back(0.0);
     z.push_back(0.0);
+    k=0;
 
     decompression.push_back(0.0);
     alpha.push_back(0.0);
@@ -27,6 +28,7 @@ Solution::Solution(){
 void Solution::clear()
 {
     soln=0;
+    k=0;
     aDotc0.clear();
     aDotc0.resize(1);
     z.clear();
@@ -56,25 +58,39 @@ void Solution::clear()
     gTotal.resize(1);
     g0.clear();
     g0.resize(1);
+
 }
 
 void Solution::displacement(Parameters &parameters)
 {
-    for(int i=0; i < (parameters.elementsinl * (parameters.lambda+1)) + 1;i++)
+
+
+    n = (parameters.elementsinl * (parameters.lambda+2))+1;
+
+    for(int i = 0; i < n-1; i++)
     {
 
         z.push_back(double(i)/double(parameters.elementsinl));
 
     }
+
 }
 
 
 void Solution::sprofile(const vector<double> zetas, const vector<double> vptras, const int ls)
 {
     k++;
-	zeta=zetas;
 	vptra=vptras;
-    l=ls;
+
+    if(l<n)
+    {
+        for(i=0; i < (n-l)+1; i++)
+        {
+            vptra.push_back(0.0);
+        }
+    }
+
+        w.push_back(vptra);
 
 }
 
@@ -117,12 +133,5 @@ void Solution::Tvalues(const double aDotc0s, const double decompressions, const 
 	alpha.push_back(alphas);
 	m.push_back(ms);
 	
-}
-
-Solution* Solution::retrieve()
-{
-
-    return this;
-
 }
 

@@ -334,7 +334,6 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 void BeamModel::opening(Parameters parameters, Creep creep)
 {
 
-    cout << "Test";
     int infoLevel=0;
     extern Solution solution;
 	//	So we now have the correct numerical or analytical crack opening profile vStar(zeta), and can output it if needed
@@ -346,8 +345,6 @@ void BeamModel::opening(Parameters parameters, Creep creep)
 //			interface.oneline(" iterations for outflowLength = ", outflowLength);
 		
 		}
-
-
         if (parameters.solutionmethod==2)
         {	// then recalculate and print the numerical solution
 				
@@ -358,13 +355,8 @@ void BeamModel::opening(Parameters parameters, Creep creep)
             final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
             final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);
 
+            solution.sprofile(final.zeta, final.vptra, final.l);
 
-
-            zeta=final.zeta;
-            cout << endl << "zeta" << final.zeta[2] << endl;
-            cout << endl << "crack" << final.vptra[2] << endl;
-            crackdisplacement=final.vptra;
-            l=final.l;
         }
         else
         {
