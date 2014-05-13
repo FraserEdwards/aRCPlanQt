@@ -160,12 +160,14 @@ void File::writeresults()
 
     out << "Normalised Crack Speed,Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
 
-//    for(i=0; i<solution.soln;i++)
-//    {
+    for(i=1; i<solution.soln+1;i++)
+    {
 
-//        results <<
+        out << solution.aDotc0[i] << "," << solution.decompression[i] << "," << solution.alpha[i] << ","
+                << solution.m[i] << "," << solution.outflowLength[i] << ", ," << solution.g0[i] << ","
+                << solution.gG0[i] << "," << solution.gTotal[i] << "\n";
 
-//    }
+    }
 
     out.close();
 

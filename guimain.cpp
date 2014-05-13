@@ -262,6 +262,9 @@ void guimain::plotprofiles(vector<double> x, vector<double> y, string title, str
 
     path = (ui -> path -> text().toStdString()) + "Profiles/" + title;
     ui -> Crackplot -> addGraph();
+    ui -> Crackplot ->graph(0) ->setPen(QPen(Qt::green));
+    ui -> Crackplot -> graph(0)->setLineStyle(QCPGraph::lsNone);
+    ui -> Crackplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, 4));
 
     QVector<double> Qx = QVector<double>::fromStdVector(x);
 
@@ -294,6 +297,8 @@ void guimain::plotresults(vector<double> x, vector<double> y, string title, stri
 
     path = (ui -> path -> text().toStdString()) + "Results/" + title;
     ui -> Resultsplot -> addGraph();
+    ui -> Resultsplot -> graph(0)->setLineStyle(QCPGraph::lsNone);
+    ui -> Resultsplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, 4));
 
     QVector<double> Qx = QVector<double>::fromStdVector(x);
 
@@ -426,43 +431,8 @@ void guimain::on_rangemode_clicked()
 
 void guimain::on_Save_clicked()
 {
-
     extern File file;
     file.writeresults();
-
-//    extern File file;
-
-//    filename = "Results.csv";
-
-//    results.open((file.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
-
-
-//    for (k = 0; k < ui -> Resultstable -> rowCount(); k++)
-//    {
-//        if(k == 0)
-//        {
-//            results << ui -> parameter -> currentText().toStdString() << ",Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
-//        }
-
-//        for (j = 0; j < ui -> Resultstable -> columnCount(); j++)
-//        {
-
-//            QString temp = ui ->Resultstable->item(k,j) -> text();
-//            if (j == (ui -> Resultstable -> columnCount())-1)
-//            {
-//                results << temp.toStdString() << "\n";
-//            }
-//            else
-//            {
-//                results << temp.toStdString() << ",";
-//            }
-
-//        }
-
-//    }
-
-//    results.close();
-
 }
 
 
