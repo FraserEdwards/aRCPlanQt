@@ -80,7 +80,7 @@ public:
 
         void iteration(Parameters parameters, Backfill backfill, Creep creep);
 
-        void opening(Parameters parameters, Solution solution, Creep creep);
+        void opening(Parameters parameters, Creep creep);
 
 
 };

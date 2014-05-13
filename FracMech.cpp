@@ -37,7 +37,7 @@ void FracMech::extensionForce(BeamModel beamModel, const Parameters parameters, 
 	gKb = 0.5 * parameters.dynamicModulus * Constants::giga * parameters.radius * parameters.h * beamModel.aDotOverCL * beamModel.aDotOverCL * 
 	(Constants::c2 * beamModel.wStar2dash * beamModel.wStar2dash + Constants::c1 * pow(beamModel.wStar2dash2 * parameters.radius, 2)) / parameters.crackWidth;
 		
-		if (not parameters.analyticalSolutionMode)
+        if (parameters.solutionmethod==2)
 		{//  ... account for kinetic energy of detached backfill mass: 
 
 			beamModel.factor = beamModel.vStarDashBackfillEject * beamModel.v0 * parameters.aDotc0 * Constants::vSonic * parameters.sdr / 2.0 / beamModel.sdrMinus1 / beamModel.outflowLength;

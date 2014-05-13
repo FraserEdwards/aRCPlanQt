@@ -140,7 +140,7 @@ void File::write(Parameters temp)
 
     writeline("outflowModelOn = ", temp.outflowModelOn, out, 0);
     writeline("lambda = ", temp.lambda, out, 0);
-    writeline("analyticalSolutionMode = ", temp.analyticalSolutionMode, out, 0);
+    writeline("solutionmethod = ", temp.solutionmethod, out, 0);
     writeline("numberOfSpeedValues = ", temp.rangenumber, out, 0);
     writeline("elementsInL = ", temp.elementsinl, out, 0);
 

@@ -48,7 +48,7 @@ Solution Simulation::run(Parameters parameters)
         if(!beamModel.noCrackOpening)
         {
 
-            beamModel.opening(parameters, solution, creep);
+            beamModel.opening(parameters, creep);
             fracmech.extensionForce(beamModel, parameters, creep);
 
             solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
@@ -96,7 +96,7 @@ Solution Simulation::run(Parameters parameters)
             if(!beamModel.noCrackOpening)
             {
 
-                beamModel.opening(parameters, solution, creep);
+                beamModel.opening(parameters, creep);
                 fracmech.extensionForce(beamModel, parameters, creep);
 
                 solution.sprofile(beamModel.zeta, beamModel.crackdisplacement, beamModel.l);
@@ -109,8 +109,6 @@ Solution Simulation::run(Parameters parameters)
 
                 solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
                 fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
-
-                // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
 				
             }
 					

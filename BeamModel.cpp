@@ -133,7 +133,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 		cspeed(parameters, backfill);
 
 		//	Determine (either by analytical or FD method) the opening profile v*(zeta) for a given outflow length control.lambda and the properties of it which are needed for analysis.
-		if (not parameters.analyticalSolutionMode)
+        if (parameters.solidInsidePipe==2)
 		{	// ...then use FINITE DIFFERENCE solution method:
 			//		short waitForMe;	
 
@@ -331,9 +331,12 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
 }
 
-void BeamModel::opening(Parameters parameters, Solution solution, Creep creep)
+void BeamModel::opening(Parameters parameters, Creep creep)
 {
+
+    cout << "Test";
     int infoLevel=0;
+    extern Solution solution;
 	//	So we now have the correct numerical or analytical crack opening profile vStar(zeta), and can output it if needed
 
         if (infoLevel > 1)
@@ -345,7 +348,7 @@ void BeamModel::opening(Parameters parameters, Solution solution, Creep creep)
 		}
 
 
-        if (!parameters.analyticalSolutionMode)
+        if (parameters.solutionmethod==2)
         {	// then recalculate and print the numerical solution
 				
             FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
@@ -355,7 +358,11 @@ void BeamModel::opening(Parameters parameters, Solution solution, Creep creep)
             final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
             final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);
 
+
+
             zeta=final.zeta;
+            cout << endl << "zeta" << final.zeta[2] << endl;
+            cout << endl << "crack" << final.vptra[2] << endl;
             crackdisplacement=final.vptra;
             l=final.l;
         }

@@ -63,7 +63,7 @@ public:
 
     int outflowModelOn;
     double lambda;
-    int analyticalSolutionMode;
+    int solutionmethod;
     int singlemode;
     int rangenumber;
     int elementsinl;

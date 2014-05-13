@@ -24,7 +24,7 @@ Parameters::Parameters()
 
     outflowModelOn = 0;
     lambda = 3.0;
-    analyticalSolutionMode = 2;
+    solutionmethod = 2;
     singlemode = 2;
     rangenumber = 0;
     elementsinl = 10;
@@ -77,7 +77,7 @@ Parameters::Parameters(ConfigFile config)
 {
     config.readInto(outflowModelOn, "outflowModelOn");
     config.readInto(lambda, "lambda");
-    config.readInto(analyticalSolutionMode, "analyticalSolutionMode");
+    config.readInto(solutionmethod, "solutionmethod");
     config.readInto(singlemode, "Mode");
     config.readInto(rangenumber, "numberOfSpeedValues");
     config.readInto(elementsinl, "elementsInL");
@@ -111,7 +111,7 @@ Parameters& Parameters::operator=(const Parameters& rhs)
 {
     outflowModelOn = rhs.outflowModelOn;
     lambda = rhs.lambda;
-    analyticalSolutionMode = rhs.analyticalSolutionMode;
+    solutionmethod = rhs.solutionmethod;
     singlemode = rhs.singlemode;
     rangenumber = rhs.rangenumber;
     elementsinl = rhs.elementsinl;
