@@ -291,7 +291,12 @@ void File::writeheaders(string filename)
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
     writelinestringcsv("\n", out);
-    out << "Normalised Crack Speed, Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
+    out << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
+        << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
+        << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
+        << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << "," << "outflowLength"
+        << "," << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
+
     out.close();
 
 }
