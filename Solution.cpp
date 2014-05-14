@@ -3,8 +3,6 @@
 
 #include "Solution.h"
 
-
-
 Solution::Solution(){
 
     soln=0;

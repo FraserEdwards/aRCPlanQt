@@ -1,9 +1,6 @@
 #include <cstdlib>
 using namespace std;
 
-#include <matrix.h>
-using namespace Numeric_lib;
-
 #include "FDprofile.h"
 #include "Parameters.h"
 

@@ -61,6 +61,7 @@ private:
     string filename;
     string path;
     int exists;
+    int check;
 
     ofstream results;
 

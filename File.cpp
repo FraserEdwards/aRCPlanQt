@@ -98,9 +98,46 @@ int File::loadcheck(string name)
     return 1;
 }
 
-void File::writecase(Parameters temp)
+int File::casehandler(Parameters temp, string filename)
 {
-    filename = "caseInputData.txt";
+    if(filename.find(".txt",0)<100)
+    {
+        writepartxt(temp, filename);
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+void File::writeresults()
+{
+    ofstream out;
+    extern File file;
+    extern Solution solution;
+
+    filename = "Results.csv";
+
+    out.open((file.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+
+    out << "Normalised Crack Speed,Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
+
+    for(i=1; i<solution.soln+1;i++)
+    {
+
+        out << solution.aDotc0[i] << "," << solution.decompression[i] << "," << solution.alpha[i] << ","
+                << solution.m[i] << "," << solution.outflowLength[i] << ", ," << solution.g0[i] << ","
+                << solution.gG0[i] << "," << solution.gTotal[i] << "\n";
+
+    }
+
+    out.close();
+
+}
+
+void File::writepartxt(Parameters temp, string filename)
+{
 
     ofstream out;
 
@@ -148,28 +185,10 @@ void File::writecase(Parameters temp)
 
 }
 
-void File::writeresults()
+void writeparcsv(Parameters temp, string filename)
 {
-    ofstream out;
-    extern File file;
-    extern Solution solution;
 
-    filename = "Results.csv";
 
-    out.open((file.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
-
-    out << "Normalised Crack Speed,Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
-
-    for(i=1; i<solution.soln+1;i++)
-    {
-
-        out << solution.aDotc0[i] << "," << solution.decompression[i] << "," << solution.alpha[i] << ","
-                << solution.m[i] << "," << solution.outflowLength[i] << ", ," << solution.g0[i] << ","
-                << solution.gG0[i] << "," << solution.gTotal[i] << "\n";
-
-    }
-
-    out.close();
 
 }
 

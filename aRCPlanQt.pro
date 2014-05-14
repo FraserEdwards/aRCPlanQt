@@ -55,8 +55,7 @@ HEADERS  += \
     Backfill.h \
     File.h \
     about.h \
-    dialog.h \
-    matrix.h
+    dialog.h
 
 
 FORMS    += \

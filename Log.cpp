@@ -8,7 +8,7 @@
 Log::Log()
 {
     filename = "";
-
+s
 }
 
 Log::Log(Parameters parameters)

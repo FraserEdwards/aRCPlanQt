@@ -539,8 +539,18 @@ void guimain::on_action_Save_triggered()
 
     Parameters temp;
     temp = update();
+    dialog *e = new dialog;
+    filename = "caseInputData.txt";
+    if(!file.casehandler(temp, filename))
+    {
+        e->Warning("caseInputData.txt saved successfully");
 
-    file.writecase(temp);
+    }
+    else
+    {
+        e->Warning(filename + " not saved successfully, enter a viable name");
+    }
+    e->show();
 }
 
 void guimain::on_actionAbout_triggered()

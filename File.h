@@ -33,7 +33,9 @@ public:
     int check();
     int loadcheck(string name);
     string directory;
-    void writecase(Parameters temp);
+    int casehandler(Parameters temp, string filename);
+    void writeparcsv(Parameters temp, string filename);
+    void writepartxt(Parameters temp, string filename);
     void writeresults();
     void writeline(string title, double value, ofstream &out, int format);
     void writeline(string title, string value, ofstream &out, int format);
