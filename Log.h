@@ -8,7 +8,7 @@
 #include "BeamModel.h"
 using namespace std;
 
-class Log : private FracMech, private Creep, private Backfill, private BeamModel
+class Log : public FracMech, private Creep, private Backfill, private BeamModel
 {
 
 private:
@@ -17,6 +17,7 @@ public:
     Log();
     Log(Parameters parameters);
     string filename;
+    void collect(FracMech fracmech);
 };
 
 #endif // LOG_H

@@ -10,7 +10,6 @@
 BeamModel::BeamModel()
 {
 
-	g0=0;
 
 }
 

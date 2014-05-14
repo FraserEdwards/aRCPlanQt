@@ -5,6 +5,7 @@ using namespace std;
 #include "Log.h"
 #include "File.h"
 #include "Parameters.h"
+#include "FracMech.h"
 
 Log::Log()
 {
@@ -18,6 +19,12 @@ Log::Log(Parameters temp)
     filename = "/Log/Log.csv";
     file.writeparcsv(temp, filename);
     file.writeheaders(filename);
+
+}
+
+void Log::collect(FracMech fracmech)
+{
+    g0 = fracmech.g0;
 
 }
 

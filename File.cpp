@@ -287,10 +287,10 @@ void File::writelinestringcsv(string title, ofstream &out)
 
 void File::writeheaders(string filename)
 {
-
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
     writelinestringcsv("\n", out);
+
     out << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
         << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
@@ -298,8 +298,9 @@ void File::writeheaders(string filename)
         << "," << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
 
     out.close();
-
 }
+
+
 
 
 
