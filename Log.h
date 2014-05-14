@@ -1,19 +1,19 @@
+#include "FracMech.h"
+#include "Parameters.h"
+#include "Backfill.h"
+#include "BeamModel.h"
+#include "Creep.h"
+using namespace std;
+
 #ifndef LOG_H
 #define LOG_H
 
-#include "Parameters.h"
-#include "FracMech.h"
-#include "Creep.h"
-#include "Backfill.h"
-#include "BeamModel.h"
-using namespace std;
-
-class Log : public FracMech, private Creep, private Backfill, private BeamModel
+class Log : public FracMech, public BeamModel, public Creep, public Backfill
 {
-
 private:
 
 public:
+
     Log();
     Log(Parameters parameters);
     string filename;

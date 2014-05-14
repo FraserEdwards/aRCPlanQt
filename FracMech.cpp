@@ -1,8 +1,9 @@
 #include <cmath>
 #include <iostream>
 
-#include "Constants.h"
 #include "FracMech.h"
+#include "Constants.h"
+
 
 FracMech::FracMech()
 {

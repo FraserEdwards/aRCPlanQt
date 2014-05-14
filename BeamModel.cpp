@@ -5,6 +5,10 @@
 #include "Constants.h"
 #include "BeamModel.h"
 #include "OutflowProcess.h"
+#include "Decompression.h"
+#include "FDprofile.h"
+#include "Solution.h"
+
 
 //Null constructor
 BeamModel::BeamModel()

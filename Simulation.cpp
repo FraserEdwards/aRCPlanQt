@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <QObject>
 using namespace std;
@@ -25,6 +26,7 @@ Solution Simulation::run(Parameters parameters)
 
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
+    log.collect(fracmech);
 
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);

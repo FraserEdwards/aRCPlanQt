@@ -1,8 +1,8 @@
-#include "SymDoubleMatrix.h"
-#include <vector>
-
 #ifndef FDprofileH
 #define FDprofileH
+
+#include "SymDoubleMatrix.h"
+#include <vector>
 
 class FDprofile
 //  An array object representing the opening profile in the open-crack region of a pipe undergoing RCP

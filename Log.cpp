@@ -16,7 +16,7 @@ Log::Log(Parameters temp)
 {
 
     extern File file;
-    filename = "/Log/Log.csv";
+    filename = "Log/Log.csv";
     file.writeparcsv(temp, filename);
     file.writeheaders(filename);
 
@@ -24,7 +24,9 @@ Log::Log(Parameters temp)
 
 void Log::collect(FracMech fracmech)
 {
+    extern File file;
     g0 = fracmech.g0;
+    file.writelogline(this);
 
 }
 

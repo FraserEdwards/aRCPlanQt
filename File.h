@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _FILE_H
 #define _FILE_H
 
@@ -16,6 +17,7 @@ using namespace std;
 
 #include "Parameters.h"
 #include "Solution.h"
+#include "Log.h"
 
 class File
 {
@@ -46,7 +48,8 @@ public:
     void writelinetxt(string title, double value, ofstream &out, int format);
     void writelinetxt(string title, string value, ofstream &out, int format);
     void writelinetxt(string title, ofstream &out, int format);
-    void writeheaders(string filename);
+    void writeheaders(string temp);
+    void writelogline(Log *log);
 };
 
 #endif

@@ -1,10 +1,10 @@
 #ifndef BeamModelH
 #define BeamModelH
 
-#include "Creep.h"
-#include "Decompression.h"
+#include <vector>
+
 #include "Backfill.h"
-#include "Solution.h"
+#include "Creep.h"
 
 class BeamModel 
 {// 

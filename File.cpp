@@ -285,8 +285,9 @@ void File::writelinestringcsv(string title, ofstream &out)
 
 }
 
-void File::writeheaders(string filename)
+void File::writeheaders(string temp)
 {
+    filename = temp;
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
     writelinestringcsv("\n", out);
@@ -297,10 +298,21 @@ void File::writeheaders(string filename)
         << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << "," << "outflowLength"
         << "," << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
 
+    writelinestringcsv("\n", out);
+
     out.close();
 }
 
+void File::writelogline(Log *log)
+{
 
+    cout << "Test: " << directory+filename << endl;
+    out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
+
+    out << (log->g0) << "," << "\n";
+
+    out.close();
+}
 
 
 
