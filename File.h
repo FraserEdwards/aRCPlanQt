@@ -20,6 +20,9 @@ using namespace std;
 class File
 {
 private:
+
+    ofstream out;
+
     int i;
 	char Path[256];	
     int checkstate;
@@ -37,9 +40,13 @@ public:
     void writeparcsv(Parameters temp, string filename);
     void writepartxt(Parameters temp, string filename);
     void writeresults();
-    void writeline(string title, double value, ofstream &out, int format);
-    void writeline(string title, string value, ofstream &out, int format);
-    void writeline(string title, ofstream &out, int format);
+    void writelinedoublecsv(string title, double value, ofstream &out);
+    void writelinestringcsv(string title, string value, ofstream &out);
+    void writelinestringcsv(string title, ofstream &out);
+    void writelinetxt(string title, double value, ofstream &out, int format);
+    void writelinetxt(string title, string value, ofstream &out, int format);
+    void writelinetxt(string title, ofstream &out, int format);
+    void writeheaders(string filename);
 };
 
 #endif
