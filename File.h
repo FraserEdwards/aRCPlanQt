@@ -58,7 +58,7 @@ public:
     void collect(Creep creep);
     void collect(Backfill backfill);
     void collect(BeamModel *beamModel);
-    void writelogline();
+    void writelogline(int newline);
 };
 
 #endif

@@ -11,6 +11,55 @@ void File::initialise()
 {
     aDotc0 = 0.0;
     densityratio = 0.0;
+
+    dStarMinus1 = 0.0;
+    dStarMinus2 = 0.0;
+    baffleLeakageArea = 0.0;
+    fdArraySize = 0;
+    decompression = 0.0;
+
+    zetaClosure = 0.0;
+    printOpeningProfile = 0;
+
+    l = 0;
+    maxIterations = 0;
+    hOverR = 0.0;
+    lambdaLast = 0.0;
+    zetaBackfilledLast = 0.0;
+    notConverged = 0;
+    iterations = 0;
+    noCrackOpening = 0;
+    wStar2 = 0.0;
+    wStarMax = 0.0;
+    wStar2dash = 0.0;
+    wStar2dash2 = 0.0;
+    integral_wStar2 = 0.0;
+    zetaBackfillEject = 0.0;
+    p1p0r = 0.0;
+    dynamicShearModulus = 0.0;
+    nodeResolution = 0.0;
+    v0 = 0.0;
+    factor = 0.0;
+    p1bar = 0.0;
+    vStarRes = 0.0;
+    nodeAtClosure = 0;
+    aDotOverCL = 0.0;
+    aDotCLfactor = 0.0;
+    aDotCLfactor_backfilled = 0.0;
+    lambdaPow4 = 0;
+    sdrMinus1 = 0.0;
+    sdrMinus2 = 0.0;
+    zetaBackfilled = 0.0;
+    outflowLength = 0.0;
+    v00 = 0.0;
+    error = 0.0;
+    availableInternalVolume = 0.0;
+    vStarDashBackfillEject = 0.0;
+
+    m[0] = 0.0;
+    m[1] = 0.0;
+    alpha[0] = 0.0;
+    alpha[1] = 0.0;
 }
 
 void File::correct()
@@ -117,7 +166,6 @@ int File::casehandler(Parameters temp, string filename)
 
 void File::writeresults()
 {
-//    ofstream out;
     extern File file;
     extern Solution solution;
 
@@ -142,8 +190,6 @@ void File::writeresults()
 
 void File::writepartxt(Parameters temp, string filename)
 {
-
-//    ofstream out;
 
     out.open((directory + filename).c_str());
 
@@ -191,8 +237,6 @@ void File::writepartxt(Parameters temp, string filename)
 
 void File::writeparcsv(Parameters temp, string filename)
 {
-
-//    ofstream out;
 
     out.open((directory + filename).c_str());
 
@@ -314,9 +358,14 @@ void File::logprepare(Parameters temp)
     writeheaders(filename);
 }
 
-void File::writelogline()
+void File::writelogline(int newline)
 {
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
+
+    if(newline)
+    {
+    out << " \n";
+    }
 
     out << aDotc0 << ","
         << g0 << ","
@@ -334,20 +383,20 @@ void File::writelogline()
 void File::collect(FracMech fracmech)
 {
     g0 = fracmech.g0;
-    writelogline();
+    writelogline(0);
 }
 
 void File::collect(Creep creep)
 {
     diameterRes0 = creep.diameterRes0;
     residualCrackClosure = creep.residualCrackClosure;
-    writelogline();
+    writelogline(0);
 }
 
 void File::collect(Backfill backfill)
 {
     densityratio =  backfill.densityratio;
-    writelogline();
+    writelogline(0);
 }
 
 void File::collect(BeamModel *beamModel)
@@ -368,7 +417,7 @@ void File::collect(BeamModel *beamModel)
     alpha[1] = beamModel -> alpha[1];
     error = beamModel -> error;
     notConverged = beamModel -> notConverged;
-    writelogline();
+    writelogline(1);
 }
 
 

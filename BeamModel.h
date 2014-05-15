@@ -10,17 +10,15 @@ class BeamModel
 {// 
 	private:
 									
-		double dStarMinus1;
-		double dStarMinus2;		
-		double baffleLeakageArea;
 
-		
-		short fdArraySize;
-		double decompression;
 		
 		
 public:	
-
+        double dStarMinus1;
+        double dStarMinus2;
+        double baffleLeakageArea;
+        short fdArraySize;
+        double decompression;
         double zetaClosure;
 		short printOpeningProfile;
 		double deltaDStar;
