@@ -37,7 +37,7 @@ Solution Simulation::run(Parameters parameters)
     log.collect(backfill);
 
     //	Preliminary calculations
-    BeamModel beamModel(parameters, backfill, creep);
+    BeamModel beamModel(parameters);
 
     if(parameters.singlemode)
     {

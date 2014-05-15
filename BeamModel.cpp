@@ -18,7 +18,7 @@ BeamModel::BeamModel()
 }
 
 //Constructor
-BeamModel::BeamModel(const Parameters parameters, Backfill backfill, Creep creep)
+BeamModel::BeamModel(const Parameters parameters)
 {
 
 	//Proportion of internal volume available for expansion

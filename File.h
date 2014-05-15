@@ -26,7 +26,6 @@ private:
     ofstream out;
 
     int i;
-	char Path[256];	
     int checkstate;
     string tempdir;
     string subfolder;

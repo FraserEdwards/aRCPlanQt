@@ -61,7 +61,7 @@ public:
 	    BeamModel();
 
 		// Constructs a dynamic beam-on-elastic-foundation model of the specific pipe RCP case
-	    BeamModel(const Parameters parameters, const Backfill backfill, Creep creep);
+        BeamModel(const Parameters parameters);
 		
 		// Speed dependent properties and reset for outflow length
 		void speedandreset(const Parameters parameters, Backfill backfill, Creep creep);	

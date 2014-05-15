@@ -305,8 +305,6 @@ void File::writeheaders(string temp)
 
 void File::writelogline(Log *log)
 {
-
-    cout << "Test: " << directory+filename << endl;
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
     out << (log->g0) << ","
