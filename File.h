@@ -57,7 +57,7 @@ public:
     void collect(FracMech fracmech);
     void collect(Creep creep);
     void collect(Backfill backfill);
-    void collect(BeamModel *beamModel);
+    void collect(BeamModel *beamModel, int newline);
     void writelogline(int newline);
 };
 

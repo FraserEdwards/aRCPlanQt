@@ -40,7 +40,7 @@ BeamModel::BeamModel(const Parameters parameters)
     nodeAtClosure = short(zetaClosure * parameters.elementsinl);
 	zetaBackfilled = 0.2;		// first guess
 
-    file.collect(this);
+    file.collect(this,0);
 
 }
 void BeamModel::initialise()
@@ -139,7 +139,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 	factor = Constants::pi * Constants::c1 * 625.0 * parameters.dynamicModulus / p1bar * availableInternalVolume * sdrMinus2 / sdrMinus1 / sdrMinus1 * parameters.aDotc0;	// Note GPa / bar / 16 = 625
 
     file.aDotc0 = parameters.aDotc0;
-    file.collect(this);
+    file.collect(this, 1);
 
 }
 
@@ -173,6 +173,7 @@ void BeamModel::converteffopen(const Parameters parameters)
 
 void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep creep)
 {
+    extern File file;
 	maxIterations=100;
 	notConverged = 1;
 	iterations = 0;
@@ -195,6 +196,8 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 		
 		//	Dimensionless crack speed 
 		cspeed(parameters, backfill);
+
+        file.collect(this, 0);
 
 		//	Determine (either by analytical or FD method) the opening profile v*(zeta) for a given outflow length control.lambda and the properties of it which are needed for analysis.
         if (parameters.solidInsidePipe==2)
@@ -324,6 +327,9 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 					iterations++;
 
 				}
+
+            file.collect(this, 0);
+
 			} // done that refinement iteration
 			while (notConverged & (iterations < maxIterations));
 
@@ -390,8 +396,10 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			noCrackOpening = 1;
 		}
 
+        file.collect(this, 0);
+
 	} // end outflow length refinement
-	while (notConverged & (iterations < maxIterations) and not noCrackOpening);
+    while (notConverged & (iterations < maxIterations) & !noCrackOpening);
 
 }
 

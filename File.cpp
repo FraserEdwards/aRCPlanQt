@@ -399,7 +399,7 @@ void File::collect(Backfill backfill)
     writelogline(0);
 }
 
-void File::collect(BeamModel *beamModel)
+void File::collect(BeamModel *beamModel, int newline)
 {
     zetaClosure = beamModel ->zetaClosure;
     nodeAtClosure = beamModel->nodeAtClosure;
@@ -417,7 +417,7 @@ void File::collect(BeamModel *beamModel)
     alpha[1] = beamModel -> alpha[1];
     error = beamModel -> error;
     notConverged = beamModel -> notConverged;
-    writelogline(1);
+    writelogline(newline);
 }
 
 
