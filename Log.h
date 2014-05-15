@@ -20,7 +20,6 @@ public:
     void collect(FracMech fracmech);
     void collect(Creep creep);
     void collect(Backfill backfill);
-    void collect(BeamModel beamModel);
 
 };
 

@@ -4,6 +4,7 @@
 #include "FracMech.h"
 #include "Constants.h"
 
+
 FracMech::FracMech()
 {
 	g0=0;

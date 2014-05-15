@@ -21,16 +21,20 @@ Solution Simulation::run(Parameters parameters)
 {
 
     extern Solution solution;
-    extern File file;
+
+    Log log(parameters);
 
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
+    log.collect(fracmech);
 
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);
+    log.collect(creep);
 
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
+    log.collect(backfill);
 
     //	Preliminary calculations
     BeamModel beamModel(parameters);
