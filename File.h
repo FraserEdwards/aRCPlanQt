@@ -19,7 +19,7 @@ using namespace std;
 #include "Solution.h"
 #include "Log.h"
 
-class File
+class File : public BeamModel, public Creep, public Backfill, public FracMech
 {
 private:
 
@@ -33,6 +33,7 @@ private:
     int found;
 public:
     File();
+    File(Parameters temp);
     void correct(); 	//Null constructor
     int check();
     int loadcheck(string name);
@@ -48,7 +49,11 @@ public:
     void writelinetxt(string title, string value, ofstream &out, int format);
     void writelinetxt(string title, ofstream &out, int format);
     void writeheaders(string temp);
-    void writelogline(Log *log);
+    void collect(Creep creep);
+    void collect(Backfill backfill);
+    void collect(FracMech fracmech);
+    void collect(BeamModel BeamModel);
+    void writelogline();
 };
 
 #endif

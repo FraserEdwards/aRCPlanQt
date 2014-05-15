@@ -9,6 +9,15 @@ File::File()
 
 }
 
+File::File(Parameters temp)
+{
+
+    filename = "Log/Log.csv";
+    writeparcsv(temp, filename);
+    writeheaders(filename);
+
+}
+
 void File::correct()
 {
 
@@ -303,17 +312,34 @@ void File::writeheaders(string temp)
     out.close();
 }
 
-void File::writelogline(Log *log)
+void File::writelogline()
 {
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
-    out << (log->g0) << ","
-        << (log->diameterRes0) << "," << (log->residualCrackClosure) << ","
-        << (log->densityratio) << "\n";
+    out << (g0) << ","
+        << (diameterRes0) << "," << (residualCrackClosure) << ","
+        << (densityratio) << "\n";
 
     out.close();
 }
 
+void File::collect(FracMech fracmech)
+{
+    g0 = fracmech.g0;
+    writelogline();
+}
 
+void File::collect(Creep creep)
+{
+    diameterRes0 = creep.diameterRes0;
+    residualCrackClosure = creep.residualCrackClosure;
+    writelogline();
+}
+
+void File::collect(Backfill backfill)
+{
+    densityratio = backfill.densityratio;
+    writelogline();
+}
 
 

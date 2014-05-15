@@ -18,7 +18,6 @@ class BeamModel
 		short fdArraySize;
 		double decompression;
 		
-		
 public:	
 
 		short printOpeningProfile;
