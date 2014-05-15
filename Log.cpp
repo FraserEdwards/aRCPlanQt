@@ -26,7 +26,7 @@ void Log::collect(FracMech fracmech)
 {
     extern File file;
     g0 = fracmech.g0;
-    file.writelogline(this);
+    file.writelogline();
 
 }
 
@@ -35,14 +35,14 @@ void Log::collect(Creep creep)
     extern File file;
     diameterRes0 = creep.diameterRes0;
     residualCrackClosure = creep.residualCrackClosure;
-    file.writelogline(this);
+    file.writelogline();
 }
 
 void Log::collect(Backfill backfill)
 {
     extern File file;
     densityratio = backfill.densityratio;
-    file.writelogline(this);
+    file.writelogline();
 
 }
 

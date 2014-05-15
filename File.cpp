@@ -299,19 +299,44 @@ void File::writeheaders(string temp)
         << "," << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
 
     writelinestringcsv("\n", out);
+    out.close();
+}
+
+void File::logprepare(Parameters temp)
+{
+    filename = "Log/Log.csv";
+    writeparcsv(temp, filename);
+    writeheaders(filename);
+}
+
+void File::writelogline()
+{
+    out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
+
+    out << g0 << ","
+        << diameterRes0 << "," << residualCrackClosure << ","
+        << densityratio << "\n";
 
     out.close();
 }
 
-void File::writelogline(Log *log)
+void File::collect(FracMech fracmech)
 {
-    out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
+    g0 = fracmech.g0;
+    writelogline();
+}
 
-    out << (log->g0) << ","
-        << (log->diameterRes0) << "," << (log->residualCrackClosure) << ","
-        << (log->densityratio) << "\n";
+void File::collect(Creep creep)
+{
+    diameterRes0 = creep.diameterRes0;
+    residualCrackClosure = creep.residualCrackClosure;
+    writelogline();
+}
 
-    out.close();
+void File::collect(Backfill backfill)
+{
+    densityratio =  backfill.densityratio;
+    writelogline();
 }
 
 
