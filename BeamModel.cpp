@@ -15,6 +15,16 @@
 BeamModel::BeamModel()
 {
 
+    dStarMinus1 = 0.0;
+    dStarMinus2 = 0.0;
+    baffleLeakageArea = 0.0;
+    fdArraySize = 0;
+    decompression = 0.0;
+
+    zetaClosure = 0.0;
+    printOpeningProfile = 0;
+
+
 
 }
 

@@ -317,7 +317,10 @@ void File::writelogline()
         << diameterRes0 << "," << residualCrackClosure << ","
         << densityratio << ","
         << zetaClosure << "," << nodeAtClosure << "," << outflowLength << ","
-        << p1bar << "," << v0 << "\n";
+        << p1bar << "," << v0 << ","
+        << vStarRes << "," << aDotCLfactor << "," << aDotCLfactor_backfilled << ","
+        << maxIterations << "," << iterations << "," << m[0] << "," << m[1] << ","
+        << alpha[0] << "," << alpha[1] << "," << error << "," << notConverged << "\n";
 
     out.close();
 }
