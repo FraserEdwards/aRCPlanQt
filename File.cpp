@@ -2,8 +2,6 @@
 #include <iostream>
 #include <sys/stat.h>
 
-#include "Solution.h"
-
 File::File()
 {
 

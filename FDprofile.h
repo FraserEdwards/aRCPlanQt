@@ -1,6 +1,7 @@
 #ifndef FDprofileH
 #define FDprofileH
 
+#include "SymDoubleMatrix.h"
 #include <vector>
 
 class FDprofile

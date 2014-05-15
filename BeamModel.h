@@ -2,11 +2,9 @@
 #define BeamModelH
 
 #include <vector>
-using namespace std;
 
-#include "Parameters.h"
-#include "Creep.h"
 #include "Backfill.h"
+#include "Creep.h"
 
 class BeamModel 
 {// 

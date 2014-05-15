@@ -4,9 +4,10 @@
 #include <QMainWindow>
 #include <QLineEdit>
 #include <fstream>
-
 #include "Parameters.h"
 #include "Solution.h"
+#include "Simulation.h"
+
 
 namespace Ui {
 class guimain;

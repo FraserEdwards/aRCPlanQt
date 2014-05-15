@@ -14,7 +14,6 @@
 #include "qcustomplot.h"
 #include "File.h"
 #include "Constants.h"
-#include "Simulation.h"
 
 guimain::guimain(QWidget *parent) :
     QMainWindow(parent),
