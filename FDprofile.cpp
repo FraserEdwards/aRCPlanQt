@@ -5,6 +5,7 @@
 using namespace std;
 
 #include "FDprofile.h"
+#include "SymDoubleMatrix.h"
 
 FDprofile::FDprofile()
 {//	Null constructor

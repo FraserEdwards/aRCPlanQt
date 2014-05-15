@@ -2,12 +2,10 @@
 #define _SOLUTION_H
 
 #include <cstdlib>
+#include <vector>
 using namespace std;
 
-#include "FDprofile.h"
 #include "Parameters.h"
-
-
 
 class Solution{
 

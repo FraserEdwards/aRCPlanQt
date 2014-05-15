@@ -1,12 +1,7 @@
-#include "FracMech.h"
-#include "Parameters.h"
-#include "Backfill.h"
-#include "BeamModel.h"
-#include "Creep.h"
-using namespace std;
-
 #ifndef LOG_H
 #define LOG_H
+
+#include "FracMech.h"
 
 class Log : public FracMech, public BeamModel, public Creep, public Backfill
 {

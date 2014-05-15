@@ -1,8 +1,9 @@
 #ifndef _FRACHMECH_H
 #define _FRACHMECH_H
 
+#include "Creep.h"
+#include "Backfill.h"
 #include "BeamModel.h"
-#include "Parameters.h"
 
 class FracMech
 {
