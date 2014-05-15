@@ -14,23 +14,13 @@
 //Null constructor
 BeamModel::BeamModel()
 {
-
-    dStarMinus1 = 0.0;
-    dStarMinus2 = 0.0;
-    baffleLeakageArea = 0.0;
-    fdArraySize = 0;
-    decompression = 0.0;
-
-    zetaClosure = 0.0;
-    printOpeningProfile = 0;
-
-
-
+    initialise();
 }
 
 //Constructor
 BeamModel::BeamModel(const Parameters parameters)
 {
+    initialise();
     extern File file;
 
 	//Proportion of internal volume available for expansion
@@ -53,10 +43,63 @@ BeamModel::BeamModel(const Parameters parameters)
     file.collect(this);
 
 }
+void BeamModel::initialise()
+{
+
+    dStarMinus1 = 0.0;
+    dStarMinus2 = 0.0;
+    baffleLeakageArea = 0.0;
+    fdArraySize = 0;
+    decompression = 0.0;
+
+    zetaClosure = 0.0;
+    printOpeningProfile = 0;
+
+    l = 0;
+    maxIterations = 0;
+    hOverR = 0.0;
+    lambdaLast = 0.0;
+    zetaBackfilledLast = 0.0;
+    notConverged = 0;
+    iterations = 0;
+    noCrackOpening = 0;
+    wStar2 = 0.0;
+    wStarMax = 0.0;
+    wStar2dash = 0.0;
+    wStar2dash2 = 0.0;
+    integral_wStar2 = 0.0;
+    zetaBackfillEject = 0.0;
+    p1p0r = 0.0;
+    dynamicShearModulus = 0.0;
+    nodeResolution = 0.0;
+    v0 = 0.0;
+    factor = 0.0;
+    p1bar = 0.0;
+    vStarRes = 0.0;
+    nodeAtClosure = 0;
+    aDotOverCL = 0.0;
+    aDotCLfactor = 0.0;
+    aDotCLfactor_backfilled = 0.0;
+    lambdaPow4 = 0;
+    sdrMinus1 = 0.0;
+    sdrMinus2 = 0.0;
+    zetaBackfilled = 0.0;
+    outflowLength = 0.0;
+    v00 = 0.0;
+    error = 0.0;
+    availableInternalVolume = 0.0;
+    vStarDashBackfillEject = 0.0;
+
+    m[0] = 0.0;
+    m[1] = 0.0;
+    alpha[0] = 0.0;
+    alpha[1] = 0.0;
+
+}
 
 void BeamModel::speedandreset(const Parameters parameters, const Backfill backfill, Creep creep)
 {
-
+    extern File file;
 	//  Set initial outflow length
 	outflowLength = parameters.lambda;
 	lambdaPow4 =  pow(outflowLength, 4);
@@ -95,6 +138,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 
 	factor = Constants::pi * Constants::c1 * 625.0 * parameters.dynamicModulus / p1bar * availableInternalVolume * sdrMinus2 / sdrMinus1 / sdrMinus1 * parameters.aDotc0;	// Note GPa / bar / 16 = 625
 
+    file.collect(this);
 }
 
 void BeamModel::stiffness()
@@ -378,9 +422,7 @@ void BeamModel::opening(Parameters parameters, Creep creep)
         }
         else
         {
-
 			//Originally Analytical Method
-
         }
 		
 		wStar2 *= v0;

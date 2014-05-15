@@ -295,8 +295,8 @@ void File::writeheaders(string temp)
     out << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
         << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
-        << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << "," << "outflowLength"
-        << "," << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
+        << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << ","
+        << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
 
     writelinestringcsv("\n", out);
     out.close();

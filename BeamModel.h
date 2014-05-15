@@ -55,15 +55,17 @@ public:
 		double v00;
         double error;
 		double availableInternalVolume;
-		vector<double> zeta;
-		vector<double> crackdisplacement;
-		double vStarDashBackfillEject;
+        vector<double> zeta;
+        vector<double> crackdisplacement;
+        double vStarDashBackfillEject;
 		
 		//Null constructor
 	    BeamModel();
 
 		// Constructs a dynamic beam-on-elastic-foundation model of the specific pipe RCP case
         BeamModel(const Parameters parameters);
+
+        void initialise();
 		
 		// Speed dependent properties and reset for outflow length
 		void speedandreset(const Parameters parameters, Backfill backfill, Creep creep);	
