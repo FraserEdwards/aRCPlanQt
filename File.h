@@ -19,7 +19,7 @@ using namespace std;
 #include "Solution.h"
 #include "Log.h"
 
-class File : public FracMech, public Creep, public Backfill
+class File : public FracMech, public Creep, public Backfill, public BeamModel
 {
 private:
 
@@ -52,6 +52,7 @@ public:
     void collect(FracMech fracmech);
     void collect(Creep creep);
     void collect(Backfill backfill);
+    void collect(BeamModel *beamModel);
     void writelogline();
 };
 

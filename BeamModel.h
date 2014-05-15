@@ -13,7 +13,7 @@ class BeamModel
 		double dStarMinus1;
 		double dStarMinus2;		
 		double baffleLeakageArea;
-		double zetaClosure;			
+
 		
 		short fdArraySize;
 		double decompression;
@@ -21,6 +21,7 @@ class BeamModel
 		
 public:	
 
+        double zetaClosure;
 		short printOpeningProfile;
 		double deltaDStar;
 		int l;
@@ -52,6 +53,7 @@ public:
 		double zetaBackfilled;	
 		double outflowLength;
 		double v00;
+        double error;
 		double availableInternalVolume;
 		vector<double> zeta;
 		vector<double> crackdisplacement;

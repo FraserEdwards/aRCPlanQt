@@ -315,7 +315,9 @@ void File::writelogline()
 
     out << g0 << ","
         << diameterRes0 << "," << residualCrackClosure << ","
-        << densityratio << "\n";
+        << densityratio << ","
+        << zetaClosure << "," << nodeAtClosure << "," << outflowLength << ","
+        << p1bar << "," << v0 << "\n";
 
     out.close();
 }
@@ -339,6 +341,26 @@ void File::collect(Backfill backfill)
     writelogline();
 }
 
+void File::collect(BeamModel *beamModel)
+{
+    zetaClosure = beamModel ->zetaClosure;
+    nodeAtClosure = beamModel->nodeAtClosure;
+    outflowLength = beamModel -> outflowLength;
+    p1bar = beamModel -> p1bar;
+    v0 = beamModel ->v0;
+    vStarRes = beamModel -> vStarRes;
+    aDotCLfactor = beamModel -> aDotCLfactor;
+    aDotCLfactor_backfilled = beamModel -> aDotCLfactor_backfilled;
+    maxIterations = beamModel -> maxIterations;
+    iterations = beamModel -> iterations;
+    m[0] = beamModel -> m[0];
+    m[1] = beamModel -> m[1];
+    alpha[0] = beamModel -> alpha[0];
+    alpha[1] = beamModel -> alpha[1];
+    error = beamModel -> error;
+    notConverged = beamModel -> notConverged;
+    writelogline();
+}
 
 
 

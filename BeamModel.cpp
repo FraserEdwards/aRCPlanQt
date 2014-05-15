@@ -8,6 +8,7 @@
 #include "Decompression.h"
 #include "FDprofile.h"
 #include "Solution.h"
+#include "File.h"
 
 
 //Null constructor
@@ -20,6 +21,7 @@ BeamModel::BeamModel()
 //Constructor
 BeamModel::BeamModel(const Parameters parameters)
 {
+    extern File file;
 
 	//Proportion of internal volume available for expansion
 	availableInternalVolume = 1.0 - parameters.waterInsidePipe - parameters.solidInsidePipe;
@@ -37,6 +39,8 @@ BeamModel::BeamModel(const Parameters parameters)
     nodeResolution = 0.5 / parameters.elementsinl;	// used as a reference tolerance
     nodeAtClosure = short(zetaClosure * parameters.elementsinl);
 	zetaBackfilled = 0.2;		// first guess
+
+    file.collect(this);
 
 }
 
@@ -117,6 +121,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 	notConverged = 1;
 	iterations = 0;
 	noCrackOpening = 0;
+    error = 0;
     int infoLevel =0;
 
     if ((parameters.outflowModelOn==2) & (infoLevel > 1))
@@ -167,8 +172,8 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
 		// Prepare to refine closure length by iteration
 		double dontNeedThis;
-		double error;
-		short notConverged = 1;
+        error = 0;
+        notConverged = 1;
 		short iterations = 0;
 		short maximumNonContact = 0;
 		do
