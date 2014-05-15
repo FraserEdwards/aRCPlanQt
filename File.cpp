@@ -4,7 +4,13 @@
 
 File::File()
 {
+   initialise();
+}
+
+void File::initialise()
+{
     aDotc0 = 0.0;
+    densityratio = 0.0;
 }
 
 void File::correct()
@@ -302,6 +308,7 @@ void File::writeheaders(string temp)
 
 void File::logprepare(Parameters temp)
 {
+    initialise();
     filename = "Log/Log.csv";
     writeparcsv(temp, filename);
     writeheaders(filename);

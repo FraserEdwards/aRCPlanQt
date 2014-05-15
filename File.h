@@ -37,6 +37,7 @@ public:
     double aDotc0;
 
     File();
+    void initialise();
     void correct(); 	//Null constructor
     int check();
     int loadcheck(string name);
