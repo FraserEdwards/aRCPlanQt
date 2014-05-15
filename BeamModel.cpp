@@ -138,7 +138,9 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 
 	factor = Constants::pi * Constants::c1 * 625.0 * parameters.dynamicModulus / p1bar * availableInternalVolume * sdrMinus2 / sdrMinus1 / sdrMinus1 * parameters.aDotc0;	// Note GPa / bar / 16 = 625
 
+    file.aDotc0 = parameters.aDotc0;
     file.collect(this);
+
 }
 
 void BeamModel::stiffness()

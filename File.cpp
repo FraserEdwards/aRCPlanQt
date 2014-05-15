@@ -4,9 +4,7 @@
 
 File::File()
 {
-
-
-
+    aDotc0 = 0.0;
 }
 
 void File::correct()
@@ -292,7 +290,7 @@ void File::writeheaders(string temp)
 
     writelinestringcsv("\n", out);
 
-    out << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
+    out << "aDotc0" << "," << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
         << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
         << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << ","
@@ -313,7 +311,8 @@ void File::writelogline()
 {
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
-    out << g0 << ","
+    out << aDotc0 << ","
+        << g0 << ","
         << diameterRes0 << "," << residualCrackClosure << ","
         << densityratio << ","
         << zetaClosure << "," << nodeAtClosure << "," << outflowLength << ","

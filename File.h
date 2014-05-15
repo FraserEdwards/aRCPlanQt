@@ -31,7 +31,11 @@ private:
     string subfolder;
     string filename;
     int found;
+
 public:
+
+    double aDotc0;
+
     File();
     void correct(); 	//Null constructor
     int check();
