@@ -18,6 +18,9 @@ public:
     Log(Parameters parameters);
     string filename;
     void collect(FracMech fracmech);
+    void collect(Creep creep);
+    void collect(Backfill backfill);
+
 };
 
 #endif // LOG_H

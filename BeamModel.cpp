@@ -71,7 +71,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 
 	//	Dimensionless virtual crack opening at crack tip (representing residual strain)
 	v0 = v00 * lambdaPow4;			//	(m)
-	vStarRes = residualCrackClosure / v0 / Constants::kilo;	
+    vStarRes = creep.residualCrackClosure / v0 / Constants::kilo;
 
 	// Parameters for equivalent beam model (speed dependent)
 	aDotOverCL = parameters.aDotc0 * Constants::vSonic / sqrt(parameters.dynamicModulus * Constants::giga / parameters.density);

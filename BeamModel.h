@@ -16,9 +16,6 @@ class BeamModel
 		double zetaClosure;			
 		
 		short fdArraySize;
-		double densityBackfillRatio;
-		double residualCrackClosure;
-		double diameterRes0;		
 		double decompression;
 		
 		

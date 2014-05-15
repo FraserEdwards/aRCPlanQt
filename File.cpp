@@ -309,7 +309,9 @@ void File::writelogline(Log *log)
     cout << "Test: " << directory+filename << endl;
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
-    out << (log->g0) << "," << "\n";
+    out << (log->g0) << ","
+        << (log->diameterRes0) << "," << (log->residualCrackClosure) << ","
+        << (log->densityratio) << "\n";
 
     out.close();
 }

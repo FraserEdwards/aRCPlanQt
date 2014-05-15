@@ -30,9 +30,11 @@ Solution Simulation::run(Parameters parameters)
 
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);
+    log.collect(creep);
 
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
+    log.collect(backfill);
 
     //	Preliminary calculations
     BeamModel beamModel(parameters, backfill, creep);
