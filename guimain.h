@@ -1,9 +1,9 @@
-#pragma once
 #ifndef GUIMAIN_H
 #define GUIMAIN_H
 
 #include <QMainWindow>
 #include <QLineEdit>
+#include <fstream>
 #include "Parameters.h"
 #include "Solution.h"
 #include "Simulation.h"

@@ -1,4 +1,3 @@
-#pragma once
 #ifndef _BACKFILL_H
 #define _BACKFILL_H
 

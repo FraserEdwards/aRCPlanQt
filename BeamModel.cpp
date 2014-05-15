@@ -2,6 +2,14 @@
 #include <cmath>
 #include <iostream>
 
+#include "Constants.h"
+#include "BeamModel.h"
+#include "OutflowProcess.h"
+#include "Decompression.h"
+#include "FDprofile.h"
+#include "Solution.h"
+
+
 //Null constructor
 BeamModel::BeamModel()
 {
@@ -10,7 +18,7 @@ BeamModel::BeamModel()
 }
 
 //Constructor
-BeamModel::BeamModel(const Parameters parameters, Backfill backfill, Creep creep, Log log)
+BeamModel::BeamModel(const Parameters parameters, Backfill backfill, Creep creep)
 {
 
 	//Proportion of internal volume available for expansion
@@ -32,7 +40,7 @@ BeamModel::BeamModel(const Parameters parameters, Backfill backfill, Creep creep
 
 }
 
-void BeamModel::speedandreset(const Parameters parameters, const Backfill backfill, Creep creep, Log log)
+void BeamModel::speedandreset(const Parameters parameters, const Backfill backfill, Creep creep)
 {
 
 	//  Set initial outflow length
@@ -63,7 +71,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 
 	//	Dimensionless virtual crack opening at crack tip (representing residual strain)
 	v0 = v00 * lambdaPow4;			//	(m)
-    vStarRes = creep.residualCrackClosure / v0 / Constants::kilo;
+	vStarRes = residualCrackClosure / v0 / Constants::kilo;	
 
 	// Parameters for equivalent beam model (speed dependent)
 	aDotOverCL = parameters.aDotc0 * Constants::vSonic / sqrt(parameters.dynamicModulus * Constants::giga / parameters.density);
@@ -103,7 +111,7 @@ void BeamModel::converteffopen(const Parameters parameters)
 
 }
 
-void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep creep, Log log)
+void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep creep)
 {
 	maxIterations=100;
 	notConverged = 1;
@@ -326,7 +334,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
 }
 
-void BeamModel::opening(Parameters parameters, Creep creep, Log log)
+void BeamModel::opening(Parameters parameters, Creep creep)
 {
 
     int infoLevel=0;

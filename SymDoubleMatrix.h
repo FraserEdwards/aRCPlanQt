@@ -1,4 +1,3 @@
-#pragma once
 #ifndef SymDoubleMatrixH
 #define SymDoubleMatrixH
 

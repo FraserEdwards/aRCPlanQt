@@ -1,4 +1,4 @@
-#pragma once
+
 #ifndef OutflowProcess_H
 #define OutflowProcess_H
 

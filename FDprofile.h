@@ -1,4 +1,3 @@
-#pragma once
 #ifndef FDprofileH
 #define FDprofileH
 

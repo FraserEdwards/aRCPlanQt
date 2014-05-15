@@ -102,7 +102,6 @@ void Solution::Tvalues(const double aDotc0s, const double p0bars, const double t
 							const double gS1s, const double gUEs, const double gSbs, const double gKbs, const double g0s, const double gG0s, const double gTotals)
 {
 	soln++;
-
 	aDotc0.push_back(aDotc0s);
     p0bar.push_back(p0bars);
     tempDegC.push_back(tempDegCs);
@@ -130,5 +129,13 @@ void Solution::Tvalues(const double aDotc0s, const double p0bars, const double t
 	
 }
 
-
+void Solution::Tvalues(const double aDotc0s, const double decompressions, const double alphas, const double ms)
+{
+	soln++;
+	aDotc0.push_back(aDotc0s);
+	decompression.push_back(decompressions);
+	alpha.push_back(alphas);
+	m.push_back(ms);
+	
+}
 

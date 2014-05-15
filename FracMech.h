@@ -1,9 +1,8 @@
-#pragma once
 #ifndef _FRACHMECH_H
 #define _FRACHMECH_H
 
 #include "BeamModel.h"
-#include "Log.h"
+#include "Parameters.h"
 
 class FracMech
 {
@@ -20,7 +19,7 @@ public:
 
 	FracMech();	
 	FracMech(const Parameters parameters);
-    void extensionForce(const BeamModel beamModel, const Parameters parameters, double diameterRes0f);
+	void extensionForce(const BeamModel beamModel, const Parameters parameters, const Creep creep);
 };
 
 #endif
