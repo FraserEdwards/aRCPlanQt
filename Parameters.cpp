@@ -2,7 +2,6 @@
 using namespace std;
 
 #include "Parameters.h"
-#include "ConfigFile.h"
 
     string Parameters::pipeID_lib[5] = {"250mm_SDR11", "250mm_SDR17", "110mm_SDR11", "110mm_SDR17", "63mm_SDR11"};
     double Parameters::diameter_lib[5] = {250.0, 250.0, 110.0, 110.0, 63.0};

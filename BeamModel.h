@@ -1,5 +1,6 @@
-#ifndef BeamModelH
-#define BeamModelH
+#pragma once
+#ifndef BeamModel_H
+#define BeamModel_H
 
 #include <vector>
 
@@ -17,8 +18,6 @@ class BeamModel
 		
 		short fdArraySize;
 		double densityBackfillRatio;
-		double residualCrackClosure;
-		double diameterRes0;		
 		double decompression;
 		
 		
@@ -67,7 +66,7 @@ public:
 	    BeamModel(const Parameters parameters, const Backfill backfill, Creep creep);
 		
 		// Speed dependent properties and reset for outflow length
-		void speedandreset(const Parameters parameters, Backfill backfill, Creep creep);	
+        void speedandreset(const Parameters parameters, Backfill backfill, Creep creep, Log log);
 
 		// Dimensionless foundation stiffness
 		void stiffness();
@@ -77,9 +76,9 @@ public:
 
 		void converteffopen(const Parameters parameters);
 
-        void iteration(Parameters parameters, Backfill backfill, Creep creep);
+        void iteration(Parameters parameters, Backfill backfill, Creep creep, Log log);
 
-        void opening(Parameters parameters, Creep creep);
+        void opening(Parameters parameters, Creep creep, Log log);
 
 
 };

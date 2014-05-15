@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _PARAMETERS_H
 #define _PARAMETERS_H
 

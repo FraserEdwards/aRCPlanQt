@@ -16,7 +16,6 @@
 using namespace std;
 
 #include "Parameters.h"
-#include "Solution.h"
 #include "Log.h"
 
 class File

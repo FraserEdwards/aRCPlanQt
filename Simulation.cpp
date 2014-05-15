@@ -4,9 +4,6 @@
 using namespace std;
 
 #include "Simulation.h"
-#include "guimain.h"
-#include "Log.h"
-#include "ui_guimain.h"
 
 Simulation::Simulation()
 {
@@ -30,12 +27,14 @@ Solution Simulation::run(Parameters parameters)
 
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);
+    log.collect(creep);
 
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
+    log.collect(backfill);
 
     //	Preliminary calculations
-    BeamModel beamModel(parameters, backfill, creep);
+    BeamModel beamModel(parameters, backfill, creep, log);
 
     if(parameters.singlemode)
     {
@@ -51,7 +50,7 @@ Solution Simulation::run(Parameters parameters)
         {
 
             beamModel.opening(parameters, creep);
-            fracmech.extensionForce(beamModel, parameters, creep);
+            fracmech.extensionForce(beamModel, parameters, creep.diameterRes0);
 
             solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
@@ -61,8 +60,6 @@ Solution Simulation::run(Parameters parameters)
         {
             solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
-
-            // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
 
         }
 
@@ -107,6 +104,8 @@ Solution Simulation::run(Parameters parameters)
             }
             else
             {
+                beamModel.opening(parameters, creep);
+                fracmech.extensionForce(beamModel, parameters, creep);
 
                 solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
                 fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);

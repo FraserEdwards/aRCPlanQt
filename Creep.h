@@ -1,8 +1,8 @@
-#include "Parameters.h"
-
+#pragma once
 #ifndef _CREEP_H
 #define _CREEP_H
 
+#include "Parameters.h"
 class Creep
 {
 	
