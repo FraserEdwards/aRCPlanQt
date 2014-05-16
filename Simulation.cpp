@@ -57,21 +57,27 @@ Solution Simulation::run(Parameters parameters)
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
     file.collect(fracmech);
-    cout << "g0: " << fracmech.g0 << endl;
 
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);
     file.collect(creep);
-    cout << "diameterRes0: " << creep.diameterRes0 << endl;
-    cout << "residualCrackClosure" << creep.residualCrackClosure << endl;
 
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
     file.collect(backfill);
-    cout <<"densityratio: " << backfill.densityratio << endl;
 
     //	Preliminary calculations
     BeamModel beamModel(parameters);
+    cout << "Internalvolume: " << beamModel.availableInternalVolume << endl;
+    cout << "baffleLeakageArea: " << beamModel.baffleLeakageArea << endl;
+    cout << "dynamicShearModulus: " << beamModel.dynamicShearModulus << endl;
+    cout << "sdrMinus1: " << beamModel.sdrMinus1 << endl;
+    cout << "sdrMinus2: " << beamModel.sdrMinus2 << endl;
+    cout << "zetaClosure: " << beamModel.zetaClosure << endl;
+    cout << "nodeResolution: " << beamModel.nodeResolution << endl;
+    cout << "nodeAtClosure: " << beamModel.nodeAtClosure << endl;
+    cout << "zetaBackfilled: " << beamModel.zetaBackfilled << endl;
+
 
     if(parameters.singlemode)
     {
@@ -80,31 +86,18 @@ Solution Simulation::run(Parameters parameters)
 
         // Speed dependent properties
         beamModel.speedandreset(parameters, backfill, creep);
+
+        cout << "outflowLength: " << beamModel.outflowLength << endl;
+        cout << "LambdaPow4: " << beamModel.lambdaPow4 << endl;
+
         // Iteration function
         beamModel.iteration(parameters, backfill, creep);
 
-        if(!beamModel.noCrackOpening)
-        {
-
             beamModel.opening(parameters, creep);
             fracmech.extensionForce(beamModel, parameters, creep);
 
             solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
-
-        }
-        else
-        {
-            beamModel.opening(parameters, creep);
-            fracmech.extensionForce(beamModel, parameters, creep);
-
-            solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-            fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
-
-            // solution.Tvalues(parameters.aDotc0, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[1]);
-
-        }
-
     }
     else
     {
@@ -131,28 +124,15 @@ Solution Simulation::run(Parameters parameters)
 
             // Speed dependent properties
             beamModel.speedandreset(parameters, backfill, creep);
+
             // Iteration function
             beamModel.iteration(parameters, backfill, creep);
-
-            if(!beamModel.noCrackOpening)
-            {
 
                 beamModel.opening(parameters, creep);
                 fracmech.extensionForce(beamModel, parameters, creep);
 
                 solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
                 fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
-
-            }
-            else
-            {   beamModel.opening(parameters, creep);
-                fracmech.extensionForce(beamModel, parameters, creep);
-
-                solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-                fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal);
-				
-            }
-					
         }
 
     }
