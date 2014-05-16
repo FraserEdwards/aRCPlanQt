@@ -47,20 +47,28 @@ Solution Simulation::run(Parameters parameters)
     cout << "waterInsidePipe: " << parameters.waterInsidePipe << endl;
 
     cout << "outflowModelOn: " << parameters.outflowModelOn << endl;
+    cout << "lambda: " << parameters.lambda << endl;
+    cout << "solutionmethod: " << parameters.solutionmethod << endl;
+    cout << "aDotc0: " << parameters.aDotc0 << endl;
+    cout << "elementsinl: " << parameters.elementsinl << endl;
 
 
 
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
     file.collect(fracmech);
+    cout << "g0: " << fracmech.g0 << endl;
 
     //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
     Creep creep(parameters);
     file.collect(creep);
+    cout << "diameterRes0: " << creep.diameterRes0 << endl;
+    cout << "residualCrackClosure" << creep.residualCrackClosure << endl;
 
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
     file.collect(backfill);
+    cout <<"densityratio: " << backfill.densityratio << endl;
 
     //	Preliminary calculations
     BeamModel beamModel(parameters);
