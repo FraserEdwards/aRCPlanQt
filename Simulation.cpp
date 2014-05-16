@@ -23,6 +23,33 @@ Solution Simulation::run(Parameters parameters)
     extern File file;
     file.logprepare(parameters);
 
+    cout << "Parameters: " << endl;
+
+    cout << "matID: " << parameters.matID << endl;
+    cout << "density: " << parameters.density << endl;
+    cout << "eDyn0degC: " << parameters.eDyn0degC << endl;
+    cout << "dEdyndt: " << parameters.dEdyndT << endl;
+    cout << "creepModulus: " << parameters.creepModulus << endl;
+    cout << "poisson: " << parameters.poisson << endl;
+
+    cout << "pipeID: " << parameters.pipeID << endl;
+    cout << "diameter: " << parameters.diameter << endl;
+    cout << "sdr: " << parameters.sdr << endl;
+    cout << "notchDepth: " << parameters.notchDepth << endl;
+    cout << "diameterCreepRatio: " << parameters.diameterCreepRatio << endl;
+
+    cout << "fullScale: " << parameters.fullScale << endl;
+    cout << "tempDegC: " << parameters.tempDegC << endl;
+    cout << "p0bar: " << parameters.p0bar << endl;
+    cout << "isBackfilled: " << parameters.isBackfilled << endl;
+    cout << "backfillDepth: " << parameters.backfillDepth << endl;
+    cout << "solidInsidePipe: " << parameters.solidInsidePipe << endl;
+    cout << "waterInsidePipe: " << parameters.waterInsidePipe << endl;
+
+    cout << "outflowModelOn: " << parameters.outflowModelOn << endl;
+
+
+
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
     file.collect(fracmech);

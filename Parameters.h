@@ -14,6 +14,12 @@ private:
 
     string filename;
 
+
+
+    ConfigFile config;
+	
+public:
+
     static string matID_lib[5];
     static double density_lib[5];
     static double eDyn0degC_lib[5];
@@ -26,11 +32,6 @@ private:
     static double sdr_lib[5];
     static double notchDepth_lib[5];
     static double diameterCreepRatio_lib[5];
-
-    ConfigFile config;
-	
-public:
-
 
     string methodID;
     short fullScale;

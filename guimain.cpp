@@ -472,33 +472,20 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
 
 void guimain::on_materialname_currentIndexChanged(int index)
 {
-    double density_lib[5] = {938.0, 960.0, 938.0, 960.0, 950.0};
-    double eDyn0degC_lib[5] = {2.62, 3.17, 1.31, 1.585, 1.5};
-    double dEdyndT_lib[5] = {-0.037, -0.0427, -0.0185, -0.02135, -0.02};
-    double creepModulus_lib[5] = {0.3, 0.3, 0.3, 0.3, 0.3};
-    double poisson_lib[5] = {0.38, 0.38, 0.38, 0.38, 0.38};
 
-    ui -> density -> setText(QString::number(density_lib[index]));
-    ui -> dynamicmodulus -> setText(QString::number(eDyn0degC_lib[index]));
-    ui -> deltadynamicmodulus -> setText(QString::number(dEdyndT_lib[index]));
-    ui -> creepmodulus -> setText(QString::number(creepModulus_lib[index]));
-    ui -> dynpoissonratio -> setText(QString::number(poisson_lib[index]));
+    ui -> density -> setText(QString::number(Parameters::density_lib[index]));
+    ui -> dynamicmodulus -> setText(QString::number(Parameters::eDyn0degC_lib[index]));
+    ui -> deltadynamicmodulus -> setText(QString::number(Parameters::dEdyndT_lib[index]));
+    ui -> creepmodulus -> setText(QString::number(Parameters::creepModulus_lib[index]));
+    ui -> dynpoissonratio -> setText(QString::number(Parameters::poisson_lib[index]));
 
 }
 
 void guimain::on_pipename_currentIndexChanged(int index)
 {
 
-    double diameter_lib[5] = {250.0, 250.0, 110.0, 110.0, 63.0};
-    double sdr_lib[5] = {11.0, 17.6, 11.0, 17.6, 11.0};
-    double notchDepth_lib[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
-    double diameterCreepRatio_lib[5] = {1.0, 1.0, 1.0, 1.0, 1.0};
-
-    ui -> outsidediameter -> setText(QString::number(diameter_lib[index]));
-    ui -> sdr -> setText(QString::number(sdr_lib[index]));
-    ui -> groovedepth -> setText(QString::number(notchDepth_lib[index]));
-    ui -> relativediameter -> setText(QString::number(diameterCreepRatio_lib[index]));
-
+    ui -> outsidediameter -> setText(QString::number(Parameters::diameter_lib[index]));
+    ui -> sdr -> setText(QString::number(Parameters::sdr_lib[index]));
 
 }
 
