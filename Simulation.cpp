@@ -68,15 +68,15 @@ Solution Simulation::run(Parameters parameters)
 
     //	Preliminary calculations
     BeamModel beamModel(parameters);
-    cout << "Internalvolume: " << beamModel.availableInternalVolume << endl;
-    cout << "baffleLeakageArea: " << beamModel.baffleLeakageArea << endl;
-    cout << "dynamicShearModulus: " << beamModel.dynamicShearModulus << endl;
-    cout << "sdrMinus1: " << beamModel.sdrMinus1 << endl;
-    cout << "sdrMinus2: " << beamModel.sdrMinus2 << endl;
-    cout << "zetaClosure: " << beamModel.zetaClosure << endl;
-    cout << "nodeResolution: " << beamModel.nodeResolution << endl;
-    cout << "nodeAtClosure: " << beamModel.nodeAtClosure << endl;
-    cout << "zetaBackfilled: " << beamModel.zetaBackfilled << endl;
+//    cout << "Internalvolume: " << beamModel.availableInternalVolume << endl;
+//    cout << "baffleLeakageArea: " << beamModel.baffleLeakageArea << endl;
+//    cout << "dynamicShearModulus: " << beamModel.dynamicShearModulus << endl;
+//    cout << "sdrMinus1: " << beamModel.sdrMinus1 << endl;
+//    cout << "sdrMinus2: " << beamModel.sdrMinus2 << endl;
+//    cout << "zetaClosure: " << beamModel.zetaClosure << endl;
+//    cout << "nodeResolution: " << beamModel.nodeResolution << endl;
+//    cout << "nodeAtClosure: " << beamModel.nodeAtClosure << endl;
+//    cout << "zetaBackfilled: " << beamModel.zetaBackfilled << endl;
 
 
     if(parameters.singlemode)
@@ -86,9 +86,6 @@ Solution Simulation::run(Parameters parameters)
 
         // Speed dependent properties
         beamModel.speedandreset(parameters, backfill, creep);
-
-        cout << "outflowLength: " << beamModel.outflowLength << endl;
-        cout << "LambdaPow4: " << beamModel.lambdaPow4 << endl;
 
         // Iteration function
         beamModel.iteration(parameters, backfill, creep);
@@ -124,6 +121,19 @@ Solution Simulation::run(Parameters parameters)
 
             // Speed dependent properties
             beamModel.speedandreset(parameters, backfill, creep);
+
+//            cout << "aDotc0: " << parameters.aDotc0 << endl;
+//            cout << "outflowLength: " << beamModel.outflowLength << endl;
+//            cout << "LambdaPow4: " << beamModel.lambdaPow4 << endl;
+//            cout << "p1p0r: " << beamModel.p1p0r << endl;
+//            cout << "p1bar: " << beamModel.p1bar << endl;
+//            cout << "v00: " << beamModel.v00 << endl;
+//            cout << "v0: " << beamModel.v0 << endl;
+//            cout << "vStarRes: " << beamModel.vStarRes << endl;
+//            cout << "aDotOverCl: " << beamModel.aDotOverCL << endl;
+//            cout << "aDotCLfactor: " << beamModel.aDotCLfactor << endl;
+//            cout << "aDotClfactor_backfilled: " << beamModel.aDotCLfactor_backfilled << endl;
+//            cout << "factor: " << beamModel.factor << endl << endl;
 
             // Iteration function
             beamModel.iteration(parameters, backfill, creep);

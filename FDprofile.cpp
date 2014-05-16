@@ -305,10 +305,10 @@ void FDprofile::fprofile()
 	
 	l=arraySize;
 	for (short i=0; i<arraySize; i++)
-	{
+    {
 		zeta.push_back(float(i + 1) / float(elementsPerUnitLength));
 		vptra.push_back(float(v_ptr[i]));
-	}
+    }
 	
 }// end printProfile.
 

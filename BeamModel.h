@@ -22,8 +22,8 @@ public:
         double zetaClosure;
 		short printOpeningProfile;
 		double deltaDStar;
-		int l;
-		short maxIterations;
+        int l;
+        short maxIterations;
 		double m[2];
 		double alpha[2];
 		double hOverR;	
