@@ -5,7 +5,6 @@ using namespace std;
 
 #include "Simulation.h"
 #include "guimain.h"
-#include "Log.h"
 #include "ui_guimain.h"
 
 Simulation::Simulation()

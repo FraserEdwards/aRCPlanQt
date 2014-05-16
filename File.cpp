@@ -1,6 +1,7 @@
 #include "File.h"
 #include <iostream>
 #include <sys/stat.h>
+using namespace std;
 
 File::File()
 {
@@ -186,6 +187,31 @@ void File::writeresults()
 
     out.close();
 
+    filename = "Crack Profiles.csv";
+
+    out.open((file.directory + "Results/" +filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+
+    out << "aDotc0" << ",";
+
+    for(i = 1; i < solution.n; i++)
+    {
+        out << solution.z[i] << ",";
+    }
+
+    out << "\n";
+
+    for(j = 1; j < solution.soln; j++)
+    {
+        for(i = 0; i < solution.n; i++)
+        {
+             out << solution.w[j][i] << ",";
+
+        }
+        out << "\n";
+    }
+
+    out.close();
+
 }
 
 void File::writepartxt(Parameters temp, string filename)
@@ -230,6 +256,7 @@ void File::writepartxt(Parameters temp, string filename)
     writelinetxt("solutionmethod = ", temp.solutionmethod, out, 0);
     writelinetxt("numberOfSpeedValues = ", temp.rangenumber, out, 0);
     writelinetxt("elementsInL = ", temp.elementsinl, out, 0);
+    writelinetxt("aDotc0 = ", temp.aDotc0, out, 0);
 
     out.close();
 
@@ -240,51 +267,52 @@ void File::writeparcsv(Parameters temp, string filename)
 
     out.open((directory + filename).c_str());
 
-    writelinestringcsv("Input Data", out);
-    writelinestringcsv("\n", out);
+    writelinecsv("Input Data", out);
+    writelinecsv("\n", out);
 
-    writelinestringcsv("Material Data", out);
-    writelinestringcsv("\n", out);
+    writelinecsv("Material Data", out);
+    writelinecsv("\n", out);
 
-    writelinestringcsv("matID", temp.matID, out);
-    writelinedoublecsv("density", temp.density, out);
-    writelinedoublecsv("eDyn0degC", temp.eDyn0degC, out);
-    writelinedoublecsv("dEdyndT", temp.dEdyndT, out);
-    writelinedoublecsv("creepModulus", temp.creepModulus, out);
-    writelinedoublecsv("poisson", temp.poisson, out);
-    writelinestringcsv("\n", out);
+    writelinecsv("matID", temp.matID, out);
+    writelinecsv("density", temp.density, out);
+    writelinecsv("eDyn0degC", temp.eDyn0degC, out);
+    writelinecsv("dEdyndT", temp.dEdyndT, out);
+    writelinecsv("creepModulus", temp.creepModulus, out);
+    writelinecsv("poisson", temp.poisson, out);
+    writelinecsv("\n", out);
 
-    writelinestringcsv("Pipe Data", out);
-    writelinestringcsv("\n", out);
+    writelinecsv("Pipe Data", out);
+    writelinecsv("\n", out);
 
-    writelinestringcsv("pipeID", temp.pipeID, out);
-    writelinedoublecsv("diameter", temp.diameter, out);
-    writelinedoublecsv("sdr", temp.sdr, out);
-    writelinedoublecsv("notchDepth", temp.notchDepth, out);
-    writelinedoublecsv("diameterCreepRatio", temp.diameterCreepRatio, out);
+    writelinecsv("pipeID", temp.pipeID, out);
+    writelinecsv("diameter", temp.diameter, out);
+    writelinecsv("sdr", temp.sdr, out);
+    writelinecsv("notchDepth", temp.notchDepth, out);
+    writelinecsv("diameterCreepRatio", temp.diameterCreepRatio, out);
 
-    writelinestringcsv("\n", out);
-    writelinestringcsv("Test Setup Data", out);
-    writelinestringcsv("\n", out);
+    writelinecsv("\n", out);
+    writelinecsv("Test Setup Data", out);
+    writelinecsv("\n", out);
 
-    writelinedoublecsv("fullScale", temp.fullScale, out);
-    writelinedoublecsv("tempDegC", temp.tempDegC, out);
-    writelinedoublecsv("p0bar", temp.p0bar, out);
-    writelinedoublecsv("isBackfilled", temp.isBackfilled, out);
-    writelinedoublecsv("backfillDepth", temp.backfillDepth, out);
-    writelinedoublecsv("backfillDensity", temp.backfillDensity, out);
-    writelinedoublecsv("solidInsidePipe", temp.solidInsidePipe, out);
-    writelinedoublecsv("waterInsidePipe", temp.waterInsidePipe, out);
+    writelinecsv("fullScale", temp.fullScale, out);
+    writelinecsv("tempDegC", temp.tempDegC, out);
+    writelinecsv("p0bar", temp.p0bar, out);
+    writelinecsv("isBackfilled", temp.isBackfilled, out);
+    writelinecsv("backfillDepth", temp.backfillDepth, out);
+    writelinecsv("backfillDensity", temp.backfillDensity, out);
+    writelinecsv("solidInsidePipe", temp.solidInsidePipe, out);
+    writelinecsv("waterInsidePipe", temp.waterInsidePipe, out);
 
-    writelinestringcsv("\n", out);
-    writelinestringcsv("Program Control Data", out);
-    writelinestringcsv("\n", out);
+    writelinecsv("\n", out);
+    writelinecsv("Program Control Data", out);
+    writelinecsv("\n", out);
 
-    writelinedoublecsv("outflowModelOn", temp.outflowModelOn, out);
-    writelinedoublecsv("lambda", temp.lambda, out);
-    writelinedoublecsv("solutionmethod", temp.solutionmethod, out);
-    writelinedoublecsv("numberOfSpeedValues", temp.rangenumber, out);
-    writelinedoublecsv("elementsInL", temp.elementsinl, out);
+    writelinecsv("outflowModelOn", temp.outflowModelOn, out);
+    writelinecsv("lambda", temp.lambda, out);
+    writelinecsv("solutionmethod", temp.solutionmethod, out);
+    writelinecsv("numberOfSpeedValues", temp.rangenumber, out);
+    writelinecsv("elementsInL", temp.elementsinl, out);
+    writelinecsv("aDotc0", temp.aDotc0, out);
 
     out.close();
 }
@@ -316,17 +344,17 @@ void File::writelinetxt(string title, ofstream &out, int format)
     }
 }
 
-void File::writelinedoublecsv(string title, double value, ofstream &out)
+void File::writelinecsv(string title, double value, ofstream &out)
 {
     out << title << "," << value << "\n";
 }
 
-void File::writelinestringcsv(string title, string value, ofstream &out)
+void File::writelinecsv(string title, string value, ofstream &out)
 {
      out << title << "," << value << "\n";
 }
 
-void File::writelinestringcsv(string title, ofstream &out)
+void File::writelinecsv(string title, ofstream &out)
 {
 
     out << title << "," << "\n";
@@ -338,7 +366,7 @@ void File::writeheaders(string temp)
     filename = temp;
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
-    writelinestringcsv("\n", out);
+    writelinecsv("\n", out);
 
     out << "aDotc0" << "," << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
@@ -346,7 +374,7 @@ void File::writeheaders(string temp)
         << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << ","
         << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
 
-    writelinestringcsv("\n", out);
+    writelinecsv("\n", out);
     out.close();
 }
 

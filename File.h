@@ -17,7 +17,7 @@ using namespace std;
 
 #include "Parameters.h"
 #include "Solution.h"
-#include "Log.h"
+#include "FracMech.h"
 
 class File : public FracMech, public Creep, public Backfill, public BeamModel
 {
@@ -26,6 +26,7 @@ private:
     ofstream out;
 
     int i;
+    int j;
     int checkstate;
     string tempdir;
     string subfolder;
@@ -46,9 +47,9 @@ public:
     void writeparcsv(Parameters temp, string filename);
     void writepartxt(Parameters temp, string filename);
     void writeresults();
-    void writelinedoublecsv(string title, double value, ofstream &out);
-    void writelinestringcsv(string title, string value, ofstream &out);
-    void writelinestringcsv(string title, ofstream &out);
+    void writelinecsv(string title, double value, ofstream &out);
+    void writelinecsv(string title, string value, ofstream &out);
+    void writelinecsv(string title, ofstream &out);
     void writelinetxt(string title, double value, ofstream &out, int format);
     void writelinetxt(string title, string value, ofstream &out, int format);
     void writelinetxt(string title, ofstream &out, int format);
