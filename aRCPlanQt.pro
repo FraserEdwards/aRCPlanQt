@@ -12,54 +12,54 @@ TARGET = aRCPlanQt
 TEMPLATE = app
 CONFIG-= app_lib
 
-ICON = Test.icns
+ICON = Images/Test.icns
 
-SOURCES += main.cpp\
-    Backfill.cpp \
-    BeamModel.cpp \
-    ConfigFile.cpp \
-    Constants.cpp \
-    Creep.cpp \
-    Decompression.cpp \
-    FDprofile.cpp \
-    FracMech.cpp \
-    OutflowProcess.cpp \
-    Parameters.cpp \
-    Simulation.cpp \
-    Solution.cpp \
-    SymDoubleMatrix.cpp \
-    guimain.cpp \
-    qcustomplot.cpp \
-    File.cpp \
-    about.cpp \
-    dialog.cpp
-
+SOURCES += Source/main.cpp\
+    Source/about.cpp \
+    Source/Backfill.cpp \
+    Source/BeamModel.cpp \
+    Source/ConfigFile.cpp \
+    Source/Constants.cpp \
+    Source/Creep.cpp \
+    Source/Decompression.cpp \
+    Source/dialog.cpp \
+    Source/FDprofile.cpp \
+    Source/File.cpp \
+    Source/FracMech.cpp \
+    Source/guimain.cpp \
+    Source/main.cpp \
+    Source/OutflowProcess.cpp \
+    Source/Parameters.cpp \
+    Source/qcustomplot.cpp \
+    Source/Simulation.cpp \
+    Source/Solution.cpp \
+    Source/SymDoubleMatrix.cpp \
 
 HEADERS  += \
-    BeamModel.h \
-    ConfigFile.h \
-    Constants.h \
-    Creep.h \
-    Decompression.h \
-    FDprofile.h \
-    FracMech.h \
-    OutflowProcess.h \
-    Parameters.h \
-    Simulation.h \
-    Solution.h \
-    SymDoubleMatrix.h \
-    guimain.h \
-    qcustomplot.h \
-    Backfill.h \
-    File.h \
-    about.h \
-    dialog.h
+    Source/about.h \
+    Source/Backfill.h \
+    Source/BeamModel.h \
+    Source/ConfigFile.h \
+    Source/Constants.h \
+    Source/Creep.h \
+    Source/Decompression.h \
+    Source/dialog.h \
+    Source/FDprofile.h \
+    Source/File.h \
+    Source/FracMech.h \
+    Source/guimain.h \
+    Source/OutflowProcess.h \
+    Source/Parameters.h \
+    Source/qcustomplot.h \
+    Source/Simulation.h \
+    Source/Solution.h \
+    Source/SymDoubleMatrix.h
 
 
 FORMS    += \
-    guimain.ui \
-    about.ui \
-    dialog.ui
+    Source/guimain.ui \
+    Source/about.ui \
+    Source/dialog.ui
 
 OTHER_FILES += \
     README.md \
