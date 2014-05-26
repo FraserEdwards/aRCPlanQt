@@ -262,7 +262,7 @@ void guimain::plotprofiles(vector<double> x, vector<double> y, string title, str
 
     path = (ui -> path -> text().toStdString()) + "Profiles/" + title;
     ui -> Crackplot -> addGraph();
-    ui -> Crackplot ->graph(0) ->setPen(QPen(Qt::green));
+    ui -> Crackplot -> graph(0) ->setPen(QPen(Qt::green));
     ui -> Crackplot -> graph(0)->setLineStyle(QCPGraph::lsNone);
     ui -> Crackplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, 4));
 
