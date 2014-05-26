@@ -164,10 +164,16 @@ void BeamModel::cspeed(const Parameters parameters, const Backfill backfill)
 }
 
 void BeamModel::converteffopen(const Parameters parameters)
-{
+{   cout << endl;
+    cout << "v0: " << v0 << endl;
+    cout << "outflowLength: " << outflowLength << endl;
+    cout << "radius: " << parameters.radius << endl;
+    cout << "wStar2dash: " << wStar2dash << endl;
+    cout << "wStar2dash2: " << wStar2dash2 << endl;
 
-	wStar2dash *= v0 / 2.0 / outflowLength / parameters.radius;
+    wStar2dash *= v0 / (2.0 * outflowLength * parameters.radius);
 	wStar2dash2 *= v0 / pow(2.0 * outflowLength * parameters.radius, 2);
+
 
 }
 
@@ -208,8 +214,6 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			nodeAtClosure -= 2;
 			double wStarMax = 0.0;
             FDprofile fdSolution(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
-
-//            fdSolution.fprofile();
 
 			short nodeAtClosure_previous = nodeAtClosure;				// Store position of last node in this FD array
 			double errorLast = fdSolution.closureMoment();				// ...and resulting d2v/dz2 at closure point, divided by that at crack tip
@@ -288,8 +292,6 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 					
 				maximumNonContact = true;
                 fdSolution = FDprofile(alpha, m, -1.0, vStarRes, parameters.elementsinl, nodeAtClosure);
-		
-//				fdSolution.fprofile();
 
 				error = fdSolution.closureMoment();
 				integral_wStar2 = fdSolution.integral_wStar2();
@@ -421,13 +423,6 @@ void BeamModel::opening(Parameters parameters, Creep creep)
             FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
             FDprofile* ptr=&final;
             final.fprofile();
-
-//            cout << endl;
-//            for(int m=0; m <final.l; m++)
-//            {
-//                cout << final.zeta[m] << "    " << final.vptra[m] << endl;
-//            }
-//            cout << endl;
 				
             final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
             final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);

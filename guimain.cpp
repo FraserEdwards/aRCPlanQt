@@ -239,7 +239,7 @@ void guimain::plothandler(Solution solution)
     plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",0);    
     plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",0);
     plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",0);
-    plotresults(solution.aDotc0, solution.gG0, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",0);
+    plotresults(solution.aDotc0, solution.gG0, "Non-dimensional crack driving force vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",0);
     plotresults(solution.aDotc0, solution.gTotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",0);
 
 

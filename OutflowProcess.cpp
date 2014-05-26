@@ -47,7 +47,7 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 	}
 	
 
-	
+    cout << "maxTimeSteps: " << maxTimeSteps << endl;
 	while ((pStar > 1.0) & (i < maxTimeSteps))
 	{
 		tStar = double(i) * deltaTStar;
