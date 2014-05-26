@@ -12,7 +12,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1600</width>
+    <width>16777215</width>
     <height>16777215</height>
    </size>
   </property>
@@ -889,11 +889,9 @@
      </widget>
     </item>
    </layout>
-   <zorder>layoutWidget</zorder>
    <zorder>tabs</zorder>
    <zorder>Resultstable</zorder>
    <zorder>Crackplot</zorder>
-   <zorder>layoutWidget</zorder>
    <zorder>Resultsplot</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
