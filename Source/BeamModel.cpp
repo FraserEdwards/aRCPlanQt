@@ -1,6 +1,8 @@
-
 #include <cmath>
 #include <iostream>
+#include <QEventLoop>
+
+#include "dialog.h"
 
 #include "Constants.h"
 #include "BeamModel.h"
@@ -35,11 +37,6 @@ BeamModel::BeamModel(const Parameters parameters)
 	sdrMinus1 = parameters.sdr - 1.0;
 	sdrMinus2 = sdrMinus1 - 1.0;
 
-	zetaClosure = 2.0;				//	Point (in outflow lengths) at which crack re-closes, with first guess.
-    nodeResolution = 0.5 / parameters.elementsinl;	// used as a reference tolerance
-    nodeAtClosure = short(zetaClosure * parameters.elementsinl);
-	zetaBackfilled = 0.2;		// first guess
-
     file.collect(this,0);
 
 }
@@ -60,7 +57,7 @@ void BeamModel::initialise()
     hOverR = 0.0;
     lambdaLast = 0.0;
     zetaBackfilledLast = 0.0;
-    notConverged = 0;
+    notConverged = 1;
     iterations = 0;
     noCrackOpening = 0;
     wStar2 = 0.0;
@@ -94,6 +91,7 @@ void BeamModel::initialise()
     m[1] = 0.0;
     alpha[0] = 0.0;
     alpha[1] = 0.0;
+    n = 0;
 
 }
 
@@ -101,6 +99,12 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 {
     extern File file;
 	//  Set initial outflow length
+
+    zetaClosure = 2.0;				//	Point (in outflow lengths) at which crack re-closes, with first guess.
+    nodeResolution = 0.5 / parameters.elementsinl;	// used as a reference tolerance
+    nodeAtClosure = short(zetaClosure * parameters.elementsinl);
+    zetaBackfilled = 0.2;		// first guess
+
 	outflowLength = parameters.lambda;
 	lambdaPow4 =  pow(outflowLength, 4);
 		
@@ -145,36 +149,23 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 
 void BeamModel::stiffness()
 {
-
 	//	Dimensionless foundation stiffness [0] with backfill and [1] without
 	m[1] = 8.0 / 3.0 / Constants::pi / Constants::c1 / sdrMinus1 / sdrMinus1 * lambdaPow4;
 	m[0] = m[1] / aDotCLfactor_backfilled;
 	m[1] /= aDotCLfactor;
-
 }
 
 void BeamModel::cspeed(const Parameters parameters, const Backfill backfill)
 {
-
 	//	Dimensionless crack speed [0] with backfill and [1] without
 	alpha[1] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL + Constants::c4 / 2.0 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor);
 	alpha[0] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL * backfill.densityratio + Constants::c4 * 0.5 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor_backfilled);
-
-
 }
 
 void BeamModel::converteffopen(const Parameters parameters)
-{   cout << endl;
-    cout << "v0: " << v0 << endl;
-    cout << "outflowLength: " << outflowLength << endl;
-    cout << "radius: " << parameters.radius << endl;
-    cout << "wStar2dash: " << wStar2dash << endl;
-    cout << "wStar2dash2: " << wStar2dash2 << endl;
-
+{
     wStar2dash *= v0 / (2.0 * outflowLength * parameters.radius);
 	wStar2dash2 *= v0 / pow(2.0 * outflowLength * parameters.radius, 2);
-
-
 }
 
 void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep creep)
@@ -185,13 +176,14 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 	iterations = 0;
 	noCrackOpening = 0;
     error = 0;
-    int infoLevel =0;
+    int infoLevel =3;
 
     if ((parameters.outflowModelOn==2) & (infoLevel > 1))
     {
-//        interface.line("Starting outflowLength refinement with outflow length = ", outflowLength);
-    }
-		
+        dialog *e = new dialog;
+        e->Warning("Starting outflowLength refinement with outflow length = ", outflowLength);
+        e->exec();
+    }		
 	do
 	{	// Refine given outflow length using the discharge analysis:
 		lambdaLast = outflowLength;
@@ -219,10 +211,9 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			double errorLast = fdSolution.closureMoment();				// ...and resulting d2v/dz2 at closure point, divided by that at crack tip
         if (infoLevel > 1)
 		{
-
-//			interface.oneline("Starting closure length refinement with closure node = ",nodeAtClosure_previous);
-//			interface.oneline(" closure moment = ", errorLast);
-
+            dialog *e = new dialog;
+            e->Warning("Starting closure length refinement with closure node = ",nodeAtClosure_previous, "and closure moment = ", errorLast);
+            e->exec();
 		}
 
 	// Make second guess for closure length (two nodes MORE than input value):
@@ -230,15 +221,20 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
         if (infoLevel > 1)
         {
-//			interface.line("Second-guess closure node = ", nodeAtClosure);
+            dialog *e = new dialog;
+            e->Warning("Second-guess closure node = ", nodeAtClosure);
+            e->exec();
         }
 
 		// Prepare to refine closure length by iteration
 		double dontNeedThis;
         error = 0;
-        notConverged = 1;
         iterations = 0;
         short maximumNonContact = 0;
+
+        //Need to declare again here! Without this, program exits first loop immediately, hence provides incorrect solutions
+        short notConverged = 1;
+
 		do
 		{	// ...until bending moment at closure point is negligible compared to that at crack tip:
 
@@ -248,18 +244,17 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
             short minPoint = fdSolution.nodeAtMinimum();			// this is set to -1 if NO minimum is found within domain
             if (infoLevel > 1)
 			{
-
-//				interface.oneline("At closure length iteration ",iterations);
-//				interface.oneline(" with nodeAtClosure = ",nodeAtClosure);
-//				interface.oneline(" closure moment = ", error);
-//				interface.oneline(" min at point ",minPoint);
-
+                dialog *e = new dialog;
+                e->Warning("At closure length iteration ",iterations," closure moment = ", error, " min at point ",minPoint);
+                e->exec();
 			}	
 			if (minPoint > 0)
 			{
                 if (infoLevel > 1)
                 {
-//                    interface.line("BUT there's a minimum (crack surface overlap) to left of closure point ", minPoint);
+                    dialog *e = new dialog;
+                    e->Warning("BUT there's a minimum (crack surface overlap) to left of closure point ", minPoint);
+                    e->exec();
                 }
 
 				// So back up to find maximum closure length with NO overlap:
@@ -275,11 +270,9 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 					newMin = fdSolution.nodeAtMinimum();
                     if (infoLevel > 1)
 					{
-
-//						interface.oneline("nodeAtClosure = ",nodeAtClosure);
-//						interface.oneline(" error = ", tempError);
-//						interface.oneline(" min point = ", newMin);
-
+                        dialog *e = new dialog;
+                        e->Warning("nodeAtClosure = ",nodeAtClosure, " error = ", tempError, " min point = ", newMin);
+                        e->exec();
 					}	
 					nodeAtClosure++;
 				}
@@ -287,7 +280,9 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 				nodeAtClosure = nodeAtClosure - 1;
                 if (infoLevel > 1)
                 {
-//                    interface.line("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
+                    dialog *e = new dialog;
+                    e->Warning("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
+                    e->exec();
                 }
 					
 				maximumNonContact = true;
@@ -303,7 +298,9 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 				nodeAtClosure++;
                 if (infoLevel > 1)
                 {
-//                    interface.line("node interpolated = ", nodeAtClosure);
+                    dialog *e = new dialog;
+                    e->Warning("node interpolated = ", nodeAtClosure);
+                    e->exec();
                 }
 		
 			}
@@ -321,7 +318,9 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 				{
                     if (infoLevel > 1)
                     {
-//                        interface.line("Next try for iteration will be nodeAtClosure = ", nodeAtClosure);
+                        dialog *e = new dialog;
+                        e->Warning("Next try for iteration will be nodeAtClosure = ", nodeAtClosure);
+                        e->exec();
                     }
 
 					errorLast = error;
@@ -335,29 +334,22 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
             if (infoLevel > 1)
 			{
-
-//				interface.oneline("At nodeAtClosure = ", nodeAtClosure);
-//				interface.oneline(" converged in ", iterations);
-//				interface.oneline(" iterations with error = ", error);
-				
+                dialog *e = new dialog;
+                e->Warning("At nodeAtClosure = ", nodeAtClosure, " converged in ", iterations," iterations with error = ", error);
+                e->exec();
 			}
 
         } // done FD solution
 		else
-		{ //Formally location of analytical solution
-	
+        {
+            //Formally location of analytical solution
 		} 
 	
         if (infoLevel > 1)
 		{
-
-//		interface.line("Computed profile properties");
-//		interface.line("Ejection point = ", zetaBackfillEject);
-//		interface.line("Opening at outflow point = ", wStarMax);
-//		interface.line("1st-deriv at outflow = ", wStar2dash);
-//		interface.line("2nd-deriv at outflow = ", wStar2dash2);
-//		interface.line("Integral to outflow = ", integral_wStar2);
-			
+            dialog *e = new dialog;
+            e->Warning("Computed profile properties", "Ejection point = ", zetaBackfillEject, "Opening at outflow point = ", wStarMax, "1st-deriv at outflow = ", wStar2dash, "2nd-deriv at outflow = ", wStar2dash2, "Integral to outflow = ", integral_wStar2);
+            e->exec();
 		}
 
 		if (integral_wStar2 > 0.0)
@@ -367,16 +359,13 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 				double throatArea = integral_wStar2;
 				OutflowProcess outflow(p1bar);
 				outflowLength = pow(factor * outflow.get_tStarOutflow() / throatArea, 0.2);
-			
 			}
 		//	tStarOutflow being the number of characteristic times for discharge
             if (infoLevel > 1)
-			{	
-//				interface.line("alpha = ", alpha[1]);
-//				interface.line("m = ", m[1]);
-//				interface.line("integral_wStar2 = ", integral_wStar2);
-//				interface.line("New outflowLength = ", outflowLength);
-				
+			{	                
+                dialog *e = new dialog;
+                e->Warning("alpha = ", alpha[1], "m = ", m[1], "integral_wStar2 = ", integral_wStar2, "New outflowLength = ", outflowLength);
+                e->exec();
 			}
 			lambdaPow4 =  pow(outflowLength, 4);
 			v0 = v00 * lambdaPow4;
@@ -384,6 +373,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
 			if ((fabs(1.0 - lambdaLast / outflowLength) < nodeResolution) and (fabs(1.0 - zetaBackfilledLast / zetaBackfilled) < nodeResolution))
 				notConverged = false;
+
 			iterations++;
 			short waitForMe;
             if (infoLevel > 2)
@@ -399,7 +389,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
         file.collect(this, 0);
 
 	} // end outflow length refinement
-    while (notConverged & (iterations < maxIterations) & !noCrackOpening);
+    while (notConverged & (iterations < maxIterations)  and not noCrackOpening);
 }
 
 void BeamModel::opening(Parameters parameters, Creep creep)
@@ -412,10 +402,9 @@ void BeamModel::opening(Parameters parameters, Creep creep)
 
         if (infoLevel > 1)
 		{
-
-//			interface.oneline("Final outflowLength convergence in ", iterations);
-            //			interface.oneline(" iterations for outflowLength = ", outflowLength);
-		
+            dialog *e = new dialog;
+            e->Warning("Final outflowLength convergence in ", iterations, " iterations for outflowLength = ", outflowLength);
+            e->exec();
 		}
         if (parameters.solutionmethod==2)
         {	// then recalculate and print the numerical solution

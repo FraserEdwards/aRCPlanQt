@@ -53,13 +53,5 @@ void FracMech::extensionForce(BeamModel beamModel, const Parameters parameters, 
 
 	gG0 = gTotal / g0;
 
-    cout << endl << "aDotc0: " << parameters.aDotc0 << endl;
-    cout << "gS1: " << gS1/g0 << endl;
-    cout << "gUE: " << gUE/g0 << endl;
-    cout << "gSb: " << gSb/g0 << endl;
-    cout << "gKb: " << gKb/g0 << endl;
-    cout << "gTotal: " << gTotal << endl;
-    cout << "gG0: " << gG0 << endl << endl;
-
 }
 

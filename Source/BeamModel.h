@@ -2,15 +2,16 @@
 #define BeamModelH
 
 #include <vector>
+#include <QObject>
 
 #include "Backfill.h"
 #include "Creep.h"
 
-class BeamModel 
-{// 
+class BeamModel
+{//
 	private:
 									
-
+int n;
 		
 		
 public:	

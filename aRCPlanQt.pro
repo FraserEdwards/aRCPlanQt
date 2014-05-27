@@ -27,13 +27,12 @@ SOURCES += Source/main.cpp\
     Source/File.cpp \
     Source/FracMech.cpp \
     Source/guimain.cpp \
-    Source/main.cpp \
     Source/OutflowProcess.cpp \
     Source/Parameters.cpp \
     Source/qcustomplot.cpp \
     Source/Simulation.cpp \
     Source/Solution.cpp \
-    Source/SymDoubleMatrix.cpp \
+    Source/SymDoubleMatrix.cpp
 
 HEADERS  += \
     Source/about.h \
