@@ -26,19 +26,17 @@ Solution Simulation::run(Parameters parameters)
 
     parameters.crackWidth = parameters.diameter / parameters.sdr - parameters.notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
 
-    parameters.dynamicModulus = parameters.eDyn0degC + parameters.tempDegC * parameters.dEdyndT;
-
     extern Solution solution;
     extern File file;
     file.logprepare(parameters);
 
-    //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
-    FracMech fracmech(parameters);
-    file.collect(fracmech);
+//    //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
+//    FracMech fracmech(parameters);
+//    file.collect(fracmech);
 
-    //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
-    Creep creep(parameters);
-    file.collect(creep);
+//    //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
+//    Creep creep(parameters);
+//    file.collect(creep);
 
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
@@ -51,6 +49,16 @@ Solution Simulation::run(Parameters parameters)
     {
         solution.clear();
         solution.displacement(parameters);
+
+        parameters.dynamicModulus = parameters.eDyn0degC + parameters.tempDegC * parameters.dEdyndT;
+
+        //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
+        FracMech fracmech(parameters);
+        file.collect(fracmech);
+
+        //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
+        Creep creep(parameters);
+        file.collect(creep);
 
         // Speed dependent properties
         beamModel.speedandreset(parameters, backfill, creep);
@@ -86,6 +94,16 @@ Solution Simulation::run(Parameters parameters)
                 default:
                     break;
             }
+
+            parameters.dynamicModulus = parameters.eDyn0degC + parameters.tempDegC * parameters.dEdyndT;
+
+            //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
+            FracMech fracmech(parameters);
+            file.collect(fracmech);
+
+            //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
+            Creep creep(parameters);
+            file.collect(creep);
 
             // Speed dependent properties
             beamModel.speedandreset(parameters, backfill, creep);

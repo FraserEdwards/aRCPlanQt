@@ -74,7 +74,7 @@ if(dropdown==0)
 {
     ui -> materialname ->insertItems(0, QStringList() << "Soft PE80" << "Generic PE100" << "Soft PE100" << "Generic PE1" << "Generic PE2");
     ui -> pipename ->insertItems(0, QStringList() << "250mm_SDR11" << "250mm_SDR17" << "110mm_SDR11" << "110mm_SDR17" << "63mm_SDR11");
-    ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "Initial Pressure" << "Test Temperaure");
+    ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "Initial Pressure" << "Test Temperature");
 }
 else
 {
@@ -235,15 +235,39 @@ void guimain::on_Runbutton_clicked()
 
 void guimain::plothandler(Solution solution)
 {
-
-    plotresults(solution.aDotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",0);
-    plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",0);    
-    plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",0);
-    plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",0);
-    plotresults(solution.aDotc0, solution.gG0, "Non-dimensional crack driving force vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",0);
-    plotresults(solution.aDotc0, solution.gTotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",0);
-
-
+    switch(ui->parameter ->currentIndex())
+    {
+        case 0:
+        {
+            plotresults(solution.aDotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",0);
+            plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",0);
+            plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",0);
+            plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",0);
+            plotresults(solution.aDotc0, solution.gG0, "Non-dimensional crack driving force vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",0);
+            plotresults(solution.aDotc0, solution.gTotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",0);
+            break;
+        }
+        case 1:
+        {
+            plotresults(solution.p0bar, solution.decompression, "Decompression factor vs initial pressure", "Initial pressure", "Decompression factor",0);
+            plotresults(solution.p0bar, solution.outflowLength, "Outflow length vs initial pressure", "Initial pressure", "Outflow length",0);
+            plotresults(solution.p0bar, solution.m, "Support factor vs initial pressure", "Initial pressure", "Support factor",0);
+            plotresults(solution.p0bar, solution.alpha, "Speed factor vs initial pressure", "Initial pressure", "Speed factor",0);
+            plotresults(solution.p0bar, solution.gG0, "Non-dimensional crack driving force vs initial pressure", "Initial pressure", "Non-dimensional crack driving force",0);
+            plotresults(solution.p0bar, solution.gTotal, "Crack driving force vs initial pressure", "Initial pressure", "Crack driving force",0);
+            break;
+        }
+        case 2:
+        {
+            plotresults(solution.tempDegC, solution.decompression, "Decompression factor vs temperature", "Temperature", "Decompression factor",0);
+            plotresults(solution.tempDegC, solution.outflowLength, "Outflow length vs temperature", "Temperature", "Outflow length",0);
+            plotresults(solution.tempDegC, solution.m, "Support factor vs temperature", "Temperature", "Support factor",0);
+            plotresults(solution.tempDegC, solution.alpha, "Speed factor vs temperature", "Temperature", "Speed factor",0);
+            plotresults(solution.tempDegC, solution.gG0, "Non-dimensional crack driving force vs temperature", "Temperature", "Non-dimensional crack driving force",0);
+            plotresults(solution.tempDegC, solution.gTotal, "Crack driving force vs temperature", "Temperature", "Crack driving force",0);
+            break;
+        }
+    }
     if(solution.k==0)
     {
 
@@ -444,32 +468,93 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
     extern Solution solution;
 
     plotprofiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0);
-
-    switch(column)
+    switch(ui->parameter->currentIndex())
     {
+        case 0:
+        {
+            switch(column)
+            {
+                case 1:
+                    plotresults(solution.aDotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",1);
+                    break;
+                case 2:
+                    plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",1);
+                    break;
+                case 3:
+                    plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",1);
+                    break;
+                case 4:
+                    plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",1);
+                    break;
+                case 6:
+                    plotresults(solution.aDotc0, solution.g0, "Irwin Corten Crack Force vs non-dimensional speed", "Non-dimensional speed", "Irwin Corten Crack Driving Force",1);
+                    break;
+                case 7:
+                    plotresults(solution.aDotc0, solution.gG0, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",1);
+                    break;
+                case 8:
+                    plotresults(solution.aDotc0, solution.gTotal, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",1);
+                    break;
+            }
+            break;
+        }
         case 1:
-            plotresults(solution.aDotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",1);
+        {
+            switch(column)
+            {
+                case 1:
+                    plotresults(solution.p0bar, solution.decompression, "Decompression factor vs initial pressure", "Initial pressure", "Decompression factor",1);
+                    break;
+                case 2:
+                    plotresults(solution.p0bar, solution.alpha, "Speed factor vs initial pressure", "Initial pressure", "Speed factor",1);
+                    break;
+                case 3:
+                    plotresults(solution.p0bar, solution.m, "Support factor vs initial pressure", "Initial pressure", "Support factor",1);
+                    break;
+                case 4:
+                    plotresults(solution.p0bar, solution.outflowLength, "Outflow length vs initial pressure ", "Initial pressure", "Outflow length",1);
+                    break;
+                case 6:
+                    plotresults(solution.p0bar, solution.g0, "Irwin Corten Crack Force vs initial pressure", "Initial pressure", "Irwin Corten Crack Driving Force",1);
+                    break;
+                case 7:
+                    plotresults(solution.p0bar, solution.gG0, "Crack driving force vs initial pressure", "Initial pressure", "Crack driving force",1);
+                    break;
+                case 8:
+                    plotresults(solution.p0bar, solution.gTotal, "Speed factor vs initial pressure", "Initial pressure", "Non-dimensional crack driving force",1);
+                    break;
+            }
             break;
+        }
         case 2:
-            plotresults(solution.aDotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",1);
+        {
+            switch(column)
+            {
+                case 1:
+                    plotresults(solution.tempDegC, solution.decompression, "Decompression factor vs temperature", "Temperature", "Decompression factor",1);
+                    break;
+                case 2:
+                    plotresults(solution.tempDegC, solution.alpha, "Speed factor vs temperature", "Temperature", "Speed factor",1);
+                    break;
+                case 3:
+                    plotresults(solution.tempDegC, solution.m, "Support factor vs temperature", "Temperature", "Support factor",1);
+                    break;
+                case 4:
+                    plotresults(solution.tempDegC, solution.outflowLength, "Outflow length vs temperature", "Temperature", "Outflow length",1);
+                    break;
+                case 6:
+                    plotresults(solution.tempDegC, solution.g0, "Irwin Corten Crack Force vs temperature", "Temperature", "Irwin Corten Crack Driving Force",1);
+                    break;
+                case 7:
+                    plotresults(solution.tempDegC, solution.gG0, "Crack driving force vs temperature", "Temperature", "Crack driving force",1);
+                    break;
+                case 8:
+                    plotresults(solution.tempDegC, solution.gTotal, "Speed factor vs temperature", "Temperature", "Non-dimensional crack driving force",1);
+                    break;
+            }
             break;
-        case 3:
-            plotresults(solution.aDotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",1);
-            break;
-        case 4:
-            plotresults(solution.aDotc0, solution.outflowLength, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",1);
-            break;
-        case 6:
-            plotresults(solution.aDotc0, solution.g0, "Irwin Corten Crack Force vs non-dimensional speed", "Non-dimensional speed", "Irwin Corten Crack Driving Force",1);
-            break;
-        case 7:
-            plotresults(solution.aDotc0, solution.gG0, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",1);
-            break;
-        case 8:
-            plotresults(solution.aDotc0, solution.gTotal, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",1);
-            break;
-     }
-
+        }
+    }
 }
 
 void guimain::on_materialname_currentIndexChanged(int index)

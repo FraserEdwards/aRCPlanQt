@@ -7,6 +7,8 @@ Solution::Solution(){
 
     soln=0;
     aDotc0.push_back(0.0);
+    p0bar.push_back(0.0);
+    tempDegC.push_back(0.0);
     z.push_back(0.0);
     k=0;
 
@@ -32,6 +34,10 @@ void Solution::clear()
     k=0;
     aDotc0.clear();
     aDotc0.resize(1);
+    p0bar.clear();
+    p0bar.resize(1);
+    tempDegC.clear();
+    tempDegC.resize(1);
     z.clear();
     z.resize(1);
     w.clear();
