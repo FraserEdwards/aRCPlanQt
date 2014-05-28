@@ -97,8 +97,6 @@ void BeamModel::initialise()
 
 void BeamModel::speedandreset(const Parameters parameters, const Backfill backfill, Creep creep)
 {
-
-    cout << endl << "Speed: " << parameters.aDotc0 << endl;
     extern File file;
 	//  Set initial outflow length
 

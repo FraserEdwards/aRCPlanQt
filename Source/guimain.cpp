@@ -342,7 +342,7 @@ void guimain::plotresults(vector<double> x, vector<double> y, string title, stri
     ui -> Resultsplot -> replot();
     if(!savestate)
     {
-        ui -> Resultsplot ->savePdf(QString::fromStdString(path)+".pdf",false,1000,1000,"Test","Test");
+        ui -> Resultsplot ->savePdf(QString::fromStdString(path) + ".pdf",false, 1000, 1000,"Test","Test");
     }
 }
 
@@ -389,14 +389,6 @@ Parameters guimain::update()
     temp.aDotc0 = ui -> crackspeed -> text().toDouble();   
     temp.elementsinl = ui -> fdnumber -> text().toDouble();
     temp.verbose = ui ->verbose ->checkState();
-
-//    temp.h = temp.diameter/temp.sdr/Constants::kilo; // (m)
-//    temp.hOverR = 2.0/ (temp.sdr-1);
-//    temp.radius = temp.h / temp.hOverR;
-
-//    temp.crackWidth = temp.diameter / temp.sdr - temp.notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
-
-//    temp.dynamicModulus = temp.eDyn0degC + temp.tempDegC * temp.dEdyndT;
 
     return temp;
 }
