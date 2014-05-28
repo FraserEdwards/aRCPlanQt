@@ -210,7 +210,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>379</width>
+           <width>264</width>
            <height>345</height>
           </rect>
          </property>
@@ -531,7 +531,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>379</width>
+           <width>325</width>
            <height>455</height>
           </rect>
          </property>
@@ -768,7 +768,7 @@
            <x>0</x>
            <y>0</y>
            <width>379</width>
-           <height>311</height>
+           <height>327</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -816,7 +816,10 @@
             <item row="0" column="0">
              <widget class="QLabel" name="label_14">
               <property name="text">
-               <string>Outflow model:</string>
+               <string>Variable decompression length:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
