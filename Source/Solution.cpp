@@ -24,7 +24,9 @@ Solution::Solution(){
     gG0.push_back(0.0);
     gTotal.push_back(0.0);
     g0.push_back(0.0);
-
+    noCrackOpening.push_back(1);
+    notConverged.push_back(1);
+    iterations.push_back(0);
 
 }
 
@@ -67,6 +69,12 @@ void Solution::clear()
     gTotal.resize(1);
     g0.clear();
     g0.resize(1);
+    noCrackOpening.clear();
+    noCrackOpening.resize(1);
+    notConverged.clear();
+    notConverged.resize(1);
+    iterations.clear();
+    iterations.resize(1);
 
 }
 
@@ -105,7 +113,7 @@ void Solution::sprofile(const vector<double> zetas, const vector<double> vptras,
 }
 
 void Solution::Tvalues(const double aDotc0s, const double p0bars, const double tempDegCs, const double decompressions, const double alphas, const double ms, const double outflowLengths, const double deltaDStars,
-							const double gS1s, const double gUEs, const double gSbs, const double gKbs, const double g0s, const double gG0s, const double gTotals)
+                            const double gS1s, const double gUEs, const double gSbs, const double gKbs, const double g0s, const double gG0s, const double gTotals, const short noCrackOpenings, const short notConvergeds, const short iterationss)
 {
 	soln++;
 	aDotc0.push_back(aDotc0s);
@@ -122,16 +130,20 @@ void Solution::Tvalues(const double aDotc0s, const double p0bars, const double t
 	gSb.push_back(gSbs);
 	gKb.push_back(gKbs);
 	g0.push_back(g0s);
+    noCrackOpening.push_back(!noCrackOpenings);
+    notConverged.push_back(!notConvergeds);
+    iterations.push_back(iterationss);
 
-	if (gG0s < 1000)
-	{gG0.push_back(gG0s);}  
-	else
-	{gG0.push_back(0.0);}
 
-	if (gTotals < 1000)
-	{gTotal.push_back(gTotals);}
-	else
-	{gTotal.push_back(0.0);}
+    if (gG0s < 1000)
+    {gG0.push_back(gG0s);}
+    else
+    {gG0.push_back(0.0);}
+
+    if (gTotals < 1000)
+    {gTotal.push_back(gTotals);}
+    else
+    {gTotal.push_back(0.0);}
 	
 }
 

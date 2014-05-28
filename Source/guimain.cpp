@@ -151,12 +151,13 @@ ui -> fdnumber -> setText(QString::number(parameters.elementsinl));
 void guimain::setresults(Solution solution)
 {
     ui -> Resultstable ->clear();
-    ui -> Resultstable ->setColumnCount(9);
+    ui -> Resultstable ->setColumnCount(12);
     ui -> Resultstable ->setRowCount(solution.soln);
     ui -> Resultstable ->show();
     ui -> Resultstable->setHorizontalHeaderLabels(QStringList() << ui -> parameter -> currentText()  << "Decomp. Factor" << "Speed Factor"
                                                   << "Support Factor" << "Outflow Length" << "Flaring" << "Irwin Corten Crack Driving Force"
-                                                  << "Crack driving force components" << "Normalised Total");
+                                                  << "Crack driving force components" << "Normalised Total" << "Crack Opening" << "Converged"
+                                                  << "Iterations");
 
     for (i = 0; i < solution.soln; i++){
         switch(ui -> parameter -> currentIndex())
@@ -180,6 +181,9 @@ void guimain::setresults(Solution solution)
     ui ->Resultstable ->setItem(i,6,new QTableWidgetItem(QString::number(solution.g0[i+1])));
     ui ->Resultstable ->setItem(i,7,new QTableWidgetItem(QString::number(solution.gG0[i+1])));
     ui ->Resultstable ->setItem(i,8,new QTableWidgetItem(QString::number(solution.gTotal[i+1])));
+    ui ->Resultstable ->setItem(i,9,new QTableWidgetItem(QString::number(solution.noCrackOpening[i+1])));
+    ui ->Resultstable ->setItem(i,10,new QTableWidgetItem(QString::number(solution.notConverged[i+1])));
+    ui ->Resultstable ->setItem(i,11,new QTableWidgetItem(QString::number(solution.iterations[i+1])));
     }
 
 }

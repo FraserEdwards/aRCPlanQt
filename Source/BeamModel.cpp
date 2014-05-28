@@ -171,7 +171,7 @@ void BeamModel::converteffopen(const Parameters parameters)
 void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep creep)
 {
     extern File file;
-	maxIterations=100;
+    maxIterations=50;
 	notConverged = 1;
 	iterations = 0;
 	noCrackOpening = 0;
