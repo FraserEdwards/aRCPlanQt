@@ -97,6 +97,8 @@ void BeamModel::initialise()
 
 void BeamModel::speedandreset(const Parameters parameters, const Backfill backfill, Creep creep)
 {
+
+    cout << endl << "Speed: " << parameters.aDotc0 << endl;
     extern File file;
 	//  Set initial outflow length
 
@@ -229,7 +231,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 		// Prepare to refine closure length by iteration
 		double dontNeedThis;
         error = 0;
-        iterations = 0;
+//        iterations = 0;
         short maximumNonContact = 0;
 
         //Need to declare again here! Without this, program exits first loop immediately, hence provides incorrect solutions
