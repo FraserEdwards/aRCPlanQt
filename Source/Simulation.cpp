@@ -3,6 +3,7 @@
 #include <QObject>
 using namespace std;
 
+#include "Constants.h"
 #include "Simulation.h"
 #include "guimain.h"
 #include "ui_guimain.h"
@@ -19,38 +20,17 @@ Simulation::Simulation()
 Solution Simulation::run(Parameters parameters)
 {
 
+    parameters.h = parameters.diameter/parameters.sdr/Constants::kilo; // (m)
+    parameters.hOverR = 2.0/ (parameters.sdr-1);
+    parameters.radius = parameters.h / parameters.hOverR;
+
+    parameters.crackWidth = parameters.diameter / parameters.sdr - parameters.notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
+
+    parameters.dynamicModulus = parameters.eDyn0degC + parameters.tempDegC * parameters.dEdyndT;
+
     extern Solution solution;
     extern File file;
     file.logprepare(parameters);
-
-//    cout << "Parameters: " << endl;
-
-//    cout << "matID: " << parameters.matID << endl;
-//    cout << "density: " << parameters.density << endl;
-//    cout << "eDyn0degC: " << parameters.eDyn0degC << endl;
-//    cout << "dEdyndt: " << parameters.dEdyndT << endl;
-//    cout << "creepModulus: " << parameters.creepModulus << endl;
-//    cout << "poisson: " << parameters.poisson << endl;
-
-//    cout << "pipeID: " << parameters.pipeID << endl;
-//    cout << "diameter: " << parameters.diameter << endl;
-//    cout << "sdr: " << parameters.sdr << endl;
-//    cout << "notchDepth: " << parameters.notchDepth << endl;
-//    cout << "diameterCreepRatio: " << parameters.diameterCreepRatio << endl;
-
-//    cout << "fullScale: " << parameters.fullScale << endl;
-//    cout << "tempDegC: " << parameters.tempDegC << endl;
-//    cout << "p0bar: " << parameters.p0bar << endl;
-//    cout << "isBackfilled: " << parameters.isBackfilled << endl;
-//    cout << "backfillDepth: " << parameters.backfillDepth << endl;
-//    cout << "solidInsidePipe: " << parameters.solidInsidePipe << endl;
-//    cout << "waterInsidePipe: " << parameters.waterInsidePipe << endl;
-
-//    cout << "outflowModelOn: " << parameters.outflowModelOn << endl;
-//    cout << "lambda: " << parameters.lambda << endl;
-//    cout << "solutionmethod: " << parameters.solutionmethod << endl;
-//    cout << "aDotc0: " << parameters.aDotc0 << endl;
-//    cout << "elementsinl: " << parameters.elementsinl << endl;
 
     //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
     FracMech fracmech(parameters);
@@ -66,16 +46,6 @@ Solution Simulation::run(Parameters parameters)
 
     //	Preliminary calculations
     BeamModel beamModel(parameters);
-//    cout << "Internalvolume: " << beamModel.availableInternalVolume << endl;
-//    cout << "baffleLeakageArea: " << beamModel.baffleLeakageArea << endl;
-//    cout << "dynamicShearModulus: " << beamModel.dynamicShearModulus << endl;
-//    cout << "sdrMinus1: " << beamModel.sdrMinus1 << endl;
-//    cout << "sdrMinus2: " << beamModel.sdrMinus2 << endl;
-//    cout << "zetaClosure: " << beamModel.zetaClosure << endl;
-//    cout << "nodeResolution: " << beamModel.nodeResolution << endl;
-//    cout << "nodeAtClosure: " << beamModel.nodeAtClosure << endl;
-//    cout << "zetaBackfilled: " << beamModel.zetaBackfilled << endl;
-
 
     if(parameters.singlemode)
     {

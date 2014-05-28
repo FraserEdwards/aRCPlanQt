@@ -13,7 +13,8 @@ using namespace std;
     double Parameters::dEdyndT_lib[5] = {-0.037, -0.0427, -0.0185, -0.02135, -0.02};
     double Parameters::creepModulus_lib[5] = {0.3, 0.3, 0.3, 0.3, 0.3};
     double Parameters::poisson_lib[5] = {0.38, 0.38, 0.38, 0.38, 0.38};
-
+    double Parameters::from_lib[3] = {0.0, 1.0, 1.0};
+    double Parameters::to_lib[3] = {1.0, 20.0, 50.0};
 
 //Null constructor
 Parameters::Parameters()
@@ -116,6 +117,7 @@ Parameters& Parameters::operator=(const Parameters& rhs)
     from = rhs.from;
     to = rhs.to;
     varname = rhs.varname;
+    verbose = rhs.verbose;
 
     pipeID = rhs.pipeID;
     diameter = rhs.diameter;

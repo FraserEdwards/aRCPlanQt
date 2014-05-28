@@ -201,6 +201,7 @@ void guimain::on_Runbutton_clicked()
         solution = simulation.run(edited);
 
         setresults(solution);
+
         if(edited.singlemode==2)
         {
             plothandler(solution);
@@ -363,14 +364,15 @@ Parameters guimain::update()
     temp.lambda = ui -> initiallength -> text().toDouble();    
     temp.aDotc0 = ui -> crackspeed -> text().toDouble();   
     temp.elementsinl = ui -> fdnumber -> text().toDouble();
+    temp.verbose = ui ->verbose ->checkState();
 
-    temp.h = temp.diameter/temp.sdr/Constants::kilo; // (m)
-    temp.hOverR = 2.0/ (temp.sdr-1);
-    temp.radius = temp.h / temp.hOverR;
+//    temp.h = temp.diameter/temp.sdr/Constants::kilo; // (m)
+//    temp.hOverR = 2.0/ (temp.sdr-1);
+//    temp.radius = temp.h / temp.hOverR;
 
-    temp.crackWidth = temp.diameter / temp.sdr - temp.notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
+//    temp.crackWidth = temp.diameter / temp.sdr - temp.notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
 
-    temp.dynamicModulus = temp.eDyn0degC + temp.tempDegC * temp.dEdyndT;
+//    temp.dynamicModulus = temp.eDyn0degC + temp.tempDegC * temp.dEdyndT;
 
     return temp;
 }
@@ -545,4 +547,10 @@ void guimain::on_actionAbout_triggered()
     about *d = new about;
     d->show();
     d->setWindowTitle("About");
+}
+
+void guimain::on_parameter_currentIndexChanged(int index)
+{
+    ui -> from -> setText(QString::number(Parameters::from_lib[index]));
+    ui -> to -> setText(QString::number(Parameters::to_lib[index]));
 }

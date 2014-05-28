@@ -33,6 +33,9 @@ public:
     static double notchDepth_lib[5];
     static double diameterCreepRatio_lib[5];
 
+    static double from_lib[3];
+    static double to_lib[3];
+
     string methodID;
     short fullScale;
     double tempDegC;
@@ -62,6 +65,7 @@ public:
     double hOverR;
     double radius;
 
+    short verbose;
     int outflowModelOn;
     double lambda;
     int solutionmethod;

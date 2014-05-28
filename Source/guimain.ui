@@ -187,7 +187,7 @@
     <item row="1" column="0">
      <widget class="QTabWidget" name="tabs">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -768,7 +768,7 @@
            <x>0</x>
            <y>0</y>
            <width>379</width>
-           <height>299</height>
+           <height>311</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -867,6 +867,23 @@
               </property>
              </widget>
             </item>
+            <item row="8" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Verbose mode (Not recomended):</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QCheckBox" name="verbose">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
           <item>
@@ -889,11 +906,9 @@
      </widget>
     </item>
    </layout>
-   <zorder>layoutWidget</zorder>
    <zorder>tabs</zorder>
    <zorder>Resultstable</zorder>
    <zorder>Crackplot</zorder>
-   <zorder>layoutWidget</zorder>
    <zorder>Resultsplot</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

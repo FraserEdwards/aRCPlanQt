@@ -1,6 +1,6 @@
 #include <cmath>
 #include <iostream>
-#include <QEventLoop>
+#include <QDesktopWidget>
 
 #include "dialog.h"
 
@@ -176,9 +176,9 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 	iterations = 0;
 	noCrackOpening = 0;
     error = 0;
-    int infoLevel =3;
+    int infoLevel =0;
 
-    if ((parameters.outflowModelOn==2) & (infoLevel > 1))
+    if ((parameters.outflowModelOn==2) & (parameters.verbose==2))
     {
         dialog *e = new dialog;
         e->Warning("Starting outflowLength refinement with outflow length = ", outflowLength);
@@ -219,7 +219,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 	// Make second guess for closure length (two nodes MORE than input value):
 		nodeAtClosure += 4;
 
-        if (infoLevel > 1)
+        if (parameters.verbose==2)
         {
             dialog *e = new dialog;
             e->Warning("Second-guess closure node = ", nodeAtClosure);
@@ -242,7 +242,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			error = fdSolution.closureMoment();
             short noSurfaceContact = 1;								// FIXME:  necessary?
             short minPoint = fdSolution.nodeAtMinimum();			// this is set to -1 if NO minimum is found within domain
-            if (infoLevel > 1)
+            if (parameters.verbose==2)
 			{
                 dialog *e = new dialog;
                 e->Warning("At closure length iteration ",iterations," closure moment = ", error, " min at point ",minPoint);
@@ -250,7 +250,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			}	
 			if (minPoint > 0)
 			{
-                if (infoLevel > 1)
+                if (parameters.verbose==2)
                 {
                     dialog *e = new dialog;
                     e->Warning("BUT there's a minimum (crack surface overlap) to left of closure point ", minPoint);
@@ -268,7 +268,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
                     fdSolution = FDprofile(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
 					tempError = fdSolution.closureMoment();
 					newMin = fdSolution.nodeAtMinimum();
-                    if (infoLevel > 1)
+                    if (parameters.verbose==2)
 					{
                         dialog *e = new dialog;
                         e->Warning("nodeAtClosure = ",nodeAtClosure, " error = ", tempError, " min point = ", newMin);
@@ -278,7 +278,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 				}
 				while (newMin < 0);
 				nodeAtClosure = nodeAtClosure - 1;
-                if (infoLevel > 1)
+                if (parameters.verbose==2)
                 {
                     dialog *e = new dialog;
                     e->Warning("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
@@ -296,7 +296,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			else
 			{
 				nodeAtClosure++;
-                if (infoLevel > 1)
+                if (parameters.verbose==2)
                 {
                     dialog *e = new dialog;
                     e->Warning("node interpolated = ", nodeAtClosure);
@@ -316,7 +316,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 				}
 				else
 				{
-                    if (infoLevel > 1)
+                    if (parameters.verbose==2)
                     {
                         dialog *e = new dialog;
                         e->Warning("Next try for iteration will be nodeAtClosure = ", nodeAtClosure);
@@ -332,7 +332,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			} // done that refinement iteration
 			while (notConverged & (iterations < maxIterations));
 
-            if (infoLevel > 1)
+            if (parameters.verbose==2)
 			{
                 dialog *e = new dialog;
                 e->Warning("At nodeAtClosure = ", nodeAtClosure, " converged in ", iterations," iterations with error = ", error);
@@ -345,7 +345,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
             //Formally location of analytical solution
 		} 
 	
-        if (infoLevel > 1)
+        if (parameters.verbose==2)
 		{
             dialog *e = new dialog;
             e->Warning("Computed profile properties", "Ejection point = ", zetaBackfillEject, "Opening at outflow point = ", wStarMax, "1st-deriv at outflow = ", wStar2dash, "2nd-deriv at outflow = ", wStar2dash2, "Integral to outflow = ", integral_wStar2);
@@ -361,7 +361,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 				outflowLength = pow(factor * outflow.get_tStarOutflow() / throatArea, 0.2);
 			}
 		//	tStarOutflow being the number of characteristic times for discharge
-            if (infoLevel > 1)
+            if (parameters.verbose==2)
 			{	                
                 dialog *e = new dialog;
                 e->Warning("alpha = ", alpha[1], "m = ", m[1], "integral_wStar2 = ", integral_wStar2, "New outflowLength = ", outflowLength);
@@ -400,7 +400,7 @@ void BeamModel::opening(Parameters parameters, Creep creep)
 	//	So we now have the correct numerical or analytical crack opening profile vStar(zeta), and can output it if needed
 
 
-        if (infoLevel > 1)
+        if (parameters.verbose==2)
 		{
             dialog *e = new dialog;
             e->Warning("Final outflowLength convergence in ", iterations, " iterations for outflowLength = ", outflowLength);

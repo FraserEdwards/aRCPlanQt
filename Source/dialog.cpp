@@ -1,5 +1,6 @@
 #include <QString>
 
+
 #include "dialog.h"
 #include "ui_dialog.h"
 
@@ -17,9 +18,7 @@ dialog::~dialog()
 
 void dialog::Warning(string title)
 {
-
     ui-> warning -> setText(QString::fromStdString(title));
-
 }
 
 void dialog::Warning(string title, double value)
