@@ -30,14 +30,6 @@ Solution Simulation::run(Parameters parameters)
     extern File file;
     file.logprepare(parameters);
 
-//    //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
-//    FracMech fracmech(parameters);
-//    file.collect(fracmech);
-
-//    //	Calculate natural diameter of pipe due to residual strain contraction in time scale of fracture
-//    Creep creep(parameters);
-//    file.collect(creep);
-
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
     file.collect(backfill);
@@ -66,11 +58,14 @@ Solution Simulation::run(Parameters parameters)
         // Iteration function
         beamModel.iteration(parameters, backfill, creep);
 
-            beamModel.opening(parameters, creep);
-            fracmech.extensionForce(beamModel, parameters, creep);
+        beamModel.opening(parameters, creep);
+        fracmech.extensionForce(beamModel, parameters, creep);
 
-            solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-            fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
+        solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+        fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
+
+        file.initialise();
+
     }
     else
     {
@@ -111,11 +106,14 @@ Solution Simulation::run(Parameters parameters)
             // Iteration function
             beamModel.iteration(parameters, backfill, creep);
 
-                beamModel.opening(parameters, creep);
-                fracmech.extensionForce(beamModel, parameters, creep);
+            beamModel.opening(parameters, creep);
+            fracmech.extensionForce(beamModel, parameters, creep);
 
-                solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-                fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
+            solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+            fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
+
+            file.initialise();
+
         }
 
     }

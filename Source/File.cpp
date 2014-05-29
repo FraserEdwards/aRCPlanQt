@@ -11,7 +11,8 @@ File::File()
 void File::initialise()
 {
     aDotc0 = 0.0;
-    densityratio = 0.0;
+    g0 = 0.0;
+    diameterRes0 = 0.0;
 
     dStarMinus1 = 0.0;
     dStarMinus2 = 0.0;
@@ -61,6 +62,19 @@ void File::initialise()
     m[1] = 0.0;
     alpha[0] = 0.0;
     alpha[1] = 0.0;
+
+    pStarUnchoke = 0.0;
+    xUnch = 0.0;
+    pHalfStar = 0.0;
+    pStar = 0.0;
+    tStar = 0.0;
+    tStarUnchoke = 0.0;
+    simpsonIntegral = 0.0;
+    unchoked = 0;
+    tStarOutflow2 = 0.0;
+
+    writelogline(1);
+
 }
 
 void File::correct()
@@ -375,7 +389,9 @@ void File::writeheaders(string temp)
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
         << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "factor" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
         << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << ","
-        << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
+        << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << ","
+        << "pStarUnchoke" << "," << "xUnch" << "," << "pHalfStar" << "," << "pStar" << "," << "tStar" << ","
+        << "tStarUnchoke" << "," << "simpsonIntegral" << "," << "unchoked" << "," << "tStarOutflow2" << "\n";
 
     writelinecsv("\n", out);
     out.close();
@@ -407,7 +423,10 @@ void File::writelogline(int newline)
         << p1bar << "," << v0 << ","
         << vStarRes << "," << factor << "," << aDotCLfactor << "," << aDotCLfactor_backfilled << ","
         << maxIterations << "," << iterations << "," << m[0] << "," << m[1] << ","
-        << alpha[0] << "," << alpha[1] << "," << error << "," << notConverged << "\n";
+        << alpha[0] << "," << alpha[1] << "," << error << "," << notConverged << ","
+        << pStarUnchoke << "," << xUnch << "," << pHalfStar << "," << pStar << ","
+        << tStar << "," << tStarUnchoke << "," << simpsonIntegral << "," << unchoked << ","
+        << tStarOutflow2 << "\n";
 
     out.close();
 }
@@ -450,14 +469,24 @@ void File::collect(BeamModel *beamModel, int newline)
     error = beamModel -> error;
     notConverged = beamModel -> notConverged;
     factor = beamModel ->factor;
+
     writelogline(newline);
 }
 
 void File::collect(OutflowProcess *outflow, int newline)
 {
 
+    pStarUnchoke = outflow ->pStarUnchoke;
+    xUnch = outflow -> xUnch;
+    pHalfStar = outflow -> pHalfStar;
+    pStar = outflow -> pStar;
+    tStar = outflow -> tStar;
+    tStarUnchoke = outflow -> tStarUnchoke;
+    simpsonIntegral = outflow -> simpsonIntegral;
+    unchoked = outflow -> unchoked;
+    tStarOutflow2 =  outflow -> tStarOutflow2;
 
-
+    writelogline(newline);
 
 }
 

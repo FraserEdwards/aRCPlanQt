@@ -5,6 +5,7 @@
 class OutflowProcess
 {// pressure/time function for outflow from a vessel at defined initial pressure, through a
 	private:
+
 		static const short maxTimeSteps;
                 // Time at which throat unchokes
         double tStarOutflow;

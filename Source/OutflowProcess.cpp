@@ -5,6 +5,7 @@ using namespace std;
 
 #include "Constants.h"
 #include "OutflowProcess.h"
+#include "File.h"
 
 const short OutflowProcess::maxTimeSteps = 100;
 
@@ -15,6 +16,7 @@ OutflowProcess::OutflowProcess()
 
 OutflowProcess::OutflowProcess(double p1Gauge)
 {
+    extern File file;
 	//	Computes the pressure as a vessel of volume V discharges through an aperture of throat area = exit area = A, 
 	//	as a function of time t/tChar where tChar = V / (A c0), cO being sonic velocity.
 	//	Calculate internal/ambient absolute pressure ratio below which outflow will be unchoked:
@@ -27,7 +29,9 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 	double p1Star = p1 / Constants::pAtm;		// Initial ratio of vessel to atmosphere pressure
     pHalfStar = p1Gauge / 2.0 + Constants::pAtm;
 	pHalfStar = pHalfStar / Constants::pAtm;	// p1Star after 50% decompression
-	
+
+    file.collect(this,0);
+
 	//	Calculate (using choked adiabatic case as reference) the discharge history for up to 
 	//	5 characteristic times, recording the times at which unchoking and final discharge occur:
 	double deltaTStar = 5.0 / OutflowProcess::maxTimeSteps;
@@ -46,6 +50,8 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 		tStarUnchoke = 0.0;
 	}
 	
+    file.collect(this,0);
+
 	while ((pStar > 1.0) & (i < maxTimeSteps))
 	{
 		tStar = double(i) * deltaTStar;
@@ -101,13 +107,16 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 	simpsonIntegral *= 2.0 / (p1 - Constants::pAtm);
 //    tStarOutflow = simpsonIntegral;
     tStarOutflow = tStarOutflow2;
+
+    file.collect(this,0);
+
 } // end constructor.
 
 
 double OutflowProcess::X(double pp0)
 {// Function of pressure ratio
 	return sqrt(pow(pp0, (1 - 1 / Constants::gamma)));
-}// end X.
+}// end
 
 
 double OutflowProcess::pp1WhileChoked(double tStar)
