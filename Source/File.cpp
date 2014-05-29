@@ -174,14 +174,17 @@ void File::writeresults()
 
     out.open((file.directory + "Results/" + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
-    out << "Normalised Crack Speed,Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,\n";
+    out << "Normalised Crack Speed,Initial pressure, Temperature, Decomp. factor,Speed factor,Support factor,Outflow length,Flaring,Irwin Corten force,Crack driving force,Normalised total,"
+            << "CrackOpening, Converged, Iterations \n";
 
     for(i=1; i<solution.soln+1;i++)
     {
 
-        out << solution.aDotc0[i] << "," << solution.decompression[i] << "," << solution.alpha[i] << ","
+        out << solution.aDotc0[i] << "," << solution.p0bar[i] << "," << solution.tempDegC[i] << ","
+                << solution.decompression[i] << "," << solution.alpha[i] << ","
                 << solution.m[i] << "," << solution.outflowLength[i] << ", ," << solution.g0[i] << ","
-                << solution.gG0[i] << "," << solution.gTotal[i] << "\n";
+                << solution.gG0[i] << "," << solution.gTotal[i] << "," << solution.noCrackOpening[i] << ","
+                << solution.notConverged[i] << "," << solution.iterations[i] << "\n";
 
     }
 
@@ -191,7 +194,7 @@ void File::writeresults()
 
     out.open((file.directory + "Results/" +filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
-    out << "aDotc0" << ",";
+    out << "independent variable\zeta" << ",";
 
     for(i = 1; i < solution.n; i++)
     {
@@ -368,7 +371,7 @@ void File::writeheaders(string temp)
 
     writelinecsv("\n", out);
 
-    out << "aDotc0" << "," << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
+    out << "Measurement" << "," << "aDotc0" << "," << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
         << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
         << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << ","
@@ -395,7 +398,7 @@ void File::writelogline(int newline)
     out << " \n";
     }
 
-    out << aDotc0 << ","
+    out << measurement << "," << aDotc0 << ","
         << g0 << ","
         << diameterRes0 << "," << residualCrackClosure << ","
         << densityratio << ","

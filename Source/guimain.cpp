@@ -173,17 +173,17 @@ void guimain::setresults(Solution solution)
                 break;
         }
 
-    ui ->Resultstable ->setItem(i,1,new QTableWidgetItem(QString::number(solution.decompression[i+1])));
-    ui ->Resultstable ->setItem(i,2,new QTableWidgetItem(QString::number(solution.alpha[i+1])));
-    ui ->Resultstable ->setItem(i,3,new QTableWidgetItem(QString::number(solution.m[i+1])));
-    ui ->Resultstable ->setItem(i,4,new QTableWidgetItem(QString::number(solution.outflowLength[i+1])));
-    ui ->Resultstable ->setItem(i,5,new QTableWidgetItem(QString::fromStdString("   ")));
-    ui ->Resultstable ->setItem(i,6,new QTableWidgetItem(QString::number(solution.g0[i+1])));
-    ui ->Resultstable ->setItem(i,7,new QTableWidgetItem(QString::number(solution.gG0[i+1])));
-    ui ->Resultstable ->setItem(i,8,new QTableWidgetItem(QString::number(solution.gTotal[i+1])));
-    ui ->Resultstable ->setItem(i,9,new QTableWidgetItem(QString::number(solution.noCrackOpening[i+1])));
-    ui ->Resultstable ->setItem(i,10,new QTableWidgetItem(QString::number(solution.notConverged[i+1])));
-    ui ->Resultstable ->setItem(i,11,new QTableWidgetItem(QString::number(solution.iterations[i+1])));
+        ui ->Resultstable ->setItem(i,1,new QTableWidgetItem(QString::number(solution.decompression[i+1])));
+        ui ->Resultstable ->setItem(i,2,new QTableWidgetItem(QString::number(solution.alpha[i+1])));
+        ui ->Resultstable ->setItem(i,3,new QTableWidgetItem(QString::number(solution.m[i+1])));
+        ui ->Resultstable ->setItem(i,4,new QTableWidgetItem(QString::number(solution.outflowLength[i+1])));
+        ui ->Resultstable ->setItem(i,5,new QTableWidgetItem(QString::fromStdString("   ")));
+        ui ->Resultstable ->setItem(i,6,new QTableWidgetItem(QString::number(solution.g0[i+1])));
+        ui ->Resultstable ->setItem(i,7,new QTableWidgetItem(QString::number(solution.gG0[i+1])));
+        ui ->Resultstable ->setItem(i,8,new QTableWidgetItem(QString::number(solution.gTotal[i+1])));
+        ui ->Resultstable ->setItem(i,9,new QTableWidgetItem(QString::number(solution.noCrackOpening[i+1])));
+        ui ->Resultstable ->setItem(i,10,new QTableWidgetItem(QString::number(solution.notConverged[i+1])));
+        ui ->Resultstable ->setItem(i,11,new QTableWidgetItem(QString::number(solution.iterations[i+1])));
     }
 
 }
@@ -272,26 +272,34 @@ void guimain::plothandler(Solution solution)
             break;
         }
     }
-    if(solution.k==0)
-    {
 
+    if(solution.noCrackOpening[solution.k])
+    {
+        plotprofiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,1);
     }
     else
     {
-
-        plotprofiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0);
-
+        plotprofiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,0);
     }
 }
 
-void guimain::plotprofiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate)
+void guimain::plotprofiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate, char valid)
 {
 
     extern File file;
 
     path = (ui -> path -> text().toStdString()) + "Profiles/" + title;
     ui -> Crackplot -> addGraph();
-    ui -> Crackplot -> graph(0) ->setPen(QPen(Qt::green));
+
+    if(valid==1)
+    {
+        ui -> Crackplot -> graph(0) ->setPen(QPen(Qt::green));
+    }
+    else
+    {
+        ui -> Crackplot -> graph(0) ->setPen(QPen(Qt::red));
+    }
+
     ui -> Crackplot -> graph(0)->setLineStyle(QCPGraph::lsNone);
     ui -> Crackplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, 4));
 
@@ -463,7 +471,15 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
 
     extern Solution solution;
 
-    plotprofiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0);
+    if(solution.noCrackOpening[row+1])
+    {
+        plotprofiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,1);
+    }
+    else
+    {
+        plotprofiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,0);
+    }
+
     switch(ui->parameter->currentIndex())
     {
         case 0:

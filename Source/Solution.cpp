@@ -130,10 +130,10 @@ void Solution::Tvalues(const double aDotc0s, const double p0bars, const double t
 	gSb.push_back(gSbs);
 	gKb.push_back(gKbs);
 	g0.push_back(g0s);
+
     noCrackOpening.push_back(!noCrackOpenings);
     notConverged.push_back(!notConvergeds);
     iterations.push_back(iterationss);
-
 
     if (gG0s < 1000)
     {gG0.push_back(gG0s);}

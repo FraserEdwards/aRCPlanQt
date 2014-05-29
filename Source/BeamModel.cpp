@@ -357,6 +357,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
             if (parameters.outflowModelOn==2)
 			{	
 				double throatArea = integral_wStar2;
+
 				OutflowProcess outflow(p1bar);
 				outflowLength = pow(factor * outflow.get_tStarOutflow() / throatArea, 0.2);
 			}

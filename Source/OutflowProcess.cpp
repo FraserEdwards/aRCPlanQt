@@ -25,7 +25,7 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 
 	double p1 = p1Gauge + Constants::pAtm;		// Convert to absolute pressure
 	double p1Star = p1 / Constants::pAtm;		// Initial ratio of vessel to atmosphere pressure
-	double pHalfStar = p1Gauge / 2.0 + Constants::pAtm;
+    double pHalfStar = p1Gauge / 2.0 + Constants::pAtm;
 	pHalfStar = pHalfStar / Constants::pAtm;	// p1Star after 50% decompression
 	
 	//	Calculate (using choked adiabatic case as reference) the discharge history for up to 
@@ -77,10 +77,14 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 			simpsonIntegral += 0.5 * (pStar + pStarLast - 2.0) * (tStar - tStarLast);
 			tStarLast = tStar;
 		}
-		else
-			simpsonIntegral += 0.5 * (pStar + pStarLast - 2.0) * deltaTStar;
+        else
+        {
+            simpsonIntegral += 0.5 * (pStar + pStarLast - 2.0) * deltaTStar;
+        }
+
 		tStarLast = tStar;
-		i = i + 1;
+        i++;
+
 	}	// End of calculation for that pressure/time step
 
 // If we quit because we had the whole pressure/time history:
@@ -89,12 +93,14 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 		tStar = tStar - (1.0 - pStar) / (pStarLast - pStar) * (tStar - tStarLast);
 		simpsonIntegral += 0.5 * (pStarLast - 1.0) * (tStar - tStarLast);
 	}
-	else
-		cout << "Discharge time has not been reached. \n";
+    else
+    {
+        cout << "Discharge time has not been reached. \n";
+    }
 // Fit the outflow time assuming linear pressure/time decay
 	simpsonIntegral *= 2.0 / (p1 - Constants::pAtm);
-//	tStarOutflow = simpsonIntegral;
-	tStarOutflow = tStarOutflow2;
+//    tStarOutflow = simpsonIntegral;
+    tStarOutflow = tStarOutflow2;
 } // end constructor.
 
 

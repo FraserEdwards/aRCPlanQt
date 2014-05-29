@@ -32,6 +32,7 @@ private:
     string subfolder;
     string filename;
     int found;
+    int measurement;
 
 public:
 
