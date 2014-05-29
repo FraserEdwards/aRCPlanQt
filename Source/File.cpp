@@ -453,5 +453,13 @@ void File::collect(BeamModel *beamModel, int newline)
     writelogline(newline);
 }
 
+void File::collect(OutflowProcess *outflow, int newline)
+{
+
+
+
+
+}
+
 
 

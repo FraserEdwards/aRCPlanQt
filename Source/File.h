@@ -18,6 +18,7 @@ using namespace std;
 #include "Parameters.h"
 #include "Solution.h"
 #include "FracMech.h"
+#include "OutflowProcess.h"
 
 class File : public FracMech, public Creep, public Backfill, public BeamModel
 {
@@ -60,6 +61,7 @@ public:
     void collect(Creep creep);
     void collect(Backfill backfill);
     void collect(BeamModel *beamModel, int newline);
+    void collect(OutflowProcess *outflow, int newline);
     void writelogline(int newline);
 };
 
