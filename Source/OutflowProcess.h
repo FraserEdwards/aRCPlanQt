@@ -15,8 +15,6 @@ class OutflowProcess
 		double xFunction(double x);
 
 	public:
-//        double xUnch;
-//        double pHalfStar;
 	    OutflowProcess();											// null constructor
 	    OutflowProcess(const double pGauge);						// construct a Control definition from the library or a file
 		OutflowProcess& operator=(const OutflowProcess& rhs);

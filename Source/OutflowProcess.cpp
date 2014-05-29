@@ -19,14 +19,14 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 	//	as a function of time t/tChar where tChar = V / (A c0), cO being sonic velocity.
 	//	Calculate internal/ambient absolute pressure ratio below which outflow will be unchoked:
 	pStarUnchoke = pow((Constants::gamma + 1.0) / 2.0, Constants::gamma / (Constants::gamma - 1.0));
-    double xUnch = X(pStarUnchoke);
+	double xUnch = X(pStarUnchoke);
 	int unchoked = 0;	//  boolean
 	int firstHalf = 1;
 
 	double p1 = p1Gauge + Constants::pAtm;		// Convert to absolute pressure
 	double p1Star = p1 / Constants::pAtm;		// Initial ratio of vessel to atmosphere pressure
     double pHalfStar = p1Gauge / 2.0 + Constants::pAtm;
-    pHalfStar = pHalfStar / Constants::pAtm;	// p1Star after 50% decompression
+	pHalfStar = pHalfStar / Constants::pAtm;	// p1Star after 50% decompression
 	
 	//	Calculate (using choked adiabatic case as reference) the discharge history for up to 
 	//	5 characteristic times, recording the times at which unchoking and final discharge occur:
@@ -47,7 +47,7 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 	}
 	
 	while ((pStar > 1.0) & (i < maxTimeSteps))
-    {
+	{
 		tStar = double(i) * deltaTStar;
 //  Compute pressure assuming choked flow:
 //  (we need to even for unchoked flow, since we must then compute time from pressure, not vice versa)

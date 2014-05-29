@@ -20,7 +20,7 @@ using namespace std;
 #include "FracMech.h"
 #include "OutflowProcess.h"
 
-class File : public FracMech, public Creep, public Backfill, public BeamModel, public OutflowProcess
+class File : public FracMech, public Creep, public Backfill, public BeamModel
 {
 private:
 
