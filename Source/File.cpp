@@ -61,6 +61,10 @@ void File::initialise()
     m[1] = 0.0;
     alpha[0] = 0.0;
     alpha[1] = 0.0;
+
+//    xUnch = 0.0;
+//    pHalfStar = 0.0;
+
 }
 
 void File::correct()
@@ -375,7 +379,8 @@ void File::writeheaders(string temp)
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
         << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "factor" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
         << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << ","
-        << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
+        << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << ","
+        << "xUnch" << "," << "pHalfStar";
 
     writelinecsv("\n", out);
     out.close();
@@ -408,6 +413,7 @@ void File::writelogline(int newline)
         << vStarRes << "," << factor << "," << aDotCLfactor << "," << aDotCLfactor_backfilled << ","
         << maxIterations << "," << iterations << "," << m[0] << "," << m[1] << ","
         << alpha[0] << "," << alpha[1] << "," << error << "," << notConverged << "\n";
+           //        << xUnch << "," << pHalfStar <<  "\n";
 
     out.close();
 }
