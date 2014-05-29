@@ -19,7 +19,7 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 	//	as a function of time t/tChar where tChar = V / (A c0), cO being sonic velocity.
 	//	Calculate internal/ambient absolute pressure ratio below which outflow will be unchoked:
 	pStarUnchoke = pow((Constants::gamma + 1.0) / 2.0, Constants::gamma / (Constants::gamma - 1.0));
-	double xUnch = X(pStarUnchoke);
+    xUnch = X(pStarUnchoke);
 	int unchoked = 0;	//  boolean
 	int firstHalf = 1;
 
