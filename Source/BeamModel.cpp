@@ -376,11 +376,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 				notConverged = false;
 
 			iterations++;
-			short waitForMe;
-            if (infoLevel > 2)
-			{	
-//				waitForMe=interface.input("enter digit: ");
-			}
+
 		}
 		else
 		{
