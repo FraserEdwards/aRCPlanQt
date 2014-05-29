@@ -370,10 +370,10 @@ void File::writeheaders(string temp)
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
     writelinecsv("\n", out);
-
-    out << "Measurement" << "," << "aDotc0" << "," << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
+    lognumber = 0;
+    out << "Log number" << "," << "aDotc0" << "," << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
-        << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
+        << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "factor" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
         << "," << "maxIterations" << "," << "iterations" << "," << "m[0]" << "," << "m[1]" << ","
         << "alpha[0]" << "," << "alpha[1]" << "," << "error" << "," << "notConverged" << "," << "arraySize";
 
@@ -396,15 +396,16 @@ void File::writelogline(int newline)
     if(newline)
     {
     out << " \n";
+    lognumber = 0;
     }
-
-    out << measurement << "," << aDotc0 << ","
+    lognumber++;
+    out << lognumber << "," << aDotc0 << ","
         << g0 << ","
         << diameterRes0 << "," << residualCrackClosure << ","
         << densityratio << ","
         << zetaClosure << "," << nodeAtClosure << "," << outflowLength << ","
         << p1bar << "," << v0 << ","
-        << vStarRes << "," << aDotCLfactor << "," << aDotCLfactor_backfilled << ","
+        << vStarRes << "," << factor << "," << aDotCLfactor << "," << aDotCLfactor_backfilled << ","
         << maxIterations << "," << iterations << "," << m[0] << "," << m[1] << ","
         << alpha[0] << "," << alpha[1] << "," << error << "," << notConverged << "\n";
 
@@ -448,6 +449,7 @@ void File::collect(BeamModel *beamModel, int newline)
     alpha[1] = beamModel -> alpha[1];
     error = beamModel -> error;
     notConverged = beamModel -> notConverged;
+    factor = beamModel ->factor;
     writelogline(newline);
 }
 

@@ -55,7 +55,7 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 		pStar = p1 * pp1WhileChoked(tStar);
 
 //	Did outflow just unchoke?  If so, interpolate the time at which that occurred.
-		if (!unchoked && (pStar <= pStarUnchoke))
+        if (!unchoked && (pStar <= pStarUnchoke))
 		{
 			unchoked = true;
 			tStarUnchoke = tStar - (pStarUnchoke - pStar) / (pStarLast - pStar) * deltaTStar;
@@ -70,7 +70,7 @@ OutflowProcess::OutflowProcess(double p1Gauge)
 			tStarOutflow2 = 2.0 * tStarLast + (pHalfStar - pStarLast) * (tStar - tStarLast) / (pStar - pStarLast);
 		}
 		
-//  If outflow is unchoked then back-calculate the time at which the pressure would reach the choked value calculated aobve:
+//  If outflow is unchoked then back-calculate the time at which the pressure would reach the choked value calculated above:
 		if (unchoked)
 		{
 			tStar = tStarUnchoke + tStarWhileUnchoked(xUnch, pStar);
