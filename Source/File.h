@@ -42,7 +42,7 @@ private:
 public:
 
     string directory;
-    double aDotc0;
+    double adotc0;
 
     //Null constructor
     File();

@@ -34,7 +34,7 @@ void FracMech::extensionForce(BeamModel beamModel, const Parameters parameters, 
 {
 
 	//	GS1 due to residual strain bending energy in pipe wall ahead of crack:
-    gs1 = (parameters.diameter - creep.diameterRes0);			// (mm)
+    gs1 = (parameters.diameter - creep.diameterres0);			// (mm)
     gs1 = Constants::pi / 6.0 * parameters.dynamicmodulus * Constants::kilo / pow(beamModel.sdrMinus1, 3) * gs1 * gs1 / parameters.crackwidth;
 
 	//  GUE due to work done on flaps (= dUE/da / crack width):

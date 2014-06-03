@@ -12,12 +12,12 @@ class Creep
 	
 private:
 
-	double creepModulusRatio;
+    double creepmodulusratio;
 
 public:
 
-	double diameterRes0;
-	double residualCrackClosure;
+    double diameterres0;
+    double residualcrackclosure;
 
 	//Null constructor
 	Creep();

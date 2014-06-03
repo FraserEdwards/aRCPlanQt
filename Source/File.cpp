@@ -21,9 +21,9 @@ File::File()
 //Clears all variables within the file class
 void File::initialise()
 {
-    aDotc0 = 0.0;
+    adotc0 = 0.0;
     g0 = 0.0;
-    diameterRes0 = 0.0;
+    diameterres0 = 0.0;
 
     dStarMinus1 = 0.0;
     dStarMinus2 = 0.0;
@@ -442,9 +442,9 @@ void File::writelogline(int newline)
     lognumber = 0;
     }
     lognumber++;
-    out << lognumber << "," << aDotc0 << ","
+    out << lognumber << "," << adotc0 << ","
         << g0 << ","
-        << diameterRes0 << "," << residualCrackClosure << ","
+        << diameterres0 << "," << residualcrackclosure << ","
         << densityratio << ","
         << zetaClosure << "," << nodeAtClosure << "," << outflowLength << ","
         << p1bar << "," << v0 << ","
@@ -469,8 +469,8 @@ void File::collect(FracMech fracmech)
 
 void File::collect(Creep creep)
 {
-    diameterRes0 = creep.diameterRes0;
-    residualCrackClosure = creep.residualCrackClosure;
+    diameterres0 = creep.diameterres0;
+    residualcrackclosure = creep.residualcrackclosure;
     writelogline(0);
 }
 
