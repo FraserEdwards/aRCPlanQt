@@ -1,6 +1,5 @@
 //     aRCPLan
-
-//     Authors: Dr Patric Leevers, Fraser //
+//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
@@ -66,9 +65,10 @@ public:
 		//Null constructor
 	    BeamModel();
 
-		// Constructs a dynamic beam-on-elastic-foundation model of the specific pipe RCP case
+        //Constructs a dynamic beam-on-elastic-foundation model of the specific pipe RCP case
         BeamModel(const Parameters parameters);
 
+        //Clears all values within beammodel
         void initialise();
 		
 		// Speed dependent properties and reset for outflow length
@@ -80,10 +80,13 @@ public:
 		// Dimensionless crack speed [0] with backfill and [1] without
 		void cspeed(const Parameters parameters, const Backfill backfill);
 
+        //Converts from v to w
 		void converteffopen(const Parameters parameters);
 
+        //Iteration function to find solution
         void iteration(Parameters parameters, Backfill backfill, Creep creep);
 
+        //Finds final crack profile and calls conversion function
         void opening(Parameters parameters, Creep creep);
 
 

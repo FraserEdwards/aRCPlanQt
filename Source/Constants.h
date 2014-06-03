@@ -1,13 +1,13 @@
 //     aRCPLan
-
-//     Authors: Dr Patric Leevers, Fraser //
+//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
+
+
 
 #ifndef ConstantsH
 #define ConstantsH
 
-//Class declaration section
 class Constants
 {
 	public:
@@ -17,7 +17,7 @@ class Constants
 		static const double piSqr;
 		static const double gamma;		// Specific heat ratio
 		static const double pAtm;
-		static const double vSonic;			// Speed of sound in air
+        static const double vSonic;     // Speed of sound in air
 		static const double c1;
 		static const double c2;
 		static const double c3;

@@ -1,3 +1,11 @@
+//     aRCPLan
+//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
+//     aRCPlan may be freely distributed under the MIT license.
+//     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
+
+//     A VERY simple class with no exception handling
+//     Despite its name it is NOT restricted to symmetrical matrices
+
 #include <iostream>
 #include <iomanip>
 #include <cmath>

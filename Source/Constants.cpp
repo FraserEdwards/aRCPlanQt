@@ -1,10 +1,9 @@
-// aRCPLan: Constants.cpp
-//
-// Author: Dr Patrick Leevers
-// Modified by: Fraser Edwards
+//     aRCPLan
+//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
+//     aRCPlan may be freely distributed under the MIT license.
+//     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
-// Constants.cpp declares and initialises constants within 
-// the Constants class
+//     The constants class provides constants throughout the calculations
 
 #include "Constants.h"
 
