@@ -28,8 +28,7 @@ signals:
 private:
 	
 	int i;
-	short controlCode;
-	double aDotc0;
+    double adotc0;
 	
 public:	
 	

@@ -92,14 +92,14 @@ void Solution::clear()
 //Sets up displacement values for crack profiles
 void Solution::displacement(Parameters &parameters)
 {
-    n = (parameters.elementsinl * (parameters.lambda+2))+1;
+    n = (parameters.elements_in_l * (parameters.lambda+2))+1;
     vector<double> row;
 
     for(i = 0; i < n; i++ )
     {
         row.push_back(0.0);
     }
-    for(i = 0; i < parameters.rangenumber; i++)
+    for(i = 0; i < parameters.range_number; i++)
     {
         w.push_back(row);
     }
@@ -107,7 +107,7 @@ void Solution::displacement(Parameters &parameters)
     for(i = 1; i < n; i++)
     {
 
-        z.push_back(double(i)/double(parameters.elementsinl));
+        z.push_back(double(i)/double(parameters.elements_in_l));
 
     }
 

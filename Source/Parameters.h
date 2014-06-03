@@ -15,14 +15,6 @@ using namespace std;
 class Parameters
 {
 
-private:
-
-    string filename;
-
-
-
-    ConfigFile config;
-	
 public:
 
     static string matid_lib[5];
@@ -45,38 +37,38 @@ public:
     short fullscale;
     double tempdegc;
     double p0bar;
-    int isbackfilled;
-    double backfilldepth;
-    double backfilldensity;
-    double solidinsidepipe;
-    double waterinsidepipe;
+    int is_backfilled;
+    double backfill_depth;
+    double backfill_density;
+    double solid_inside_pipe;
+    double water_inside_pipe;
 
     string matid;
     double density;
     double edyn0degc;
     double dedyndt;
-    double dynamicmodulus;
-    double creepmodulus;
+    double dynamic_modulus;
+    double creep_modulus;
     double poisson;
-    double creepmodulusratio;
+    double creep_modulus_ratio;
 
     string pipeid;
     double diameter;
     double sdr;
-    double notchdepth;
-    double diametercreepratio;
+    double notch_depth;
+    double diameter_creep_ratio;
     double h;
-    double crackwidth;
+    double crack_width;
     double hoverr;
     double radius;
 
     short verbose;
-    int outflowmodelon;
+    int outflow_model_on;
     double lambda;
-    int solutionmethod;
-    int singlemode;
-    int rangenumber;
-    int elementsinl;
+    int solution_method;
+    int single_mode;
+    int range_number;
+    int elements_in_l;
     double adotc0;
     double from;
     double to;

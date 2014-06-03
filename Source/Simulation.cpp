@@ -19,9 +19,8 @@ using namespace std;
 Simulation::Simulation()
 {
 
-	controlCode=0;	
 	i=0;
-	aDotc0=0.0;
+    adotc0=0.0;
 
 }
 
@@ -34,7 +33,7 @@ Solution Simulation::run(Parameters parameters)
     parameters.hoverr = 2.0/ (parameters.sdr-1);
     parameters.radius = parameters.h / parameters.hoverr;
 
-    parameters.crackwidth = parameters.diameter / parameters.sdr - parameters.notchdepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
+    parameters.crack_width = parameters.diameter / parameters.sdr - parameters.notch_depth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
 
     extern Solution solution;
     extern File file;
@@ -47,12 +46,12 @@ Solution Simulation::run(Parameters parameters)
     //	Preliminary calculations
     BeamModel beamModel(parameters);
 
-    if(parameters.singlemode)
+    if(parameters.single_mode)
     {
         solution.clear();
         solution.displacement(parameters);
 
-        parameters.dynamicmodulus = parameters.edyn0degc + parameters.tempdegc * parameters.dedyndt;
+        parameters.dynamic_modulus = parameters.edyn0degc + parameters.tempdegc * parameters.dedyndt;
 
         //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
         FracMech fracmech(parameters);
@@ -71,8 +70,8 @@ Solution Simulation::run(Parameters parameters)
         beamModel.opening(parameters, creep);
         fracmech.extensionForce(beamModel, parameters, creep);
 
-        solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-        fracmech.gs1, fracmech.gue, fracmech.gsb, fracmech.gkb, fracmech.g0, fracmech.gg0, fracmech.gtotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
+        solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflow_length, beamModel.deltadstar,
+        fracmech.gs1, fracmech.gue, fracmech.gsb, fracmech.gkb, fracmech.g0, fracmech.gg0, fracmech.gtotal, beamModel.no_crack_opening, beamModel.not_converged, beamModel.iterations);
 
         file.initialise();
 
@@ -83,24 +82,24 @@ Solution Simulation::run(Parameters parameters)
         solution.displacement(parameters);
 
         //  Proceed to vary crack speed
-        for (i =0; i < parameters.rangenumber; i++)
+        for (i =0; i < parameters.range_number; i++)
         {
             switch(parameters.varname)
             {
                 case 0:
-                    parameters.adotc0 = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    parameters.adotc0 = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.range_number));
                     break;
                 case 1:
-                    parameters.p0bar = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    parameters.p0bar = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.range_number));
                     break;
                 case 2:
-                    parameters.tempdegc = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    parameters.tempdegc = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.range_number));
                     break;
                 default:
                     break;
             }
 
-            parameters.dynamicmodulus = parameters.edyn0degc + parameters.tempdegc * parameters.dedyndt;
+            parameters.dynamic_modulus = parameters.edyn0degc + parameters.tempdegc * parameters.dedyndt;
 
             //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
             FracMech fracmech(parameters);
@@ -119,8 +118,8 @@ Solution Simulation::run(Parameters parameters)
             beamModel.opening(parameters, creep);
             fracmech.extensionForce(beamModel, parameters, creep);
 
-            solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-            fracmech.gs1, fracmech.gue, fracmech.gsb, fracmech.gkb, fracmech.g0, fracmech.gg0, fracmech.gtotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
+            solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflow_length, beamModel.deltadstar,
+            fracmech.gs1, fracmech.gue, fracmech.gsb, fracmech.gkb, fracmech.g0, fracmech.gg0, fracmech.gtotal, beamModel.no_crack_opening, beamModel.not_converged, beamModel.iterations);
 
             file.initialise();
 

@@ -57,12 +57,12 @@ else
     ui->s4->setCheckState(Qt::Checked);
 }
 
-if(parameters.isbackfilled)
+if(parameters.is_backfilled)
    {ui->backfill->setCheckState(Qt::Checked);}
 else
    {ui->backfill->setCheckState(Qt::Unchecked);}
 
-if(parameters.outflowmodelon)
+if(parameters.outflow_model_on)
    {ui->fixedlength->setCheckState(Qt::Checked);}
 else
    {ui->fixedlength->setCheckState(Qt::Unchecked);}
@@ -102,7 +102,7 @@ ui -> deltadynamicmodulus -> setAlignment(Qt::AlignRight);
 ui -> deltadynamicmodulus ->setText(QString::number(parameters.dedyndt));
 
 ui -> creepmodulus -> setAlignment(Qt::AlignRight);
-ui -> creepmodulus -> setText(QString::number(parameters.creepmodulus));
+ui -> creepmodulus -> setText(QString::number(parameters.creep_modulus));
 
 ui -> dynpoissonratio -> setAlignment(Qt::AlignRight);
 ui -> dynpoissonratio -> setText(QString::number(parameters.poisson));
@@ -123,10 +123,10 @@ ui -> sdr -> setAlignment(Qt::AlignRight);
 ui -> sdr -> setText(QString::number(parameters.sdr));
 
 ui -> groovedepth -> setAlignment(Qt::AlignRight);
-ui -> groovedepth -> setText(QString::number(parameters.notchdepth));
+ui -> groovedepth -> setText(QString::number(parameters.notch_depth));
 
 ui -> relativediameter -> setAlignment(Qt::AlignRight);
-ui -> relativediameter -> setText(QString::number(parameters.diametercreepratio));
+ui -> relativediameter -> setText(QString::number(parameters.diameter_creep_ratio));
 
 ui -> testtemperature -> setAlignment(Qt::AlignRight);
 ui -> testtemperature -> setText(QString::number(parameters.tempdegc));
@@ -135,16 +135,16 @@ ui -> initialpressure -> setAlignment(Qt::AlignRight);
 ui -> initialpressure -> setText(QString::number(parameters.p0bar));
 
 ui -> backfilldepth -> setAlignment(Qt::AlignRight);
-ui -> backfilldepth -> setText(QString::number(parameters.backfilldepth));
+ui -> backfilldepth -> setText(QString::number(parameters.backfill_depth));
 
 ui -> backfilldensity -> setAlignment(Qt::AlignRight);
-ui -> backfilldensity -> setText(QString::number(parameters.backfilldensity));
+ui -> backfilldensity -> setText(QString::number(parameters.backfill_density));
 
 ui -> solidfraction -> setAlignment(Qt::AlignRight);
-ui -> solidfraction -> setText(QString::number(parameters.solidinsidepipe));
+ui -> solidfraction -> setText(QString::number(parameters.solid_inside_pipe));
 
 ui -> waterfraction -> setAlignment(Qt::AlignRight);
-ui -> waterfraction -> setText(QString::number(parameters.waterinsidepipe));
+ui -> waterfraction -> setText(QString::number(parameters.water_inside_pipe));
 
 ui -> initiallength -> setAlignment(Qt::AlignRight);
 ui -> initiallength -> setText(QString::number(parameters.lambda));
@@ -153,7 +153,7 @@ ui -> crackspeed -> setAlignment(Qt::AlignRight);
 ui -> crackspeed -> setText(QString::number(parameters.adotc0));
 
 ui -> fdnumber -> setAlignment(Qt::AlignRight);
-ui -> fdnumber -> setText(QString::number(parameters.elementsinl));
+ui -> fdnumber -> setText(QString::number(parameters.elements_in_l));
 
 }
 
@@ -219,7 +219,7 @@ void guimain::on_Runbutton_clicked()
 
         setresults(solution);
 
-        if(edited.singlemode==2)
+        if(edited.single_mode==2)
         {
             plothandler(solution);
         }
@@ -386,20 +386,20 @@ Parameters guimain::update()
 
     temp.varname = ui ->parameter ->currentIndex();
 
-    temp.singlemode = ui -> singlemode -> checkState();
+    temp.single_mode = ui -> singlemode -> checkState();
     temp.from = ui -> from -> text().toDouble();
     temp.to = ui -> to -> text().toDouble();
-    temp.rangenumber = ui -> noofpoints -> text().toDouble();
+    temp.range_number = ui -> noofpoints -> text().toDouble();
 
     temp.fullscale = ui -> fs -> checkState();
-    temp.isbackfilled = ui -> backfill -> checkState();
-    temp.outflowmodelon = ui -> fixedlength -> checkState();
+    temp.is_backfilled = ui -> backfill -> checkState();
+    temp.outflow_model_on = ui -> fixedlength -> checkState();
 
     temp.matid = ui -> materialname ->currentText().toStdString();
     temp.density = ui -> density -> text().toDouble();    
     temp.edyn0degc = ui -> dynamicmodulus -> text().toDouble();
     temp.dedyndt = ui -> deltadynamicmodulus -> text().toDouble();
-    temp.creepmodulus = ui -> creepmodulus -> text().toDouble();
+    temp.creep_modulus = ui -> creepmodulus -> text().toDouble();
     temp.poisson = ui -> dynpoissonratio -> text().toDouble();
     temp.edyn0degc = ui -> dynamicmodulus -> text().toDouble();
     temp.p0bar = ui ->initialpressure -> text().toDouble();
@@ -407,17 +407,17 @@ Parameters guimain::update()
     temp.pipeid = ui -> pipename -> currentText().toStdString();
     temp.diameter = ui -> outsidediameter -> text().toDouble();
     temp.sdr = ui -> sdr -> text().toDouble();    
-    temp.notchdepth = ui -> groovedepth -> text().toDouble();
-    temp.diametercreepratio = ui -> relativediameter -> text().toDouble();
+    temp.notch_depth = ui -> groovedepth -> text().toDouble();
+    temp.diameter_creep_ratio = ui -> relativediameter -> text().toDouble();
     temp.tempdegc = ui -> testtemperature -> text().toDouble();
-    temp.backfilldepth = ui -> backfilldepth -> text().toDouble();
-    temp.backfilldensity = ui -> backfilldensity -> text().toDouble();
-    temp.solidinsidepipe = ui -> solidfraction -> text().toDouble();
-    temp.waterinsidepipe = ui -> waterfraction -> text().toDouble();
+    temp.backfill_depth = ui -> backfilldepth -> text().toDouble();
+    temp.backfill_density = ui -> backfilldensity -> text().toDouble();
+    temp.solid_inside_pipe = ui -> solidfraction -> text().toDouble();
+    temp.water_inside_pipe = ui -> waterfraction -> text().toDouble();
 
     temp.lambda = ui -> initiallength -> text().toDouble();    
     temp.adotc0 = ui -> crackspeed -> text().toDouble();
-    temp.elementsinl = ui -> fdnumber -> text().toDouble();
+    temp.elements_in_l = ui -> fdnumber -> text().toDouble();
     temp.verbose = ui ->verbose ->checkState();
 
     return temp;
@@ -649,15 +649,15 @@ void guimain::on_action_Save_triggered()
     Parameters temp;
     temp = update();
     dialog *e = new dialog;
-    filename = "caseInputData.txt";
-    if(!file.casehandler(temp, filename))
+    file_name = "caseInputData.txt";
+    if(!file.casehandler(temp, file_name))
     {
         e->Warning("caseInputData.txt saved successfully");
 
     }
     else
     {
-        e->Warning(filename + " not saved successfully, enter a viable name");
+        e->Warning(file_name + " not saved successfully, enter a viable name");
     }
     e->show();
 }

@@ -12,55 +12,55 @@
 #include "Creep.h"
 
 class BeamModel
-{//
-	private:
+{
+private:
 									
-int n;
+        int n;
 		
 		
 public:	
-        double dStarMinus1;
-        double dStarMinus2;
-        double baffleLeakageArea;
-        short fdArraySize;
+        double dstarminus1;
+        double dstarminus2;
+        double baffle_leakage_area;
+        short fd_array_size;
         double decompression;
-        double zetaClosure;
-		short printOpeningProfile;
-		double deltaDStar;
+        double zetaclosure;
+        short print_opening_profile;
+        double deltadstar;
         int l;
-        short maxIterations;
+        short max_iterations;
 		double m[2];
 		double alpha[2];
-		double hOverR;	
-		double lambdaLast;
-		double zetaBackfilledLast;
-		short notConverged;
+        double hoverr;
+        double lambda_last;
+        double zetabackfilledlast;
+        short not_converged;
 		short iterations;
-		short noCrackOpening;
-		double wStar2, wStarMax, wStar2dash, wStar2dash2, integral_wStar2;
-		double zetaBackfillEject;
+        short no_crack_opening;
+        double wstar2, wstarmax, wstar2dash, wstar2dash2, integral_wstar2;
+        double zetabackfilleject;
 		double p1p0r;
-		double dynamicShearModulus;		
-		double nodeResolution;
+        double dynamic_shear_modulus;
+        double node_resolution;
 		double v0;
 		double factor;
 		double p1bar;
 		double vStarRes;
-		short nodeAtClosure;
-		double aDotOverCL;
-		double aDotCLfactor;
-		double aDotCLfactor_backfilled;
-		double lambdaPow4;
-		double sdrMinus1;
-		double sdrMinus2;
-		double zetaBackfilled;	
-		double outflowLength;
+        short node_at_closure;
+        double adotovercl;
+        double adotclfactor;
+        double adotclfactor_backfilled;
+        double lambdapow4;
+        double sdrminus1;
+        double sdrminus2;
+        double zetabackfilled;
+        double outflow_length;
 		double v00;
         double error;
-		double availableInternalVolume;
+        double available_internal_volume;
         vector<double> zeta;
-        vector<double> crackdisplacement;
-        double vStarDashBackfillEject;
+        vector<double> crack_displacement;
+        double vstardashbackfilleject;
 		
 		//Null constructor
 	    BeamModel();

@@ -34,16 +34,16 @@ BeamModel::BeamModel(const Parameters parameters)
     extern File file;
 
 	//Proportion of internal volume available for expansion
-    availableInternalVolume = 1.0 - parameters.waterinsidepipe - parameters.solidinsidepipe;
+    available_internal_volume = 1.0 - parameters.water_inside_pipe - parameters.solid_inside_pipe;
 
 	//Factors for modelling of S4 baffle leak
-	baffleLeakageArea=parameters.diameter / Constants::kilo;  //m
-	baffleLeakageArea = baffleLeakageArea * baffleLeakageArea * 0.01 * Constants::pi * (parameters.sdr - 2.0) / parameters.sdr;
+    baffle_leakage_area=parameters.diameter / Constants::kilo;  //m
+    baffle_leakage_area = baffle_leakage_area * baffle_leakage_area * 0.01 * Constants::pi * (parameters.sdr - 2.0) / parameters.sdr;
 
 	//Parameters for equivalent beam model
-    dynamicShearModulus = parameters.dynamicmodulus / 2.0 / (1.0 + parameters.poisson);
-	sdrMinus1 = parameters.sdr - 1.0;
-	sdrMinus2 = sdrMinus1 - 1.0;
+    dynamic_shear_modulus = parameters.dynamic_modulus / 2.0 / (1.0 + parameters.poisson);
+    sdrminus1 = parameters.sdr - 1.0;
+    sdrminus2 = sdrminus1 - 1.0;
 
     file.collect(this,0);
 
@@ -53,49 +53,48 @@ BeamModel::BeamModel(const Parameters parameters)
 void BeamModel::initialise()
 {
 
-    dStarMinus1 = 0.0;
-    dStarMinus2 = 0.0;
-    baffleLeakageArea = 0.0;
-    fdArraySize = 0;
+    dstarminus1 = 0.0;
+    dstarminus2 = 0.0;
+    baffle_leakage_area = 0.0;
+    fd_array_size = 0;
     decompression = 0.0;
 
-    zetaClosure = 0.0;
-    printOpeningProfile = 0;
+    zetaclosure = 0.0;
 
     l = 0;
-    maxIterations = 0;
-    hOverR = 0.0;
-    lambdaLast = 0.0;
-    zetaBackfilledLast = 0.0;
-    notConverged = 1;
+    max_iterations = 0;
+    hoverr = 0.0;
+    lambda_last = 0.0;
+    zetabackfilledlast = 0.0;
+    not_converged = 1;
     iterations = 0;
-    noCrackOpening = 0;
-    wStar2 = 0.0;
-    wStarMax = 0.0;
-    wStar2dash = 0.0;
-    wStar2dash2 = 0.0;
-    integral_wStar2 = 0.0;
-    zetaBackfillEject = 0.0;
+    no_crack_opening = 0;
+    wstar2 = 0.0;
+    wstarmax = 0.0;
+    wstar2dash = 0.0;
+    wstar2dash2 = 0.0;
+    integral_wstar2 = 0.0;
+    zetabackfilleject = 0.0;
     p1p0r = 0.0;
-    dynamicShearModulus = 0.0;
-    nodeResolution = 0.0;
+    dynamic_shear_modulus = 0.0;
+    node_resolution = 0.0;
     v0 = 0.0;
     factor = 0.0;
     p1bar = 0.0;
     vStarRes = 0.0;
-    nodeAtClosure = 0;
-    aDotOverCL = 0.0;
-    aDotCLfactor = 0.0;
-    aDotCLfactor_backfilled = 0.0;
-    lambdaPow4 = 0;
-    sdrMinus1 = 0.0;
-    sdrMinus2 = 0.0;
-    zetaBackfilled = 0.0;
-    outflowLength = 0.0;
+    node_at_closure = 0;
+    adotovercl = 0.0;
+    adotclfactor = 0.0;
+    adotclfactor_backfilled = 0.0;
+    lambdapow4 = 0;
+    sdrminus1 = 0.0;
+    sdrminus2 = 0.0;
+    zetabackfilled = 0.0;
+    outflow_length = 0.0;
     v00 = 0.0;
     error = 0.0;
-    availableInternalVolume = 0.0;
-    vStarDashBackfillEject = 0.0;
+    available_internal_volume = 0.0;
+    vstardashbackfilleject = 0.0;
 
     m[0] = 0.0;
     m[1] = 0.0;
@@ -112,13 +111,13 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
     extern File file;
 	//  Set initial outflow length
 
-    zetaClosure = 2.0;				//	Point (in outflow lengths) at which crack re-closes, with first guess.
-    nodeResolution = 0.5 / parameters.elementsinl;	// used as a reference tolerance
-    nodeAtClosure = short(zetaClosure * parameters.elementsinl);
-    zetaBackfilled = 0.2;		// first guess
+    zetaclosure = 2.0;				//	Point (in outflow lengths) at which crack re-closes, with first guess.
+    node_resolution = 0.5 / parameters.elements_in_l;	// used as a reference tolerance
+    node_at_closure = short(zetaclosure * parameters.elements_in_l);
+    zetabackfilled = 0.2;		// first guess
 
-	outflowLength = parameters.lambda;
-	lambdaPow4 =  pow(outflowLength, 4);
+    outflow_length = parameters.lambda;
+    lambdapow4 =  pow(outflow_length, 4);
 		
 	//For FS configuration, prior decompression
 	p1bar=parameters.p0bar;
@@ -130,7 +129,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
     if(parameters.fullscale==2)
 						{
 
-						availableInternalVolume=1.0;
+                        available_internal_volume=1.0;
 
                         decomp.p1p0(parameters.p0bar, Constants::gamma, parameters.adotc0);
 
@@ -141,19 +140,19 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
     p1p0r=decomp.p1p0r; //TODO: swap throughout remainder of code, so only decomp.p1p0r is used
 
 	//	v00 becomes reference length v0 on multiplying by lambda^4
-    v00 = 0.4 / Constants::c1 * sdrMinus1 * sdrMinus2 / parameters.sdr * p1bar / parameters.dynamicmodulus * parameters.diameter / Constants::mega;	//	(m)
+    v00 = 0.4 / Constants::c1 * sdrminus1 * sdrminus2 / parameters.sdr * p1bar / parameters.dynamic_modulus * parameters.diameter / Constants::mega;	//	(m)
 
 	//	Dimensionless virtual crack opening at crack tip (representing residual strain)
-	v0 = v00 * lambdaPow4;			//	(m)
+    v0 = v00 * lambdapow4;			//	(m)
     vStarRes = creep.residual_crack_closure / v0 / Constants::kilo;
 
 	// Parameters for equivalent beam model (speed dependent)
-    aDotOverCL = parameters.adotc0 * Constants::vSonic / sqrt(parameters.dynamicmodulus * Constants::giga / parameters.density);
-	aDotCLfactor = 1.0 + aDotOverCL * aDotOverCL;
+    adotovercl = parameters.adotc0 * Constants::vSonic / sqrt(parameters.dynamic_modulus * Constants::giga / parameters.density);
+    adotclfactor = 1.0 + adotovercl * adotovercl;
 
-    aDotCLfactor_backfilled = 1.0 + aDotOverCL * aDotOverCL * backfill.density_ratio;
+    adotclfactor_backfilled = 1.0 + adotovercl * adotovercl * backfill.density_ratio;
 
-    factor = Constants::pi * Constants::c1 * 625.0 * parameters.dynamicmodulus / p1bar * availableInternalVolume * sdrMinus2 / sdrMinus1 / sdrMinus1 * parameters.adotc0;	// Note GPa / bar / 16 = 625
+    factor = Constants::pi * Constants::c1 * 625.0 * parameters.dynamic_modulus / p1bar * available_internal_volume * sdrminus2 / sdrminus1 / sdrminus1 * parameters.adotc0;	// Note GPa / bar / 16 = 625
 
     file.adotc0 = parameters.adotc0;
     file.collect(this, 0);
@@ -164,24 +163,24 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 void BeamModel::stiffness()
 {
 
-	m[1] = 8.0 / 3.0 / Constants::pi / Constants::c1 / sdrMinus1 / sdrMinus1 * lambdaPow4;
-	m[0] = m[1] / aDotCLfactor_backfilled;
-	m[1] /= aDotCLfactor;
+    m[1] = 8.0 / 3.0 / Constants::pi / Constants::c1 / sdrminus1 / sdrminus1 * lambdapow4;
+    m[0] = m[1] / adotclfactor_backfilled;
+    m[1] /= adotclfactor;
 }
 
 //	Dimensionless crack speed [0] with backfill and [1] without
 void BeamModel::cspeed(const Parameters parameters, const Backfill backfill)
 {
 
-	alpha[1] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL + Constants::c4 / 2.0 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor);
-    alpha[0] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL * backfill.density_ratio + Constants::c4 * 0.5 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor_backfilled);
+    alpha[1] = outflow_length * sqrt(Constants::c3 * adotovercl * adotovercl + Constants::c4 / 2.0 / (1.0 + parameters.poisson) / sdrminus1 / sdrminus1 / adotclfactor);
+    alpha[0] = outflow_length * sqrt(Constants::c3 * adotovercl * adotovercl * backfill.density_ratio + Constants::c4 * 0.5 / (1.0 + parameters.poisson) / sdrminus1 / sdrminus1 / adotclfactor_backfilled);
 }
 
 //Converts opening from v to w
 void BeamModel::converteffopen(const Parameters parameters)
 {
-    wStar2dash *= v0 / (2.0 * outflowLength * parameters.radius);
-	wStar2dash2 *= v0 / pow(2.0 * outflowLength * parameters.radius, 2);
+    wstar2dash *= v0 / (2.0 * outflow_length * parameters.radius);
+    wstar2dash2 *= v0 / pow(2.0 * outflow_length * parameters.radius, 2);
 }
 
 //Iteration function
@@ -189,24 +188,24 @@ void BeamModel::converteffopen(const Parameters parameters)
 void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep creep)
 {
     extern File file;
-    maxIterations=50;
-	notConverged = 1;
+    max_iterations=50;
+    not_converged = 1;
 	iterations = 0;
-	noCrackOpening = 0;
+    no_crack_opening = 0;
     error = 0;
     int infoLevel =0;
 
     //Checked against 2 as checkboxes are assigned 2 when selected rather than 1
-    if ((parameters.outflowmodelon==2) & (parameters.verbose==2))
+    if ((parameters.outflow_model_on==2) & (parameters.verbose==2))
     {
         dialog *e = new dialog;
-        e->Warning("Starting outflowLength refinement with outflow length = ", outflowLength);
+        e->Warning("Starting outflowLength refinement with outflow length = ", outflow_length);
         e->exec();
     }		
 	do
 	{	// Refine given outflow length using the discharge analysis:
-		lambdaLast = outflowLength;
-		zetaBackfilledLast = zetaBackfilled;
+        lambda_last = outflow_length;
+        zetabackfilledlast = zetabackfilled;
 	
 		//	Dimensionless foundation stiffness 
 		stiffness(); 
@@ -217,17 +216,17 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
         file.collect(this, 0);
 
 		//	Determine (either by analytical or FD method) the opening profile v*(zeta) for a given outflow length control.lambda and the properties of it which are needed for analysis.
-        if (parameters.solutionmethod==2)
+        if (parameters.solution_method==2)
         {
             // ...then use FINITE DIFFERENCE solution method:
 			//		short waitForMe;	
 
 			// Make first guess for closure length -- two nodes less than input value -- and construct FD solution:
-			nodeAtClosure -= 2;
-			double wStarMax = 0.0;
-            FDprofile fdSolution(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
+            node_at_closure -= 2;
+            double wstarmax = 0.0;
+            FDprofile fdSolution(alpha, m, zetabackfilled, vStarRes, parameters.elements_in_l, node_at_closure);
 
-			short nodeAtClosure_previous = nodeAtClosure;				// Store position of last node in this FD array
+            short nodeAtClosure_previous = node_at_closure;				// Store position of last node in this FD array
 			double errorLast = fdSolution.closureMoment();				// ...and resulting d2v/dz2 at closure point, divided by that at crack tip
         if (infoLevel > 1)
 		{
@@ -237,12 +236,12 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 		}
 
         // Make second guess for closure length (two nodes MORE than input value):
-		nodeAtClosure += 4;
+        node_at_closure += 4;
 
         if (parameters.verbose==2)
         {
             dialog *e = new dialog;
-            e->Warning("Second-guess closure node = ", nodeAtClosure);
+            e->Warning("Second-guess closure node = ", node_at_closure);
             e->exec();
         }
 
@@ -257,7 +256,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 		do
 		{	// ...until bending moment at closure point is negligible compared to that at crack tip:
 
-            fdSolution = FDprofile(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
+            fdSolution = FDprofile(alpha, m, zetabackfilled, vStarRes, parameters.elements_in_l, node_at_closure);
 			error = fdSolution.closureMoment();
             short noSurfaceContact = 1;								// FIXME:  necessary?
             short minPoint = fdSolution.nodeAtMinimum();			// this is set to -1 if NO minimum is found within domain
@@ -278,47 +277,47 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
 				// So back up to find maximum closure length with NO overlap:
 				double tempError;
-				nodeAtClosure = minPoint - 2;
-                if (nodeAtClosure < (parameters.elementsinl + 1))
-                    nodeAtClosure = parameters.elementsinl + 1;	// Is this really necessary?  Closure might really occur inside decompression length!
+                node_at_closure = minPoint - 2;
+                if (node_at_closure < (parameters.elements_in_l + 1))
+                    node_at_closure = parameters.elements_in_l + 1;	// Is this really necessary?  Closure might really occur inside decompression length!
 				short newMin;
 				do
 				{
-                    fdSolution = FDprofile(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
+                    fdSolution = FDprofile(alpha, m, zetabackfilled, vStarRes, parameters.elements_in_l, node_at_closure);
 					tempError = fdSolution.closureMoment();
 					newMin = fdSolution.nodeAtMinimum();
                     if (parameters.verbose==2)
 					{
                         dialog *e = new dialog;
-                        e->Warning("nodeAtClosure = ",nodeAtClosure, " error = ", tempError, " min point = ", newMin);
+                        e->Warning("nodeAtClosure = ",node_at_closure, " error = ", tempError, " min point = ", newMin);
                         e->exec();
 					}	
-					nodeAtClosure++;
+                    node_at_closure++;
 				}
 				while (newMin < 0);
-				nodeAtClosure = nodeAtClosure - 1;
+                node_at_closure = node_at_closure - 1;
                 if (parameters.verbose==2)
                 {
                     dialog *e = new dialog;
-                    e->Warning("Least worst non-contacting solution nodeAtClosure = ", nodeAtClosure);
+                    e->Warning("Least worst non-contacting solution nodeAtClosure = ", node_at_closure);
                     e->exec();
                 }
 					
 				maximumNonContact = true;
-                fdSolution = FDprofile(alpha, m, -1.0, vStarRes, parameters.elementsinl, nodeAtClosure);
+                fdSolution = FDprofile(alpha, m, -1.0, vStarRes, parameters.elements_in_l, node_at_closure);
 
 				error = fdSolution.closureMoment();
-				integral_wStar2 = fdSolution.integral_wStar2();
-				fdSolution.findBackfillEjectPoint(zetaBackfillEject, dontNeedThis);
+                integral_wstar2 = fdSolution.integral_wStar2();
+                fdSolution.findBackfillEjectPoint(zetabackfilleject, dontNeedThis);
 
 			}
 			else
 			{
-				nodeAtClosure++;
+                node_at_closure++;
                 if (parameters.verbose==2)
                 {
                     dialog *e = new dialog;
-                    e->Warning("node interpolated = ", nodeAtClosure);
+                    e->Warning("node interpolated = ", node_at_closure);
                     e->exec();
                 }
 		
@@ -329,16 +328,16 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			else if ((fabs(error) < 0.01 and noSurfaceContact) or maximumNonContact)
 				{	// converged:
 					notConverged = false;
-					fdSolution.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);	
-					fdSolution.findBackfillEjectPoint(zetaBackfillEject, dontNeedThis);
-					wStarMax = fdSolution.wStarMax(nodeAtClosure);
+                    fdSolution.outflowPointValues(wstar2, wstar2dash, wstar2dash2, integral_wstar2);
+                    fdSolution.findBackfillEjectPoint(zetabackfilleject, dontNeedThis);
+                    wstarmax = fdSolution.wStarMax(node_at_closure);
 				}
 				else
 				{
                     if (parameters.verbose==2)
                     {
                         dialog *e = new dialog;
-                        e->Warning("Next try for iteration will be nodeAtClosure = ", nodeAtClosure);
+                        e->Warning("Next try for iteration will be nodeAtClosure = ", node_at_closure);
                         e->exec();
                     }
 
@@ -350,12 +349,12 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
             // done that refinement iteration
             }
-			while (notConverged & (iterations < maxIterations));
+            while (notConverged & (iterations < max_iterations));
 
             if (parameters.verbose==2)
 			{
                 dialog *e = new dialog;
-                e->Warning("At nodeAtClosure = ", nodeAtClosure, " converged in ", iterations," iterations with error = ", error);
+                e->Warning("At nodeAtClosure = ", node_at_closure, " converged in ", iterations," iterations with error = ", error);
                 e->exec();
 			}
 
@@ -368,45 +367,47 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
         if (parameters.verbose==2)
 		{
             dialog *e = new dialog;
-            e->Warning("Computed profile properties", "Ejection point = ", zetaBackfillEject, "Opening at outflow point = ", wStarMax, "1st-deriv at outflow = ", wStar2dash, "2nd-deriv at outflow = ", wStar2dash2, "Integral to outflow = ", integral_wStar2);
+            e->Warning("Computed profile properties", "Ejection point = ", zetabackfilleject,
+                       "Opening at outflow point = ", wstarmax, "1st-deriv at outflow = ", wstar2dash,
+                       "2nd-deriv at outflow = ", wstar2dash2, "Integral to outflow = ", integral_wstar2);
             e->exec();
 		}
 
-		if (integral_wStar2 > 0.0)
+        if (integral_wstar2 > 0.0)
 		{
-            if (parameters.outflowmodelon==2)
+            if (parameters.outflow_model_on==2)
 			{	
-				double throatArea = integral_wStar2;
+                double throatArea = integral_wstar2;
 
 				OutflowProcess outflow(p1bar);
-				outflowLength = pow(factor * outflow.get_tStarOutflow() / throatArea, 0.2);
+                outflow_length = pow(factor * outflow.get_tStarOutflow() / throatArea, 0.2);
 			}
 		//	tStarOutflow being the number of characteristic times for discharge
             if (parameters.verbose==2)
 			{	                
                 dialog *e = new dialog;
-                e->Warning("alpha = ", alpha[1], "m = ", m[1], "integral_wStar2 = ", integral_wStar2, "New outflowLength = ", outflowLength);
+                e->Warning("alpha = ", alpha[1], "m = ", m[1], "integral_wStar2 = ", integral_wstar2, "New outflowLength = ", outflow_length);
                 e->exec();
 			}
-			lambdaPow4 =  pow(outflowLength, 4);
-			v0 = v00 * lambdaPow4;
+            lambdapow4 =  pow(outflow_length, 4);
+            v0 = v00 * lambdapow4;
             vStarRes = creep.residual_crack_closure / v0 / Constants::kilo;
 
-			if ((fabs(1.0 - lambdaLast / outflowLength) < nodeResolution) and (fabs(1.0 - zetaBackfilledLast / zetaBackfilled) < nodeResolution))
-				notConverged = false;
+            if ((fabs(1.0 - lambda_last / outflow_length) < node_resolution) and (fabs(1.0 - zetabackfilledlast / zetabackfilled) < node_resolution))
+                not_converged = false;
 
 			iterations++;
 
 		}
 		else
 		{
-			noCrackOpening = 1;
+            no_crack_opening = 1;
 		}
 
         file.collect(this, 0);
 
 	} // end outflow length refinement
-    while (notConverged & (iterations < maxIterations)  and not noCrackOpening);
+    while (not_converged & (iterations < max_iterations)  and not no_crack_opening);
 }
 
 void BeamModel::opening(Parameters parameters, Creep creep)
@@ -418,18 +419,18 @@ void BeamModel::opening(Parameters parameters, Creep creep)
         if (parameters.verbose==2)
 		{
             dialog *e = new dialog;
-            e->Warning("Final outflowLength convergence in ", iterations, " iterations for outflowLength = ", outflowLength);
+            e->Warning("Final outflowLength convergence in ", iterations, " iterations for outflowLength = ", outflow_length);
             e->exec();
 		}
-        if (parameters.solutionmethod==2)
+        if (parameters.solution_method==2)
         {	// then recalculate and print the numerical solution
 				
-            FDprofile final(alpha, m, zetaBackfilled, vStarRes, parameters.elementsinl, nodeAtClosure);
+            FDprofile final(alpha, m, zetabackfilled, vStarRes, parameters.elements_in_l, node_at_closure);
             FDprofile* ptr=&final;
             final.fprofile();
 				
-            final.findBackfillEjectPoint(zetaBackfillEject, vStarDashBackfillEject);
-            final.outflowPointValues(wStar2, wStar2dash, wStar2dash2, integral_wStar2);
+            final.findBackfillEjectPoint(zetabackfilleject, vstardashbackfilleject);
+            final.outflowPointValues(wstar2, wstar2dash, wstar2dash2, integral_wstar2);
 
             solution.sprofile(final.zeta, final.vptra, final.l);
 
@@ -439,14 +440,14 @@ void BeamModel::opening(Parameters parameters, Creep creep)
 			//Originally Analytical Method
         }
 		
-		wStar2 *= v0;
+        wstar2 *= v0;
 	
 		// Convert derivatives from vStar(zeta) to v(z)
 		converteffopen(parameters);
 	
 		//	Flaring of pipe wall at decompression point:
-        deltaDStar = wStar2 / Constants::pi / parameters.diameter * Constants::kilo + creep.diameter_res0 / parameters.diameter - 1.0;
+        deltadstar = wstar2 / Constants::pi / parameters.diameter * Constants::kilo + creep.diameter_res0 / parameters.diameter - 1.0;
 
-        if (iterations == maxIterations)  cout << "UNCONVERGED";
+        if (iterations == max_iterations)  cout << "UNCONVERGED";
 			
 }

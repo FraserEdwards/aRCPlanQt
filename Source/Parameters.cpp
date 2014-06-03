@@ -27,28 +27,28 @@ using namespace std;
 Parameters::Parameters()
 {
 
-    outflowmodelon = 0;
+    outflow_model_on = 0;
     lambda = 3.0;
-    solutionmethod = 2;
-    singlemode = 2;
-    rangenumber = 0;
-    elementsinl = 10;
+    solution_method = 2;
+    single_mode = 2;
+    range_number = 0;
+    elements_in_l = 10;
     adotc0 = 0.5;
     varname = 0;
 
     fullscale = 2;
     tempdegc = 0.0;
     p0bar = 5.0;
-    isbackfilled = 2;
-    backfilldepth = 100;
-    backfilldensity = 2200;
-    solidinsidepipe = 0.25;
-    waterinsidepipe = 0.25;
+    is_backfilled = 2;
+    backfill_depth = 100;
+    backfill_density = 2200;
+    solid_inside_pipe = 0.25;
+    water_inside_pipe = 0.25;
 
     h=0.0;
     hoverr=0.0;
     radius=0.0;
-    crackwidth=0.0;
+    crack_width=0.0;
 
     geometryupdate(0);
     materialupdate(0);
@@ -62,8 +62,8 @@ void Parameters::geometryupdate(int n)
     pipeid = Parameters::pipeid_lib[n];
     diameter = diameter_lib[n];
     sdr = sdr_lib[n];
-    notchdepth = 0.0;
-    diametercreepratio = 1.0;
+    notch_depth = 0.0;
+    diameter_creep_ratio = 1.0;
 
 }
 
@@ -74,53 +74,53 @@ void Parameters::materialupdate(int n)
     density = density_lib[n];
     edyn0degc = edyn0degc_lib[n];
     dedyndt = dedyndt_lib[n];
-    creepmodulus = creepmodulus_lib[n];
+    creep_modulus = creepmodulus_lib[n];
     poisson = poisson_lib[n];
 }
 
 //Constructor
 Parameters::Parameters(ConfigFile config)
 {
-    config.readInto(outflowmodelon, "outflowModelOn");
+    config.readInto(outflow_model_on, "outflowModelOn");
     config.readInto(lambda, "lambda");
-    config.readInto(solutionmethod, "solutionmethod");
-    config.readInto(singlemode, "Mode");
-    config.readInto(rangenumber, "numberOfSpeedValues");
-    config.readInto(elementsinl, "elementsInL");
+    config.readInto(solution_method, "solutionmethod");
+    config.readInto(single_mode, "Mode");
+    config.readInto(range_number, "numberOfSpeedValues");
+    config.readInto(elements_in_l, "elementsInL");
     config.readInto(adotc0, "aDotc0");
 
     config.readInto(pipeid, "pipeID");
     config.readInto(diameter, "diameter");
     config.readInto(sdr, "sdr");
-    config.readInto(notchdepth, "notchDepth");
-    config.readInto(diametercreepratio, "diameterCreepRatio");
+    config.readInto(notch_depth, "notchDepth");
+    config.readInto(diameter_creep_ratio, "diameterCreepRatio");
 
     config.readInto(matid, "matID" );
     config.readInto(density, "density" );
     config.readInto(edyn0degc, "eDyn0degC" );
     config.readInto(dedyndt, "dEdyndT" );
-    config.readInto(creepmodulus, "creepModulus" );
+    config.readInto(creep_modulus, "creepModulus" );
     config.readInto(poisson, "poisson" );
 
     config.readInto(fullscale, "fullScale");
     config.readInto(tempdegc, "tempDegC");
     config.readInto(p0bar, "p0bar");
-    config.readInto(isbackfilled, "isBackfilled");
-    config.readInto(backfilldepth, "backfillDepth");
-    config.readInto(backfilldensity, "backfillDensity");
-    config.readInto(solidinsidepipe, "solidInsidePipe");
-    config.readInto(waterinsidepipe, "waterInsidePipe");
+    config.readInto(is_backfilled, "isBackfilled");
+    config.readInto(backfill_depth, "backfillDepth");
+    config.readInto(backfill_density, "backfillDensity");
+    config.readInto(solid_inside_pipe, "solidInsidePipe");
+    config.readInto(water_inside_pipe, "waterInsidePipe");
 }
 
 //Creates the "=" operator for this class
 Parameters& Parameters::operator=(const Parameters& rhs)
 {
-    outflowmodelon = rhs.outflowmodelon;
+    outflow_model_on = rhs.outflow_model_on;
     lambda = rhs.lambda;
-    solutionmethod = rhs.solutionmethod;
-    singlemode = rhs.singlemode;
-    rangenumber = rhs.rangenumber;
-    elementsinl = rhs.elementsinl;
+    solution_method = rhs.solution_method;
+    single_mode = rhs.single_mode;
+    range_number = rhs.range_number;
+    elements_in_l = rhs.elements_in_l;
     adotc0 =  rhs.adotc0;
     from = rhs.from;
     to = rhs.to;
@@ -130,28 +130,28 @@ Parameters& Parameters::operator=(const Parameters& rhs)
     pipeid = rhs.pipeid;
     diameter = rhs.diameter;
     sdr = rhs.sdr;
-    notchdepth = rhs.notchdepth;
-    diametercreepratio = rhs.diametercreepratio;
+    notch_depth = rhs.notch_depth;
+    diameter_creep_ratio = rhs.diameter_creep_ratio;
     radius = rhs.radius;
     h = rhs.h;
     hoverr = rhs.hoverr;
-    crackwidth = rhs.crackwidth;
+    crack_width = rhs.crack_width;
 
     matid = rhs.matid;
     density = rhs.density;
     edyn0degc = rhs.edyn0degc;
     dedyndt = rhs.dedyndt;
-    dynamicmodulus = rhs.dynamicmodulus;
-    creepmodulus = rhs.creepmodulus;
+    dynamic_modulus = rhs.dynamic_modulus;
+    creep_modulus = rhs.creep_modulus;
     poisson = rhs.poisson;
 
     methodid = rhs.methodid;
     fullscale = rhs.fullscale;
     tempdegc = rhs.tempdegc;
     p0bar = rhs.p0bar;
-    isbackfilled = rhs.isbackfilled;
-    backfilldepth = rhs.backfilldepth;
-    backfilldensity = rhs.backfilldensity;
+    is_backfilled = rhs.is_backfilled;
+    backfill_depth = rhs.backfill_depth;
+    backfill_density = rhs.backfill_density;
 
     return *this;
 
@@ -160,6 +160,6 @@ Parameters& Parameters::operator=(const Parameters& rhs)
 //Modifies parameters to account for temperature
 void Parameters::conditionToTemperature()
 {
-    dynamicmodulus = edyn0degc + tempdegc * dedyndt;
+    dynamic_modulus = edyn0degc + tempdegc * dedyndt;
 } 
 

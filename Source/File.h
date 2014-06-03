@@ -32,12 +32,12 @@ private:
 
     int i;
     int j;
-    int checkstate;
-    string tempdir;
+    int check_state;
+    string temp_dir;
     string subfolder;
-    string filename;
+    string file_name;
     int found;
-    int lognumber;
+    int log_number;
 
 public:
 

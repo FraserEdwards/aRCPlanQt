@@ -71,7 +71,7 @@ private:
     int i;
     int j;
     int k;
-    string filename;
+    string file_name;
     string path;
     int exists;
     int check;
