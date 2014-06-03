@@ -12,12 +12,15 @@
 #include "FracMech.h"
 #include "Constants.h"
 
+//Null constructor
 FracMech::FracMech()
 {
 	g0=0;
 
 }
 
+//Constructor
+//Calculates the Irwin-Corten driving force
 FracMech::FracMech(const Parameters parameters)
 {
 
@@ -26,6 +29,7 @@ FracMech::FracMech(const Parameters parameters)
 	
 }
 
+//Calculates the final crack driving force using energy consideration
 void FracMech::extensionForce(BeamModel beamModel, const Parameters parameters, const Creep creep)
 {
 

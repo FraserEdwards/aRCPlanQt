@@ -56,7 +56,7 @@ Parameters::Parameters()
     conditionToTemperature();
 
 }
-
+//Updates the geometry for the pipe
 void Parameters::geometryupdate(int n)
 {
     pipeID = Parameters::pipeID_lib[n];
@@ -67,6 +67,7 @@ void Parameters::geometryupdate(int n)
 
 }
 
+//Update the material for the pipe
 void Parameters::materialupdate(int n)
 {
     matID = matID[n];
@@ -156,6 +157,7 @@ Parameters& Parameters::operator=(const Parameters& rhs)
 
 }
 
+//Modifies parameters to account for temperature
 void Parameters::conditionToTemperature()
 {
 	dynamicModulus = eDyn0degC + tempDegC * dEdyndT;

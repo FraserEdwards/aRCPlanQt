@@ -27,11 +27,15 @@ guimain::guimain(QWidget *parent) :
     ui->setupUi(this);
 }
 
+//Destructor
 guimain::~guimain()
 {
     delete ui;
 }
 
+
+//Sets initial values using stored values
+//including checkboxes and dropdowns
 void guimain::setnames(Parameters parameters, char dropdown)
 {
 
@@ -153,6 +157,8 @@ ui -> fdnumber -> setText(QString::number(parameters.elementsinl));
 
 }
 
+//Fills the results table in the GUI with values from the global
+//solution object
 void guimain::setresults(Solution solution)
 {
     ui -> Resultstable ->clear();
@@ -193,6 +199,8 @@ void guimain::setresults(Solution solution)
 
 }
 
+//Begins the calculation process, calls various functions which eventually provide
+//a solution and the accompanying outputs
 void guimain::on_Runbutton_clicked()
 {
 
@@ -242,6 +250,7 @@ void guimain::on_Runbutton_clicked()
     }
 }
 
+//Creates, displays and saves the crack and results plot
 void guimain::plothandler(Solution solution)
 {
     switch(ui->parameter ->currentIndex())
@@ -288,6 +297,8 @@ void guimain::plothandler(Solution solution)
     }
 }
 
+
+//Plots the crack profiles using the qtcustomplot class
 void guimain::plotprofiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate, char valid)
 {
 
@@ -333,6 +344,7 @@ void guimain::plotprofiles(vector<double> x, vector<double> y, string title, str
 
 }
 
+//Plots the results graphs using the qtcustomplot class
 void guimain::plotresults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate)
 {
     extern File file;
@@ -363,6 +375,7 @@ void guimain::plotresults(vector<double> x, vector<double> y, string title, stri
     }
 }
 
+//Updates the values stored in main with the values in the GUI
 Parameters guimain::update()
 {
 
@@ -410,7 +423,7 @@ Parameters guimain::update()
     return temp;
 }
 
-
+//The following function implement the logic required for the checkboxes in the GUI
 
 void guimain::on_fs_clicked()
 {
@@ -424,7 +437,6 @@ void guimain::on_fs_clicked()
     ui -> s4 -> setCheckState(Qt::Checked);
     }
 }
-
 
 void guimain::on_s4_clicked()
 {
@@ -464,13 +476,14 @@ void guimain::on_rangemode_clicked()
     }
 }
 
+//Saves the results shown in the table to a file as well as the crack profiles
 void guimain::on_Save_clicked()
 {
     extern File file;
     file.writeresults();
 }
 
-
+//Plots the appropriate graphs depending on the table cell clicked
 void guimain::on_Resultstable_cellClicked(int row, int column)
 {
 
@@ -574,6 +587,9 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
     }
 }
 
+
+//The functions below change the associated values when the pipe or variable is changed
+
 void guimain::on_materialname_currentIndexChanged(int index)
 {
 
@@ -593,6 +609,7 @@ void guimain::on_pipename_currentIndexChanged(int index)
 
 }
 
+//Loads "caseInputData.txt" storing these values in parameter
 void guimain::on_action_Load_triggered()
 {
 
@@ -624,6 +641,7 @@ void guimain::on_action_Load_triggered()
 
 }
 
+//Saves "caseInputData.txt" using the values in parameter
 void guimain::on_action_Save_triggered()
 {
     extern File file;
@@ -644,6 +662,7 @@ void guimain::on_action_Save_triggered()
     e->show();
 }
 
+//Displays about dialog
 void guimain::on_actionAbout_triggered()
 {
     about *d = new about;
@@ -651,6 +670,7 @@ void guimain::on_actionAbout_triggered()
     d->setWindowTitle("About");
 }
 
+//Changes the range values depending on the independent variable selected
 void guimain::on_parameter_currentIndexChanged(int index)
 {
     ui -> from -> setText(QString::number(Parameters::from_lib[index]));

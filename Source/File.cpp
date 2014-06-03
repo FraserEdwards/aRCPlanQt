@@ -194,7 +194,7 @@ int File::casehandler(Parameters temp, string filename)
     }
 }
 
-//
+//Writes results file by accessing global object solution
 void File::writeresults()
 {
     extern File file;
@@ -247,6 +247,7 @@ void File::writeresults()
 
 }
 
+//Writes parameters to txt file with appropriate formatting
 void File::writepartxt(Parameters temp, string filename)
 {
 
@@ -295,6 +296,7 @@ void File::writepartxt(Parameters temp, string filename)
 
 }
 
+//Writes parameters to csv file with appropriate formatting
 void File::writeparcsv(Parameters temp, string filename)
 {
 
@@ -350,6 +352,9 @@ void File::writeparcsv(Parameters temp, string filename)
     out.close();
 }
 
+//The following functions write a single line to a txt file
+//taking various arguments for different requirements
+
 void File::writelinetxt(string title, double value, ofstream &out, int format)
 {
     out << "\t" << title << value << endl;
@@ -377,6 +382,9 @@ void File::writelinetxt(string title, ofstream &out, int format)
     }
 }
 
+//The following functions write a single line to a csv file
+//taking various arguments for different requirements
+
 void File::writelinecsv(string title, double value, ofstream &out)
 {
     out << title << "," << value << "\n";
@@ -394,6 +402,7 @@ void File::writelinecsv(string title, ofstream &out)
 
 }
 
+//Writes the headers for a txt file
 void File::writeheaders(string temp)
 {
     filename = temp;
@@ -413,6 +422,7 @@ void File::writeheaders(string temp)
     out.close();
 }
 
+//Handler for the log file
 void File::logprepare(Parameters temp)
 {
     initialise();
@@ -421,6 +431,7 @@ void File::logprepare(Parameters temp)
     writeheaders(filename);
 }
 
+//Writes single line using the current log values
 void File::writelogline(int newline)
 {
     out.open((directory + filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
@@ -446,6 +457,9 @@ void File::writelogline(int newline)
 
     out.close();
 }
+
+//The following functions collect data from the argument object
+//before writing a line using the function above
 
 void File::collect(FracMech fracmech)
 {

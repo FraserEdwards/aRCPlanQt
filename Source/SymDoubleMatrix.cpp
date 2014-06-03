@@ -13,72 +13,73 @@ using namespace std;
 
 #include "SymDoubleMatrix.h"
 
+// Construct n x n symmetric double matrix stored row-wise in 1D array
 SymDoubleMatrix::SymDoubleMatrix(short n)
-{// Construct n x n symmetric double matrix stored row-wise in 1D array
+{
 	size = n;
 	nElements = size * size;
     pointer2elements = new double[nElements];
     pointer2indices = new short[size];				// Array of row exchanges
 }
 
-
+// Null constructor:  create 0 x 0 matrix
 SymDoubleMatrix::SymDoubleMatrix()
-{// Null constructor:  create 0 x 0 matrix
+{
 	size = 0;
     nElements = 0;
     pointer2elements = 0;
     pointer2indices = 0;	
 }
 
-
+// Delete array
 SymDoubleMatrix::~SymDoubleMatrix()
-{// Delete array
+{
     delete [] pointer2elements;
     delete [] pointer2indices;
-}// end destructor
+}
 
-
+// Construct matrix which is copy of existing matrix a
 SymDoubleMatrix::SymDoubleMatrix(const SymDoubleMatrix& a)
-{// Construct matrix which is copy of existing matrix a
+{
     nElements = a.nElements;
     pointer2elements = new double[nElements];
     copy(a); // Copy a's elements
-}// end constructor
+}
 
-
+// Assign value x to element (i, j), j>=i
 void SymDoubleMatrix::setElement(short i, short j, double x)
-{// Assign value x to element (i, j), j>=i
+{
 	int index = size * i + j;
 	if ((index - size * size + 1) > 0)
 		cout << " bad set index\n";	*(pointer2elements + index) = x;
-}// end setElement.
+}
 
-
+// Add dx to element (i, j), j>=i
 void SymDoubleMatrix::incrementElement(short i, short j, double dx)
-{// Add dx to element (i, j), j>=i
+{
 	*(pointer2elements + size * i + j) += dx;	
-}// end incrementElement.
+}
 
-
+// returns value of element [i, j] in this triangular symm matrix
 double SymDoubleMatrix::getElement(short i, short j)
-{// returns value of element [i, j] in this triangular symm matrix
+{
 	int index = size * i + j;
 	if ((index - size * size + 1) > 0)
 		cout << " bad get index\n";
 	return *(pointer2elements + index);	
-}// end getElement.
+}
 
-
+// Sets all elements of this matrix to rhs by operator '='
 SymDoubleMatrix& SymDoubleMatrix::operator=(const double rhs)
-{// Sets all elements of this matrix to rhs by operator '='
+{
     double* p = pointer2elements + nElements;
     while (p > pointer2elements) *--p = rhs;
     return *this;
 }
 
-
+// Assign another matrix to this one by operator '='
 SymDoubleMatrix& SymDoubleMatrix::operator=(const SymDoubleMatrix& rhs)
-{// Assign another matrix to this one by operator '='
+{
     if ( pointer2elements != rhs.pointer2elements )
     {
         resetSizeTo(rhs.nElements);
@@ -87,9 +88,9 @@ SymDoubleMatrix& SymDoubleMatrix::operator=(const SymDoubleMatrix& rhs)
     return *this;
 }
 
-
+// Increment every element of this matrix by dx using operator '+='
 SymDoubleMatrix& SymDoubleMatrix::operator+=(const SymDoubleMatrix& rhs)
-{// Increment every element of this matrix by dx using operator '+='
+{
     if ( pointer2elements != rhs.pointer2elements )
         resetSizeTo(rhs.nElements);
     double* p = pointer2elements + nElements;
@@ -97,13 +98,13 @@ SymDoubleMatrix& SymDoubleMatrix::operator+=(const SymDoubleMatrix& rhs)
     while (p > pointer2elements) 
     	*--p += *--q;
     return *this;
-}// end +=
+}
 
-
+// Number of rows/columns in matrix
 short SymDoubleMatrix::sizeOf()
-{// Number of rows/columns in matrix
+{
     return size;
-}// end sizeOf().
+}
 
 
 void SymDoubleMatrix::resetSizeTo(short newSize)
@@ -115,19 +116,19 @@ void SymDoubleMatrix::resetSizeTo(short newSize)
         pointer2elements = new double[newSize * newSize];	// and allocate new elements
         pointer2indices = new short[newSize];
     }
-}// end resetSizeTo().
+}
 
-
+// Completes the matrix from its upper triangle
 void SymDoubleMatrix::makeSymmetrical()
-{// Completes the matrix from its upper triangle
+{
 	for (short i=1; i<size; i++)
 		for (short j=0; j<i; j++)
 			*(pointer2elements + size * i + j) = *(pointer2elements + size * j + i);
-}// end makeSymmetrical
+}
 
-
+// prints up to 8 rows and columns of matrix
 void SymDoubleMatrix::printMatrix()
-{// prints up to 8 rows and columns of matrix 
+{
 	short max = size <9 ? size : 8;
 	cout << "First 8 rows and columns of matrix whose size is "<< size << endl;
 	for (short i=0; i<max; i++)
@@ -139,18 +140,18 @@ void SymDoubleMatrix::printMatrix()
 	cout << endl;
 }
 
-
+// Copy elements of [a] into this matrix
 void SymDoubleMatrix::copy(const SymDoubleMatrix& a)
-{// Copy elements of [a] into this matrix
+{
     double* p = pointer2elements + nElements;
     double* q = a.pointer2elements + nElements;
     while (p > pointer2elements) 
     	*--p = *--q;
-}// end copy().
+}
 
-
+// Replaces symmetric matrix by a row-wise decomposition of itself
 void SymDoubleMatrix::decompose(short& error)
-{// Replaces symmetric matrix by a row-wise decomposition of itself
+{
 	const double tiny = 1.0e-20;
 	short i, imax, j, k;
 	double biggest, dummy, sum, temp;
@@ -215,11 +216,11 @@ void SymDoubleMatrix::decompose(short& error)
 		}
 	}
 	delete [] vv;
-}// end decompose().
+}
 
-
+// Solves
 void SymDoubleMatrix::backSubstitute(double* b)
-{// Solves 
+{
 	short i, ii = 0, ip, j;
 	double sum;
 
@@ -244,4 +245,4 @@ void SymDoubleMatrix::backSubstitute(double* b)
 			sum -= getElement(i, j) * b[j];
 		b[i] = sum / getElement(i, i);
 	}
-}// end backSubstitute().
+}

@@ -11,7 +11,9 @@
 
 #include "Solution.h"
 
-Solution::Solution(){
+//Null constructor
+Solution::Solution()
+{
 
     soln=0;
     aDotc0.push_back(0.0);
@@ -38,6 +40,7 @@ Solution::Solution(){
 
 }
 
+//Clears all values within the solution class and resizes their arrays to 1
 void Solution::clear()
 {
     soln=0;
@@ -86,6 +89,7 @@ void Solution::clear()
 
 }
 
+//Sets up displacement values for crack profiles
 void Solution::displacement(Parameters &parameters)
 {
     n = (parameters.elementsinl * (parameters.lambda+2))+1;
@@ -109,7 +113,8 @@ void Solution::displacement(Parameters &parameters)
 
 }
 
-
+//Collects the crack profile for each solution, writing it to the
+//already created matrix
 void Solution::sprofile(const vector<double> zetas, const vector<double> vptras, const int ls)
 {
     k++;
@@ -120,6 +125,8 @@ void Solution::sprofile(const vector<double> zetas, const vector<double> vptras,
 
 }
 
+//Collects the values from the arguments provided, storing them into
+//a single solution object
 void Solution::Tvalues(const double aDotc0s, const double p0bars, const double tempDegCs, const double decompressions, const double alphas, const double ms, const double outflowLengths, const double deltaDStars,
                             const double gS1s, const double gUEs, const double gSbs, const double gKbs, const double g0s, const double gG0s, const double gTotals, const short noCrackOpenings, const short notConvergeds, const short iterationss)
 {

@@ -16,8 +16,9 @@ using namespace std;
 
 const short OutflowProcess::maxTimeSteps = 100;
 
+// Null constructor
 OutflowProcess::OutflowProcess()
-{	// Null constructor
+{
 }	
 
 

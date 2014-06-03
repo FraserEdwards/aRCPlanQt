@@ -15,6 +15,7 @@ using namespace std;
 #include "guimain.h"
 #include "ui_guimain.h"
 
+//Null constructor
 Simulation::Simulation()
 {
 
@@ -24,6 +25,8 @@ Simulation::Simulation()
 
 }
 
+//Taking parameters as arguments, peforms the calculation for a given range of
+//the independent variable eventually produced a solution
 Solution Simulation::run(Parameters parameters)
 {
 
