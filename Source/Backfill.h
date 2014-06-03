@@ -13,7 +13,7 @@ class Backfill
 	
 public:	
 
-	double densityratio;
+    double density_ratio;
 
     //Null Constructor
 	Backfill();

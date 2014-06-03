@@ -151,7 +151,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
     aDotOverCL = parameters.adotc0 * Constants::vSonic / sqrt(parameters.dynamicmodulus * Constants::giga / parameters.density);
 	aDotCLfactor = 1.0 + aDotOverCL * aDotOverCL;
 
-	aDotCLfactor_backfilled = 1.0 + aDotOverCL * aDotOverCL * backfill.densityratio;
+    aDotCLfactor_backfilled = 1.0 + aDotOverCL * aDotOverCL * backfill.density_ratio;
 
     factor = Constants::pi * Constants::c1 * 625.0 * parameters.dynamicmodulus / p1bar * availableInternalVolume * sdrMinus2 / sdrMinus1 / sdrMinus1 * parameters.adotc0;	// Note GPa / bar / 16 = 625
 
@@ -174,7 +174,7 @@ void BeamModel::cspeed(const Parameters parameters, const Backfill backfill)
 {
 
 	alpha[1] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL + Constants::c4 / 2.0 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor);
-	alpha[0] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL * backfill.densityratio + Constants::c4 * 0.5 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor_backfilled);
+    alpha[0] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL * backfill.density_ratio + Constants::c4 * 0.5 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor_backfilled);
 }
 
 //Converts opening from v to w

@@ -224,7 +224,7 @@ void File::writeresults()
 
     out.open((file.directory + "Results/" +filename).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
-    out << "independent variable\zeta" << ",";
+    out << "zeta" << ",";
 
     for(i = 1; i < solution.n; i++)
     {
@@ -445,7 +445,7 @@ void File::writelogline(int newline)
     out << lognumber << "," << adotc0 << ","
         << g0 << ","
         << diameterres0 << "," << residualcrackclosure << ","
-        << densityratio << ","
+        << density_ratio << ","
         << zetaClosure << "," << nodeAtClosure << "," << outflowLength << ","
         << p1bar << "," << v0 << ","
         << vStarRes << "," << factor << "," << aDotCLfactor << "," << aDotCLfactor_backfilled << ","
@@ -476,7 +476,7 @@ void File::collect(Creep creep)
 
 void File::collect(Backfill backfill)
 {
-    densityratio =  backfill.densityratio;
+    density_ratio =  backfill.density_ratio;
     writelogline(0);
 }
 
