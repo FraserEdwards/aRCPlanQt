@@ -31,10 +31,10 @@ Solution Simulation::run(Parameters parameters)
 {
 
     parameters.h = parameters.diameter/parameters.sdr/Constants::kilo; // (m)
-    parameters.hOverR = 2.0/ (parameters.sdr-1);
-    parameters.radius = parameters.h / parameters.hOverR;
+    parameters.hoverr = 2.0/ (parameters.sdr-1);
+    parameters.radius = parameters.h / parameters.hoverr;
 
-    parameters.crackWidth = parameters.diameter / parameters.sdr - parameters.notchDepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
+    parameters.crackwidth = parameters.diameter / parameters.sdr - parameters.notchdepth; //(mm, giving kJ/m2 for G; not necessarily equal to h)
 
     extern Solution solution;
     extern File file;
@@ -52,7 +52,7 @@ Solution Simulation::run(Parameters parameters)
         solution.clear();
         solution.displacement(parameters);
 
-        parameters.dynamicModulus = parameters.eDyn0degC + parameters.tempDegC * parameters.dEdyndT;
+        parameters.dynamicmodulus = parameters.edyn0degc + parameters.tempdegc * parameters.dedyndt;
 
         //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
         FracMech fracmech(parameters);
@@ -71,7 +71,7 @@ Solution Simulation::run(Parameters parameters)
         beamModel.opening(parameters, creep);
         fracmech.extensionForce(beamModel, parameters, creep);
 
-        solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+        solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
         fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
 
         file.initialise();
@@ -88,19 +88,19 @@ Solution Simulation::run(Parameters parameters)
             switch(parameters.varname)
             {
                 case 0:
-                    parameters.aDotc0 = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    parameters.adotc0 = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
                     break;
                 case 1:
                     parameters.p0bar = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
                     break;
                 case 2:
-                    parameters.tempDegC = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
+                    parameters.tempdegc = parameters.from + ((i+1) * ((parameters.to - parameters.from)/parameters.rangenumber));
                     break;
                 default:
                     break;
             }
 
-            parameters.dynamicModulus = parameters.eDyn0degC + parameters.tempDegC * parameters.dEdyndT;
+            parameters.dynamicmodulus = parameters.edyn0degc + parameters.tempdegc * parameters.dedyndt;
 
             //  Initialise crack and compute Irwin-Corten crack driving force at initial pressure:
             FracMech fracmech(parameters);
@@ -119,7 +119,7 @@ Solution Simulation::run(Parameters parameters)
             beamModel.opening(parameters, creep);
             fracmech.extensionForce(beamModel, parameters, creep);
 
-            solution.Tvalues(parameters.aDotc0, parameters.p0bar, parameters.tempDegC, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
+            solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
             fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
 
             file.initialise();

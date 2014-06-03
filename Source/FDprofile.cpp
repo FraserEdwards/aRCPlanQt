@@ -284,7 +284,6 @@ short FDprofile::nodeAtMinimum()
 				return i;
 		}
 	}
-    else
     {
         // check that neg min is not at last point in array, where next 'thisValue' is boundary zero
 		lastValue = thisValue;

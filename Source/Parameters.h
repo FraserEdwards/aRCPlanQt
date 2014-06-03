@@ -25,59 +25,59 @@ private:
 	
 public:
 
-    static string matID_lib[5];
+    static string matid_lib[5];
     static double density_lib[5];
-    static double eDyn0degC_lib[5];
-    static double dEdyndT_lib[5];
-    static double creepModulus_lib[5];
+    static double edyn0degc_lib[5];
+    static double dedyndt_lib[5];
+    static double creepmodulus_lib[5];
     static double poisson_lib[5];
 
-    static string pipeID_lib[5];
+    static string pipeid_lib[5];
     static double diameter_lib[5];
     static double sdr_lib[5];
-    static double notchDepth_lib[5];
-    static double diameterCreepRatio_lib[5];
+    static double notchdepth_lib[5];
+    static double diametercreepratio_lib[5];
 
     static double from_lib[3];
     static double to_lib[3];
 
-    string methodID;
-    short fullScale;
-    double tempDegC;
+    string methodid;
+    short fullscale;
+    double tempdegc;
     double p0bar;
-    int isBackfilled;
-    double backfillDepth;
-    double backfillDensity;
-    double solidInsidePipe;
-    double waterInsidePipe;
+    int isbackfilled;
+    double backfilldepth;
+    double backfilldensity;
+    double solidinsidepipe;
+    double waterinsidepipe;
 
-    string matID;
+    string matid;
     double density;
-    double eDyn0degC;
-    double dEdyndT;
-    double dynamicModulus;
-    double creepModulus;
+    double edyn0degc;
+    double dedyndt;
+    double dynamicmodulus;
+    double creepmodulus;
     double poisson;
-    double creepModulusRatio;
+    double creepmodulusratio;
 
-    string pipeID;
+    string pipeid;
     double diameter;
     double sdr;
-    double notchDepth;
-    double diameterCreepRatio;
+    double notchdepth;
+    double diametercreepratio;
     double h;
-    double crackWidth;
-    double hOverR;
+    double crackwidth;
+    double hoverr;
     double radius;
 
     short verbose;
-    int outflowModelOn;
+    int outflowmodelon;
     double lambda;
     int solutionmethod;
     int singlemode;
     int rangenumber;
     int elementsinl;
-    double aDotc0;
+    double adotc0;
     double from;
     double to;
     double indvar;

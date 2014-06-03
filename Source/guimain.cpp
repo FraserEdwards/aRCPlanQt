@@ -46,7 +46,7 @@ ui -> path -> setText(QString::fromStdString(file.directory));
 ui -> singlemode -> setCheckState(Qt::Unchecked);
 ui -> rangemode -> setCheckState(Qt::Checked);
 
-if(parameters.fullScale)
+if(parameters.fullscale)
 {
     ui->fs->setCheckState(Qt::Checked);
     ui->s4->setCheckState(Qt::Unchecked);
@@ -57,12 +57,12 @@ else
     ui->s4->setCheckState(Qt::Checked);
 }
 
-if(parameters.isBackfilled)
+if(parameters.isbackfilled)
    {ui->backfill->setCheckState(Qt::Checked);}
 else
    {ui->backfill->setCheckState(Qt::Unchecked);}
 
-if(parameters.outflowModelOn)
+if(parameters.outflowmodelon)
    {ui->fixedlength->setCheckState(Qt::Checked);}
 else
    {ui->fixedlength->setCheckState(Qt::Unchecked);}
@@ -87,8 +87,8 @@ if(dropdown==0)
 }
 else
 {
-    ui -> materialname ->lineEdit()->setText(QString::fromStdString(parameters.matID));
-    ui -> pipename ->lineEdit()->setText(QString::fromStdString(parameters.pipeID));
+    ui -> materialname ->lineEdit()->setText(QString::fromStdString(parameters.matid));
+    ui -> pipename ->lineEdit()->setText(QString::fromStdString(parameters.pipeid));
 }
 
 
@@ -96,13 +96,13 @@ ui -> density -> setAlignment(Qt::AlignRight);
 ui -> density->setText(QString::number(parameters.density));
 
 ui -> dynamicmodulus -> setAlignment(Qt::AlignRight);
-ui -> dynamicmodulus ->setText(QString::number(parameters.eDyn0degC));
+ui -> dynamicmodulus ->setText(QString::number(parameters.edyn0degc));
 
 ui -> deltadynamicmodulus -> setAlignment(Qt::AlignRight);
-ui -> deltadynamicmodulus ->setText(QString::number(parameters.dEdyndT));
+ui -> deltadynamicmodulus ->setText(QString::number(parameters.dedyndt));
 
 ui -> creepmodulus -> setAlignment(Qt::AlignRight);
-ui -> creepmodulus -> setText(QString::number(parameters.creepModulus));
+ui -> creepmodulus -> setText(QString::number(parameters.creepmodulus));
 
 ui -> dynpoissonratio -> setAlignment(Qt::AlignRight);
 ui -> dynpoissonratio -> setText(QString::number(parameters.poisson));
@@ -123,34 +123,34 @@ ui -> sdr -> setAlignment(Qt::AlignRight);
 ui -> sdr -> setText(QString::number(parameters.sdr));
 
 ui -> groovedepth -> setAlignment(Qt::AlignRight);
-ui -> groovedepth -> setText(QString::number(parameters.notchDepth));
+ui -> groovedepth -> setText(QString::number(parameters.notchdepth));
 
 ui -> relativediameter -> setAlignment(Qt::AlignRight);
-ui -> relativediameter -> setText(QString::number(parameters.diameterCreepRatio));
+ui -> relativediameter -> setText(QString::number(parameters.diametercreepratio));
 
 ui -> testtemperature -> setAlignment(Qt::AlignRight);
-ui -> testtemperature -> setText(QString::number(parameters.tempDegC));
+ui -> testtemperature -> setText(QString::number(parameters.tempdegc));
 
 ui -> initialpressure -> setAlignment(Qt::AlignRight);
 ui -> initialpressure -> setText(QString::number(parameters.p0bar));
 
 ui -> backfilldepth -> setAlignment(Qt::AlignRight);
-ui -> backfilldepth -> setText(QString::number(parameters.backfillDepth));
+ui -> backfilldepth -> setText(QString::number(parameters.backfilldepth));
 
 ui -> backfilldensity -> setAlignment(Qt::AlignRight);
-ui -> backfilldensity -> setText(QString::number(parameters.backfillDensity));
+ui -> backfilldensity -> setText(QString::number(parameters.backfilldensity));
 
 ui -> solidfraction -> setAlignment(Qt::AlignRight);
-ui -> solidfraction -> setText(QString::number(parameters.solidInsidePipe));
+ui -> solidfraction -> setText(QString::number(parameters.solidinsidepipe));
 
 ui -> waterfraction -> setAlignment(Qt::AlignRight);
-ui -> waterfraction -> setText(QString::number(parameters.waterInsidePipe));
+ui -> waterfraction -> setText(QString::number(parameters.waterinsidepipe));
 
 ui -> initiallength -> setAlignment(Qt::AlignRight);
 ui -> initiallength -> setText(QString::number(parameters.lambda));
 
 ui -> crackspeed -> setAlignment(Qt::AlignRight);
-ui -> crackspeed -> setText(QString::number(parameters.aDotc0));
+ui -> crackspeed -> setText(QString::number(parameters.adotc0));
 
 ui -> fdnumber -> setAlignment(Qt::AlignRight);
 ui -> fdnumber -> setText(QString::number(parameters.elementsinl));
@@ -391,32 +391,32 @@ Parameters guimain::update()
     temp.to = ui -> to -> text().toDouble();
     temp.rangenumber = ui -> noofpoints -> text().toDouble();
 
-    temp.fullScale = ui -> fs -> checkState();
-    temp.isBackfilled = ui -> backfill -> checkState();
-    temp.outflowModelOn = ui -> fixedlength -> checkState();
+    temp.fullscale = ui -> fs -> checkState();
+    temp.isbackfilled = ui -> backfill -> checkState();
+    temp.outflowmodelon = ui -> fixedlength -> checkState();
 
-    temp.matID = ui -> materialname ->currentText().toStdString();
+    temp.matid = ui -> materialname ->currentText().toStdString();
     temp.density = ui -> density -> text().toDouble();    
-    temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();    
-    temp.dEdyndT = ui -> deltadynamicmodulus -> text().toDouble();    
-    temp.creepModulus = ui -> creepmodulus -> text().toDouble();    
+    temp.edyn0degc = ui -> dynamicmodulus -> text().toDouble();
+    temp.dedyndt = ui -> deltadynamicmodulus -> text().toDouble();
+    temp.creepmodulus = ui -> creepmodulus -> text().toDouble();
     temp.poisson = ui -> dynpoissonratio -> text().toDouble();
-    temp.eDyn0degC = ui -> dynamicmodulus -> text().toDouble();
+    temp.edyn0degc = ui -> dynamicmodulus -> text().toDouble();
     temp.p0bar = ui ->initialpressure -> text().toDouble();
 
-    temp.pipeID = ui -> pipename -> currentText().toStdString();
+    temp.pipeid = ui -> pipename -> currentText().toStdString();
     temp.diameter = ui -> outsidediameter -> text().toDouble();
     temp.sdr = ui -> sdr -> text().toDouble();    
-    temp.notchDepth = ui -> groovedepth -> text().toDouble();    
-    temp.diameterCreepRatio = ui -> relativediameter -> text().toDouble();    
-    temp.tempDegC = ui -> testtemperature -> text().toDouble();    
-    temp.backfillDepth = ui -> backfilldepth -> text().toDouble();    
-    temp.backfillDensity = ui -> backfilldensity -> text().toDouble();   
-    temp.solidInsidePipe = ui -> solidfraction -> text().toDouble();   
-    temp.waterInsidePipe = ui -> waterfraction -> text().toDouble();
+    temp.notchdepth = ui -> groovedepth -> text().toDouble();
+    temp.diametercreepratio = ui -> relativediameter -> text().toDouble();
+    temp.tempdegc = ui -> testtemperature -> text().toDouble();
+    temp.backfilldepth = ui -> backfilldepth -> text().toDouble();
+    temp.backfilldensity = ui -> backfilldensity -> text().toDouble();
+    temp.solidinsidepipe = ui -> solidfraction -> text().toDouble();
+    temp.waterinsidepipe = ui -> waterfraction -> text().toDouble();
 
     temp.lambda = ui -> initiallength -> text().toDouble();    
-    temp.aDotc0 = ui -> crackspeed -> text().toDouble();   
+    temp.adotc0 = ui -> crackspeed -> text().toDouble();
     temp.elementsinl = ui -> fdnumber -> text().toDouble();
     temp.verbose = ui ->verbose ->checkState();
 
@@ -594,9 +594,9 @@ void guimain::on_materialname_currentIndexChanged(int index)
 {
 
     ui -> density -> setText(QString::number(Parameters::density_lib[index]));
-    ui -> dynamicmodulus -> setText(QString::number(Parameters::eDyn0degC_lib[index]));
-    ui -> deltadynamicmodulus -> setText(QString::number(Parameters::dEdyndT_lib[index]));
-    ui -> creepmodulus -> setText(QString::number(Parameters::creepModulus_lib[index]));
+    ui -> dynamicmodulus -> setText(QString::number(Parameters::edyn0degc_lib[index]));
+    ui -> deltadynamicmodulus -> setText(QString::number(Parameters::dedyndt_lib[index]));
+    ui -> creepmodulus -> setText(QString::number(Parameters::creepmodulus_lib[index]));
     ui -> dynpoissonratio -> setText(QString::number(Parameters::poisson_lib[index]));
 
 }

@@ -34,14 +34,14 @@ BeamModel::BeamModel(const Parameters parameters)
     extern File file;
 
 	//Proportion of internal volume available for expansion
-	availableInternalVolume = 1.0 - parameters.waterInsidePipe - parameters.solidInsidePipe;
+    availableInternalVolume = 1.0 - parameters.waterinsidepipe - parameters.solidinsidepipe;
 
 	//Factors for modelling of S4 baffle leak
 	baffleLeakageArea=parameters.diameter / Constants::kilo;  //m
 	baffleLeakageArea = baffleLeakageArea * baffleLeakageArea * 0.01 * Constants::pi * (parameters.sdr - 2.0) / parameters.sdr;
 
 	//Parameters for equivalent beam model
-    dynamicShearModulus = parameters.dynamicModulus / 2.0 / (1.0 + parameters.poisson);
+    dynamicShearModulus = parameters.dynamicmodulus / 2.0 / (1.0 + parameters.poisson);
 	sdrMinus1 = parameters.sdr - 1.0;
 	sdrMinus2 = sdrMinus1 - 1.0;
 
@@ -127,12 +127,12 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 	decomp.p1p0r=1.0;		
 
     //Checks against 2 as checkboxes are assigned this value when ticked, rather than 1
-    if(parameters.fullScale==2)
+    if(parameters.fullscale==2)
 						{
 
 						availableInternalVolume=1.0;
 
-						decomp.p1p0(parameters.p0bar, Constants::gamma, parameters.aDotc0);
+                        decomp.p1p0(parameters.p0bar, Constants::gamma, parameters.adotc0);
 
 						p1bar=parameters.p0bar * decomp.p1p0r; //New p1, could replace with p1 from decomp object, need to trace
 
@@ -141,21 +141,21 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
     p1p0r=decomp.p1p0r; //TODO: swap throughout remainder of code, so only decomp.p1p0r is used
 
 	//	v00 becomes reference length v0 on multiplying by lambda^4
-	v00 = 0.4 / Constants::c1 * sdrMinus1 * sdrMinus2 / parameters.sdr * p1bar / parameters.dynamicModulus * parameters.diameter / Constants::mega;	//	(m)
+    v00 = 0.4 / Constants::c1 * sdrMinus1 * sdrMinus2 / parameters.sdr * p1bar / parameters.dynamicmodulus * parameters.diameter / Constants::mega;	//	(m)
 
 	//	Dimensionless virtual crack opening at crack tip (representing residual strain)
 	v0 = v00 * lambdaPow4;			//	(m)
     vStarRes = creep.residualCrackClosure / v0 / Constants::kilo;
 
 	// Parameters for equivalent beam model (speed dependent)
-	aDotOverCL = parameters.aDotc0 * Constants::vSonic / sqrt(parameters.dynamicModulus * Constants::giga / parameters.density);
+    aDotOverCL = parameters.adotc0 * Constants::vSonic / sqrt(parameters.dynamicmodulus * Constants::giga / parameters.density);
 	aDotCLfactor = 1.0 + aDotOverCL * aDotOverCL;
 
 	aDotCLfactor_backfilled = 1.0 + aDotOverCL * aDotOverCL * backfill.densityratio;
 
-	factor = Constants::pi * Constants::c1 * 625.0 * parameters.dynamicModulus / p1bar * availableInternalVolume * sdrMinus2 / sdrMinus1 / sdrMinus1 * parameters.aDotc0;	// Note GPa / bar / 16 = 625
+    factor = Constants::pi * Constants::c1 * 625.0 * parameters.dynamicmodulus / p1bar * availableInternalVolume * sdrMinus2 / sdrMinus1 / sdrMinus1 * parameters.adotc0;	// Note GPa / bar / 16 = 625
 
-    file.aDotc0 = parameters.aDotc0;
+    file.aDotc0 = parameters.adotc0;
     file.collect(this, 0);
 
 }
@@ -197,7 +197,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
     int infoLevel =0;
 
     //Checked against 2 as checkboxes are assigned 2 when selected rather than 1
-    if ((parameters.outflowModelOn==2) & (parameters.verbose==2))
+    if ((parameters.outflowmodelon==2) & (parameters.verbose==2))
     {
         dialog *e = new dialog;
         e->Warning("Starting outflowLength refinement with outflow length = ", outflowLength);
@@ -374,7 +374,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
 		if (integral_wStar2 > 0.0)
 		{
-            if (parameters.outflowModelOn==2)
+            if (parameters.outflowmodelon==2)
 			{	
 				double throatArea = integral_wStar2;
 

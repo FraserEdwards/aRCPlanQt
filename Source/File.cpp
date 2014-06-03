@@ -257,40 +257,40 @@ void File::writepartxt(Parameters temp, string filename)
 
     writelinetxt("Material Data", out, 1);
 
-    writelinetxt("matID = ", temp.matID, out, 0);
+    writelinetxt("matID = ", temp.matid, out, 0);
     writelinetxt("density = ", temp.density, out, 0);
-    writelinetxt("eDyn0degC = ", temp.eDyn0degC, out, 0);
-    writelinetxt("dEdyndT = ", temp.dEdyndT, out, 0);
-    writelinetxt("creepModulus = ", temp.creepModulus, out, 0);
+    writelinetxt("eDyn0degC = ", temp.edyn0degc, out, 0);
+    writelinetxt("dEdyndT = ", temp.dedyndt, out, 0);
+    writelinetxt("creepModulus = ", temp.creepmodulus, out, 0);
     writelinetxt("poisson = ", temp.poisson, out, 1);
 
     writelinetxt("Pipe Data", out,1);
 
-    writelinetxt("pipeID = ", temp.pipeID, out, 0);
+    writelinetxt("pipeID = ", temp.pipeid, out, 0);
     writelinetxt("diameter = ", temp.diameter, out, 0);
     writelinetxt("sdr = ", temp.sdr, out, 0);
-    writelinetxt("notchDepth = ", temp.notchDepth, out, 0);
-    writelinetxt("diameterCreepRatio = ", temp.diameterCreepRatio, out, 1);
+    writelinetxt("notchDepth = ", temp.notchdepth, out, 0);
+    writelinetxt("diameterCreepRatio = ", temp.diametercreepratio, out, 1);
 
     writelinetxt("Test Setup Data", out, 1);
 
-    writelinetxt("fullScale = ", temp.fullScale, out, 0);
-    writelinetxt("tempDegC = ", temp.tempDegC, out, 0);
+    writelinetxt("fullScale = ", temp.fullscale, out, 0);
+    writelinetxt("tempDegC = ", temp.tempdegc, out, 0);
     writelinetxt("p0bar = ", temp.p0bar, out, 0);
-    writelinetxt("isBackfilled = ", temp.isBackfilled, out, 0);
-    writelinetxt("backfillDepth = ", temp.backfillDepth, out, 0);
-    writelinetxt("backfillDensity = ", temp.backfillDensity, out, 0);
-    writelinetxt("solidInsidePipe = ", temp.solidInsidePipe, out, 0);
-    writelinetxt("waterInsidePipe = ", temp.waterInsidePipe, out, 1);
+    writelinetxt("isBackfilled = ", temp.isbackfilled, out, 0);
+    writelinetxt("backfillDepth = ", temp.backfilldepth, out, 0);
+    writelinetxt("backfillDensity = ", temp.backfilldensity, out, 0);
+    writelinetxt("solidInsidePipe = ", temp.solidinsidepipe, out, 0);
+    writelinetxt("waterInsidePipe = ", temp.waterinsidepipe, out, 1);
 
     writelinetxt("Program Control Data", out, 1);
 
-    writelinetxt("outflowModelOn = ", temp.outflowModelOn, out, 0);
+    writelinetxt("outflowModelOn = ", temp.outflowmodelon, out, 0);
     writelinetxt("lambda = ", temp.lambda, out, 0);
     writelinetxt("solutionmethod = ", temp.solutionmethod, out, 0);
     writelinetxt("numberOfSpeedValues = ", temp.rangenumber, out, 0);
     writelinetxt("elementsInL = ", temp.elementsinl, out, 0);
-    writelinetxt("aDotc0 = ", temp.aDotc0, out, 0);
+    writelinetxt("aDotc0 = ", temp.adotc0, out, 0);
 
     out.close();
 
@@ -308,46 +308,46 @@ void File::writeparcsv(Parameters temp, string filename)
     writelinecsv("Material Data", out);
     writelinecsv("\n", out);
 
-    writelinecsv("matID", temp.matID, out);
+    writelinecsv("matID", temp.matid, out);
     writelinecsv("density", temp.density, out);
-    writelinecsv("eDyn0degC", temp.eDyn0degC, out);
-    writelinecsv("dEdyndT", temp.dEdyndT, out);
-    writelinecsv("creepModulus", temp.creepModulus, out);
+    writelinecsv("eDyn0degC", temp.edyn0degc, out);
+    writelinecsv("dEdyndT", temp.dedyndt, out);
+    writelinecsv("creepModulus", temp.creepmodulus, out);
     writelinecsv("poisson", temp.poisson, out);
     writelinecsv("\n", out);
 
     writelinecsv("Pipe Data", out);
     writelinecsv("\n", out);
 
-    writelinecsv("pipeID", temp.pipeID, out);
+    writelinecsv("pipeID", temp.pipeid, out);
     writelinecsv("diameter", temp.diameter, out);
     writelinecsv("sdr", temp.sdr, out);
-    writelinecsv("notchDepth", temp.notchDepth, out);
-    writelinecsv("diameterCreepRatio", temp.diameterCreepRatio, out);
+    writelinecsv("notchDepth", temp.notchdepth, out);
+    writelinecsv("diameterCreepRatio", temp.diametercreepratio, out);
 
     writelinecsv("\n", out);
     writelinecsv("Test Setup Data", out);
     writelinecsv("\n", out);
 
-    writelinecsv("fullScale", temp.fullScale, out);
-    writelinecsv("tempDegC", temp.tempDegC, out);
+    writelinecsv("fullScale", temp.fullscale, out);
+    writelinecsv("tempDegC", temp.tempdegc, out);
     writelinecsv("p0bar", temp.p0bar, out);
-    writelinecsv("isBackfilled", temp.isBackfilled, out);
-    writelinecsv("backfillDepth", temp.backfillDepth, out);
-    writelinecsv("backfillDensity", temp.backfillDensity, out);
-    writelinecsv("solidInsidePipe", temp.solidInsidePipe, out);
-    writelinecsv("waterInsidePipe", temp.waterInsidePipe, out);
+    writelinecsv("isBackfilled", temp.isbackfilled, out);
+    writelinecsv("backfillDepth", temp.backfilldepth, out);
+    writelinecsv("backfillDensity", temp.backfilldensity, out);
+    writelinecsv("solidInsidePipe", temp.solidinsidepipe, out);
+    writelinecsv("waterInsidePipe", temp.waterinsidepipe, out);
 
     writelinecsv("\n", out);
     writelinecsv("Program Control Data", out);
     writelinecsv("\n", out);
 
-    writelinecsv("outflowModelOn", temp.outflowModelOn, out);
+    writelinecsv("outflowModelOn", temp.outflowmodelon, out);
     writelinecsv("lambda", temp.lambda, out);
     writelinecsv("solutionmethod", temp.solutionmethod, out);
     writelinecsv("numberOfSpeedValues", temp.rangenumber, out);
     writelinecsv("elementsInL", temp.elementsinl, out);
-    writelinecsv("aDotc0", temp.aDotc0, out);
+    writelinecsv("aDotc0", temp.adotc0, out);
 
     out.close();
 }
