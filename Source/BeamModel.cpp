@@ -27,6 +27,7 @@ BeamModel::BeamModel()
 }
 
 //Constructor
+//Calculates properties which aren't dependant on speed
 BeamModel::BeamModel(const Parameters parameters)
 {
     initialise();
@@ -47,6 +48,8 @@ BeamModel::BeamModel(const Parameters parameters)
     file.collect(this,0);
 
 }
+
+//Clears all values within class
 void BeamModel::initialise()
 {
 
@@ -102,6 +105,8 @@ void BeamModel::initialise()
 
 }
 
+//Calculates properties dependent on the independent variable: speed, temperature, pressure
+//Also resets certain values at the beginning of each simulation
 void BeamModel::speedandreset(const Parameters parameters, const Backfill backfill, Creep creep)
 {
     extern File file;
@@ -121,6 +126,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 	// Proportion of initial pressure which remains at crack tip	
 	decomp.p1p0r=1.0;		
 
+    //Checks against 2 as checkboxes are assigned this value when ticked, rather than 1
     if(parameters.fullScale==2)
 						{
 
@@ -132,7 +138,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 
 						}
 
-	p1p0r=decomp.p1p0r; //Stopgap measure
+    p1p0r=decomp.p1p0r; //TODO: swap throughout remainder of code, so only decomp.p1p0r is used
 
 	//	v00 becomes reference length v0 on multiplying by lambda^4
 	v00 = 0.4 / Constants::c1 * sdrMinus1 * sdrMinus2 / parameters.sdr * p1bar / parameters.dynamicModulus * parameters.diameter / Constants::mega;	//	(m)
@@ -154,27 +160,32 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 
 }
 
+//	Dimensionless foundation stiffness [0] with backfill and [1] without
 void BeamModel::stiffness()
 {
-	//	Dimensionless foundation stiffness [0] with backfill and [1] without
+
 	m[1] = 8.0 / 3.0 / Constants::pi / Constants::c1 / sdrMinus1 / sdrMinus1 * lambdaPow4;
 	m[0] = m[1] / aDotCLfactor_backfilled;
 	m[1] /= aDotCLfactor;
 }
 
+//	Dimensionless crack speed [0] with backfill and [1] without
 void BeamModel::cspeed(const Parameters parameters, const Backfill backfill)
 {
-	//	Dimensionless crack speed [0] with backfill and [1] without
+
 	alpha[1] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL + Constants::c4 / 2.0 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor);
 	alpha[0] = outflowLength * sqrt(Constants::c3 * aDotOverCL * aDotOverCL * backfill.densityratio + Constants::c4 * 0.5 / (1.0 + parameters.poisson) / sdrMinus1 / sdrMinus1 / aDotCLfactor_backfilled);
 }
 
+//Converts opening from v to w
 void BeamModel::converteffopen(const Parameters parameters)
 {
     wStar2dash *= v0 / (2.0 * outflowLength * parameters.radius);
 	wStar2dash2 *= v0 / pow(2.0 * outflowLength * parameters.radius, 2);
 }
 
+//Iteration function
+//Uses two loops to calculate solution for the given parameters
 void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep creep)
 {
     extern File file;
@@ -185,6 +196,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
     error = 0;
     int infoLevel =0;
 
+    //Checked against 2 as checkboxes are assigned 2 when selected rather than 1
     if ((parameters.outflowModelOn==2) & (parameters.verbose==2))
     {
         dialog *e = new dialog;
@@ -206,7 +218,8 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
 		//	Determine (either by analytical or FD method) the opening profile v*(zeta) for a given outflow length control.lambda and the properties of it which are needed for analysis.
         if (parameters.solutionmethod==2)
-		{	// ...then use FINITE DIFFERENCE solution method:
+        {
+            // ...then use FINITE DIFFERENCE solution method:
 			//		short waitForMe;	
 
 			// Make first guess for closure length -- two nodes less than input value -- and construct FD solution:
@@ -223,7 +236,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
             e->exec();
 		}
 
-	// Make second guess for closure length (two nodes MORE than input value):
+        // Make second guess for closure length (two nodes MORE than input value):
 		nodeAtClosure += 4;
 
         if (parameters.verbose==2)
@@ -236,7 +249,6 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 		// Prepare to refine closure length by iteration
 		double dontNeedThis;
         error = 0;
-//        iterations = 0;
         short maximumNonContact = 0;
 
         //Need to declare again here! Without this, program exits first loop immediately, hence provides incorrect solutions
@@ -336,7 +348,8 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 
             file.collect(this, 0);
 
-			} // done that refinement iteration
+            // done that refinement iteration
+            }
 			while (notConverged & (iterations < maxIterations));
 
             if (parameters.verbose==2)
@@ -399,10 +412,8 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 void BeamModel::opening(Parameters parameters, Creep creep)
 {
 
-    int infoLevel=0;
     extern Solution solution;
 	//	So we now have the correct numerical or analytical crack opening profile vStar(zeta), and can output it if needed
-
 
         if (parameters.verbose==2)
 		{

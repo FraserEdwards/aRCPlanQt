@@ -47,13 +47,20 @@ public:
     vector <short> notConverged;
     vector <short> iterations;
 
+    //Null constructor
 	Solution();
+
+    //Clears all values within solution and resizes array
     void clear();
+
+    //Initialises displacement values
     void displacement(Parameters &parameters);
+
+    //Assigns crack profiles to matrix for access later to produce plots in GUI
 	void sprofile(vector<double> zeta, vector<double> vptra, const int l);
+
+    //Collects values provided as arguments, forming them in to solution object
     void Tvalues(const double aDotc0s, const double p0bars, const double tempDegCs, const double decompressions, const double alphas, const double ms, const double outflowLengths, const double deltaDStars,
                             const double gS1s, const double gUEs, const double gSbs, const double gKbs, const double g0s, const double gG0s, const double gTotals, const short noCrackOpenings, const short notConverged, const short iterations);
-	void Tvalues(const double aDotc0s, const double decompressions, const double alphas, const double ms);
-
 };
 #endif

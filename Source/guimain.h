@@ -76,9 +76,6 @@ private:
     int exists;
     int check;
 
-
-//    ofstream results;
-
     //Fills table with values from the solution
     void filltable(Solution solution);
 

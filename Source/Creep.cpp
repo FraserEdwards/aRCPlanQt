@@ -8,6 +8,7 @@
 #include "Constants.h"
 #include "Creep.h"
 
+//Null constructor
 Creep::Creep()
 {
 
@@ -17,6 +18,9 @@ Creep::Creep()
 
 }
 
+//Constructor
+//Takes parameters as arguments
+//Does not explicitly return values
 Creep::Creep(const Parameters parameters)
 {
 	//	Calculate natural diameter of pipe dues to residual strain contraction in time scale of fracture

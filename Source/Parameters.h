@@ -83,14 +83,23 @@ public:
     double indvar;
     int varname;
 
+    //Null constructor
     Parameters();
+
+    //Constructor
     Parameters(ConfigFile config);
+
+    //'=' operator
     Parameters& operator=(const Parameters& rhs);
+
+    //Updates the geometry and material values respectively
     void geometryupdate(int n);
     void materialupdate(int n);
-    void controlupdate(int n);
-    void testupdate(int n);
-	void collect(ConfigFile config);
+
+    //Reads in the parameter values from the config file provided
+    void collect(ConfigFile config);
+
+    //Modifies parameters for temperature changes
     void conditionToTemperature();
 
 } ;

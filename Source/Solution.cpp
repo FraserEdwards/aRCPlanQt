@@ -154,14 +154,3 @@ void Solution::Tvalues(const double aDotc0s, const double p0bars, const double t
     {gTotal.push_back(0.0);}
 	
 }
-
-void Solution::Tvalues(const double aDotc0s, const double decompressions, const double alphas, const double ms)
-{
-	soln++;
-	aDotc0.push_back(aDotc0s);
-	decompression.push_back(decompressions);
-	alpha.push_back(alphas);
-	m.push_back(ms);
-	
-}
-

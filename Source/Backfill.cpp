@@ -8,11 +8,14 @@
 #include "cmath"
 #include "Backfill.h"
 
+//Null constructor
 Backfill::Backfill()
 {
 	densityratio=0.0;
 }
 
+//Constructor taking paramaters as arguments
+//Returns density ratio for backfill
 Backfill::Backfill(const Parameters parameters)
 {
     //Parameters.isBackfilled is divided by 2 to correct the value: should be 1 but is assigned 2 by the checkbox in the GUI

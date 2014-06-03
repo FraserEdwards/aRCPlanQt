@@ -15,16 +15,17 @@ using namespace std;
 
 #include "FDprofile.h"
 
+//	Null constructor
 FDprofile::FDprofile()
-{//	Null constructor
+{
 	arraySize = 0;
 	v_ptr = 0;
 	elementsPerUnitLength = 0;
 } // end
 
-
+//	Constructor
 FDprofile::FDprofile(const double alpha[2], const double m[2], double zetaBackfilled, double vStarRes, short elementsInL, short nodeAtClosure)
-{//	Constructor
+{
 	elementsPerUnitLength = elementsInL;
 	arraySize = nodeAtClosure;				// NB. v* = 0 for outermost 'inactive' boundary points, which are not in array
 
@@ -92,39 +93,39 @@ FDprofile::FDprofile(const double alpha[2], const double m[2], double zetaBackfi
 	}
 //	Solve, putting solution in v_ptr
 	mMx.backSubstitute(v_ptr);
-} // end FDprofile constructor.
+}
 
-
+    // Copy constructor
 FDprofile::FDprofile(const FDprofile& original)
-{	// Copy constructor
+{
 	arraySize = original.arraySize;
 	elementsPerUnitLength = original.elementsPerUnitLength;
 	v_ptr = new double[arraySize];
 	copy(original);
-}//	end copy constructor
+}
 
-
+// Copies values of array into *this object, having already checked that size is same
 void FDprofile::copy(const FDprofile& original)
-{	// Copies values of array into *this object, having already checked that size is same
+{
 	double* p = v_ptr + arraySize;
 	double* q = original.v_ptr + arraySize;
 	while (p > v_ptr)
 		*--p = *--q;
-}//	end copy
+}
 
-
+// Resets size of array, discarding data in it
 void FDprofile::resetSize(short newSize)
-{	// Resets size of array, discarding data in it
+{
 	if (newSize != arraySize) {
 		delete [] v_ptr;					// Delete old elements,
 		arraySize = newSize;				// set new count,
 		v_ptr = new double[newSize];		// and allocate new elements
 	}
-}//	end resetSize
+}
 
-
+// Assign another FDprofile rhs to this one by operator '='
 FDprofile& FDprofile::operator=(const FDprofile& rhs)
-{// Assign another FDprofile rhs to this one by operator '='
+{
 	if (v_ptr != rhs.v_ptr)
     {
 		resetSize(rhs.arraySize);
@@ -132,23 +133,23 @@ FDprofile& FDprofile::operator=(const FDprofile& rhs)
     }
 	elementsPerUnitLength = rhs.elementsPerUnitLength;
 	return *this;
-}//	end operator=.
+}
 
-
+//	Destructor
 FDprofile::~FDprofile()
-{//	Destructor
+{
 	delete [] v_ptr;
-} // end destructor.
+}
 
-
+// vStar at outflow point
 double FDprofile::wStar2()
-{// vStar at outflow point
+{
 	return v_ptr[elementsPerUnitLength];
-} // end wStar2().
+}
 
-
+// Greatest vStar anywhere within open-crack region, found by quadratic interpolation
 double FDprofile::wStarMax(short elementsInL)
-{// Greatest vStar anywhere within open-crack region, found by quadratic interpolation
+{
 	double y0 = v_ptr[0];
 	double y1 = v_ptr[1];
 	double y2;
@@ -165,56 +166,56 @@ double FDprofile::wStarMax(short elementsInL)
 		y1 += (y0 - y2) * (y0 - y2) / (y0 - 2.0 * y1 + y2);
 	}
 	return y1;
-} // end wStarMax().
+}
 
-
+// 1st derivative of vStar at outflow point
 double FDprofile::wStar2dash()
-{// 1st derivative of vStar at outflow point
+{
 	double temp = v_ptr[elementsPerUnitLength-2]
 		- 8.0 * v_ptr[elementsPerUnitLength-1] 
 
 		+ 8.0 * v_ptr[elementsPerUnitLength+1]
 		- v_ptr[elementsPerUnitLength+2];
 	return temp * float (elementsPerUnitLength) / 12.0;
-} // end wStar2dash().
+}
 
-
+// 2nd derivative of vStar at outflow point
 double FDprofile::wStar2dash2()
-{// 2nd derivative of vStar at outflow point
+{
 	double temp = -v_ptr[elementsPerUnitLength-2]
 		+ 16.0 * v_ptr[elementsPerUnitLength-1] 
 		- 30.0 * v_ptr[elementsPerUnitLength]
 		+ 16.0 * v_ptr[elementsPerUnitLength+1]
 		- v_ptr[elementsPerUnitLength+2];
 	return temp * float(elementsPerUnitLength * elementsPerUnitLength) / 12.0;
-} // end wStar2dash2.
+}
 
-
+// Simpson trapezoidal integral (vStar dZeta) from crack tip to outflow point
 double FDprofile::integral_wStar2()
-{// Simpson trapezoidal integral (vStar dZeta) from crack tip to outflow point
+{
 	double simpsonSum = 0.5 * (v_ptr[0] + v_ptr[elementsPerUnitLength]);
 	for (int i = 1;  i < elementsPerUnitLength; i++)
 		simpsonSum += v_ptr[i];
 	return simpsonSum / float(elementsPerUnitLength);
-} // end integral_wStar2.
+}
 
-
+// Ratio of 2nd derivatives (closure point / crack tip) using 5-point stencils
 double FDprofile::closureMoment()
-{// Ratio of 2nd derivatives (closure point / crack tip) using 5-point stencils
+{
 //	return (v_ptr[arraySize-3] -4.0 * v_ptr[arraySize-2] + 6.0 * v_ptr[arraySize-1]) 
 //			/ (6.0 * v_ptr[0] - 4.0 * v_ptr[1] + v_ptr[2]);
 	return (-v_ptr[arraySize-2] +16.0 * v_ptr[arraySize-1]) 
 			/ (16.0 * v_ptr[0] - v_ptr[1]);
-} // end closureMoment.
+}
 
-
+// Find point within 0 < zeta < 1 at which radial acceleration changes sign, and radial velocity at that point
 void FDprofile::findBackfillEjectPoint(double& zetaBackfillEject, double& vStarDashBackfillEject)
-{// Find point within 0 < zeta < 1 at which radial acceleration changes sign, and radial velocity at that point
+{
 	double interval = 1.0 / float(elementsPerUnitLength);
 	short foundIt = false;
-// Second derivative at crack tip, which must be >0:
+    // Second derivative at crack tip, which must be >0:
 	double last2ndDeriv = 16.0 * v_ptr[0] - v_ptr[1];
-// Second derivative at node 0	
+    // Second derivative at node 0
 	double this2ndDeriv = -30.0 * v_ptr[0] + 16.0 * v_ptr[1] - v_ptr[2];
 	if (this2ndDeriv < 0.0)
 	{
@@ -247,9 +248,9 @@ void FDprofile::findBackfillEjectPoint(double& zetaBackfillEject, double& vStarD
 			}
 		}
 	}
-//	NB gradient by 5-pt stencil is [(1)(-8)(0)(8)(-1)] / 12h hence interpolation between two adjacent values is
-//	(1 - bitOfH) * [(+1)(-8)(+0)(+8)(-1)(+0)]
-//	   + bitOfH  * [(+0)(+1)(-8)(+0)(+8)(-1)] where 3rd node is 'iLeft'.
+    //	NB gradient by 5-pt stencil is [(1)(-8)(0)(8)(-1)] / 12h hence interpolation between two adjacent values is
+    //	(1 - bitOfH) * [(+1)(-8)(+0)(+8)(-1)(+0)]
+    //	   + bitOfH  * [(+0)(+1)(-8)(+0)(+8)(-1)] where 3rd node is 'iLeft'.
 	double bitOfH = zetaBackfillEject * float(elementsPerUnitLength);
 	short iLeft = floor(bitOfH);
 	bitOfH -= float(iLeft);
@@ -262,9 +263,9 @@ void FDprofile::findBackfillEjectPoint(double& zetaBackfillEject, double& vStarD
 	vStarDashBackfillEject *= float(elementsPerUnitLength) / 12.0;
 } // end backfillEject.
 
-
+// Returns first node immediately to the left of which the function has a negative minimum
 short FDprofile::nodeAtMinimum()
-{// Returns first node immediately to the left of which the function has a negative minimum
+{
 	double lastValue = 0.0;					// Boundary value
 	double thisValue = v_ptr[0];
 	double lastGrad = thisValue;
@@ -283,7 +284,9 @@ short FDprofile::nodeAtMinimum()
 				return i;
 		}
 	}
-	{ // check that neg min is not at last point in array, where next 'thisValue' is boundary zero	
+    else
+    {
+        // check that neg min is not at last point in array, where next 'thisValue' is boundary zero
 		lastValue = thisValue;
 		lastGrad = thisGrad;
 		thisGrad = -lastValue;
@@ -300,18 +303,17 @@ short FDprofile::nodeAtMinimum()
 		}
 	}
 	return -1;	// signals that there is NO negative minimum
-} // end nodeAtMinimum
+}
 
-
+// zeta coordinate of RH boundary point in array = array size
 short FDprofile::nodeAtClosure()
-{// zeta coordinate of RH boundary point in array = array size
+{
 	return arraySize;
-}// end nodeAtClosure.
+}
 
-
+// prints displacement output profile
 void FDprofile::fprofile()
-{// prints displacement output profile
-	
+{
 	l=arraySize;
 	for (short i=0; i<arraySize; i++)
     {
@@ -319,16 +321,16 @@ void FDprofile::fprofile()
 		vptra.push_back(float(v_ptr[i]));
     }
 	
-}// end printProfile.
+}
 
-
+// Update alpha and m values to reflect backfill conditions at current node:
 void FDprofile::resetBackfill(const double alpha[2],		// 
 					const double m[2], 
 					int noBackfill,		// = 0 if there is backfill, 1 otherwise
 					double& weight0,	// on diagonal
 					double& weight1,	// first out from diagonal
 					double& weight2)	// second out from diagonal
-{// Update alpha and m values to reflect backfill conditions at current node:
+{
 	double temp1 = 	1.0 / float(elementsPerUnitLength * elementsPerUnitLength);
 	double temp2 = alpha[noBackfill];		// = alpha
 	temp2 = temp2 * temp2 * temp1;
@@ -336,9 +338,9 @@ void FDprofile::resetBackfill(const double alpha[2],		//
 	weight2 = 1.0 - temp2 / 12.0;							
 	temp1 *= temp1;							// = h^4
 	weight0 = 6 - 2.5 * temp2 + temp1 * m[noBackfill];	// on diagonal
-} // end ResetBackfill.
+}
 
-		
+//Finds outflow values for given parameters
 void FDprofile::outflowPointValues(double& wStar, double& dwStar_dzeta, double& d2wStar_dZeta2, double& integral_wStar2)
 {
 	wStar = v_ptr[elementsPerUnitLength];
@@ -354,4 +356,4 @@ void FDprofile::outflowPointValues(double& wStar, double& dwStar_dzeta, double& 
 		- v_ptr[elementsPerUnitLength+2];
 	d2wStar_dZeta2 = temp * double(elementsPerUnitLength * elementsPerUnitLength) / 12.0;
 	integral_wStar2 = FDprofile::integral_wStar2();
-} // end outflowPointValues.
+}

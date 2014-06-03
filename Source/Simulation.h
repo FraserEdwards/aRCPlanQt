@@ -31,18 +31,12 @@ private:
 	short controlCode;
 	double aDotc0;
 	
-	Parameters parameters;	
-    File file;
-	Creep creep;
-	Backfill backfill;
-	BeamModel beamModel;
-	Solution solution;
-
-
 public:	
 	
-	ConfigFile config;
+    //Null constructor
 	Simulation();
+
+    //Iteration function, parameters as arguments, returns solution
     Solution run(Parameters parameters);
 
 };

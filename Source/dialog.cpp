@@ -22,6 +22,11 @@ dialog::~dialog()
     delete ui;
 }
 
+
+//The following functions define the text presented on the dialog box depending on the arguments passed.
+//Multiple arguments can be supplied to include values within the text
+
+
 void dialog::Warning(string title)
 {
     ui-> warning -> setText(QString::fromStdString(title));

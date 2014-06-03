@@ -11,11 +11,14 @@
 using namespace std;
 
 #include "File.h"
+
+//Null constructor
 File::File()
 {
    initialise();
 }
 
+//Clears all variables within the file class
 void File::initialise()
 {
     aDotc0 = 0.0;
@@ -85,6 +88,7 @@ void File::initialise()
 
 }
 
+//Reduces directory path to where "aRCPlanQt.app" is found
 void File::correct()
 {
 
@@ -97,6 +101,7 @@ void File::correct()
 
 }
 
+//Checks if folders can be found for storing results files
 int File::check()
 {
     struct stat st;
@@ -161,6 +166,7 @@ int File::check()
 
 }
 
+//Checks if file exists
 int File::loadcheck(string name)
 {
 
@@ -174,6 +180,7 @@ int File::loadcheck(string name)
     return 1;
 }
 
+//Provides handler for writing caseInputData.txt file
 int File::casehandler(Parameters temp, string filename)
 {
     if(filename.find(".txt",0)<100)
@@ -187,6 +194,7 @@ int File::casehandler(Parameters temp, string filename)
     }
 }
 
+//
 void File::writeresults()
 {
     extern File file;
