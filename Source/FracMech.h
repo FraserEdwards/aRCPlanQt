@@ -14,13 +14,13 @@ class FracMech
 public:
 
 	double g0;
-	double gS1;
-	double gUE;
-	double gSb;
-	double gKb;
-	double gTotal;
-	double gG0;
-	double aDotc0;
+    double gs1;
+    double gue;
+    double gsb;
+    double gkb;
+    double gtotal;
+    double gg0;
+    double adotc0;
 
     //Null constructor
 	FracMech();	

@@ -72,7 +72,7 @@ Solution Simulation::run(Parameters parameters)
         fracmech.extensionForce(beamModel, parameters, creep);
 
         solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-        fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
+        fracmech.gs1, fracmech.gue, fracmech.gsb, fracmech.gkb, fracmech.g0, fracmech.gg0, fracmech.gtotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
 
         file.initialise();
 
@@ -120,7 +120,7 @@ Solution Simulation::run(Parameters parameters)
             fracmech.extensionForce(beamModel, parameters, creep);
 
             solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflowLength, beamModel.deltaDStar,
-            fracmech.gS1, fracmech.gUE, fracmech.gSb, fracmech.gKb, fracmech.g0, fracmech.gG0, fracmech.gTotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
+            fracmech.gs1, fracmech.gue, fracmech.gsb, fracmech.gkb, fracmech.g0, fracmech.gg0, fracmech.gtotal, beamModel.noCrackOpening, beamModel.notConverged, beamModel.iterations);
 
             file.initialise();
 
