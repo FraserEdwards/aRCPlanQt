@@ -16,43 +16,43 @@ ICON = Images/Test.icns
 
 SOURCES += Source/main.cpp\
     Source/about.cpp \
-    Source/Backfill.cpp \
-    Source/BeamModel.cpp \
-    Source/ConfigFile.cpp \
-    Source/Constants.cpp \
-    Source/Creep.cpp \
-    Source/Decompression.cpp \
     Source/dialog.cpp \
-    Source/FDprofile.cpp \
-    Source/File.cpp \
-    Source/FracMech.cpp \
     Source/guimain.cpp \
-    Source/OutflowProcess.cpp \
-    Source/Parameters.cpp \
     Source/qcustomplot.cpp \
-    Source/Simulation.cpp \
-    Source/Solution.cpp \
-    Source/SymDoubleMatrix.cpp
+    Source/backfill.cpp \
+    Source/beammodel.cpp \
+    Source/configfile.cpp \
+    Source/constants.cpp \
+    Source/creep.cpp \
+    Source/decompression.cpp \
+    Source/fdprofile.cpp \
+    Source/file.cpp \
+    Source/fracmech.cpp \
+    Source/outflowprocess.cpp \
+    Source/parameters.cpp \
+    Source/simulation.cpp \
+    Source/solution.cpp \
+    Source/symdoublematrix.cpp
 
 HEADERS  += \
     Source/about.h \
-    Source/Backfill.h \
-    Source/BeamModel.h \
-    Source/ConfigFile.h \
-    Source/Constants.h \
-    Source/Creep.h \
-    Source/Decompression.h \
     Source/dialog.h \
-    Source/FDprofile.h \
-    Source/File.h \
-    Source/FracMech.h \
     Source/guimain.h \
-    Source/OutflowProcess.h \
-    Source/Parameters.h \
     Source/qcustomplot.h \
-    Source/Simulation.h \
-    Source/Solution.h \
-    Source/SymDoubleMatrix.h
+    Source/backfill.h \
+    Source/beammodel.h \
+    Source/configfile.h \
+    Source/constants.h \
+    Source/creep.h \
+    Source/decompression.h \
+    Source/fdprofile.h \
+    Source/file.h \
+    Source/fracmech.h \
+    Source/outflowprocess.h \
+    Source/parameters.h \
+    Source/simulation.h \
+    Source/solution.h \
+    Source/symdoublematrix.h
 
 
 FORMS    += \

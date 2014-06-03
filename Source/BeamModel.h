@@ -1,8 +1,13 @@
+//     aRCPLan
+
+//     Authors: Dr Patric Leevers, Fraser //
+//     aRCPlan may be freely distributed under the MIT license.
+//     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
+
 #ifndef BeamModelH
 #define BeamModelH
 
 #include <vector>
-#include <QObject>
 
 #include "Backfill.h"
 #include "Creep.h"
