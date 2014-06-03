@@ -72,7 +72,7 @@ public:
         void initialise();
 		
 		// Speed dependent properties and reset for outflow length
-		void speedandreset(const Parameters parameters, Backfill backfill, Creep creep);	
+        void reset(const Parameters parameters, Backfill backfill, Creep creep);
 
 		// Dimensionless foundation stiffness
 		void stiffness();
@@ -81,7 +81,7 @@ public:
 		void cspeed(const Parameters parameters, const Backfill backfill);
 
         //Converts from v to w
-		void converteffopen(const Parameters parameters);
+        void convertEffOpen(const Parameters parameters);
 
         //Iteration function to find solution
         void iteration(Parameters parameters, Backfill backfill, Creep creep);

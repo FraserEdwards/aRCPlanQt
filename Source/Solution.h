@@ -57,10 +57,10 @@ public:
     void displacement(Parameters &parameters);
 
     //Assigns crack profiles to matrix for access later to produce plots in GUI
-	void sprofile(vector<double> zeta, vector<double> vptra, const int l);
+    void collectProfile(vector<double> zeta, vector<double> vptra, const int l);
 
     //Collects values provided as arguments, forming them in to solution object
-    void Tvalues(const double adotc0s, const double p0bars, const double tempdegcs, const double decompressions, const double alphas, const double ms, const double outflowlengths, const double deltadstars,
+    void collect(const double adotc0s, const double p0bars, const double tempdegcs, const double decompressions, const double alphas, const double ms, const double outflowlengths, const double deltadstars,
                             const double gs1s, const double gues, const double gsbs, const double gkbs, const double g0s, const double gg0s, const double gtotals, const short no_crack_openings, const short not_converged, const short iterations);
 };
 #endif

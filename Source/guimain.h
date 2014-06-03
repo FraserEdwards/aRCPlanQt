@@ -77,14 +77,14 @@ private:
     int check;
 
     //Fills table with values from the solution
-    void filltable(Solution solution);
+    void fillTable(Solution solution);
 
     //Depending on values in GUI, plot graphs against different independent variable
-    void plothandler(Solution solution);
+    void plotHandler(Solution solution);
 
     //Plot handlers for results or profiles with appropriate titles and ranges
-    void plotresults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate);
-    void plotprofiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate, char valid);
+    void plotResults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate);
+    void plotProfiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate, char valid);
 };
 
 #endif // GUIMAIN_H

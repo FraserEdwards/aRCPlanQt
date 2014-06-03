@@ -50,14 +50,14 @@ Parameters::Parameters()
     radius=0.0;
     crack_width=0.0;
 
-    geometryupdate(0);
-    materialupdate(0);
+    geometryUpdate(0);
+    materialUpdate(0);
 
     conditionToTemperature();
 
 }
 //Updates the geometry for the pipe
-void Parameters::geometryupdate(int n)
+void Parameters::geometryUpdate(int n)
 {
     pipeid = Parameters::pipeid_lib[n];
     diameter = diameter_lib[n];
@@ -68,7 +68,7 @@ void Parameters::geometryupdate(int n)
 }
 
 //Update the material for the pipe
-void Parameters::materialupdate(int n)
+void Parameters::materialUpdate(int n)
 {
     matid = matid[n];
     density = density_lib[n];

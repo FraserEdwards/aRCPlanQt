@@ -57,35 +57,35 @@ public:
     int check();
 
     //Checks if file exists
-    int loadcheck(string name);
+    int loadCheck(string name);
 
     //Handles parameters, sending them to write function if file is found
-    int casehandler(Parameters temp, string filename);
+    int caseHandler(Parameters temp, string filename);
 
     //Writes parameters to csv file with appropriate formatting
-    void writeparcsv(Parameters temp, string filename);
+    void writeParCSV(Parameters temp, string filename);
 
     //Write parameters to txt file with appropriate formatting
-    void writepartxt(Parameters temp, string filename);
+    void writeParTXT(Parameters temp, string filename);
 
     //Reads from global solution object and writes to a csv file
-    void writeresults();
+    void writeResults();
 
     //Writes a single line to a csv file
-    void writelinecsv(string title, double value, ofstream &out);
-    void writelinecsv(string title, string value, ofstream &out);
-    void writelinecsv(string title, ofstream &out);
+    void writeLineCSV(string title, double value, ofstream &out);
+    void writeLineCSV(string title, string value, ofstream &out);
+    void writeLineCSV(string title, ofstream &out);
 
     //Writes a single line to a txt file
-    void writelinetxt(string title, double value, ofstream &out, int format);
-    void writelinetxt(string title, string value, ofstream &out, int format);
-    void writelinetxt(string title, ofstream &out, int format);
+    void writeLineTXT(string title, double value, ofstream &out, int format);
+    void writeLineTXT(string title, string value, ofstream &out, int format);
+    void writeLineTXT(string title, ofstream &out, int format);
 
     //Handles log file, writing parameters and headers for remainder of logs
-    void logprepare(Parameters temp);
+    void logPrepare(Parameters temp);
 
     //Writes headers for log file
-    void writeheaders(string temp);
+    void writeHeaders(string temp);
 
     //Update log file before writing a line
     void collect(FracMech fracmech);
@@ -95,7 +95,7 @@ public:
     void collect(OutflowProcess *outflow, int newline);
 
     //Writes a single line to the log file with current log values
-    void writelogline(int newline);
+    void writeLogLine(int newline);
 };
 
 #endif

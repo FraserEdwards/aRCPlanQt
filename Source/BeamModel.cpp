@@ -106,7 +106,7 @@ void BeamModel::initialise()
 
 //Calculates properties dependent on the independent variable: speed, temperature, pressure
 //Also resets certain values at the beginning of each simulation
-void BeamModel::speedandreset(const Parameters parameters, const Backfill backfill, Creep creep)
+void BeamModel::reset(const Parameters parameters, const Backfill backfill, Creep creep)
 {
     extern File file;
 	//  Set initial outflow length
@@ -177,7 +177,7 @@ void BeamModel::cspeed(const Parameters parameters, const Backfill backfill)
 }
 
 //Converts opening from v to w
-void BeamModel::converteffopen(const Parameters parameters)
+void BeamModel::convertEffOpen(const Parameters parameters)
 {
     wstar2dash *= v0 / (2.0 * outflow_length * parameters.radius);
     wstar2dash2 *= v0 / pow(2.0 * outflow_length * parameters.radius, 2);
@@ -199,7 +199,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
     if ((parameters.outflow_model_on==2) & (parameters.verbose==2))
     {
         dialog *e = new dialog;
-        e->Warning("Starting outflowLength refinement with outflow length = ", outflow_length);
+        e->warning("Starting outflowLength refinement with outflow length = ", outflow_length);
         e->exec();
     }		
 	do
@@ -231,7 +231,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
         if (infoLevel > 1)
 		{
             dialog *e = new dialog;
-            e->Warning("Starting closure length refinement with closure node = ",nodeAtClosure_previous, "and closure moment = ", errorLast);
+            e->warning("Starting closure length refinement with closure node = ",nodeAtClosure_previous, "and closure moment = ", errorLast);
             e->exec();
 		}
 
@@ -241,7 +241,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
         if (parameters.verbose==2)
         {
             dialog *e = new dialog;
-            e->Warning("Second-guess closure node = ", node_at_closure);
+            e->warning("Second-guess closure node = ", node_at_closure);
             e->exec();
         }
 
@@ -263,7 +263,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
             if (parameters.verbose==2)
 			{
                 dialog *e = new dialog;
-                e->Warning("At closure length iteration ",iterations," closure moment = ", error, " min at point ",minPoint);
+                e->warning("At closure length iteration ",iterations," closure moment = ", error, " min at point ",minPoint);
                 e->exec();
 			}	
 			if (minPoint > 0)
@@ -271,7 +271,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
                 if (parameters.verbose==2)
                 {
                     dialog *e = new dialog;
-                    e->Warning("BUT there's a minimum (crack surface overlap) to left of closure point ", minPoint);
+                    e->warning("BUT there's a minimum (crack surface overlap) to left of closure point ", minPoint);
                     e->exec();
                 }
 
@@ -289,7 +289,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
                     if (parameters.verbose==2)
 					{
                         dialog *e = new dialog;
-                        e->Warning("nodeAtClosure = ",node_at_closure, " error = ", tempError, " min point = ", newMin);
+                        e->warning("nodeAtClosure = ",node_at_closure, " error = ", tempError, " min point = ", newMin);
                         e->exec();
 					}	
                     node_at_closure++;
@@ -299,7 +299,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
                 if (parameters.verbose==2)
                 {
                     dialog *e = new dialog;
-                    e->Warning("Least worst non-contacting solution nodeAtClosure = ", node_at_closure);
+                    e->warning("Least worst non-contacting solution nodeAtClosure = ", node_at_closure);
                     e->exec();
                 }
 					
@@ -317,7 +317,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
                 if (parameters.verbose==2)
                 {
                     dialog *e = new dialog;
-                    e->Warning("node interpolated = ", node_at_closure);
+                    e->warning("node interpolated = ", node_at_closure);
                     e->exec();
                 }
 		
@@ -337,7 +337,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
                     if (parameters.verbose==2)
                     {
                         dialog *e = new dialog;
-                        e->Warning("Next try for iteration will be nodeAtClosure = ", node_at_closure);
+                        e->warning("Next try for iteration will be nodeAtClosure = ", node_at_closure);
                         e->exec();
                     }
 
@@ -354,7 +354,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
             if (parameters.verbose==2)
 			{
                 dialog *e = new dialog;
-                e->Warning("At nodeAtClosure = ", node_at_closure, " converged in ", iterations," iterations with error = ", error);
+                e->warning("At nodeAtClosure = ", node_at_closure, " converged in ", iterations," iterations with error = ", error);
                 e->exec();
 			}
 
@@ -367,7 +367,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
         if (parameters.verbose==2)
 		{
             dialog *e = new dialog;
-            e->Warning("Computed profile properties", "Ejection point = ", zetabackfilleject,
+            e->warning("Computed profile properties", "Ejection point = ", zetabackfilleject,
                        "Opening at outflow point = ", wstarmax, "1st-deriv at outflow = ", wstar2dash,
                        "2nd-deriv at outflow = ", wstar2dash2, "Integral to outflow = ", integral_wstar2);
             e->exec();
@@ -386,7 +386,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
             if (parameters.verbose==2)
 			{	                
                 dialog *e = new dialog;
-                e->Warning("alpha = ", alpha[1], "m = ", m[1], "integral_wStar2 = ", integral_wstar2, "New outflowLength = ", outflow_length);
+                e->warning("alpha = ", alpha[1], "m = ", m[1], "integral_wStar2 = ", integral_wstar2, "New outflowLength = ", outflow_length);
                 e->exec();
 			}
             lambdapow4 =  pow(outflow_length, 4);
@@ -419,7 +419,7 @@ void BeamModel::opening(Parameters parameters, Creep creep)
         if (parameters.verbose==2)
 		{
             dialog *e = new dialog;
-            e->Warning("Final outflowLength convergence in ", iterations, " iterations for outflowLength = ", outflow_length);
+            e->warning("Final outflowLength convergence in ", iterations, " iterations for outflowLength = ", outflow_length);
             e->exec();
 		}
         if (parameters.solution_method==2)
@@ -432,7 +432,7 @@ void BeamModel::opening(Parameters parameters, Creep creep)
             final.findBackfillEjectPoint(zetabackfilleject, vstardashbackfilleject);
             final.outflowPointValues(wstar2, wstar2dash, wstar2dash2, integral_wstar2);
 
-            solution.sprofile(final.zeta, final.vptra, final.l);
+            solution.collectProfile(final.zeta, final.vptra, final.l);
 
         }
         else
@@ -443,7 +443,7 @@ void BeamModel::opening(Parameters parameters, Creep creep)
         wstar2 *= v0;
 	
 		// Convert derivatives from vStar(zeta) to v(z)
-		converteffopen(parameters);
+        convertEffOpen(parameters);
 	
 		//	Flaring of pipe wall at decompression point:
         deltadstar = wstar2 / Constants::pi / parameters.diameter * Constants::kilo + creep.diameter_res0 / parameters.diameter - 1.0;

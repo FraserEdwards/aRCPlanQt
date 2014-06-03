@@ -115,7 +115,7 @@ void Solution::displacement(Parameters &parameters)
 
 //Collects the crack profile for each solution, writing it to the
 //already created matrix
-void Solution::sprofile(const vector<double> zetas, const vector<double> vptras, const int ls)
+void Solution::collectProfile(const vector<double> zetas, const vector<double> vptras, const int ls)
 {
     k++;
     for(i = 0; i <= ls; i++)
@@ -127,7 +127,7 @@ void Solution::sprofile(const vector<double> zetas, const vector<double> vptras,
 
 //Collects the values from the arguments provided, storing them into
 //a single solution object
-void Solution::Tvalues(const double adotc0s, const double p0bars, const double tempdegcs, const double decompressions, const double alphas, const double ms, const double outflow_lengths, const double deltadstars,
+void Solution::collect(const double adotc0s, const double p0bars, const double tempdegcs, const double decompressions, const double alphas, const double ms, const double outflow_lengths, const double deltadstars,
                             const double gs1s, const double gues, const double gsbs, const double gkbs, const double g0s, const double gg0s, const double gtotals, const short no_crack_openings, const short not_convergeds, const short iterationss)
 {
 	soln++;

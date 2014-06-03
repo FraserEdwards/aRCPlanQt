@@ -37,7 +37,7 @@ Solution Simulation::run(Parameters parameters)
 
     extern Solution solution;
     extern File file;
-    file.logprepare(parameters);
+    file.logPrepare(parameters);
 
     //  Compute the effective multiplier on pipe wall density where the wall has 'attached' backfill or contains water
     Backfill backfill(parameters);
@@ -62,7 +62,7 @@ Solution Simulation::run(Parameters parameters)
         file.collect(creep);
 
         // Speed dependent properties
-        beamModel.speedandreset(parameters, backfill, creep);
+        beamModel.reset(parameters, backfill, creep);
 
         // Iteration function
         beamModel.iteration(parameters, backfill, creep);
@@ -70,7 +70,7 @@ Solution Simulation::run(Parameters parameters)
         beamModel.opening(parameters, creep);
         fracmech.extensionForce(beamModel, parameters, creep);
 
-        solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflow_length, beamModel.deltadstar,
+        solution.collect(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflow_length, beamModel.deltadstar,
         fracmech.gs1, fracmech.gue, fracmech.gsb, fracmech.gkb, fracmech.g0, fracmech.gg0, fracmech.gtotal, beamModel.no_crack_opening, beamModel.not_converged, beamModel.iterations);
 
         file.initialise();
@@ -110,7 +110,7 @@ Solution Simulation::run(Parameters parameters)
             file.collect(creep);
 
             // Speed dependent properties
-            beamModel.speedandreset(parameters, backfill, creep);
+            beamModel.reset(parameters, backfill, creep);
 
             // Iteration function
             beamModel.iteration(parameters, backfill, creep);
@@ -118,7 +118,7 @@ Solution Simulation::run(Parameters parameters)
             beamModel.opening(parameters, creep);
             fracmech.extensionForce(beamModel, parameters, creep);
 
-            solution.Tvalues(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflow_length, beamModel.deltadstar,
+            solution.collect(parameters.adotc0, parameters.p0bar, parameters.tempdegc, beamModel.p1p0r, beamModel.alpha[1], beamModel.m[0], beamModel.outflow_length, beamModel.deltadstar,
             fracmech.gs1, fracmech.gue, fracmech.gsb, fracmech.gkb, fracmech.g0, fracmech.gg0, fracmech.gtotal, beamModel.no_crack_opening, beamModel.not_converged, beamModel.iterations);
 
             file.initialise();

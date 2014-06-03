@@ -85,8 +85,8 @@ public:
     Parameters& operator=(const Parameters& rhs);
 
     //Updates the geometry and material values respectively
-    void geometryupdate(int n);
-    void materialupdate(int n);
+    void geometryUpdate(int n);
+    void materialUpdate(int n);
 
     //Reads in the parameter values from the config file provided
     void collect(ConfigFile config);
