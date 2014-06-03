@@ -16,26 +16,26 @@ Solution::Solution()
 {
 
     soln=0;
-    aDotc0.push_back(0.0);
+    adotc0.push_back(0.0);
     p0bar.push_back(0.0);
-    tempDegC.push_back(0.0);
+    tempdegc.push_back(0.0);
     z.push_back(0.0);
     k=0;
 
     decompression.push_back(0.0);
     alpha.push_back(0.0);
     m.push_back(0.0);
-    outflowLength.push_back(0.0);
-    deltaDStar.push_back(0.0);
-    gS1.push_back(0.0);
-    gUE.push_back(0.0);
-    gSb.push_back(0.0);
-    gKb.push_back(0.0);
-    gG0.push_back(0.0);
-    gTotal.push_back(0.0);
+    outflow_length.push_back(0.0);
+    deltadstar.push_back(0.0);
+    gs1.push_back(0.0);
+    gue.push_back(0.0);
+    gsb.push_back(0.0);
+    gkb.push_back(0.0);
+    gg0.push_back(0.0);
+    gtotal.push_back(0.0);
     g0.push_back(0.0);
-    noCrackOpening.push_back(1);
-    notConverged.push_back(1);
+    no_crack_opening.push_back(1);
+    not_converged.push_back(1);
     iterations.push_back(0);
 
 }
@@ -45,12 +45,12 @@ void Solution::clear()
 {
     soln=0;
     k=0;
-    aDotc0.clear();
-    aDotc0.resize(1);
+    adotc0.clear();
+    adotc0.resize(1);
     p0bar.clear();
     p0bar.resize(1);
-    tempDegC.clear();
-    tempDegC.resize(1);
+    tempdegc.clear();
+    tempdegc.resize(1);
     z.clear();
     z.resize(1);
     w.clear();
@@ -62,28 +62,28 @@ void Solution::clear()
     alpha.resize(1);
     m.clear();
     m.resize(1);
-    outflowLength.clear();
-    outflowLength.resize(1);
-    deltaDStar.clear();
-    deltaDStar.resize(1);
-    gS1.clear();
-    gS1.resize(1);
-    gUE.clear();
-    gUE.resize(1);
-    gSb.clear();
-    gSb.resize(1);
-    gKb.clear();
-    gKb.resize(1);
-    gG0.clear();
-    gG0.resize(1);
-    gTotal.clear();
-    gTotal.resize(1);
+    outflow_length.clear();
+    outflow_length.resize(1);
+    deltadstar.clear();
+    deltadstar.resize(1);
+    gs1.clear();
+    gs1.resize(1);
+    gue.clear();
+    gue.resize(1);
+    gsb.clear();
+    gsb.resize(1);
+    gkb.clear();
+    gkb.resize(1);
+    gg0.clear();
+    gg0.resize(1);
+    gtotal.clear();
+    gtotal.resize(1);
     g0.clear();
     g0.resize(1);
-    noCrackOpening.clear();
-    noCrackOpening.resize(1);
-    notConverged.clear();
-    notConverged.resize(1);
+    no_crack_opening.clear();
+    no_crack_opening.resize(1);
+    not_converged.clear();
+    not_converged.resize(1);
     iterations.clear();
     iterations.resize(1);
 
@@ -127,37 +127,37 @@ void Solution::sprofile(const vector<double> zetas, const vector<double> vptras,
 
 //Collects the values from the arguments provided, storing them into
 //a single solution object
-void Solution::Tvalues(const double aDotc0s, const double p0bars, const double tempDegCs, const double decompressions, const double alphas, const double ms, const double outflowLengths, const double deltaDStars,
-                            const double gS1s, const double gUEs, const double gSbs, const double gKbs, const double g0s, const double gG0s, const double gTotals, const short noCrackOpenings, const short notConvergeds, const short iterationss)
+void Solution::Tvalues(const double adotc0s, const double p0bars, const double tempdegcs, const double decompressions, const double alphas, const double ms, const double outflow_lengths, const double deltadstars,
+                            const double gs1s, const double gues, const double gsbs, const double gkbs, const double g0s, const double gg0s, const double gtotals, const short no_crack_openings, const short not_convergeds, const short iterationss)
 {
 	soln++;
-	aDotc0.push_back(aDotc0s);
+    adotc0.push_back(adotc0s);
     p0bar.push_back(p0bars);
-    tempDegC.push_back(tempDegCs);
+    tempdegc.push_back(tempdegcs);
 
 	decompression.push_back(decompressions);
 	alpha.push_back(alphas);
 	m.push_back(ms);
-	outflowLength.push_back(outflowLengths);
-	deltaDStar.push_back(deltaDStars);
-	gS1.push_back(gS1s);
-	gUE.push_back(gUEs);
-	gSb.push_back(gSbs);
-	gKb.push_back(gKbs);
+    outflow_length.push_back(outflow_lengths);
+    deltadstar.push_back(deltadstars);
+    gs1.push_back(gs1s);
+    gue.push_back(gues);
+    gsb.push_back(gsbs);
+    gkb.push_back(gkbs);
 	g0.push_back(g0s);
 
-    noCrackOpening.push_back(!noCrackOpenings);
-    notConverged.push_back(!notConvergeds);
+    no_crack_opening.push_back(!no_crack_openings);
+    not_converged.push_back(!not_convergeds);
     iterations.push_back(iterationss);
 
-    if (gG0s < 1000)
-    {gG0.push_back(gG0s);}
+    if (gg0s < 1000)
+    {gg0.push_back(gg0s);}
     else
-    {gG0.push_back(0.0);}
+    {gg0.push_back(0.0);}
 
-    if (gTotals < 1000)
-    {gTotal.push_back(gTotals);}
+    if (gtotals < 1000)
+    {gtotal.push_back(gtotals);}
     else
-    {gTotal.push_back(0.0);}
+    {gtotal.push_back(0.0);}
 	
 }

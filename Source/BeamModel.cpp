@@ -145,7 +145,7 @@ void BeamModel::speedandreset(const Parameters parameters, const Backfill backfi
 
 	//	Dimensionless virtual crack opening at crack tip (representing residual strain)
 	v0 = v00 * lambdaPow4;			//	(m)
-    vStarRes = creep.residualcrackclosure / v0 / Constants::kilo;
+    vStarRes = creep.residual_crack_closure / v0 / Constants::kilo;
 
 	// Parameters for equivalent beam model (speed dependent)
     aDotOverCL = parameters.adotc0 * Constants::vSonic / sqrt(parameters.dynamicmodulus * Constants::giga / parameters.density);
@@ -390,7 +390,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 			}
 			lambdaPow4 =  pow(outflowLength, 4);
 			v0 = v00 * lambdaPow4;
-            vStarRes = creep.residualcrackclosure / v0 / Constants::kilo;
+            vStarRes = creep.residual_crack_closure / v0 / Constants::kilo;
 
 			if ((fabs(1.0 - lambdaLast / outflowLength) < nodeResolution) and (fabs(1.0 - zetaBackfilledLast / zetaBackfilled) < nodeResolution))
 				notConverged = false;
@@ -445,7 +445,7 @@ void BeamModel::opening(Parameters parameters, Creep creep)
 		converteffopen(parameters);
 	
 		//	Flaring of pipe wall at decompression point:
-        deltaDStar = wStar2 / Constants::pi / parameters.diameter * Constants::kilo + creep.diameterres0 / parameters.diameter - 1.0;
+        deltaDStar = wStar2 / Constants::pi / parameters.diameter * Constants::kilo + creep.diameter_res0 / parameters.diameter - 1.0;
 
         if (iterations == maxIterations)  cout << "UNCONVERGED";
 			

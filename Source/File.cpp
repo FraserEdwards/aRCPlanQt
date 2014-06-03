@@ -23,7 +23,7 @@ void File::initialise()
 {
     adotc0 = 0.0;
     g0 = 0.0;
-    diameterres0 = 0.0;
+    diameter_res0 = 0.0;
 
     dStarMinus1 = 0.0;
     dStarMinus2 = 0.0;
@@ -210,11 +210,11 @@ void File::writeresults()
     for(i=1; i<solution.soln+1;i++)
     {
 
-        out << solution.aDotc0[i] << "," << solution.p0bar[i] << "," << solution.tempDegC[i] << ","
+        out << solution.adotc0[i] << "," << solution.p0bar[i] << "," << solution.tempdegc[i] << ","
                 << solution.decompression[i] << "," << solution.alpha[i] << ","
-                << solution.m[i] << "," << solution.outflowLength[i] << ", ," << solution.g0[i] << ","
-                << solution.gG0[i] << "," << solution.gTotal[i] << "," << solution.noCrackOpening[i] << ","
-                << solution.notConverged[i] << "," << solution.iterations[i] << "\n";
+                << solution.m[i] << "," << solution.outflow_length[i] << ", ," << solution.g0[i] << ","
+                << solution.gg0[i] << "," << solution.gtotal[i] << "," << solution.no_crack_opening[i] << ","
+                << solution.not_converged[i] << "," << solution.iterations[i] << "\n";
 
     }
 
@@ -444,7 +444,7 @@ void File::writelogline(int newline)
     lognumber++;
     out << lognumber << "," << adotc0 << ","
         << g0 << ","
-        << diameterres0 << "," << residualcrackclosure << ","
+        << diameter_res0 << "," << residual_crack_closure << ","
         << density_ratio << ","
         << zetaClosure << "," << nodeAtClosure << "," << outflowLength << ","
         << p1bar << "," << v0 << ","
@@ -469,8 +469,8 @@ void File::collect(FracMech fracmech)
 
 void File::collect(Creep creep)
 {
-    diameterres0 = creep.diameterres0;
-    residualcrackclosure = creep.residualcrackclosure;
+    diameter_res0 = creep.diameter_res0;
+    residual_crack_closure = creep.residual_crack_closure;
     writelogline(0);
 }
 

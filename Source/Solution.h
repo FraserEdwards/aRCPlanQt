@@ -26,25 +26,25 @@ public:
     vector<double> z;
     vector <vector <double > > w;
 
-    vector <double> aDotc0;
+    vector <double> adotc0;
     vector <double> p0bar;
-    vector <double> tempDegC;
+    vector <double> tempdegc;
 
 	vector <double> decompression;
 	vector <double> alpha;
 	vector <double> m;
-	vector <double> outflowLength;
-	vector <double> deltaDStar;
-	vector <double> gS1;
-	vector <double> gUE;
-	vector <double> gSb;
-	vector <double> gKb;
-	vector <double> gG0;
-	vector <double> gTotal;
+    vector <double> outflow_length;
+    vector <double> deltadstar;
+    vector <double> gs1;
+    vector <double> gue;
+    vector <double> gsb;
+    vector <double> gkb;
+    vector <double> gg0;
+    vector <double> gtotal;
 	vector <double> g0;
     vector <double> forplot;
-    vector <short> noCrackOpening;
-    vector <short> notConverged;
+    vector <short> no_crack_opening;
+    vector <short> not_converged;
     vector <short> iterations;
 
     //Null constructor
@@ -60,7 +60,7 @@ public:
 	void sprofile(vector<double> zeta, vector<double> vptra, const int l);
 
     //Collects values provided as arguments, forming them in to solution object
-    void Tvalues(const double aDotc0s, const double p0bars, const double tempDegCs, const double decompressions, const double alphas, const double ms, const double outflowLengths, const double deltaDStars,
-                            const double gS1s, const double gUEs, const double gSbs, const double gKbs, const double g0s, const double gG0s, const double gTotals, const short noCrackOpenings, const short notConverged, const short iterations);
+    void Tvalues(const double adotc0s, const double p0bars, const double tempdegcs, const double decompressions, const double alphas, const double ms, const double outflowlengths, const double deltadstars,
+                            const double gs1s, const double gues, const double gsbs, const double gkbs, const double g0s, const double gg0s, const double gtotals, const short no_crack_openings, const short not_converged, const short iterations);
 };
 #endif
