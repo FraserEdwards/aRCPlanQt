@@ -8,6 +8,7 @@
 
 class Decomp
 {
+
 private:
 
 	double p1;
@@ -18,9 +19,13 @@ private:
 
 public:
 
+    double p1p0r;
+
+    //Null constructor
 	Decomp();
+
+    //Calculates pressure ratio due to decompression with a given speed
 	void p1p0(double p0, double gamma_, double aDotC0);
-	double p1p0r;
 
 };
 

@@ -34,30 +34,36 @@ public:
 
 private slots:
 
+    //Begins calculation with parameters read from GUI
     void on_Runbutton_clicked();
 
+    //Following functions provide basic logic for check boxes
+    //i.e. selecting one deselects the other
     void on_fs_clicked();
-
     void on_s4_clicked();
-
     void on_singlemode_clicked();
-
     void on_rangemode_clicked();
 
+    //Saves results from
     void on_Save_clicked();
 
+    //Selection of results table cell controls crack and results plots
     void on_Resultstable_cellClicked(int row, int column);
 
+    //Selection of pipe from dropdown box determines parameters below
     void on_materialname_currentIndexChanged(int index);
-
     void on_pipename_currentIndexChanged(int index);
 
+    //Loads caseInputData.txt
     void on_action_Load_triggered();
 
+    //Loads caseInputData.txt
     void on_action_Save_triggered();
 
+    //Shows about dialog
     void on_actionAbout_triggered();
 
+    //Changes independent variable
     void on_parameter_currentIndexChanged(int index);
 
 private:
@@ -70,10 +76,16 @@ private:
     int exists;
     int check;
 
-    ofstream results;
 
+//    ofstream results;
+
+    //Fills table with values from the solution
     void filltable(Solution solution);
+
+    //Depending on values in GUI, plot graphs against different independent variable
     void plothandler(Solution solution);
+
+    //Plot handlers for results or profiles with appropriate titles and ranges
     void plotresults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate);
     void plotprofiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate, char valid);
 };

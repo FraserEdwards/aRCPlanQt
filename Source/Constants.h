@@ -11,7 +11,7 @@
 class Constants
 {
 	public:
-		// Declaration of variables visible outside of class
+
 		static const double pi;
 		static const double bar;
 		static const double piSqr;

@@ -19,8 +19,13 @@ class dialog : public QDialog
 
 public:
 
+    //Constructor
     explicit dialog(QWidget *parent = 0);
+
+    //Destructor
     ~dialog();
+
+    //Updates text on dialog to provide user with message
     void Warning(string title);
     void Warning(string title, double value);
     void Warning(string title, double value, string title1, double value1);

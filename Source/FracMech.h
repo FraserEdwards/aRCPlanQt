@@ -22,8 +22,13 @@ public:
 	double gG0;
 	double aDotc0;
 
+    //Null constructor
 	FracMech();	
+
+    //Constructor
 	FracMech(const Parameters parameters);
+
+    //Calculates driving force using strain energy consideration
 	void extensionForce(const BeamModel beamModel, const Parameters parameters, const Creep creep);
 };
 

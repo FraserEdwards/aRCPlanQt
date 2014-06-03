@@ -41,31 +41,60 @@ private:
 
 public:
 
+    string directory;
     double aDotc0;
 
+    //Null constructor
     File();
+
+    //Clears all values in file
     void initialise();
-    void correct(); 	//Null constructor
+
+    //Resizes directory, removing aRCPlan.app to find overall directory of program
+    void correct();
+
+    //Check for existence of folder required for storing files
     int check();
+
+    //Checks if file exists
     int loadcheck(string name);
-    string directory;
+
+    //Handles parameters, sending them to write function if file is found
     int casehandler(Parameters temp, string filename);
+
+    //Writes parameters to csv file with appropriate formatting
     void writeparcsv(Parameters temp, string filename);
+
+    //Write parameters to txt file with appropriate formatting
     void writepartxt(Parameters temp, string filename);
+
+    //Reads from global solution object and writes to a csv file
     void writeresults();
+
+    //Writes a single line to a csv file
     void writelinecsv(string title, double value, ofstream &out);
     void writelinecsv(string title, string value, ofstream &out);
     void writelinecsv(string title, ofstream &out);
+
+    //Writes a single line to a txt file
     void writelinetxt(string title, double value, ofstream &out, int format);
     void writelinetxt(string title, string value, ofstream &out, int format);
     void writelinetxt(string title, ofstream &out, int format);
+
+    //Handles log file, writing parameters and headers for remainder of logs
     void logprepare(Parameters temp);
+
+    //Writes headers for log file
     void writeheaders(string temp);
+
+    //Update log file before writing a line
     void collect(FracMech fracmech);
     void collect(Creep creep);
     void collect(Backfill backfill);
     void collect(BeamModel *beamModel, int newline);
     void collect(OutflowProcess *outflow, int newline);
+
+    //Writes a single line to the log file with current log values
     void writelogline(int newline);
 };
 

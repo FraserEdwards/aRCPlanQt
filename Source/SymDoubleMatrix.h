@@ -21,7 +21,7 @@ class SymDoubleMatrix
         SymDoubleMatrix& operator=(const SymDoubleMatrix&);	// Assignment to matrix by '='
         SymDoubleMatrix& operator+=(const SymDoubleMatrix&);// Matrix incrementation by operator '+='
         short sizeOf();										// Returns number of rows/columns in matrix
-        void resetSizeTo(short newSize);						// Change size
+        void resetSizeTo(short newSize);                    // Change size
         void makeSymmetrical();								// Completes matrix by overwriting lower with upper triangle
         void printMatrix();									// Prints from upper triangular (?  really?) sector
         void decompose(short& error);						// Completion and LU decomposition
