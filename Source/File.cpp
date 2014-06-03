@@ -3,6 +3,9 @@
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
+//     Class taking care of all file writing duties (Results, cracks and caseInputData.txt)
+//     Also contains the log used to record values during run-time
+
 #include <iostream>
 #include <sys/stat.h>
 using namespace std;

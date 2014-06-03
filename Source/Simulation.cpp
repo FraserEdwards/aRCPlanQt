@@ -3,6 +3,9 @@
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
+//     Class providing function to iterate through independent variable
+//     Calls various modules such as Backfill, Creep and FracMech prior to BeamModel iteration
+
 #include <iostream>
 #include <QObject>
 using namespace std;

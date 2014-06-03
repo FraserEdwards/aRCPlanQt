@@ -3,6 +3,10 @@
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
+//     Class containing the FD difference solution to the equivalent beam model
+//     An array object representing the opening profile in the open-crack region of a pipe undergoing RCP
+//     Uses the symdoublematrix class for a solution
+
 #include <iostream>
 #include <iomanip>
 #include <cmath>

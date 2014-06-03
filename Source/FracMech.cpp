@@ -3,6 +3,9 @@
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
+//     Class concerned with calculating the Irwin Corten driving force
+//     Once solution has been reached calculates driving force using strain considerations
+
 #include <cmath>
 #include <iostream>
 

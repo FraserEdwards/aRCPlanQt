@@ -3,6 +3,7 @@
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
+//     Implementation of the guimain dialog box shown in guimain.ui
 #include <QString>
 #include <QFile>
 #include <QTextStream>

@@ -10,7 +10,6 @@
 #include "SymDoubleMatrix.h"
 
 class FDprofile
-//  An array object representing the opening profile in the open-crack region of a pipe undergoing RCP
 {
 	private:
 		short arraySize;								// Total number of active nodes

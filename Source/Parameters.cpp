@@ -3,6 +3,8 @@
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
+//     Class which reads values in from configFile and stores to pass values efficiently between functions
+
 #include <iostream>
 using namespace std;
 

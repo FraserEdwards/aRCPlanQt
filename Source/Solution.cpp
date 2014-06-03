@@ -3,6 +3,9 @@
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
+//     Class which collects solution values in to one object for easy storage and access
+//     Collects solution values as well as crack profiles for access later
+
 #include <iostream>
 #include <iomanip>
 
