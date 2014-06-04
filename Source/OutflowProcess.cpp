@@ -19,8 +19,8 @@ const short OutflowProcess::maxTimeSteps = 100;
 // Null constructor
 OutflowProcess::OutflowProcess()
 {
-}	
 
+}	
 
 OutflowProcess::OutflowProcess(double p1Gauge)
 {

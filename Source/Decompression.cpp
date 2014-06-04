@@ -25,6 +25,7 @@ argument=0.0;
 void Decomp::p1p0(double p0, double gamma_, double aDotc0)
 {
 
+    //Simple handling to avoid errors
     if(aDotc0<0)
     {
         p1p0r=0.0;

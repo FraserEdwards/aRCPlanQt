@@ -79,6 +79,7 @@ ui -> parameter -> setEditable(true);
 ui -> parameter -> lineEdit() -> setReadOnly(true);
 ui -> parameter -> lineEdit() -> setAlignment(Qt::AlignRight);
 
+//If dropdown is empty fill with names, alternatively change index
 if(dropdown==0)
 {
     ui -> materialname ->insertItems(0, QStringList() << "Soft PE80" << "Generic PE100" << "Soft PE100" << "Generic PE1" << "Generic PE2");
@@ -90,7 +91,6 @@ else
     ui -> materialname ->lineEdit()->setText(QString::fromStdString(parameters.matid));
     ui -> pipename ->lineEdit()->setText(QString::fromStdString(parameters.pipeid));
 }
-
 
 ui -> density -> setAlignment(Qt::AlignRight);
 ui -> density->setText(QString::number(parameters.density));
@@ -161,6 +161,7 @@ ui -> fdnumber -> setText(QString::number(parameters.elements_in_l));
 //solution object
 void guimain::setresults(Solution solution)
 {
+    //Format table and fill headers
     ui -> Resultstable ->clear();
     ui -> Resultstable ->setColumnCount(12);
     ui -> Resultstable ->setRowCount(solution.soln);
@@ -170,7 +171,10 @@ void guimain::setresults(Solution solution)
                                                   << "Crack driving force components" << "Normalised Total" << "Crack Opening" << "Converged"
                                                   << "Iterations");
 
-    for (i = 0; i < solution.soln; i++){
+    //Fill table
+    for (i = 0; i < solution.soln; i++)
+    {
+        //Set independent variable
         switch(ui -> parameter -> currentIndex())
         {
             case 0:
@@ -184,6 +188,7 @@ void guimain::setresults(Solution solution)
                 break;
         }
 
+        //Fill remainder of columns
         ui ->Resultstable ->setItem(i,1,new QTableWidgetItem(QString::number(solution.decompression[i+1])));
         ui ->Resultstable ->setItem(i,2,new QTableWidgetItem(QString::number(solution.alpha[i+1])));
         ui ->Resultstable ->setItem(i,3,new QTableWidgetItem(QString::number(solution.m[i+1])));
@@ -206,8 +211,12 @@ void guimain::on_Runbutton_clicked()
 
     extern File file;
     Parameters edited;
+
+    //Update parameters from GUI
     edited = update();
 
+    //Check if folders for results exist
+    //All folders present returns 0
     exists = file.check();
 
     if(!exists)
@@ -215,21 +224,19 @@ void guimain::on_Runbutton_clicked()
         Simulation simulation;
         Solution solution;
 
+        //Run simulation
         solution = simulation.run(edited);
 
+        //Passes solution to results to fill table
         setresults(solution);
 
-        if(edited.single_mode==2)
-        {
-            plotHandler(solution);
-        }
-        else
-        {
-            plotHandler(solution);
-        }
+        //Plots solution
+        plotHandler(solution);
+
     }
     else
     {
+        //Create dialog and warn users that folders can't be found
         dialog *e = new dialog;
         switch(exists)
         {
@@ -253,6 +260,7 @@ void guimain::on_Runbutton_clicked()
 //Creates, displays and saves the crack and results plot
 void guimain::plotHandler(Solution solution)
 {
+    //Plots graphs against different independent variable
     switch(ui->parameter ->currentIndex())
     {
         case 0:
@@ -287,6 +295,7 @@ void guimain::plotHandler(Solution solution)
         }
     }
 
+    //Plots crack profile in colours according to whether the method converged or not
     if(solution.no_crack_opening[solution.k])
     {
         plotProfiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,1);
@@ -307,6 +316,7 @@ void guimain::plotProfiles(vector<double> x, vector<double> y, string title, str
     path = (ui -> path -> text().toStdString()) + "Profiles/" + title;
     ui -> Crackplot -> addGraph();
 
+    //Sets colour depending on method convergence
     if(valid==1)
     {
         ui -> Crackplot -> graph(0) ->setPen(QPen(Qt::green));
@@ -319,6 +329,7 @@ void guimain::plotProfiles(vector<double> x, vector<double> y, string title, str
     ui -> Crackplot -> graph(0)->setLineStyle(QCPGraph::lsNone);
     ui -> Crackplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, 4));
 
+    //Converts std vectors to QVectors for use by QCPPainter
     QVector<double> Qx = QVector<double>::fromStdVector(x);
 
     QVector<double> Qy = QVector<double>::fromStdVector(y);
@@ -328,19 +339,20 @@ void guimain::plotProfiles(vector<double> x, vector<double> y, string title, str
     ui -> Crackplot -> xAxis->setLabel(QString::fromStdString(xtitle));
     ui -> Crackplot -> yAxis->setLabel(QString::fromStdString(ytitle));
 
+    //Finds location of maximum value
     double z1 = *max_element(x.begin(), x.end());
     double z2 = *max_element(y.begin(), y.end());
 
+    //Expands range to make plots useable
     ui -> Crackplot -> xAxis->setRange(0, z1+0.002);
     ui -> Crackplot -> yAxis->setRange(0, z2+0.002);
     ui -> Crackplot -> replot();
 
+    //Saves plot
     if(!savestate)
     {
         ui -> Crackplot ->savePdf(QString::fromStdString(path)+".pdf",false,1000,1000,"Test","Test");
     }
-
-
 
 }
 
@@ -354,8 +366,8 @@ void guimain::plotResults(vector<double> x, vector<double> y, string title, stri
     ui -> Resultsplot -> graph(0)->setLineStyle(QCPGraph::lsNone);
     ui -> Resultsplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, 4));
 
+    //Converts std vectors to QVectors for use by QCPPainter
     QVector<double> Qx = QVector<double>::fromStdVector(x);
-
     QVector<double> Qy = QVector<double>::fromStdVector(y);
 
     ui -> Resultsplot -> graph(0) -> setData(Qx,Qy);
@@ -363,12 +375,15 @@ void guimain::plotResults(vector<double> x, vector<double> y, string title, stri
     ui -> Resultsplot -> xAxis->setLabel(QString::fromStdString(xtitle));
     ui -> Resultsplot -> yAxis->setLabel(QString::fromStdString(ytitle));
 
+    //Finds location of maximum value
     double z1 = *max_element(x.begin(), x.end());
     double z2 = *max_element(y.begin(), y.end());
 
+    //Expands range to make plots useable
     ui -> Resultsplot -> xAxis->setRange(0, z1+0.2);
     ui -> Resultsplot -> yAxis->setRange(0, z2+0.2);
     ui -> Resultsplot -> replot();
+
     if(!savestate)
     {
         ui -> Resultsplot ->savePdf(QString::fromStdString(path) + ".pdf",false, 1000, 1000,"Test","Test");
@@ -489,6 +504,7 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
 
     extern Solution solution;
 
+    //Plots crack profiles with colours depending on method convergence
     if(solution.no_crack_opening[row+1])
     {
         plotProfiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,1);
@@ -498,6 +514,9 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
         plotProfiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,0);
     }
 
+    //Double case structure to plot appropriate plot against appropriate independent variable
+    //TODO: Could move this to a matrix method where an index is used.
+    //Could be much simpler to read, code-wise
     switch(ui->parameter->currentIndex())
     {
         case 0:
@@ -615,6 +634,8 @@ void guimain::on_action_Load_triggered()
 
     extern File file;
 
+    //Uses output of loadCheck to switch cases, either loading the file or warning
+    //the user it won't work
     switch(file.loadCheck("caseInputData.txt"))
     {
         case 0:
@@ -650,6 +671,9 @@ void guimain::on_action_Save_triggered()
     temp = update();
     dialog *e = new dialog;
     file_name = "caseInputData.txt";
+
+    //Uses output of hander to switch cases, either saving the file or warning
+    //the user it won't work
     if(!file.caseHandler(temp, file_name))
     {
         e->warning("caseInputData.txt saved successfully");

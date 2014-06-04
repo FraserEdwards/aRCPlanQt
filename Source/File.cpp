@@ -208,7 +208,7 @@ void File::writeResults()
 
     for(i=1; i<solution.soln+1;i++)
     {
-
+        //Write solution line for a given independent variable value
         out << solution.adotc0[i] << "," << solution.p0bar[i] << "," << solution.tempdegc[i] << ","
                 << solution.decompression[i] << "," << solution.alpha[i] << ","
                 << solution.m[i] << "," << solution.outflow_length[i] << ", ," << solution.g0[i] << ","
@@ -247,7 +247,7 @@ void File::writeResults()
 }
 
 //Writes parameters to txt file with appropriate formatting
-void File::writeParTXT(Parameters temp, string filename)
+void File::writeParTXT(Parameters temp, string file_name)
 {
 
     out.open((directory + file_name).c_str());
@@ -408,7 +408,11 @@ void File::writeHeaders(string temp)
     out.open((directory + file_name).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
     writeLineCSV("\n", out);
+
+    //Reset log number
     log_number = 0;
+
+    //Set headers
     out << "Log number" << "," << "aDotc0" << "," << "Irwin Corten Force" << "," << "diameterRes0" << "," << "residualCrackClosure" << ","
         << "densityratio" << "," << "zetaclosure" << "," << "nodeAtClosure" << "," << "outflowLength" << ","
         << "p1bar" << "," << "v0" << "," << "vStarRes" << "," << "factor" << "," << "aDotCLfactor" << "," << "aDotcClfactor_backfilled"
@@ -435,11 +439,13 @@ void File::writeLogLine(int newline)
 {
     out.open((directory + file_name).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
+    //Reset count and create new line
     if(newline)
     {
     out << " \n";
     log_number = 0;
     }
+
     log_number++;
     out << log_number << "," << adotc0 << ","
         << g0 << ","
@@ -478,6 +484,8 @@ void File::collect(Backfill backfill)
     density_ratio =  backfill.density_ratio;
     writeLogLine(0);
 }
+
+//Following functions take pointers to original objects and are built as such
 
 void File::collect(BeamModel *beamModel, int newline)
 {

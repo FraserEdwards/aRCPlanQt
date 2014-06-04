@@ -57,7 +57,7 @@ public:
     void displacement(Parameters &parameters);
 
     //Assigns crack profiles to matrix for access later to produce plots in GUI
-    void collectProfile(vector<double> zeta, vector<double> vptra, const int l);
+    void collectProfile(vector<double> vptras, const int l);
 
     //Collects values provided as arguments, forming them in to solution object
     void collect(const double adotc0s, const double p0bars, const double tempdegcs, const double decompressions, const double alphas, const double ms, const double outflowlengths, const double deltadstars,

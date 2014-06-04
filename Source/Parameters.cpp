@@ -12,6 +12,7 @@ using namespace std;
 #include "ConfigFile.h"
 
     string Parameters::pipeid_lib[5] = {"250mm_SDR11", "250mm_SDR17", "110mm_SDR11", "110mm_SDR17", "63mm_SDR11"};
+    string Parameters::matid_lib[5] = { "Soft PE80", "Generic PE100", "Soft PE100", "Generic PE1", "Generic PE2"};
     double Parameters::diameter_lib[5] = {250.0, 250.0, 110.0, 110.0, 63.0};
     double Parameters::sdr_lib[5] = {11.0, 17.6, 11.0, 17.6, 11.0};
 

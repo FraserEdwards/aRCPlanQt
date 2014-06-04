@@ -95,29 +95,30 @@ void Solution::displacement(Parameters &parameters)
     n = (parameters.elements_in_l * (parameters.lambda+2))+1;
     vector<double> row;
 
+    //Creates column (used as row) vector
     for(i = 0; i < n; i++ )
     {
         row.push_back(0.0);
     }
+    //Stores vector in vector to provide a "Matrix"
     for(i = 0; i < parameters.range_number; i++)
     {
         w.push_back(row);
     }
-
+    //Generates displacement for crack profile
     for(i = 1; i < n; i++)
     {
-
         z.push_back(double(i)/double(parameters.elements_in_l));
-
     }
 
 }
 
 //Collects the crack profile for each solution, writing it to the
 //already created matrix
-void Solution::collectProfile(const vector<double> zetas, const vector<double> vptras, const int ls)
+void Solution::collectProfile(const vector<double> vptras, const int ls)
 {
     k++;
+    //Read values from input crack profile and writes to the matrix
     for(i = 0; i <= ls; i++)
     {
         w[k][i]=vptras[i];
@@ -146,10 +147,12 @@ void Solution::collect(const double adotc0s, const double p0bars, const double t
     gkb.push_back(gkbs);
 	g0.push_back(g0s);
 
+    //Flips values so that they make sense under the headings of the tables
     no_crack_opening.push_back(!no_crack_openings);
     not_converged.push_back(!not_convergeds);
     iterations.push_back(iterationss);
 
+    //Removes spurious errors, need to find source of these
     if (gg0s < 1000)
     {gg0.push_back(gg0s);}
     else

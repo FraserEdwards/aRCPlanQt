@@ -48,13 +48,13 @@ void FracMech::extensionForce(BeamModel beamModel, const Parameters parameters, 
     gkb = 0.5 * parameters.dynamic_modulus * Constants::giga * parameters.radius * parameters.h * beamModel.adotovercl * beamModel.adotovercl *
     (Constants::c2 * beamModel.wstar2dash * beamModel.wstar2dash + Constants::c1 * pow(beamModel.wstar2dash2 * parameters.radius, 2)) / parameters.crack_width;
 
-        if (parameters.solution_method==2)
-		{//  ... account for kinetic energy of detached backfill mass: 
-
-            beamModel.factor = beamModel.vstardashbackfilleject * beamModel.v0 * parameters.adotc0 * Constants::vSonic * parameters.sdr / 2.0 / beamModel.sdrminus1 / beamModel.outflow_length;
-            gkb -= Constants::pi * parameters.backfill_density  * pow(beamModel.factor, 2) * log(1.0 + 2.0 * parameters.backfill_depth * double(parameters.is_backfilled/2)/ parameters.diameter) / Constants::kilo;
-		
-		}
+    //Check against 2 as checkboxes are assigned this in GUI rather than 1
+    if (parameters.solution_method==2)
+    {
+        //  ... account for kinetic energy of detached backfill mass:
+        beamModel.factor = beamModel.vstardashbackfilleject * beamModel.v0 * parameters.adotc0 * Constants::vSonic * parameters.sdr / 2.0 / beamModel.sdrminus1 / beamModel.outflow_length;
+        gkb -= Constants::pi * parameters.backfill_density  * pow(beamModel.factor, 2) * log(1.0 + 2.0 * parameters.backfill_depth * double(parameters.is_backfilled/2)/ parameters.diameter) / Constants::kilo;
+    }
 
 	//  Total G:
     gtotal = gue + g0 + gs1 - gsb - gkb;

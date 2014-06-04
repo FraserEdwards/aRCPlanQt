@@ -25,17 +25,24 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
+    //Find application directory
     file.directory = a.applicationDirPath().toStdString();
+
+    //Alters directory to outside the application bundle
     file.correct();
 
-    ConfigFile config(file.directory + "caseInputData.txt");
+    //Create initial parameters to populate the GUI
     Parameters initial;
 
+    //Create main form guimain
     guimain b;
     b.setnames(initial,0);
     b.setWindowTitle("");
+
+    //Shown window
     b.show();
 
+    //Wait for signals from GUI
     return a.exec();
 
 }

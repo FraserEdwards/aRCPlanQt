@@ -78,7 +78,7 @@ public:
 		void stiffness();
 
 		// Dimensionless crack speed [0] with backfill and [1] without
-		void cspeed(const Parameters parameters, const Backfill backfill);
+        void crackSpeed(const Parameters parameters, const Backfill backfill);
 
         //Converts from v to w
         void convertEffOpen(const Parameters parameters);

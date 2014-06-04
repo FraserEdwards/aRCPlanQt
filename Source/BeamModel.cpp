@@ -137,7 +137,7 @@ void BeamModel::reset(const Parameters parameters, const Backfill backfill, Cree
 
 						}
 
-    p1p0r=decomp.p1p0r; //TODO: swap throughout remainder of code, so only decomp.p1p0r is used
+    p1p0r=decomp.p1p0r; //TODO: remove throughout remainder of code, so only decomp.p1p0r is used
 
 	//	v00 becomes reference length v0 on multiplying by lambda^4
     v00 = 0.4 / Constants::c1 * sdrminus1 * sdrminus2 / parameters.sdr * p1bar / parameters.dynamic_modulus * parameters.diameter / Constants::mega;	//	(m)
@@ -169,7 +169,7 @@ void BeamModel::stiffness()
 }
 
 //	Dimensionless crack speed [0] with backfill and [1] without
-void BeamModel::cspeed(const Parameters parameters, const Backfill backfill)
+void BeamModel::crackSpeed(const Parameters parameters, const Backfill backfill)
 {
 
     alpha[1] = outflow_length * sqrt(Constants::c3 * adotovercl * adotovercl + Constants::c4 / 2.0 / (1.0 + parameters.poisson) / sdrminus1 / sdrminus1 / adotclfactor);
@@ -211,7 +211,7 @@ void BeamModel::iteration(const Parameters parameters, Backfill backfill, Creep 
 		stiffness(); 
 		
 		//	Dimensionless crack speed 
-		cspeed(parameters, backfill);
+        crackSpeed(parameters, backfill);
 
         file.collect(this, 0);
 
@@ -432,7 +432,7 @@ void BeamModel::opening(Parameters parameters, Creep creep)
             final.findBackfillEjectPoint(zetabackfilleject, vstardashbackfilleject);
             final.outflowPointValues(wstar2, wstar2dash, wstar2dash2, integral_wstar2);
 
-            solution.collectProfile(final.zeta, final.vptra, final.l);
+            solution.collectProfile(final.vptra, final.l);
 
         }
         else
