@@ -7,7 +7,6 @@
 #define GUIMAIN_H
 
 #include <QMainWindow>
-#include <QLineEdit>
 #include <fstream>
 
 #include "Parameters.h"

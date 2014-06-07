@@ -7,7 +7,6 @@
 //     Calls various modules such as Backfill, Creep and FracMech prior to BeamModel iteration
 
 #include <iostream>
-#include <QObject>
 using namespace std;
 
 #include "Constants.h"

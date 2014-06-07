@@ -5,7 +5,7 @@
 
 #ifndef ABOUT_H
 #define ABOUT_H
-
+#include <QObject>
 #include <QDialog>
 
 namespace Ui {

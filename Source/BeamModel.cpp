@@ -8,7 +8,6 @@
 
 #include <cmath>
 #include <iostream>
-#include <QDesktopWidget>
 
 #include "dialog.h"
 #include "Constants.h"

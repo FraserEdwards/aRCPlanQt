@@ -15,7 +15,6 @@
 #endif
 
 #include <string>
-#include <QApplication>
 #include <fstream>
 using namespace std;
 

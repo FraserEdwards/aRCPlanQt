@@ -6,8 +6,6 @@
 #ifndef _SIMULATION_H
 #define _SIMULATION_H
 
-#include <QObject>
-
 #include "ConfigFile.h"
 #include "Parameters.h"
 #include "File.h"

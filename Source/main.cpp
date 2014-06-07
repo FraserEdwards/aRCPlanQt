@@ -7,7 +7,6 @@
 //     Sets up GUI and displays it before waiting for signals to execture other commands
 
 #include <QApplication>
-#include <QDesktopWidget>
 #include <iostream>
 using namespace std;
 

@@ -4,10 +4,8 @@
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
 //     Implementation of the guimain dialog box shown in guimain.ui
+
 #include <QString>
-#include <QFile>
-#include <QTextStream>
-#include <QMessageBox>
 #include <iostream>
 #include <fstream>
 #include <ios>
@@ -298,11 +296,11 @@ void guimain::plotHandler(Solution solution)
     //Plots crack profile in colours according to whether the method converged or not
     if(solution.no_crack_opening[solution.k])
     {
-        plotProfiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,1);
+        plotProfiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip", "Crack opening displacement",0,1);
     }
     else
     {
-        plotProfiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,0);
+        plotProfiles(solution.z, solution.w[solution.k], "Crack displacement profile", "Distance behind crack tip", "Crack opening displacement",0,0);
     }
 }
 
@@ -364,7 +362,7 @@ void guimain::plotResults(vector<double> x, vector<double> y, string title, stri
     path = (ui -> path -> text().toStdString()) + "Results/" + title;
     ui -> Resultsplot -> addGraph();
     ui -> Resultsplot -> graph(0)->setLineStyle(QCPGraph::lsNone);
-    ui -> Resultsplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, 4));
+    ui -> Resultsplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssDisc, 5));
 
     //Converts std vectors to QVectors for use by QCPPainter
     QVector<double> Qx = QVector<double>::fromStdVector(x);
@@ -507,11 +505,11 @@ void guimain::on_Resultstable_cellClicked(int row, int column)
     //Plots crack profiles with colours depending on method convergence
     if(solution.no_crack_opening[row+1])
     {
-        plotProfiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,1);
+        plotProfiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip", "Crack opening displacement",0,1);
     }
     else
     {
-        plotProfiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip(mm)", "Crack opening displacement (m)",0,0);
+        plotProfiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip", "Crack opening displacement",0,0);
     }
 
     //Double case structure to plot appropriate plot against appropriate independent variable
