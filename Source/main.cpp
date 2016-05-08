@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     //Create main form guimain
     guimain b;
     b.setnames(initial,0);
-    b.setWindowTitle("");
+    b.setWindowTitle("aRCPlan");
 
     //Shown window
     b.show();

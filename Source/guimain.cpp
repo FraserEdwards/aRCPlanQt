@@ -23,6 +23,7 @@ guimain::guimain(QWidget *parent) :
     ui(new Ui::guimain)
 {
     ui->setupUi(this);
+
 }
 
 //Destructor
