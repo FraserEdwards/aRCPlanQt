@@ -17,12 +17,12 @@ class Parameters
 
 public:
 
-    static string matid_lib[5];
-    static double density_lib[5];
-    static double edyn0degc_lib[5];
-    static double dedyndt_lib[5];
-    static double creepmodulus_lib[5];
-    static double poisson_lib[5];
+    static string matid_lib[6];
+    static double density_lib[6];
+    static double edyn0degc_lib[6];
+    static double dedyndt_lib[6];
+    static double creepmodulus_lib[6];
+    static double poisson_lib[6];
 
     static string pipeid_lib[5];
     static double diameter_lib[5];
