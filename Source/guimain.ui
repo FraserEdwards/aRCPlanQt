@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1403</width>
-    <height>697</height>
+    <width>833</width>
+    <height>837</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1600</width>
+    <width>16777215</width>
     <height>16777215</height>
    </size>
   </property>
@@ -24,21 +24,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Working directory:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="path"/>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="1" rowspan="2">
+    <item row="0" column="2" rowspan="3">
      <widget class="QCustomPlot" name="Crackplot" native="true">
       <property name="minimumSize">
        <size>
@@ -48,801 +34,9 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="2" rowspan="2">
-     <widget class="QCustomPlot" name="Resultsplot" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>465</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="contextMenuPolicy">
-       <enum>Qt::NoContextMenu</enum>
-      </property>
-      <property name="toolTip">
-       <string extracomment="Navigate plots using table below."/>
-      </property>
-      <property name="toolTipDuration">
-       <number>1</number>
-      </property>
-      <property name="statusTip">
-       <string extracomment="Navigate plots using table below."/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QTabWidget" name="tabs">
-      <property name="currentIndex">
-       <number>2</number>
-      </property>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>Pipe Material</string>
-       </attribute>
-       <widget class="QScrollArea" name="scrollArea_4">
-        <property name="geometry">
-         <rect>
-          <x>2</x>
-          <y>0</y>
-          <width>381</width>
-          <height>301</height>
-         </rect>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents_4">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>379</width>
-           <height>345</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="8" column="0" colspan="2">
-             <widget class="QLabel" name="Creepmodulus">
-              <property name="text">
-               <string>Creep modulus at room temperature:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2">
-             <widget class="QLabel" name="Density">
-              <property name="text">
-               <string>Density:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="1">
-             <widget class="QLineEdit" name="dynpoissonratio"/>
-            </item>
-            <item row="6" column="0" colspan="2">
-             <widget class="QLabel" name="DDynamicModulus">
-              <property name="text">
-               <string>Temperature sensitivity of dynamic modulus:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <spacer name="horizontalSpacer_6">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID">
-              <property name="text">
-               <string>Material Name/ID:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="0" colspan="2">
-             <widget class="QLabel" name="Poissonratio">
-              <property name="text">
-               <string>Dynamic poisson ratio:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <spacer name="horizontalSpacer_7">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="dynamicmodulus"/>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="density"/>
-            </item>
-            <item row="4" column="0" colspan="2">
-             <widget class="QLabel" name="DynamicModulus">
-              <property name="text">
-               <string>High-rate tensile modulus at 0°C:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="0">
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="1" column="0">
-             <spacer name="horizontalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="9" column="0">
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="7" column="0">
-             <spacer name="horizontalSpacer_8">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="7" column="1">
-             <widget class="QLineEdit" name="deltadynamicmodulus"/>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="materialname"/>
-            </item>
-            <item row="9" column="1">
-             <widget class="QLineEdit" name="creepmodulus"/>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Pipe Geometry</string>
-       </attribute>
-       <widget class="QScrollArea" name="scrollArea_7">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>381</width>
-          <height>301</height>
-         </rect>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents_7">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>379</width>
-           <height>299</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_10">
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_8">
-            <item row="2" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_22">
-              <property name="text">
-               <string>Outside pipe diameter:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="pipename"/>
-            </item>
-            <item row="10" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_23">
-              <property name="text">
-               <string>Relative diameter after residual strain creep: </string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_24">
-              <property name="text">
-               <string>Internal or external sidegroove depth: </string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
-             <spacer name="horizontalSpacer_29">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="11" column="0">
-             <spacer name="horizontalSpacer_28">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="1" column="0">
-             <spacer name="horizontalSpacer_32">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>45</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="3" column="0">
-             <spacer name="horizontalSpacer_31">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="6" column="0">
-             <spacer name="horizontalSpacer_30">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="4" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_25">
-              <property name="text">
-               <string>SDR (Pipe diameter/ Wall thickness): </string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="1">
-             <widget class="QLineEdit" name="groovedepth"/>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="outsidediameter"/>
-            </item>
-            <item row="11" column="1">
-             <widget class="QLineEdit" name="relativediameter"/>
-            </item>
-            <item row="6" column="1">
-             <widget class="QLineEdit" name="sdr"/>
-            </item>
-            <item row="0" column="0" colspan="2">
-             <widget class="QLabel" name="pipeID">
-              <property name="text">
-               <string>Pipe name/ID:</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="title">
-        <string>Test Setup</string>
-       </attribute>
-       <widget class="QScrollArea" name="scrollArea_8">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>381</width>
-          <height>261</height>
-         </rect>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents_8">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>379</width>
-           <height>455</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_11">
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="testtemperature"/>
-            </item>
-            <item row="4" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_9">
-              <property name="text">
-               <string>Test temperature</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="1">
-             <widget class="QLineEdit" name="backfilldensity"/>
-            </item>
-            <item row="14" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_14">
-              <property name="text">
-               <string>Fraction of internal volume occupied by water:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2">
-             <widget class="Line" name="line">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_10">
-              <property name="text">
-               <string>Initial Test Pressure: </string>
-              </property>
-             </widget>
-            </item>
-            <item row="12" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_13">
-              <property name="text">
-               <string>Fraction of internal volume occupied by rigid core:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="1">
-             <widget class="QLineEdit" name="backfilldepth"/>
-            </item>
-            <item row="8" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_11">
-              <property name="text">
-               <string>Backfill Depth:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QCheckBox" name="fs">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="0">
-             <spacer name="horizontalSpacer_17">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="13" column="1">
-             <widget class="QLineEdit" name="solidfraction"/>
-            </item>
-            <item row="10" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_12">
-              <property name="text">
-               <string>Backfill Density: </string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_12">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="baseSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>FS with prior decompression:</string>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="15" column="0">
-             <spacer name="horizontalSpacer_19">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_11">
-              <property name="text">
-               <string>Backfill</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QCheckBox" name="s4">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <spacer name="horizontalSpacer_14">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>30</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="13" column="0">
-             <spacer name="horizontalSpacer_18">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="9" column="0">
-             <spacer name="horizontalSpacer_16">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>30</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="3" column="1">
-             <widget class="QCheckBox" name="backfill">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="15" column="1">
-             <widget class="QLineEdit" name="waterfraction"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>S4:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="1">
-             <widget class="QLineEdit" name="initialpressure"/>
-            </item>
-            <item row="7" column="0">
-             <spacer name="horizontalSpacer_15">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>30</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_4">
-       <attribute name="title">
-        <string>Control</string>
-       </attribute>
-       <widget class="QScrollArea" name="scrollArea">
-        <property name="geometry">
-         <rect>
-          <x>2</x>
-          <y>0</y>
-          <width>381</width>
-          <height>301</height>
-         </rect>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>379</width>
-           <height>325</height>
-          </rect>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <layout class="QGridLayout" name="gridLayout_5" columnstretch="0,0" columnminimumwidth="0,0">
-            <property name="horizontalSpacing">
-             <number>-1</number>
-            </property>
-            <item row="3" column="0">
-             <spacer name="horizontalSpacer_20">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="initiallength"/>
-            </item>
-            <item row="5" column="0">
-             <spacer name="horizontalSpacer_21">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>Auto-calculate outflow length?</string>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0">
-             <spacer name="horizontalSpacer_22">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="7" column="1">
-             <widget class="QLineEdit" name="fdnumber"/>
-            </item>
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="crackspeed"/>
-            </item>
-            <item row="6" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_17">
-              <property name="text">
-               <string>Number of finite elements:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QCheckBox" name="fixedlength">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_15">
-              <property name="text">
-               <string>Outflow length (fixed or estimated value):</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="Line" name="line_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Verbose mode (not recomended):</string>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="1">
-             <widget class="QCheckBox" name="verbose">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0" colspan="2">
-             <widget class="QLabel" name="PipeID_16">
-              <property name="text">
-               <string>Crack speed (single-shot analysis):</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>30</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </widget>
-     </widget>
-    </item>
-    <item row="2" column="1" colspan="2">
-     <widget class="QTableWidget" name="Resultstable"/>
-    </item>
-    <item row="2" column="0">
-     <layout class="QGridLayout" name="gridLayout_7">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
-      </property>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>No. of Points:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Parameter:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QPushButton" name="Runbutton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Run</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="Line" name="line_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
+    <item row="7" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
        <widget class="QPushButton" name="Save">
         <property name="enabled">
          <bool>true</bool>
@@ -864,111 +58,586 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Single Shot:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QLineEdit" name="to">
+      <item>
+       <widget class="QPushButton" name="Runbutton">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label_9">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>50</height>
+         </size>
+        </property>
         <property name="text">
-         <string>To:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QCheckBox" name="rangemode">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QLineEdit" name="noofpoints">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLineEdit" name="from">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QCheckBox" name="singlemode">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="parameter">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="frame">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Range:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_8">
-        <property name="text">
-         <string>From:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         <string>Run</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
+    <item row="7" column="2" colspan="2">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QComboBox" name="xCombo"/>
+      </item>
+      <item>
+       <widget class="QComboBox" name="yCombo"/>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="2" colspan="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QComboBox" name="varCombo"/>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="0" rowspan="7">
+     <widget class="QScrollArea" name="scrollArea_2">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>328</width>
+         <height>1722</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="34" column="1">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>MPa</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0">
+         <widget class="QLineEdit" name="creepmodulus"/>
+        </item>
+        <item row="32" column="1">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>K</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>kg/m^3</string>
+          </property>
+         </widget>
+        </item>
+        <item row="63" column="0">
+         <widget class="QLineEdit" name="from">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="42" column="0">
+         <widget class="QLineEdit" name="waterfraction"/>
+        </item>
+        <item row="17" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_22">
+          <property name="text">
+           <string>Outside pipe diameter:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QComboBox" name="materialname"/>
+        </item>
+        <item row="65" column="0">
+         <widget class="QLineEdit" name="to">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>kg/m^3</string>
+          </property>
+         </widget>
+        </item>
+        <item row="30" column="0">
+         <widget class="QCheckBox" name="backfill">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="46" column="0">
+         <widget class="QLineEdit" name="initiallength"/>
+        </item>
+        <item row="29" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Backfill</string>
+          </property>
+         </widget>
+        </item>
+        <item row="38" column="0">
+         <widget class="QLineEdit" name="backfilldensity"/>
+        </item>
+        <item row="11" column="0" colspan="2">
+         <widget class="QLabel" name="Creepmodulus">
+          <property name="text">
+           <string>Creep modulus at room temperature:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="24" column="0">
+         <widget class="QLineEdit" name="relativediameter"/>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLineEdit" name="dynamicmodulus"/>
+        </item>
+        <item row="25" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>FS with prior decompression:</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="DynamicModulus">
+          <property name="text">
+           <string>High-rate tensile modulus at 0°C:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="36" column="0">
+         <widget class="QLineEdit" name="backfilldepth"/>
+        </item>
+        <item row="40" column="0">
+         <widget class="QLineEdit" name="solidfraction"/>
+        </item>
+        <item row="52" column="0">
+         <widget class="QCheckBox" name="verbose">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="18" column="0">
+         <widget class="QLineEdit" name="outsidediameter"/>
+        </item>
+        <item row="27" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>S4:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="0">
+         <widget class="QLineEdit" name="groovedepth"/>
+        </item>
+        <item row="54" column="0">
+         <widget class="QCheckBox" name="singlemode">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="48" column="0">
+         <widget class="QLineEdit" name="crackspeed"/>
+        </item>
+        <item row="50" column="0">
+         <widget class="QLineEdit" name="fdnumber"/>
+        </item>
+        <item row="13" column="0" colspan="2">
+         <widget class="QLabel" name="Poissonratio">
+          <property name="text">
+           <string>Dynamic poisson ratio:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="1">
+         <widget class="QLabel" name="label_23">
+          <property name="text">
+           <string>kg/m^3</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" colspan="2">
+         <widget class="QLabel" name="DDynamicModulus">
+          <property name="text">
+           <string>Temperature sensitivity of dynamic modulus:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLineEdit" name="density"/>
+        </item>
+        <item row="56" column="0">
+         <widget class="QCheckBox" name="rangemode">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="28" column="0">
+         <widget class="QCheckBox" name="s4">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="18" column="1">
+         <widget class="QLabel" name="label_24">
+          <property name="text">
+           <string>mm</string>
+          </property>
+         </widget>
+        </item>
+        <item row="24" column="1">
+         <widget class="QLabel" name="label_26">
+          <property name="text">
+           <string>mm</string>
+          </property>
+         </widget>
+        </item>
+        <item row="19" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_25">
+          <property name="text">
+           <string>SDR (Pipe diameter/ Wall thickness): </string>
+          </property>
+         </widget>
+        </item>
+        <item row="44" column="0">
+         <widget class="QCheckBox" name="fixedlength">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="20" column="0">
+         <widget class="QLineEdit" name="sdr"/>
+        </item>
+        <item row="14" column="0">
+         <widget class="QLineEdit" name="dynpoissonratio"/>
+        </item>
+        <item row="61" column="0">
+         <widget class="QLineEdit" name="noofpoints">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="32" column="0">
+         <widget class="QLineEdit" name="testtemperature"/>
+        </item>
+        <item row="10" column="0">
+         <widget class="QLineEdit" name="deltadynamicmodulus"/>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QLabel" name="Density">
+          <property name="text">
+           <string>Density:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="0">
+         <widget class="QComboBox" name="pipename"/>
+        </item>
+        <item row="36" column="1">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>mm</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>kg/m^3</string>
+          </property>
+         </widget>
+        </item>
+        <item row="58" column="0">
+         <widget class="QComboBox" name="parameter">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="26" column="0">
+         <widget class="QCheckBox" name="fs">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="34" column="0">
+         <widget class="QLineEdit" name="initialpressure"/>
+        </item>
+        <item row="12" column="1">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>kg/m^3</string>
+          </property>
+         </widget>
+        </item>
+        <item row="38" column="1">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>kg/m^3</string>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="1">
+         <widget class="QLabel" name="label_25">
+          <property name="text">
+           <string>mm</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0" colspan="2">
+         <widget class="QLabel" name="pipeID">
+          <property name="text">
+           <string>Pipe name/ID:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="label_79">
+          <property name="text">
+           <string>Material</string>
+          </property>
+         </widget>
+        </item>
+        <item row="21" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_24">
+          <property name="text">
+           <string>Internal or external sidegroove depth: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="23" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_23">
+          <property name="text">
+           <string>Relative diameter after residual strain creep: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="39" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_13">
+          <property name="text">
+           <string>Fraction of internal volume occupied by rigid core:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="41" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_14">
+          <property name="text">
+           <string>Fraction of internal volume occupied by water:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="35" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_11">
+          <property name="text">
+           <string>Backfill Depth:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="33" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_10">
+          <property name="text">
+           <string>Initial Test Pressure: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="45" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_15">
+          <property name="text">
+           <string>Outflow length (fixed or estimated value):</string>
+          </property>
+         </widget>
+        </item>
+        <item row="43" column="0" colspan="2">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Auto-calculate outflow length?</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="37" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_12">
+          <property name="text">
+           <string>Backfill Density: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="31" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_9">
+          <property name="text">
+           <string>Test temperature</string>
+          </property>
+         </widget>
+        </item>
+        <item row="49" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_17">
+          <property name="text">
+           <string>Number of finite elements:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="47" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_16">
+          <property name="text">
+           <string>Crack speed (single-shot analysis):</string>
+          </property>
+         </widget>
+        </item>
+        <item row="51" column="0" colspan="2">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Verbose mode (not recomended):</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="53" column="0" colspan="2">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Single Shot:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="55" column="0" colspan="2">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Range:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="57" column="0" colspan="2">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Parameter:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="60" column="0" colspan="2">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>No. of Points:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="62" column="0" colspan="2">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>From:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="64" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>To:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="4" column="2" rowspan="3">
+     <widget class="QCustomPlot" name="Resultsplot" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>465</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
+      <property name="toolTip">
+       <string extracomment="Navigate plots using table below."/>
+      </property>
+      <property name="toolTipDuration">
+       <number>1</number>
+      </property>
+      <property name="statusTip">
+       <string extracomment="Navigate plots using table below."/>
+      </property>
+     </widget>
+    </item>
    </layout>
-   <zorder>tabs</zorder>
-   <zorder>Resultstable</zorder>
-   <zorder>Crackplot</zorder>
-   <zorder>Resultsplot</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1403</width>
+     <width>833</width>
      <height>22</height>
     </rect>
    </property>

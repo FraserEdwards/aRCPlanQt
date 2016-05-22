@@ -40,8 +40,6 @@ void guimain::setnames(Parameters parameters, char dropdown)
 
 extern File file;
 
-ui -> path -> setText(QString::fromStdString(file.directory));
-
 ui -> singlemode -> setCheckState(Qt::Unchecked);
 ui -> rangemode -> setCheckState(Qt::Checked);
 
@@ -84,6 +82,10 @@ if(dropdown==0)
     ui -> materialname ->insertItems(0, QStringList() << "Soft PE80" << "Generic PE100" << "Soft PE100" << "Generic PE1" << "Generic PE2" << "Test");
     ui -> pipename ->insertItems(0, QStringList() << "250mm_SDR11" << "250mm_SDR17" << "110mm_SDR11" << "110mm_SDR17" << "63mm_SDR11");
     ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "Initial Pressure" << "Test Temperature");
+    ui -> varCombo ->insertItems(0,QStringList() << "Variable");
+    ui -> xCombo -> insertItems(0, QStringList() << "x Axis");
+    ui -> yCombo -> insertItems(0,QStringList() << "y Axis");
+
 }
 else
 {
@@ -156,53 +158,6 @@ ui -> fdnumber -> setText(QString::number(parameters.elements_in_l));
 
 }
 
-//Fills the results table in the GUI with values from the global
-//solution object
-void guimain::setresults(Solution solution)
-{
-    //Format table and fill headers
-    ui -> Resultstable ->clear();
-    ui -> Resultstable ->setColumnCount(12);
-    ui -> Resultstable ->setRowCount(solution.soln);
-    ui -> Resultstable ->show();
-    ui -> Resultstable->setHorizontalHeaderLabels(QStringList() << ui -> parameter -> currentText()  << "Decomp. Factor" << "Speed Factor"
-                                                  << "Support Factor" << "Outflow Length" << "Flaring" << "Irwin Corten Crack Driving Force"
-                                                  << "Crack driving force components" << "Normalised Total" << "Crack Opening" << "Converged"
-                                                  << "Iterations");
-
-    //Fill table
-    for (i = 0; i < solution.soln; i++)
-    {
-        //Set independent variable
-        switch(ui -> parameter -> currentIndex())
-        {
-            case 0:
-                ui ->Resultstable ->setItem(i,0,new QTableWidgetItem(QString::number(solution.adotc0[i+1])));
-                break;
-            case 1:
-                ui ->Resultstable ->setItem(i,0,new QTableWidgetItem(QString::number(solution.p0bar[i+1])));
-                break;
-            case 2:
-                ui ->Resultstable ->setItem(i,0,new QTableWidgetItem(QString::number(solution.tempdegc[i+1])));
-                break;
-        }
-
-        //Fill remainder of columns
-        ui ->Resultstable ->setItem(i,1,new QTableWidgetItem(QString::number(solution.decompression[i+1])));
-        ui ->Resultstable ->setItem(i,2,new QTableWidgetItem(QString::number(solution.alpha[i+1])));
-        ui ->Resultstable ->setItem(i,3,new QTableWidgetItem(QString::number(solution.m[i+1])));
-        ui ->Resultstable ->setItem(i,4,new QTableWidgetItem(QString::number(solution.outflow_length[i+1])));
-        ui ->Resultstable ->setItem(i,5,new QTableWidgetItem(QString::fromStdString("   ")));
-        ui ->Resultstable ->setItem(i,6,new QTableWidgetItem(QString::number(solution.g0[i+1])));
-        ui ->Resultstable ->setItem(i,7,new QTableWidgetItem(QString::number(solution.gg0[i+1])));
-        ui ->Resultstable ->setItem(i,8,new QTableWidgetItem(QString::number(solution.gtotal[i+1])));
-        ui ->Resultstable ->setItem(i,9,new QTableWidgetItem(QString::number(solution.no_crack_opening[i+1])));
-        ui ->Resultstable ->setItem(i,10,new QTableWidgetItem(QString::number(solution.not_converged[i+1])));
-        ui ->Resultstable ->setItem(i,11,new QTableWidgetItem(QString::number(solution.iterations[i+1])));
-    }
-
-}
-
 //Begins the calculation process, calls various functions which eventually provide
 //a solution and the accompanying outputs
 void guimain::on_Runbutton_clicked()
@@ -226,9 +181,11 @@ void guimain::on_Runbutton_clicked()
         //Run simulation
         solution = simulation.run(edited);
 
-        //Passes solution to results to fill table
-        setresults(solution);
-
+        //Fill comboboxes
+        for (i= sizeof(solution.adotc0)+1; i > 0; i--)
+        {
+            ui -> varCombo ->insertItems(0,QStringList() << QString::number(solution.adotc0[i]));
+        }
         //Plots solution
         plotHandler(solution);
 
@@ -312,7 +269,7 @@ void guimain::plotProfiles(vector<double> x, vector<double> y, string title, str
 
     extern File file;
 
-    path = (ui -> path -> text().toStdString()) + "Profiles/" + title;
+    path = file.directory + "Profiles/" + title;
     ui -> Crackplot -> addGraph();
 
     //Sets colour depending on method convergence
@@ -360,7 +317,7 @@ void guimain::plotResults(vector<double> x, vector<double> y, string title, stri
 {
     extern File file;
 
-    path = (ui -> path -> text().toStdString()) + "Results/" + title;
+    path = file.directory + "Results/" + title;
     ui -> Resultsplot -> addGraph();
     ui -> Resultsplot -> graph(0)->setLineStyle(QCPGraph::lsNone);
     ui -> Resultsplot -> graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssDisc, 5));
@@ -396,8 +353,6 @@ Parameters guimain::update()
     Parameters temp;
 
     extern File file;
-    file.directory = ui -> path -> text().toStdString();
-
     temp.varname = ui ->parameter ->currentIndex();
 
     temp.single_mode = ui -> singlemode -> checkState();
@@ -698,4 +653,21 @@ void guimain::on_parameter_currentIndexChanged(int index)
 {
     ui -> from -> setText(QString::number(Parameters::from_lib[index]));
     ui -> to -> setText(QString::number(Parameters::to_lib[index]));
+}
+
+void guimain::on_varCombo_activated(int index)
+{
+    extern Solution solution;
+
+    qDebug() << index;
+
+    //Plots crack profiles with colours depending on method convergence
+    if(index != 0)
+    {
+        plotProfiles(solution.z, solution.w[index+1], "Crack displacement profile", "Distance behind crack tip", "Crack opening displacement",0,solution.no_crack_opening[index+1]);
+    }
+    else
+    {
+
+    }
 }

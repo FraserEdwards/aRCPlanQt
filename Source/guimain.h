@@ -26,7 +26,7 @@ public:
     ~guimain();
 
     void setnames(Parameters parameters, char dropdown);
-    void setresults(Solution solution);
+    //void setresults(Solution solution);
     Parameters update();
     Ui::guimain *ui;
 
@@ -64,6 +64,8 @@ private slots:
 
     //Changes independent variable
     void on_parameter_currentIndexChanged(int index);
+
+    void on_varCombo_activated(int index);
 
 private:
 
