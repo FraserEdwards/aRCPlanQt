@@ -46,9 +46,6 @@ private slots:
     //Saves results from
     void on_Save_clicked();
 
-    //Selection of results table cell controls crack and results plots
-    void on_Resultstable_cellClicked(int row, int column);
-
     //Selection of pipe from dropdown box determines parameters below
     void on_materialname_currentIndexChanged(int index);
     void on_pipename_currentIndexChanged(int index);

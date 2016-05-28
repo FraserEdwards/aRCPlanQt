@@ -184,10 +184,36 @@ void guimain::on_Runbutton_clicked()
         ui ->yCombo ->clear();
         ui->varCombo ->clear();
         ui -> yCombo -> insertItems(0, QStringList() << "y Axis" << "Decompression factor" << "Outflow length" << "Support factor" << "Speed factor" << "Non-dimensional crack driving force" << "Crack driving force");
-        for (i= sizeof(solution.adotc0)+1; i > 0; i--)
+
+
+        switch (ui -> parameter -> currentIndex())
         {
-            ui -> varCombo ->insertItems(0,QStringList() << QString::number(solution.adotc0[i]));
+            case 0:
+            {
+                for (i= sizeof(solution.adotc0)+1; i > 0; i--)
+                {
+                    ui -> varCombo ->insertItems(0,QStringList() << QString::number(solution.adotc0[i]));
+                }
+                break;
+            }
+            case 1:
+            {
+                for (i= sizeof(solution.p0bar)+1; i > 0; i--)
+                {
+                    ui -> varCombo ->insertItems(0,QStringList() << QString::number(solution.p0bar[i]));
+                }
+                break;
+            }
+            case 2:
+            {
+                for (i= sizeof(solution.tempdegc)+1; i > 0; i--)
+                {
+                    ui -> varCombo ->insertItems(0,QStringList() << QString::number(solution.tempdegc[i]));
+                }
+                break;
+            }
         }
+
         //Plots solution
         plotHandler(solution);
 
@@ -454,108 +480,7 @@ void guimain::on_Save_clicked()
     file.writeResults();
 }
 
-//Plots the appropriate graphs depending on the table cell clicked
-void guimain::on_Resultstable_cellClicked(int row, int column)
-{
-
-    extern Solution solution;
-
-    //Plots crack profiles with colours depending on method convergence
-    if(solution.no_crack_opening[row+1])
-    {
-        plotProfiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip", "Crack opening displacement",0,1);
-    }
-    else
-    {
-        plotProfiles(solution.z, solution.w[row+1], "Crack displacement profile", "Distance behind crack tip", "Crack opening displacement",0,0);
-    }
-
-    //Double case structure to plot appropriate plot against appropriate independent variable
-    //TODO: Could move this to a matrix method where an index is used.
-    //Could be much simpler to read, code-wise
-    switch(ui->parameter->currentIndex())
-    {
-        case 0:
-        {
-            switch(column)
-            {
-                case 1:
-                    plotResults(solution.adotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",1);
-                    break;
-                case 2:
-                    plotResults(solution.adotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",1);
-                    break;
-                case 3:
-                    plotResults(solution.adotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",1);
-                    break;
-                case 4:
-                    plotResults(solution.adotc0, solution.outflow_length, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",1);
-                    break;
-                case 5:
-                    plotResults(solution.adotc0, solution.g0, "Irwin Corten Crack Force vs non-dimensional speed", "Non-dimensional speed", "Irwin Corten Crack Driving Force",1);
-                    break;
-                case 6:
-                    plotResults(solution.adotc0, solution.gg0, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",1);
-                    break;
-            }
-            break;
-        }
-        case 1:
-        {
-            switch(column)
-            {
-                case 1:
-                    plotResults(solution.p0bar, solution.decompression, "Decompression factor vs initial pressure", "Initial pressure", "Decompression factor",1);
-                    break;
-                case 2:
-                    plotResults(solution.p0bar, solution.alpha, "Speed factor vs initial pressure", "Initial pressure", "Speed factor",1);
-                    break;
-                case 3:
-                    plotResults(solution.p0bar, solution.m, "Support factor vs initial pressure", "Initial pressure", "Support factor",1);
-                    break;
-                case 4:
-                    plotResults(solution.p0bar, solution.outflow_length, "Outflow length vs initial pressure ", "Initial pressure", "Outflow length",1);
-                    break;
-                case 5:
-                    plotResults(solution.p0bar, solution.g0, "Irwin Corten Crack Force vs initial pressure", "Initial pressure", "Irwin Corten Crack Driving Force",1);
-                    break;
-                case 6:
-                    plotResults(solution.p0bar, solution.gg0, "Crack driving force vs initial pressure", "Initial pressure", "Crack driving force",1);
-                    break;
-            }
-            break;
-        }
-        case 2:
-        {
-            switch(column)
-            {
-                case 1:
-                    plotResults(solution.tempdegc, solution.decompression, "Decompression factor vs temperature", "Temperature", "Decompression factor",1);
-                    break;
-                case 2:
-                    plotResults(solution.tempdegc, solution.alpha, "Speed factor vs temperature", "Temperature", "Speed factor",1);
-                    break;
-                case 3:
-                    plotResults(solution.tempdegc, solution.m, "Support factor vs temperature", "Temperature", "Support factor",1);
-                    break;
-                case 4:
-                    plotResults(solution.tempdegc, solution.outflow_length, "Outflow length vs temperature", "Temperature", "Outflow length",1);
-                    break;
-                case 5:
-                    plotResults(solution.tempdegc, solution.g0, "Irwin Corten Crack Force vs temperature", "Temperature", "Irwin Corten Crack Driving Force",1);
-                    break;
-                case 6:
-                    plotResults(solution.tempdegc, solution.gg0, "Crack driving force vs temperature", "Temperature", "Crack driving force",1);
-                    break;
-            }
-            break;
-        }
-    }
-}
-
-
 //The functions below change the associated values when the pipe or variable is changed
-
 void guimain::on_materialname_currentIndexChanged(int index)
 {
 
@@ -668,8 +593,6 @@ void guimain::on_varCombo_activated(int index)
 void guimain::on_yCombo_activated(int index)
 {
     extern Solution solution;
-
-    qDebug() << index;
 
     //Plots crack profiles with colours depending on method convergence
     if(index != 0)
