@@ -24,16 +24,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="2" rowspan="3">
-     <widget class="QCustomPlot" name="Crackplot" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>465</width>
-        <height>300</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="7" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
@@ -82,32 +72,42 @@
     <item row="7" column="2" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QComboBox" name="xCombo"/>
+       <widget class="QLabel" name="yaxis">
+        <property name="text">
+         <string>Variable</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QComboBox" name="yCombo"/>
       </item>
-     </layout>
-    </item>
-    <item row="3" column="2" colspan="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QComboBox" name="varCombo"/>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
+       <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>40</width>
+          <width>250</width>
           <height>20</height>
          </size>
         </property>
        </spacer>
       </item>
      </layout>
+    </item>
+    <item row="0" column="2" rowspan="3">
+     <widget class="QCustomPlot" name="Crackplot" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>465</width>
+        <height>300</height>
+       </size>
+      </property>
+     </widget>
     </item>
     <item row="0" column="0" rowspan="7">
      <widget class="QScrollArea" name="scrollArea_2">
@@ -120,7 +120,7 @@
          <x>0</x>
          <y>0</y>
          <width>328</width>
-         <height>1722</height>
+         <height>1670</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
@@ -629,6 +629,36 @@
        <string extracomment="Navigate plots using table below."/>
       </property>
      </widget>
+    </item>
+    <item row="3" column="2" colspan="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="var">
+        <property name="text">
+         <string>Variable</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="varCombo"/>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>250</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

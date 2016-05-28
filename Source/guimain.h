@@ -65,7 +65,11 @@ private slots:
     //Changes independent variable
     void on_parameter_currentIndexChanged(int index);
 
+    //Selects normalised crack velocity and displays graph
     void on_varCombo_activated(int index);
+
+    //Selects the x Axis variable and plots graph assuming y Axis variable has been selected
+   void on_yCombo_activated(int index);
 
 private:
 
