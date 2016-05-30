@@ -1103,7 +1103,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="varTo">
+           <widget class="QLabel" name="toVar">
             <property name="text">
              <string>Unit</string>
             </property>

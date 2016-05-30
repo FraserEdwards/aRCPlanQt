@@ -38,6 +38,15 @@ guimain::~guimain()
 void guimain::setnames(Parameters parameters, char dropdown)
 {
 
+//Set up palettes
+QPalette *gray = new QPalette();
+gray->setColor(QPalette::Base,Qt::gray);
+gray->setColor(QPalette::Text,Qt::darkGray);
+
+QPalette *white = new QPalette();
+white->setColor(QPalette::Base,Qt::white);
+white->setColor(QPalette::Text,Qt::white);
+
 extern File file;
 
 if(parameters.fullscale)
@@ -128,8 +137,14 @@ ui -> relativediameter -> setText(QString::number(parameters.diameter_creep_rati
 ui -> testtemperature -> setAlignment(Qt::AlignRight);
 ui -> testtemperature -> setText(QString::number(parameters.tempdegc));
 
+ui ->adotc0 -> setAlignment(Qt::AlignRight);
+ui ->adotc0 -> setText(QString::number(parameters.adotc0));
+ui -> adotc0->setReadOnly(true);
+ui -> adotc0->setPalette(*gray);
+
 ui -> initialpressure -> setAlignment(Qt::AlignRight);
 ui -> initialpressure -> setText(QString::number(parameters.p0bar));
+
 
 ui -> backfilldepth -> setAlignment(Qt::AlignRight);
 ui -> backfilldepth -> setText(QString::number(parameters.backfill_depth));
@@ -177,7 +192,7 @@ void guimain::on_Runbutton_clicked()
         //Fill comboboxes
         ui ->yCombo ->clear();
         ui->varCombo ->clear();
-        ui -> yCombo -> insertItems(0, QStringList() << "Decompression factor" << "Outflow length" << "Support factor" << "Speed factor" << "Non-dimensional crack driving force" << "Crack driving force");
+        ui -> yCombo -> insertItems(0, QStringList() << "" << "Decompression factor" << "Outflow length" << "Support factor" << "Speed factor" << "Non-dimensional crack driving force" << "Crack driving force");
 
         ui ->var ->setText(ui->parameter->currentText());
 
@@ -575,27 +590,27 @@ void guimain::on_yCombo_activated(int index)
             {
                 switch (index)
                 {
-                    case 0:{
+                    case 1:{
                         plotResults(solution.adotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",0);
                         break;
                           }
-                    case 1:{
+                    case 2:{
                         plotResults(solution.adotc0, solution.outflow_length, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",0);
                         break;
                           }
-                    case 2:{
+                    case 3:{
                         plotResults(solution.adotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",0);
                         break;
                           }
-                    case 3:{
+                    case 4:{
                         plotResults(solution.adotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",0);
                         break;
                           }
-                    case 4:{
+                    case 5:{
                         plotResults(solution.adotc0, solution.gg0, "Non-dimensional crack driving force vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",0);
                         break;
                           }
-                    case 5:{
+                    case 6:{
                         plotResults(solution.adotc0, solution.gtotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",0);
                         break;
                           }
@@ -606,27 +621,27 @@ void guimain::on_yCombo_activated(int index)
             {
                 switch (index)
                 {
-                    case 0:{
+                    case 1:{
                         plotResults(solution.p0bar, solution.decompression, "Decompression factor vs initial pressure", "Initial pressure", "Decompression factor",0);
                         break;
                           }
-                    case 1:{
+                    case 2:{
                         plotResults(solution.p0bar, solution.outflow_length, "Outflow length vs initial pressure", "Initial pressure", "Outflow length",0);
                         break;
                           }
-                    case 2:{
+                    case 3:{
                         plotResults(solution.p0bar, solution.m, "Support factor vs initial pressure", "Initial pressure", "Support factor",0);
                         break;
                           }
-                    case 3:{
+                    case 4:{
                         plotResults(solution.p0bar, solution.alpha, "Speed factor vs initial pressure", "Initial pressure", "Speed factor",0);
                         break;
                           }
-                    case 4:{
+                    case 5:{
                         plotResults(solution.p0bar, solution.gg0, "Non-dimensional crack driving force vs initial pressure", "Initial pressure", "Non-dimensional crack driving force",0);
                         break;
                           }
-                    case 5:{
+                    case 6:{
                         plotResults(solution.p0bar, solution.gtotal, "Crack driving force vs initial pressure", "Initial pressure", "Crack driving force",0);
                         break;
                           }
@@ -637,27 +652,27 @@ void guimain::on_yCombo_activated(int index)
             {
                 switch (index)
                 {
-                    case 0:{
+                    case 1:{
                         plotResults(solution.tempdegc, solution.decompression, "Decompression factor vs temperature", "Temperature", "Decompression factor",0);
                         break;
                           }
-                    case 1:{
+                    case 2:{
                         plotResults(solution.tempdegc, solution.outflow_length, "Outflow length vs temperature", "Temperature", "Outflow length",0);
                         break;
                           }
-                    case 2:{
+                    case 3:{
                         plotResults(solution.tempdegc, solution.m, "Support factor vs temperature", "Temperature", "Support factor",0);
                         break;
                           }
-                    case 3:{
+                    case 4:{
                         plotResults(solution.tempdegc, solution.alpha, "Speed factor vs temperature", "Temperature", "Speed factor",0);
                         break;
                           }
-                    case 4:{
+                    case 5:{
                         plotResults(solution.tempdegc, solution.gg0, "Non-dimensional crack driving force vs temperature", "Temperature", "Non-dimensional crack driving force",0);
                         break;
                           }
-                    case 5:{
+                    case 6:{
                         plotResults(solution.tempdegc, solution.gtotal, "Crack driving force vs temperature", "Temperature", "Crack driving force",0);
                         break;
                           }
@@ -669,5 +684,50 @@ void guimain::on_yCombo_activated(int index)
     else
     {
 
+    }
+}
+
+void guimain::on_parameter_activated(int index)
+{
+    QPalette *gray = new QPalette();
+    gray->setColor(QPalette::Base,Qt::gray);
+    gray->setColor(QPalette::Text,Qt::darkGray);
+
+    QPalette *white = new QPalette();
+    white->setColor(QPalette::Base,Qt::white);
+    white->setColor(QPalette::Text,Qt::white);
+
+    switch (index)
+    {
+        case 0:{
+            ui->adotc0->setReadOnly(true);
+            ui -> adotc0->setReadOnly(true);
+            ui -> adotc0->setPalette(*gray);
+            ui ->testtemperature->setReadOnly(false);
+            ui -> testtemperature->setPalette(*white);
+            ui ->initialpressure->setReadOnly(false);
+            ui -> initialpressure->setPalette(*white);
+            break;
+              }
+        case 1:{
+            ui->initialpressure->setReadOnly(true);
+            ui -> initialpressure->setReadOnly(true);
+            ui -> initialpressure->setPalette(*gray);
+            ui ->adotc0->setReadOnly(false);
+            ui ->adotc0->setPalette(*white);
+            ui ->testtemperature->setReadOnly(false);
+            ui -> testtemperature->setPalette(*white);
+            break;
+              }
+        case 2:{
+            ui ->testtemperature->setReadOnly(true);
+            ui -> testtemperature->setReadOnly(true);
+            ui -> testtemperature->setPalette(*gray);
+            ui ->adotc0->setReadOnly(false);
+            ui ->adotc0->setPalette(*white);
+            ui ->initialpressure->setReadOnly(false);
+            ui -> initialpressure->setPalette(*white);
+            break;
+              }
     }
 }

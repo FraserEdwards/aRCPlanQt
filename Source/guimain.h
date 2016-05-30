@@ -66,6 +66,8 @@ private slots:
     //Selects the x Axis variable and plots graph assuming y Axis variable has been selected
    void on_yCombo_activated(int index);
 
+   void on_parameter_activated(int index);
+
 private:
 
     int i;
