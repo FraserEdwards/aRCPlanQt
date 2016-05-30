@@ -30,7 +30,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="5" column="0">
+    <item row="5" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QPushButton" name="Runbutton">
@@ -75,12 +75,12 @@
       </item>
      </layout>
     </item>
-    <item row="5" column="2" colspan="2">
+    <item row="5" column="3" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLabel" name="yaxis">
         <property name="text">
-         <string>Variable</string>
+         <string>Dependent Variable</string>
         </property>
        </widget>
       </item>
@@ -92,6 +92,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
        </widget>
       </item>
       <item>
@@ -100,11 +106,11 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
+         <enum>QSizePolicy::Maximum</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>250</width>
+          <width>300</width>
           <height>20</height>
          </size>
         </property>
@@ -112,7 +118,7 @@
       </item>
      </layout>
     </item>
-    <item row="3" column="2" rowspan="2">
+    <item row="3" column="3" rowspan="2">
      <widget class="QCustomPlot" name="Resultsplot" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -142,12 +148,12 @@
       <zorder>scrollArea</zorder>
      </widget>
     </item>
-    <item row="2" column="2" colspan="2">
+    <item row="2" column="3" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
        <widget class="QLabel" name="var">
         <property name="text">
-         <string>Variable</string>
+         <string>Independent Variable</string>
         </property>
        </widget>
       </item>
@@ -159,6 +165,19 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="varUnit">
+        <property name="text">
+         <string/>
+        </property>
        </widget>
       </item>
       <item>
@@ -167,11 +186,11 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
+         <enum>QSizePolicy::Maximum</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>250</width>
+          <width>200</width>
           <height>20</height>
          </size>
         </property>
@@ -179,7 +198,7 @@
       </item>
      </layout>
     </item>
-    <item row="0" column="2" rowspan="2">
+    <item row="0" column="3" rowspan="2">
      <widget class="QCustomPlot" name="Crackplot" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -195,7 +214,7 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="0" rowspan="5">
+    <item row="0" column="1" rowspan="5">
      <widget class="QScrollArea" name="scrollArea_2">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -224,7 +243,7 @@
          <x>0</x>
          <y>0</y>
          <width>328</width>
-         <height>1769</height>
+         <height>1624</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
@@ -235,21 +254,14 @@
           </property>
          </widget>
         </item>
-        <item row="57" column="0" colspan="2">
+        <item row="55" column="0" colspan="2">
          <widget class="QLabel" name="PipeID_17">
           <property name="text">
            <string>Number of finite elements:</string>
           </property>
          </widget>
         </item>
-        <item row="55" column="0" colspan="2">
-         <widget class="QLabel" name="PipeID_16">
-          <property name="text">
-           <string>Crack speed (single-shot analysis):</string>
-          </property>
-         </widget>
-        </item>
-        <item row="59" column="0" colspan="2">
+        <item row="57" column="0" colspan="2">
          <widget class="QLabel" name="label_4">
           <property name="text">
            <string>Verbose mode (not recomended):</string>
@@ -259,35 +271,21 @@
           </property>
          </widget>
         </item>
-        <item row="63" column="0" colspan="2">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Single Shot:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="65" column="0" colspan="2">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Range:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="67" column="0" colspan="2">
+        <item row="61" column="0" colspan="2">
          <widget class="QLabel" name="label_7">
           <property name="text">
            <string>Parameter:</string>
           </property>
          </widget>
         </item>
-        <item row="70" column="0" colspan="2">
+        <item row="64" column="0" colspan="2">
          <widget class="QLabel" name="label_10">
           <property name="text">
            <string>No. of Points:</string>
           </property>
          </widget>
         </item>
-        <item row="72" column="0" colspan="2">
+        <item row="66" column="0" colspan="2">
          <widget class="QLabel" name="label_8">
           <property name="text">
            <string>From:</string>
@@ -297,7 +295,7 @@
           </property>
          </widget>
         </item>
-        <item row="74" column="0">
+        <item row="68" column="0">
          <widget class="QLabel" name="label_9">
           <property name="text">
            <string>To:</string>
@@ -338,7 +336,7 @@
           </property>
          </widget>
         </item>
-        <item row="73" column="0">
+        <item row="67" column="0">
          <widget class="QLineEdit" name="from">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -354,7 +352,7 @@
         <item row="50" column="0">
          <widget class="QLineEdit" name="waterfraction"/>
         </item>
-        <item row="75" column="0">
+        <item row="69" column="0">
          <widget class="QLineEdit" name="to">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -449,7 +447,7 @@
           </property>
          </widget>
         </item>
-        <item row="60" column="0">
+        <item row="58" column="0">
          <widget class="QCheckBox" name="verbose">
           <property name="text">
            <string/>
@@ -466,18 +464,8 @@
           </property>
          </widget>
         </item>
-        <item row="58" column="0">
-         <widget class="QLineEdit" name="fdnumber"/>
-        </item>
         <item row="56" column="0">
-         <widget class="QLineEdit" name="crackspeed"/>
-        </item>
-        <item row="64" column="0">
-         <widget class="QCheckBox" name="singlemode">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
+         <widget class="QLineEdit" name="fdnumber"/>
         </item>
         <item row="19" column="1">
          <widget class="QLabel" name="label_23">
@@ -500,13 +488,6 @@
          <widget class="QLabel" name="DDynamicModulus">
           <property name="text">
            <string>Temperature sensitivity of dynamic modulus:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="66" column="0">
-         <widget class="QCheckBox" name="rangemode">
-          <property name="text">
-           <string/>
           </property>
          </widget>
         </item>
@@ -551,7 +532,7 @@
         <item row="19" column="0">
          <widget class="QLineEdit" name="dynpoissonratio"/>
         </item>
-        <item row="71" column="0">
+        <item row="65" column="0">
          <widget class="QLineEdit" name="noofpoints">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -588,7 +569,7 @@
           </property>
          </widget>
         </item>
-        <item row="68" column="0">
+        <item row="62" column="0">
          <widget class="QComboBox" name="parameter">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -740,16 +721,10 @@
         <item row="1" column="0">
          <widget class="QComboBox" name="materialname"/>
         </item>
-        <item row="62" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Execution Mode</string>
+        <item row="59" column="0" colspan="2">
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
@@ -760,10 +735,16 @@
           </property>
          </widget>
         </item>
-        <item row="61" column="0" colspan="2">
-         <widget class="Line" name="line_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+        <item row="60" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Independent Variable</string>
           </property>
          </widget>
         </item>

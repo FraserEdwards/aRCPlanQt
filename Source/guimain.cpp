@@ -40,9 +40,6 @@ void guimain::setnames(Parameters parameters, char dropdown)
 
 extern File file;
 
-ui -> singlemode -> setCheckState(Qt::Unchecked);
-ui -> rangemode -> setCheckState(Qt::Checked);
-
 if(parameters.fullscale)
 {
     ui->fs->setCheckState(Qt::Checked);
@@ -82,8 +79,8 @@ if(dropdown==0)
     ui -> materialname ->insertItems(0, QStringList() << "Soft PE80" << "Generic PE100" << "Soft PE100" << "Generic PE1" << "Generic PE2" << "Test");
     ui -> pipename ->insertItems(0, QStringList() << "250mm_SDR11" << "250mm_SDR17" << "110mm_SDR11" << "110mm_SDR17" << "63mm_SDR11");
     ui -> parameter ->insertItems(0, QStringList() << "Normalised Crack Speed" << "Initial Pressure" << "Test Temperature");
-    ui -> varCombo ->insertItems(0,QStringList() << "Variable");
-    ui -> yCombo -> insertItems(0,QStringList() << "y Axis");
+    ui -> varCombo ->insertItems(0,QStringList() << "");
+    ui -> yCombo -> insertItems(0,QStringList() << "");
 
 }
 else
@@ -149,9 +146,6 @@ ui -> waterfraction -> setText(QString::number(parameters.water_inside_pipe));
 ui -> initiallength -> setAlignment(Qt::AlignRight);
 ui -> initiallength -> setText(QString::number(parameters.lambda));
 
-ui -> crackspeed -> setAlignment(Qt::AlignRight);
-ui -> crackspeed -> setText(QString::number(parameters.adotc0));
-
 ui -> fdnumber -> setAlignment(Qt::AlignRight);
 ui -> fdnumber -> setText(QString::number(parameters.elements_in_l));
 
@@ -183,13 +177,15 @@ void guimain::on_Runbutton_clicked()
         //Fill comboboxes
         ui ->yCombo ->clear();
         ui->varCombo ->clear();
-        ui -> yCombo -> insertItems(0, QStringList() << "y Axis" << "Decompression factor" << "Outflow length" << "Support factor" << "Speed factor" << "Non-dimensional crack driving force" << "Crack driving force");
+        ui -> yCombo -> insertItems(0, QStringList() << "Decompression factor" << "Outflow length" << "Support factor" << "Speed factor" << "Non-dimensional crack driving force" << "Crack driving force");
 
+        ui ->var ->setText(ui->parameter->currentText());
 
         switch (ui -> parameter -> currentIndex())
         {
             case 0:
             {
+                ui -> varUnit->setText("");
                 for (i= sizeof(solution.adotc0)+1; i > 0; i--)
                 {
                     ui -> varCombo ->insertItems(0,QStringList() << QString::number(solution.adotc0[i]));
@@ -198,6 +194,7 @@ void guimain::on_Runbutton_clicked()
             }
             case 1:
             {
+                ui -> varUnit->setText("bar");
                 for (i= sizeof(solution.p0bar)+1; i > 0; i--)
                 {
                     ui -> varCombo ->insertItems(0,QStringList() << QString::number(solution.p0bar[i]));
@@ -206,6 +203,7 @@ void guimain::on_Runbutton_clicked()
             }
             case 2:
             {
+                 ui -> varUnit->setText("degrees Celsius");
                 for (i= sizeof(solution.tempdegc)+1; i > 0; i--)
                 {
                     ui -> varCombo ->insertItems(0,QStringList() << QString::number(solution.tempdegc[i]));
@@ -383,7 +381,6 @@ Parameters guimain::update()
     extern File file;
     temp.varname = ui ->parameter ->currentIndex();
 
-    temp.single_mode = ui -> singlemode -> checkState();
     temp.from = ui -> from -> text().toDouble();
     temp.to = ui -> to -> text().toDouble();
     temp.range_number = ui -> noofpoints -> text().toDouble();
@@ -413,7 +410,6 @@ Parameters guimain::update()
     temp.water_inside_pipe = ui -> waterfraction -> text().toDouble();
 
     temp.lambda = ui -> initiallength -> text().toDouble();    
-    temp.adotc0 = ui -> crackspeed -> text().toDouble();
     temp.elements_in_l = ui -> fdnumber -> text().toDouble();
     temp.verbose = ui ->verbose ->checkState();
 
@@ -445,31 +441,6 @@ void guimain::on_s4_clicked()
     else
     {
     ui -> fs -> setCheckState(Qt::Checked);
-    }
-}
-
-void guimain::on_singlemode_clicked()
-{
-    if(ui->singlemode -> checkState())
-    {
-    ui -> rangemode -> setCheckState(Qt::Unchecked);
-
-    }
-    else
-    {
-    ui -> rangemode -> setCheckState(Qt::Checked);
-    }
-}
-
-void guimain::on_rangemode_clicked()
-{
-    if(ui->rangemode -> checkState())
-    {
-    ui -> singlemode -> setCheckState(Qt::Unchecked);
-    }
-    else
-    {
-    ui -> singlemode -> setCheckState(Qt::Checked);
     }
 }
 
@@ -604,27 +575,27 @@ void guimain::on_yCombo_activated(int index)
             {
                 switch (index)
                 {
-                    case 1:{
+                    case 0:{
                         plotResults(solution.adotc0, solution.decompression, "Decompression factor vs non-dimensional speed", "Non-dimensional speed", "Decompression factor",0);
                         break;
                           }
-                    case 2:{
+                    case 1:{
                         plotResults(solution.adotc0, solution.outflow_length, "Outflow length vs non-dimensional speed", "Non-dimensional speed", "Outflow length",0);
                         break;
                           }
-                    case 3:{
+                    case 2:{
                         plotResults(solution.adotc0, solution.m, "Support factor vs non-dimensional speed", "Non-dimensional speed", "Support factor",0);
                         break;
                           }
-                    case 4:{
+                    case 3:{
                         plotResults(solution.adotc0, solution.alpha, "Speed factor vs non-dimensional speed", "Non-dimensional speed", "Speed factor",0);
                         break;
                           }
-                    case 5:{
+                    case 4:{
                         plotResults(solution.adotc0, solution.gg0, "Non-dimensional crack driving force vs non-dimensional speed", "Non-dimensional speed", "Non-dimensional crack driving force",0);
                         break;
                           }
-                    case 6:{
+                    case 5:{
                         plotResults(solution.adotc0, solution.gtotal, "Crack driving force vs non-dimensional speed", "Non-dimensional speed", "Crack driving force",0);
                         break;
                           }
@@ -635,27 +606,27 @@ void guimain::on_yCombo_activated(int index)
             {
                 switch (index)
                 {
-                    case 1:{
+                    case 0:{
                         plotResults(solution.p0bar, solution.decompression, "Decompression factor vs initial pressure", "Initial pressure", "Decompression factor",0);
                         break;
                           }
-                    case 2:{
+                    case 1:{
                         plotResults(solution.p0bar, solution.outflow_length, "Outflow length vs initial pressure", "Initial pressure", "Outflow length",0);
                         break;
                           }
-                    case 3:{
+                    case 2:{
                         plotResults(solution.p0bar, solution.m, "Support factor vs initial pressure", "Initial pressure", "Support factor",0);
                         break;
                           }
-                    case 4:{
+                    case 3:{
                         plotResults(solution.p0bar, solution.alpha, "Speed factor vs initial pressure", "Initial pressure", "Speed factor",0);
                         break;
                           }
-                    case 5:{
+                    case 4:{
                         plotResults(solution.p0bar, solution.gg0, "Non-dimensional crack driving force vs initial pressure", "Initial pressure", "Non-dimensional crack driving force",0);
                         break;
                           }
-                    case 6:{
+                    case 5:{
                         plotResults(solution.p0bar, solution.gtotal, "Crack driving force vs initial pressure", "Initial pressure", "Crack driving force",0);
                         break;
                           }
@@ -666,27 +637,27 @@ void guimain::on_yCombo_activated(int index)
             {
                 switch (index)
                 {
-                    case 1:{
+                    case 0:{
                         plotResults(solution.tempdegc, solution.decompression, "Decompression factor vs temperature", "Temperature", "Decompression factor",0);
                         break;
                           }
-                    case 2:{
+                    case 1:{
                         plotResults(solution.tempdegc, solution.outflow_length, "Outflow length vs temperature", "Temperature", "Outflow length",0);
                         break;
                           }
-                    case 3:{
+                    case 2:{
                         plotResults(solution.tempdegc, solution.m, "Support factor vs temperature", "Temperature", "Support factor",0);
                         break;
                           }
-                    case 4:{
+                    case 3:{
                         plotResults(solution.tempdegc, solution.alpha, "Speed factor vs temperature", "Temperature", "Speed factor",0);
                         break;
                           }
-                    case 5:{
+                    case 4:{
                         plotResults(solution.tempdegc, solution.gg0, "Non-dimensional crack driving force vs temperature", "Temperature", "Non-dimensional crack driving force",0);
                         break;
                           }
-                    case 6:{
+                    case 5:{
                         plotResults(solution.tempdegc, solution.gtotal, "Crack driving force vs temperature", "Temperature", "Crack driving force",0);
                         break;
                           }

@@ -40,8 +40,6 @@ private slots:
     //i.e. selecting one deselects the other
     void on_fs_clicked();
     void on_s4_clicked();
-    void on_singlemode_clicked();
-    void on_rangemode_clicked();
 
     //Saves results from
     void on_Save_clicked();
