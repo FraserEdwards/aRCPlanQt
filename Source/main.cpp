@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     b.setnames(initial,0);
     b.setWindowTitle("aRCPlan");
 
-    //Shown window
+    //Show window
     b.show();
 
     //Wait for signals from GUI

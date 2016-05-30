@@ -26,7 +26,7 @@ public:
     ~guimain();
 
     void setnames(Parameters parameters, char dropdown);
-    void setresults(Solution solution);
+    //void setresults(Solution solution);
     Parameters update();
     Ui::guimain *ui;
 
@@ -40,14 +40,9 @@ private slots:
     //i.e. selecting one deselects the other
     void on_fs_clicked();
     void on_s4_clicked();
-    void on_singlemode_clicked();
-    void on_rangemode_clicked();
 
     //Saves results from
     void on_Save_clicked();
-
-    //Selection of results table cell controls crack and results plots
-    void on_Resultstable_cellClicked(int row, int column);
 
     //Selection of pipe from dropdown box determines parameters below
     void on_materialname_currentIndexChanged(int index);
@@ -64,6 +59,14 @@ private slots:
 
     //Changes independent variable
     void on_parameter_currentIndexChanged(int index);
+
+    //Selects normalised crack velocity and displays graph
+    void on_varCombo_activated(int index);
+
+    //Selects the x Axis variable and plots graph assuming y Axis variable has been selected
+   void on_yCombo_activated(int index);
+
+   void on_parameter_activated(int index);
 
 private:
 
