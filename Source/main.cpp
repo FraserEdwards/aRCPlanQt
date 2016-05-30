@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     guimain b;
     b.setnames(initial,0);
     b.setWindowTitle("aRCPlan");
+    //b.setWindowFlags(Qt::CustomizeWindowHint);
 
     //Shown window
     b.show();
