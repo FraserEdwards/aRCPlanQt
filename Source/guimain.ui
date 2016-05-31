@@ -150,7 +150,6 @@
       <property name="statusTip">
        <string extracomment="Navigate plots using table below."/>
       </property>
-      <zorder>scrollArea_2</zorder>
      </widget>
     </item>
     <item row="2" column="2" colspan="2">
@@ -251,34 +250,43 @@
          <x>0</x>
          <y>0</y>
          <width>293</width>
-         <height>1851</height>
+         <height>1849</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="61" column="0" colspan="2">
-         <widget class="QLabel" name="PipeID_12">
-          <property name="text">
-           <string>Backfill Density: </string>
+        <item row="83" column="0" colspan="2">
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
-        <item row="84" column="0" colspan="2">
-         <widget class="QLabel" name="label_5">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
+        <item row="35" column="0">
+         <widget class="QLineEdit" name="sdr">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
           </property>
-          <property name="text">
-           <string>Independent Variables</string>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
           </property>
          </widget>
         </item>
-        <item row="107" column="0" colspan="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_20">
+        <item row="37" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
           <item>
-           <widget class="QLineEdit" name="testtemperature">
+           <widget class="QLineEdit" name="groovedepth">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>200</width>
@@ -288,61 +296,90 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_27">
+           <widget class="QLabel" name="label_25">
             <property name="text">
-             <string>degrees Celsius</string>
+             <string>mm</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
-        <item row="1" column="0">
-         <widget class="QComboBox" name="materialname">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+        <item row="94" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_18">
+          <item>
+           <widget class="QLineEdit" name="to">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="varTo">
+            <property name="text">
+             <string>Unit</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="29" column="0" colspan="2">
+         <widget class="QLabel" name="pipeID">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
           </property>
+          <property name="text">
+           <string>Pipe name/ID:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="100" column="0">
+         <widget class="QLineEdit" name="adotc0">
           <property name="minimumSize">
            <size>
             <width>200</width>
-            <height>28</height>
+            <height>21</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>200</width>
-            <height>28</height>
+            <height>21</height>
            </size>
           </property>
          </widget>
         </item>
-        <item row="69" column="0" colspan="2">
-         <widget class="QLabel" name="PipeID_14">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>250</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>250</width>
-            <height>42</height>
-           </size>
-          </property>
+        <item row="111" column="0" colspan="2">
+         <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>Fraction of internal volume occupied by water:</string>
+           <string>Verbose mode (not recomended):</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="0">
+         <widget class="QLabel" name="Creepmodulus">
+          <property name="text">
+           <string>Creep modulus at room temperature:</string>
           </property>
          </widget>
         </item>
@@ -367,16 +404,26 @@
           <item>
            <widget class="QLabel" name="label_22">
             <property name="text">
-             <string>unit</string>
+             <string>MPa</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
-        <item row="32" column="0" colspan="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <item row="93" column="0" colspan="2">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>To:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="44" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
           <item>
-           <widget class="QLineEdit" name="outsidediameter">
+           <widget class="QLineEdit" name="relativediameter">
             <property name="minimumSize">
              <size>
               <width>200</width>
@@ -392,13 +439,176 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_24">
+           <widget class="QLabel" name="label_26">
             <property name="text">
              <string>mm</string>
             </property>
            </widget>
           </item>
          </layout>
+        </item>
+        <item row="21" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLineEdit" name="deltadynamicmodulus">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>MPa/K</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="102" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_10">
+          <property name="text">
+           <string>Test Pressure: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="36" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_24">
+          <property name="text">
+           <string>Internal or external sidegroove depth: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="84" column="0" colspan="2">
+         <widget class="QLabel" name="label_5">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Independent Variables</string>
+          </property>
+         </widget>
+        </item>
+        <item row="96" column="0">
+         <widget class="QLineEdit" name="noofpoints">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="70" column="0">
+         <widget class="QLineEdit" name="waterfraction">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="54" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>S4:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="80" column="0">
+         <widget class="QLineEdit" name="fdnumber">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="30" column="0">
+         <widget class="QComboBox" name="pipename">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>28</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="95" column="0" colspan="2">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>No. of Points:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="86" column="0">
+         <widget class="QComboBox" name="parameter">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>28</height>
+           </size>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
         <item row="67" column="0" colspan="2">
          <widget class="QLabel" name="PipeID_13">
@@ -419,16 +629,6 @@
           </property>
           <property name="wordWrap">
            <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="93" column="0" colspan="2">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>To:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -460,17 +660,10 @@
           </property>
          </widget>
         </item>
-        <item row="95" column="0" colspan="2">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>No. of Points:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="21" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item row="59" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
           <item>
-           <widget class="QLineEdit" name="deltadynamicmodulus">
+           <widget class="QLineEdit" name="backfilldepth">
             <property name="minimumSize">
              <size>
               <width>200</width>
@@ -486,97 +679,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_17">
-            <property name="text">
-             <string>unit</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="13" column="0" colspan="2">
-         <widget class="QLabel" name="DynamicModulus">
-          <property name="text">
-           <string>High-rate tensile modulus at 0°C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="52" column="0" colspan="2">
-         <widget class="QLabel" name="label_12">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="baseSize">
-           <size>
-            <width>0</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>FS with prior decompression:</string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="28" column="0" colspan="2">
-         <widget class="Line" name="line">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="26" column="0" colspan="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_9">
-          <item>
-           <widget class="QLineEdit" name="dynpoissonratio">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_23">
-            <property name="text">
-             <string>unit</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="37" column="0" colspan="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_13">
-          <item>
-           <widget class="QLineEdit" name="groovedepth">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_25">
+           <widget class="QLabel" name="label_6">
             <property name="text">
              <string>mm</string>
             </property>
@@ -584,20 +687,58 @@
           </item>
          </layout>
         </item>
-        <item row="102" column="0" colspan="2">
-         <widget class="QLabel" name="PipeID_10">
+        <item row="48" column="0">
+         <widget class="QCheckBox" name="fixedlength">
           <property name="text">
-           <string>Test Pressure: </string>
+           <string/>
           </property>
          </widget>
         </item>
-        <item row="111" column="0" colspan="2">
-         <widget class="QLabel" name="label_4">
+        <item row="32" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLineEdit" name="outsidediameter">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>mm</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="34" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_25">
           <property name="text">
-           <string>Verbose mode (not recomended):</string>
+           <string>SDR (Pipe diameter/ Wall thickness): </string>
           </property>
-          <property name="wordWrap">
-           <bool>true</bool>
+         </widget>
+        </item>
+        <item row="53" column="0">
+         <widget class="QCheckBox" name="fs">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="108" column="0" colspan="2">
+         <widget class="Line" name="line_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
@@ -628,35 +769,45 @@
           </item>
          </layout>
         </item>
-        <item row="14" column="0" colspan="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QLineEdit" name="dynamicmodulus">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_16">
-            <property name="text">
-             <string>kg/m^3</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+        <item row="28" column="0" colspan="2">
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
         </item>
-        <item row="0" column="0" colspan="2">
-         <widget class="QLabel" name="label_79">
+        <item row="13" column="0" colspan="2">
+         <widget class="QLabel" name="DynamicModulus">
+          <property name="text">
+           <string>High-rate tensile modulus at 0°C:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="113" column="0">
+         <widget class="QCheckBox" name="verbose">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="68" column="0">
+         <widget class="QLineEdit" name="solidfraction">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="110" column="0" colspan="2">
+         <widget class="QLabel" name="label">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -664,82 +815,70 @@
            </font>
           </property>
           <property name="text">
-           <string>Material</string>
+           <string>Debugging</string>
           </property>
          </widget>
         </item>
-        <item row="106" column="0" colspan="2">
-         <widget class="QLabel" name="PipeID_9">
+        <item row="45" column="0">
+         <widget class="Line" name="line_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="39" column="0">
+         <widget class="QLabel" name="PipeID_23">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>42</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>42</height>
+           </size>
+          </property>
           <property name="text">
-           <string>Test temperature:</string>
+           <string>Relative diameter after residual strain creep: </string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
-        <item row="11" column="0" colspan="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLineEdit" name="density">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_15">
-            <property name="text">
-             <string>kg/m^3</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+        <item row="90" column="0" colspan="2">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>From:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
         </item>
-        <item row="91" column="0" colspan="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_17">
-          <item>
-           <widget class="QLineEdit" name="from">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="fromVar">
-            <property name="text">
-             <string>Unit</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+        <item row="26" column="0">
+         <widget class="QLineEdit" name="dynpoissonratio">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>21</height>
+           </size>
+          </property>
+         </widget>
         </item>
         <item row="49" column="0" colspan="2">
          <widget class="QLabel" name="PipeID_15">
@@ -797,54 +936,62 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="0" colspan="2">
-         <widget class="QLabel" name="Density">
-          <property name="text">
-           <string>Density:</string>
-          </property>
-         </widget>
+        <item row="91" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_17">
+          <item>
+           <widget class="QLineEdit" name="from">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="fromVar">
+            <property name="text">
+             <string>Unit</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
-        <item row="47" column="0" colspan="2">
-         <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>Auto-calculate outflow length?</string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
+        <item row="107" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_20">
+          <item>
+           <widget class="QLineEdit" name="testtemperature">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>degrees Celsius</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
-        <item row="46" column="0" colspan="2">
-         <widget class="QLabel" name="label_3">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Test Setup</string>
-          </property>
-         </widget>
-        </item>
-        <item row="51" column="0">
-         <widget class="QLineEdit" name="initiallength">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="39" column="0">
-         <widget class="QLabel" name="PipeID_23">
+        <item row="1" column="0">
+         <widget class="QComboBox" name="materialname">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -853,56 +1000,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>250</width>
-            <height>42</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>250</width>
-            <height>42</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Relative diameter after residual strain creep: </string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="110" column="0" colspan="2">
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Debugging</string>
-          </property>
-         </widget>
-        </item>
-        <item row="45" column="0">
-         <widget class="Line" name="line_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="68" column="0">
-         <widget class="QLineEdit" name="solidfraction">
-          <property name="minimumSize">
-           <size>
             <width>200</width>
-            <height>21</height>
+            <height>28</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>200</width>
-            <height>21</height>
+            <height>28</height>
            </size>
           </property>
          </widget>
@@ -934,13 +1039,6 @@
           </item>
          </layout>
         </item>
-        <item row="79" column="0" colspan="2">
-         <widget class="QLabel" name="PipeID_17">
-          <property name="text">
-           <string>Number of finite elements:</string>
-          </property>
-         </widget>
-        </item>
         <item row="85" column="0" colspan="2">
          <widget class="QLabel" name="label_7">
           <property name="text">
@@ -948,20 +1046,17 @@
           </property>
          </widget>
         </item>
-        <item row="90" column="0" colspan="2">
-         <widget class="QLabel" name="label_8">
+        <item row="79" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_17">
           <property name="text">
-           <string>From:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           <string>Number of finite elements:</string>
           </property>
          </widget>
         </item>
-        <item row="55" column="0">
-         <widget class="QCheckBox" name="s4">
+        <item row="61" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_12">
           <property name="text">
-           <string/>
+           <string>Backfill Density: </string>
           </property>
          </widget>
         </item>
@@ -979,24 +1074,42 @@
           </property>
          </widget>
         </item>
-        <item row="80" column="0">
-         <widget class="QLineEdit" name="fdnumber">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
+        <item row="55" column="0">
+         <widget class="QCheckBox" name="s4">
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
-        <item row="86" column="0">
-         <widget class="QComboBox" name="parameter">
+        <item row="14" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLineEdit" name="dynamicmodulus">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>21</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>MPa</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="69" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_14">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -1005,83 +1118,48 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>200</width>
-            <height>21</height>
+            <width>250</width>
+            <height>40</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>200</width>
-            <height>28</height>
+            <width>250</width>
+            <height>42</height>
            </size>
           </property>
-          <property name="frame">
+          <property name="text">
+           <string>Fraction of internal volume occupied by water:</string>
+          </property>
+          <property name="wordWrap">
            <bool>true</bool>
           </property>
          </widget>
         </item>
-        <item row="54" column="0">
-         <widget class="QLabel" name="label_13">
+        <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="label_79">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
-           <string>S4:</string>
+           <string>Material</string>
           </property>
          </widget>
         </item>
-        <item row="34" column="0" colspan="2">
-         <widget class="QLabel" name="PipeID_25">
+        <item row="106" column="0" colspan="2">
+         <widget class="QLabel" name="PipeID_9">
           <property name="text">
-           <string>SDR (Pipe diameter/ Wall thickness): </string>
+           <string>Test temperature:</string>
           </property>
          </widget>
         </item>
-        <item row="53" column="0">
-         <widget class="QCheckBox" name="fs">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="30" column="0">
-         <widget class="QComboBox" name="pipename">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>28</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="48" column="0">
-         <widget class="QCheckBox" name="fixedlength">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="36" column="0" colspan="2">
-         <widget class="QLabel" name="PipeID_24">
-          <property name="text">
-           <string>Internal or external sidegroove depth: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="83" column="0" colspan="2">
-         <widget class="Line" name="line_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="94" column="0" colspan="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_18">
+        <item row="11" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QLineEdit" name="to">
+           <widget class="QLineEdit" name="density">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -1103,16 +1181,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="varTo">
+           <widget class="QLabel" name="label_15">
             <property name="text">
-             <string>Unit</string>
+             <string>kg/m^3</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
-        <item row="70" column="0">
-         <widget class="QLineEdit" name="waterfraction">
+        <item row="7" column="0" colspan="2">
+         <widget class="QLabel" name="Density">
+          <property name="text">
+           <string>Density:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="51" column="0">
+         <widget class="QLineEdit" name="initiallength">
           <property name="minimumSize">
            <size>
             <width>200</width>
@@ -1127,46 +1212,18 @@
           </property>
          </widget>
         </item>
-        <item row="96" column="0">
-         <widget class="QLineEdit" name="noofpoints">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+        <item row="47" column="0" colspan="2">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Auto-calculate outflow length?</string>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
-        <item row="100" column="0">
-         <widget class="QLineEdit" name="adotc0">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>21</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="29" column="0" colspan="2">
-         <widget class="QLabel" name="pipeID">
+        <item row="46" column="0" colspan="2">
+         <widget class="QLabel" name="label_3">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -1174,98 +1231,29 @@
            </font>
           </property>
           <property name="text">
-           <string>Pipe name/ID:</string>
+           <string>Test Setup</string>
           </property>
          </widget>
         </item>
-        <item row="35" column="0">
-         <widget class="QLineEdit" name="sdr">
+        <item row="52" column="0" colspan="2">
+         <widget class="QLabel" name="label_12">
           <property name="minimumSize">
            <size>
-            <width>200</width>
-            <height>21</height>
+            <width>0</width>
+            <height>30</height>
            </size>
           </property>
-          <property name="maximumSize">
+          <property name="baseSize">
            <size>
-            <width>200</width>
-            <height>21</height>
+            <width>0</width>
+            <height>30</height>
            </size>
           </property>
-         </widget>
-        </item>
-        <item row="108" column="0" colspan="2">
-         <widget class="Line" name="line_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="44" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_14">
-          <item>
-           <widget class="QLineEdit" name="relativediameter">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_26">
-            <property name="text">
-             <string>mm</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="59" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_15">
-          <item>
-           <widget class="QLineEdit" name="backfilldepth">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>21</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>mm</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="22" column="0">
-         <widget class="QLabel" name="Creepmodulus">
           <property name="text">
-           <string>Creep modulus at room temperature:</string>
+           <string>FS with prior decompression:</string>
           </property>
-         </widget>
-        </item>
-        <item row="113" column="0">
-         <widget class="QCheckBox" name="verbose">
-          <property name="text">
-           <string/>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -1350,7 +1338,6 @@
   <tabstop>dynamicmodulus</tabstop>
   <tabstop>deltadynamicmodulus</tabstop>
   <tabstop>creepmodulus</tabstop>
-  <tabstop>dynpoissonratio</tabstop>
   <tabstop>pipename</tabstop>
   <tabstop>waterfraction</tabstop>
   <tabstop>to</tabstop>

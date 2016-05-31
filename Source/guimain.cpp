@@ -45,7 +45,7 @@ gray->setColor(QPalette::Text,Qt::darkGray);
 
 QPalette *white = new QPalette();
 white->setColor(QPalette::Base,Qt::white);
-white->setColor(QPalette::Text,Qt::white);
+white->setColor(QPalette::Text,Qt::black);
 
 extern File file;
 
@@ -118,6 +118,9 @@ ui -> from -> setText(QString::number(0));
 
 ui -> to -> setAlignment(Qt::AlignRight);
 ui -> to -> setText(QString::number(1));
+
+ui->varTo ->setText("");
+ui->fromVar->setText("");
 
 ui -> noofpoints -> setAlignment(Qt::AlignRight);
 ui -> noofpoints -> setText(QString::number(50));
@@ -695,7 +698,7 @@ void guimain::on_parameter_activated(int index)
 
     QPalette *white = new QPalette();
     white->setColor(QPalette::Base,Qt::white);
-    white->setColor(QPalette::Text,Qt::white);
+    white->setColor(QPalette::Text,Qt::black);
 
     switch (index)
     {
@@ -707,6 +710,8 @@ void guimain::on_parameter_activated(int index)
             ui -> testtemperature->setPalette(*white);
             ui ->initialpressure->setReadOnly(false);
             ui -> initialpressure->setPalette(*white);
+            ui->varTo ->setText("");
+            ui->fromVar->setText("");
             break;
               }
         case 1:{
@@ -717,6 +722,8 @@ void guimain::on_parameter_activated(int index)
             ui ->adotc0->setPalette(*white);
             ui ->testtemperature->setReadOnly(false);
             ui -> testtemperature->setPalette(*white);
+            ui->varTo ->setText("bar");
+            ui->fromVar->setText("bar");
             break;
               }
         case 2:{
@@ -727,7 +734,30 @@ void guimain::on_parameter_activated(int index)
             ui ->adotc0->setPalette(*white);
             ui ->initialpressure->setReadOnly(false);
             ui -> initialpressure->setPalette(*white);
+            ui->varTo ->setText("degrees Celsius");
+            ui->fromVar->setText("degrees Celsuis");
             break;
               }
+    }
+}
+
+void guimain::on_fixedlength_clicked(bool checked)
+{
+    QPalette *gray = new QPalette();
+    gray->setColor(QPalette::Base,Qt::gray);
+    gray->setColor(QPalette::Text,Qt::darkGray);
+
+    QPalette *white = new QPalette();
+    white->setColor(QPalette::Base,Qt::white);
+    white->setColor(QPalette::Text,Qt::black);
+
+    if (checked == 1){
+        ui->initiallength -> setReadOnly(true);
+        ui -> initiallength -> setPalette(*gray);
+    }
+    else
+    {
+        ui->initiallength -> setReadOnly(false);
+        ui -> initiallength -> setPalette(*white);
     }
 }

@@ -68,6 +68,8 @@ private slots:
 
    void on_parameter_activated(int index);
 
+   void on_fixedlength_clicked(bool checked);
+
 private:
 
     int i;
