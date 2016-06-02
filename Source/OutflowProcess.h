@@ -14,7 +14,7 @@ class OutflowProcess
                 // Time at which throat unchokes
         double tStarOutflow;
 		double pp1WhileChoked(double tStar);
-		double tStarWhileUnchoked(double xUnch, double pp1);		// Only this inverse function is available
+        double tStarWhileUnchoked(double xUnch, double pStar);		// Only this inverse function is available
 		double X(double pp0);
 		double xFunction(double x);
 
@@ -23,7 +23,7 @@ class OutflowProcess
         double pStarUnchoke;			// Pressure at which throat unchokes
         double xUnch;
         double pHalfStar;
-        double pStar;
+        double pStar;                   // Ratio of current to ambient pressure
         double tStar;
         double tStarUnchoke;
         double simpsonIntegral;

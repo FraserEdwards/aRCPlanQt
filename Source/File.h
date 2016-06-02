@@ -35,7 +35,7 @@ private:
     string temp_dir;
     string subfolder;
     string file_name;
-    int found;
+    unsigned long found;
     int log_number;
 
 public:

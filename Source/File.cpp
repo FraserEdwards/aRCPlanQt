@@ -108,13 +108,13 @@ int File::check()
     if(stat(directory.c_str(), &st) == 0)
     {
 
-        if (st.st_mode & S_IFDIR != 0)
+        if (st.st_mode & (S_IFDIR != 0))
         {
             subfolder = directory + "Results/";
 
             if(stat(subfolder.c_str(), &st) == 0)
             {
-                if (st.st_mode &S_IFDIR != 0)
+                if (st.st_mode & (S_IFDIR != 0))
                 {
                     check_state = 0;
                 }
@@ -129,7 +129,7 @@ int File::check()
 
             if(stat(subfolder.c_str(), &st) == 0)
             {
-                if (st.st_mode &S_IFDIR != 0)
+                if (st.st_mode & (S_IFDIR != 0))
                 {
                     check_state = 0;
                 }
@@ -144,7 +144,7 @@ int File::check()
 
             if(stat(subfolder.c_str(), &st) == 0)
             {
-                if (st.st_mode &S_IFDIR != 0)
+                if (st.st_mode & (S_IFDIR != 0))
                 {
                     check_state = 0;
                 }
