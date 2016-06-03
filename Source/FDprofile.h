@@ -24,7 +24,7 @@ class FDprofile
 		vector<double> zeta;
 		vector <double> vptra;
 	    FDprofile();									// Null constructor
-	    FDprofile(const double alpha[2], const double m[2], double zetaBackfilled, double vStarRes, short elementsPerUnitLength, short nodeAtClosure);
+        FDprofile(const double alpha[2], const double m[2], double zetaBackfilled, double pressurefactor, double residualpressure, short elementsPerUnitLength, short nodeAtClosure);
 														// Constructs an FDprofile from the specified BCs
 		FDprofile(const FDprofile& original);			// Copy constructor
 		FDprofile& operator=(const FDprofile&);			// Assignment by '='
