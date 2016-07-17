@@ -114,7 +114,7 @@ ui -> dynpoissonratio -> setAlignment(Qt::AlignRight);
 ui -> dynpoissonratio -> setText(QString::number(parameters.poisson));
 
 ui -> from -> setAlignment(Qt::AlignRight);
-ui -> from -> setText(QString::number(0));
+ui -> from -> setText(QString::number(0.1));
 
 ui -> to -> setAlignment(Qt::AlignRight);
 ui -> to -> setText(QString::number(1));
@@ -180,6 +180,9 @@ void guimain::on_Runbutton_clicked()
     //Update parameters from GUI
     edited = update();
 
+    qDebug() << QString::number(edited.solid_inside_pipe);
+    qDebug() << QString::number(edited.water_inside_pipe);
+
     //Check if folders for results exist
     //All folders present returns 0
     exists = file.check();
@@ -189,6 +192,15 @@ void guimain::on_Runbutton_clicked()
         Simulation simulation;
         Solution solution;
 
+        if((ui->parameter->currentIndex() == 0) && (edited.from < 0.1))
+        {
+              dialog *e = new dialog;
+              e->warning("Normalised crack speed cannot be less than 0.1. Value has been set to 0.1.");
+              ui->from->setText(QString::number(0.1));
+              edited.from = 0.1;
+              e->show();
+        }
+
         //Run simulation
         solution = simulation.run(edited);
 
@@ -196,8 +208,6 @@ void guimain::on_Runbutton_clicked()
         ui ->yCombo ->clear();
         ui->varCombo ->clear();
         ui -> yCombo -> insertItems(0, QStringList() << "" << "Decompression factor" << "Outflow length" << "Support factor" << "Speed factor" << "Non-dimensional crack driving force" << "Crack driving force");
-
-        ui ->var ->setText(ui->parameter->currentText());
 
         switch (ui -> parameter -> currentIndex())
         {
@@ -760,4 +770,54 @@ void guimain::on_fixedlength_clicked(bool checked)
         ui->initiallength -> setReadOnly(false);
         ui -> initiallength -> setPalette(*white);
     }
+}
+
+void guimain::on_materialbutton_clicked()
+{
+    ui->materialframe->setFixedHeight(540);
+    ui->debuggingframe->setFixedHeight(0);
+    ui->pipeframe->setFixedHeight(0);
+    ui->testframe->setFixedHeight(0);
+    ui->variableframe->setFixedHeight(0);
+    ui->density->setFocus();
+}
+
+void guimain::on_pipebutton_clicked()
+{
+    ui->materialframe->setFixedHeight(0);
+    ui->debuggingframe->setFixedHeight(0);
+    ui->pipeframe->setFixedHeight(540);
+    ui->testframe->setFixedHeight(0);
+    ui->variableframe->setFixedHeight(0);
+    ui->outsidediameter->setFocus();
+}
+
+void guimain::on_testbutton_clicked()
+{
+    ui->materialframe->setFixedHeight(0);
+    ui->debuggingframe->setFixedHeight(0);
+    ui->pipeframe->setFixedHeight(0);
+    ui->testframe->setFixedHeight(540);
+    ui->variableframe->setFixedHeight(0);
+    ui->backfilldepth->setFocus();
+}
+
+void guimain::on_variablebutton_clicked()
+{
+    ui->materialframe->setFixedHeight(0);
+    ui->debuggingframe->setFixedHeight(0);
+    ui->pipeframe->setFixedHeight(0);
+    ui->testframe->setFixedHeight(0);
+    ui->variableframe->setFixedHeight(540);
+    ui->from->setFocus();
+}
+
+void guimain::on_Debuggingbutton_clicked()
+{
+    ui->materialframe->setFixedHeight(0);
+    ui->debuggingframe->setFixedHeight(540);
+    ui->pipeframe->setFixedHeight(0);
+    ui->testframe->setFixedHeight(0);
+    ui->variableframe->setFixedHeight(0);
+    ui->verbose->setFocus();
 }

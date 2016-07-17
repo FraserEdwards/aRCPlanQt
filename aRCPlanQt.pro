@@ -18,7 +18,6 @@ SOURCES += Source/main.cpp\
     Source/about.cpp \
     Source/dialog.cpp \
     Source/guimain.cpp \
-    Source/qcustomplot.cpp \
     Source/backfill.cpp \
     Source/beammodel.cpp \
     Source/configfile.cpp \
@@ -26,13 +25,14 @@ SOURCES += Source/main.cpp\
     Source/creep.cpp \
     Source/decompression.cpp \
     Source/fdprofile.cpp \
-    Source/file.cpp \
+    Source/File.cpp \
     Source/fracmech.cpp \
-    Source/outflowprocess.cpp \
+    Source/OutflowProcess.cpp \
     Source/parameters.cpp \
-    Source/simulation.cpp \
+    qcustomplot.cpp \
+    Source/Simulation.cpp \
     Source/solution.cpp \
-    Source/symdoublematrix.cpp
+    Source/symdoublematrix.cpp \
 
 HEADERS  += \
     Source/about.h \
@@ -52,8 +52,8 @@ HEADERS  += \
     Source/parameters.h \
     Source/simulation.h \
     Source/solution.h \
-    Source/symdoublematrix.h
-
+    Source/symdoublematrix.h \
+    qcustomplot.h
 
 FORMS    += \
     Source/guimain.ui \

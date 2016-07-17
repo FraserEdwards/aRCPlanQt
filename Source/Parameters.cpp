@@ -33,7 +33,7 @@ Parameters::Parameters()
     solution_method = 2;
     single_mode = 2;
     range_number = 0;
-    elements_in_l = 10;
+    elements_in_l = 20;
     adotc0 = 0.5;
     varname = 0;
 
@@ -153,6 +153,8 @@ Parameters& Parameters::operator=(const Parameters& rhs)
     is_backfilled = rhs.is_backfilled;
     backfill_depth = rhs.backfill_depth;
     backfill_density = rhs.backfill_density;
+    water_inside_pipe = rhs.water_inside_pipe;
+    solid_inside_pipe = rhs.solid_inside_pipe;
 
     return *this;
 

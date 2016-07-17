@@ -70,6 +70,16 @@ private slots:
 
    void on_fixedlength_clicked(bool checked);
 
+   void on_materialbutton_clicked();
+
+   void on_pipebutton_clicked();
+
+   void on_testbutton_clicked();
+
+   void on_variablebutton_clicked();
+
+   void on_Debuggingbutton_clicked();
+
 private:
 
     int i;
