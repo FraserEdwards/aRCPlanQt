@@ -12,15 +12,15 @@ using namespace std;
 #include "ConfigFile.h"
 
     string Parameters::pipeid_lib[5] = {"250mm_SDR11", "250mm_SDR17", "110mm_SDR11", "110mm_SDR17", "63mm_SDR11"};
-    string Parameters::matid_lib[6] = { "Soft PE80", "Generic PE100", "Soft PE100", "Generic PE1", "Generic PE2","Test"};
+    string Parameters::matid_lib[5] = { "Soft PE80", "Generic PE100", "Soft PE100", "Generic PE1", "Generic PE2"};
     double Parameters::diameter_lib[5] = {250.0, 250.0, 110.0, 110.0, 63.0};
     double Parameters::sdr_lib[5] = {11.0, 17.6, 11.0, 17.6, 11.0};
 
-    double Parameters::density_lib[6] = {938.0, 960.0, 938.0, 960.0, 950.0,0.0};
-    double Parameters::edyn0degc_lib[6] = {2.62, 3.17, 1.31, 1.585, 1.5,0.0};
-    double Parameters::dedyndt_lib[6] = {-0.037, -0.0427, -0.0185, -0.02135, -0.02,0.0};
-    double Parameters::creepmodulus_lib[6] = {0.3, 0.3, 0.3, 0.3, 0.3,0.0};
-    double Parameters::poisson_lib[6] = {0.38, 0.38, 0.38, 0.38, 0.38,0.0};
+    double Parameters::density_lib[5] = {938.0, 960.0, 938.0, 960.0, 950.0};
+    double Parameters::edyn0degc_lib[5] = {2.62, 3.17, 1.31, 1.585, 1.5};
+    double Parameters::dedyndt_lib[5] = {-0.037, -0.0427, -0.0185, -0.02135, -0.02};
+    double Parameters::creepmodulus_lib[5] = {0.3, 0.3, 0.3, 0.3, 0.3};
+    double Parameters::poisson_lib[5] = {0.38, 0.38, 0.38, 0.38, 0.38};
     double Parameters::from_lib[3] = {0.0, 1.0, 1.0};
     double Parameters::to_lib[3] = {1.0, 20.0, 50.0};
 

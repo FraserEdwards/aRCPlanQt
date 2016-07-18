@@ -57,9 +57,6 @@ private slots:
     //Shows about dialog
     void on_actionAbout_triggered();
 
-    //Changes independent variable
-    void on_parameter_currentIndexChanged(int index);
-
     //Selects normalised crack velocity and displays graph
     void on_varCombo_activated(int index);
 
@@ -80,6 +77,8 @@ private slots:
 
    void on_Debuggingbutton_clicked();
 
+   void on_backfill_clicked(bool checked);
+
 private:
 
     int i;
@@ -97,7 +96,7 @@ private:
     void plotHandler(Solution solution);
 
     //Plot handlers for results or profiles with appropriate titles and ranges
-    void plotResults(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate);
+    void plotResults(vector<double> x, vector<double> y, string title, QString xtitle, QString ytitle, char savestate);
     void plotProfiles(vector<double> x, vector<double> y, string title, string xtitle, string ytitle, char savestate, char valid);
 };
 

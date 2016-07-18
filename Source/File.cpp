@@ -221,7 +221,7 @@ void File::writeResults()
 
     file_name = "Crack Profiles.csv";
 
-    out.open((file.directory + "Results/" +file_name).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
+    out.open((file.directory + "Profiles/" +file_name).c_str(), std::fstream::in | std::fstream::out | std::fstream::trunc);
 
     out << "zeta" << ",";
 
@@ -437,6 +437,7 @@ void File::logPrepare(Parameters temp)
 //Writes single line using the current log values
 void File::writeLogLine(int newline)
 {
+    file_name = "Log/Log.csv";
     out.open((directory + file_name).c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
 
     //Reset count and create new line
