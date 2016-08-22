@@ -61,7 +61,9 @@ public:
         vector<double> zeta;
         vector<double> crack_displacement;
         double vstardashbackfilleject;
-		
+        double pressurefactor;
+        double residualpressure;
+
 		//Null constructor
 	    BeamModel();
 
