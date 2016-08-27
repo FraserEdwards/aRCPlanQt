@@ -26,13 +26,13 @@ SOURCES += Source/main.cpp\
     Source/decompression.cpp \
     Source/fdprofile.cpp \
     Source/File.cpp \
-    Source/fracmech.cpp \
     Source/OutflowProcess.cpp \
     Source/parameters.cpp \
     qcustomplot.cpp \
     Source/Simulation.cpp \
     Source/solution.cpp \
     Source/symdoublematrix.cpp \
+    Source/liquidcontent.cpp
 
 HEADERS  += \
     Source/about.h \
@@ -47,13 +47,13 @@ HEADERS  += \
     Source/decompression.h \
     Source/fdprofile.h \
     Source/file.h \
-    Source/fracmech.h \
     Source/outflowprocess.h \
     Source/parameters.h \
     Source/simulation.h \
     Source/solution.h \
     Source/symdoublematrix.h \
-    qcustomplot.h
+    qcustomplot.h \
+    Source/liquidcontent.h
 
 FORMS    += \
     Source/guimain.ui \

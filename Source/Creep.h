@@ -1,7 +1,8 @@
-//     aRCPLan
-//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
-//     aRCPlan may be freely distributed under the MIT license.
-//     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
+//  aRCPLan
+//  Copyright (c) [2016] [Fraser Edwards][Dr Patrick Leevers]
+//  aRCPlan may be freely distributed under the MIT license.
+//  For the underlying model, see
+//  http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
 #ifndef _CREEP_H
 #define _CREEP_H
@@ -19,11 +20,12 @@ public:
     double diameter_res0;
     double residual_crack_closure;
 
-	//Null constructor
+    //  Null constructor
 	Creep();
 
-	//Constructor
-    //Calculates natural diameter of pipe and crack closure due to residual strain contraction
+    //  Constructor
+    //  Calculates natural diameter of pipe
+    //  and crack closure due to residual strain contraction
 	Creep(const Parameters parameters);
 
 };

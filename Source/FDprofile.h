@@ -1,7 +1,14 @@
-//     aRCPLan
-//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
-//     aRCPlan may be freely distributed under the MIT license.
-//     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
+//  aRCPLan
+//  Copyright (c) [2016] [Fraser Edwards][Dr Patrick Leevers]
+//  aRCPlan may be freely distributed under the MIT license.
+
+//  For the underlying model, see:
+//  http://www.sciencedirect.com/science/article/pii/S0013794412003530
+
+//  Class representing the dynamic Beam on Elastic Foundation differential
+//  equation [D^4 + alpha^2 D^2 + m] * v_star = f(zeta),
+//  and determining its displacement solution v_star(zeta).
+
 
 #ifndef FDprofileH
 #define FDprofileH
@@ -11,40 +18,58 @@
 
 class FDprofile
 {
-	private:
-		short arraySize;								// Total number of active nodes
-		double* v_ptr;									// Vector of matrix equation RHS elements then, after solution, of vStar elements
-	    short elementsPerUnitLength;					// Number of active nodes in outflow length (0 < zeta < 1)
-		void resetBackfill(const double alpha[2], const double m[2], int noBackfill, double& weight0, double& weight1, double& weight2);
-		void copy(const FDprofile& original);			// Copy
-
 	public:
-
-		int l;
+        int cod_plot_points;
 		vector<double> zeta;
-		vector <double> vptra;
-	    FDprofile();									// Null constructor
-	    FDprofile(const double alpha[2], const double m[2], double zetaBackfilled, double vStarRes, short elementsPerUnitLength, short nodeAtClosure);
-														// Constructs an FDprofile from the specified BCs
-		FDprofile(const FDprofile& original);			// Copy constructor
-		FDprofile& operator=(const FDprofile&);			// Assignment by '='
-	    ~FDprofile();									// Destructor
+        vector<double> vptra;
+        FDprofile();            // Null constructor
+        FDprofile(const double alpha[2],
+                    const double m[2],
+                    double zeta_at_max_dzetadz, //  backfill ejection point
+                    double residualpressure,
+                    short elementsPerUnitLength,
+                    short nodeAtClosure);
+                                // Constructs an FDprofile from specified BCs
+        FDprofile(const FDprofile& original);
+                                // Copy constructor
+        FDprofile& operator=(const FDprofile&);
+                                // Assignment by '='
+        ~FDprofile();           // Destructor
 
-		void resetSize(short newSize);					// Resets size or array, discarding data in it
+        void resetSize(short newSize);
+                                // Resets array size, discarding data in it
 
-		double wStar2();								// vStar at outflow point
-		double wStarMax(short elementsInL);				// Greatest opening
-		double wStar2dash();							// 1st derivative of vStar at outflow point
-		double wStar2dash2();							// 2nd derivative of vStar at outflow point
-		double integral_wStar2();						// Integral (wStar dZeta) of physical opening from crack tip to outflow point
-		double closureMoment();							// Ratio of 2nd derivatives (closure point / crack tip)
-		void findBackfillEjectPoint(double& zetaBackfillEject, double& vStarDashBackfillEject);
-														// 0 < zeta < 1 at which radial acceleration changes sign
-		void outflowPointValues(double& wStar, double& dwStar_dzeta, double& d2wStar_dZeta2, double& integral_wStar2);
-		short nodeAtMinimum();							// Index of FD point immediately to the right of a negative minimum
-		short nodeAtClosure();							// Index of last point in FD array
-		void fprofile();
-				
+        void ShowCODProfile();
+        double VStarMax();
+        double VStar_2();       // vStar at outflow point
+        double DVStarDZeta_2(); // First derivative at outflow point
+        double D2VStarDZeta2_2();
+                                // Second derivative at outflow point
+        double IntegralVStarDZeta_12();
+                                // Integral (vStar dZeta)
+                                // from crack tip point '1' to outflow point '2'
+
+        double ClosureMoment(); //  Find closure-point:crack-tip ratio of
+                                //  of dvStar2_dzeta2,
+        short NodeAtMinimum();  //  Identify last positive COD node
+        short IsUnphysical();   //  Node has negative crack opening
+        short NodeAtClosure();	//  Identify last node in FD array
+        void GetBackfillEjectPoint(double& zeta_at_max_dzetadz,
+                                   double& vStarDashBackfillEject);
+
+private:
+    int arraySize;              //  Total number of active (nonzero COD) nodes
+    double* v_ptr;              //  Vector of matrix equation RHS elmnts
+                                //  then, after solution, vStar elmnts
+    short elementsPerUnitLength;	//  in outflow length (0 < zeta < 1)
+    void resetBackfill(const double alpha[2],
+                        const double m[2],
+                        int noBackfill,
+                        double& weight0,
+                        double& weight1,
+                        double& weight2);
+    void copy(const FDprofile& original);	// Copy
+
 };
 
 #endif

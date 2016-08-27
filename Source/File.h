@@ -1,7 +1,8 @@
-//     aRCPLan
-//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
-//     aRCPlan may be freely distributed under the MIT license.
-//     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
+//  aRCPLan
+//  Copyright (c) [2016] [Fraser Edwards][Dr Patrick Leevers]
+//  aRCPlan may be freely distributed under the MIT license.
+//  For the underlying model, see
+//  http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
 #ifndef _FILE_H
 #define _FILE_H
@@ -20,10 +21,15 @@ using namespace std;
 
 #include "Parameters.h"
 #include "Solution.h"
-#include "FracMech.h"
+#include "Creep.h"
+#include "Backfill.h"
+#include "BeamModel.h"
 #include "OutflowProcess.h"
 
-class File : public FracMech, public Creep, public Backfill, public BeamModel, public OutflowProcess
+class File : public Creep,
+        public Backfill,
+        public BeamModel,
+        public OutflowProcess
 {
 private:
 
@@ -43,57 +49,58 @@ public:
     string directory;
     double adotc0;
 
-    //Null constructor
+    //  Null constructor
     File();
 
-    //Clears all values in file
+    //  Clears all values in file
     void initialise();
 
-    //Resizes directory, removing aRCPlan.app to find overall directory of program
+    //  Resizes directory, removing aRCPlan.app
+    //  to find overall directory of program
     void correct();
 
-    //Check for existence of folder required for storing files
+    //  Check for existence of folder required for storing files
     int check();
 
-    //Checks if file exists
+    //  Checks if file exists
     int loadCheck(string name);
 
-    //Handles parameters, sending them to write function if file is found
+    //  Handles parameters, sending them to write function if file is found
     int caseHandler(Parameters temp, string filename);
 
-    //Writes parameters to csv file with appropriate formatting
+    //  Writes parameters to csv file with appropriate formatting
     void writeParCSV(Parameters temp, string filename);
 
-    //Write parameters to txt file with appropriate formatting
+    //  Write parameters to txt file with appropriate formatting
     void writeParTXT(Parameters temp, string filename);
 
-    //Reads from global solution object and writes to a csv file
+    //  Reads from global solution object and writes to a csv file
     void writeResults();
 
-    //Writes a single line to a csv file
+    //  Writes a single line to a csv file
     void writeLineCSV(string title, double value, ofstream &out);
     void writeLineCSV(string title, string value, ofstream &out);
     void writeLineCSV(string title, ofstream &out);
 
-    //Writes a single line to a txt file
+    //  Writes a single line to a txt file
     void writeLineTXT(string title, double value, ofstream &out, int format);
     void writeLineTXT(string title, string value, ofstream &out, int format);
     void writeLineTXT(string title, ofstream &out, int format);
 
-    //Handles log file, writing parameters and headers for remainder of logs
+    //  Handles log file, writing parameters and headers for remainder of logs
     void logPrepare(Parameters temp);
 
-    //Writes headers for log file
+    //  Writes headers for log file
     void writeHeaders(string temp);
 
-    //Update log file before writing a line
-    void collect(FracMech fracmech);
+    //  Update log file before writing a line
     void collect(Creep creep);
     void collect(Backfill backfill);
+    void collect(LiquidContent liquidcontent);
     void collect(BeamModel *beamModel, int newline);
     void collect(OutflowProcess *outflow, int newline);
 
-    //Writes a single line to the log file with current log values
+    //  Writes a single line to the log file with current log values
     void writeLogLine(int newline);
 };
 

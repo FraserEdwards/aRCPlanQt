@@ -1,10 +1,12 @@
-//     aRCPLan
-//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
-//     aRCPlan may be freely distributed under the MIT license.
-//     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
+//  aRCPLan
+//  Copyright (c) [2016] [Fraser Edwards][Dr Patrick Leevers]
+//  aRCPlan may be freely distributed under the MIT license.
+//  For the underlying model, see
+//  http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
-//     Main function
-//     Sets up GUI and displays it before waiting for signals to execture other commands
+//  Main function
+//  Sets up GUI and displays it before waiting for signals to execute
+//  other commands
 
 #include <QApplication>
 #include <iostream>
@@ -21,27 +23,25 @@ Solution solution;
 
 int main(int argc, char *argv[])
 {
-
     QApplication a(argc, argv);
 
-    //Find application directory
+    //  Find application directory
     file.directory = a.applicationDirPath().toStdString();
 
-    //Alters directory to outside the application bundle
+    //  Relocate directory outside the application bundle
     file.correct();
 
-    //Create initial parameters to populate the GUI
+    //  Create initial parameters to populate the GUI
     Parameters initial;
 
-    //Create main form guimain
+    //  Create main form guimain
     guimain b;
     b.setnames(initial,0);
     b.setWindowTitle("aRCPlan");
 
-    //Show window
+    //  Show window
     b.show();
 
-    //Wait for signals from GUI
+    //  Wait for signals from GUI
     return a.exec();
-
 }

@@ -1,5 +1,5 @@
 //     aRCPLan
-//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
+//     Copyright (c) [2016] [Fraser Edwards][Dr Patrick Leevers]
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
@@ -51,7 +51,8 @@ void SymDoubleMatrix::setElement(short i, short j, double x)
 {
 	int index = size * i + j;
 	if ((index - size * size + 1) > 0)
-		cout << " bad set index\n";	*(pointer2elements + index) = x;
+        cout << " bad set index\n";
+    *(pointer2elements + index) = x;
 }
 
 // Add dx to element (i, j), j>=i

@@ -1,5 +1,5 @@
 //     aRCPLan
-//     Copyright (c) [2014] [Fraser Edwards][Dr Patrick Leevers]
+//     Copyright (c) [2016] [Fraser Edwards][Dr Patrick Leevers]
 //     aRCPlan may be freely distributed under the MIT license.
 //     For the underlying model, see http://www.sciencedirect.com/science/article/pii/S0013794412003530
 
